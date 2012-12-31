@@ -3,33 +3,34 @@
   %h1=t '.title', :default => model_class.model_name.human
 
 %p
-  %strong= model_class.human_attribute_name(:quote_date) + ':'
-  %br
-  = @quote.quote_date
-%p
   %strong= model_class.human_attribute_name(:quote_reference) + ':'
   %br
   = @quote.quote_reference
 %p
-  %strong= model_class.human_attribute_name(:requester) + ':'
+  %strong= model_class.human_attribute_name(:client_name) + ':'
   %br
-  = @quote.requester
+  = @quote.client_name
+%p
+  %strong= model_class.human_attribute_name(:description) + ':'
+  %br
+  = @quote.description
+
+%p
+  %strong= model_class.human_attribute_name(:quote_date) + ':'
+  %br
+  = @quote.quote_date.to_date
 %p
   %strong= model_class.human_attribute_name(:quantity) + ':'
   %br
   = @quote.quantity
 %p
-  %strong= model_class.human_attribute_name(:description) + ':'
-  %br
-  = @quote.description
-%p
   %strong= model_class.human_attribute_name(:status) + ':'
   %br
-  = @quote.status
+  = @quote.display_status
 %p
-  %strong= model_class.human_attribute_name(:client_id) + ':'
+  %strong= model_class.human_attribute_name(:supplier_name) + ':'
   %br
-  = @quote.client_id
+  = @quote.supplier_name
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), quotes_path, :class => 'btn'

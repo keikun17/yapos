@@ -1,6 +1,16 @@
 MlandcorpPos::Application.routes.draw do
+  resources :orders
+
+
+  resources :suppliers
+
+
   resources :clients
-  resources :quotes
+  resources :quotes do 
+    member do
+      get 'requote'
+    end
+  end
 
   root :to => 'quotes#index'
 
