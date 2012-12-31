@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  quote_date: 2012-12-30 16:47:33
+  quote_reference: MyString
+  requester: MyString
+  quantity: 1.5
+  description: MyText
+  status: MyString
+
+two:
+  quote_date: 2012-12-30 16:47:33
+  quote_reference: MyString
+  requester: MyString
+  quantity: 1.5
+  description: MyText
+  status: MyString
