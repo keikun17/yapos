@@ -83,6 +83,7 @@ GEM
     method_source (0.8.1)
     mime-types (1.19)
     multi_json (1.5.0)
+    mysql2 (0.3.11)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -169,6 +170,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   libv8
+  mysql2
   pry
   quiet_assets
   rails (= 3.2.9)

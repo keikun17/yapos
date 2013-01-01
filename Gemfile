@@ -29,6 +29,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'mysql2'
 
 group :development, :test do
   gem 'haml-rails'
