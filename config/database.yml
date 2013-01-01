@@ -1,19 +1,20 @@
 development:
   adapter: mysql2
   database: mlandcop_pos_development
-  user: miku
+  username: miku
   pool: 5
   timeout: 5000
 
 test:
   adapter: mysql2
   database: mlandcop_pos_test
-  user: miku
+  username: miku
   pool: 5
   timeout: 5000
 
 production:
   adapter: mysql2
+  username: deploy
   database: mlandcop_pos_production
   pool: 5
   timeout: 5000
