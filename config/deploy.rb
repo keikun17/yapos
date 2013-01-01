@@ -1,5 +1,7 @@
 # require 'bundler/capistrano'
 
+default_run_options[:pty] = true 
+
 set :application, "mlandcorp-pos"
 set :repository,  "git@github.com:keikun17/mlandcorp-pos.git"
 set :scm, "git"
