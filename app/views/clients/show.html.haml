@@ -17,7 +17,7 @@
   %br
   = @client.contact_numbers
 
-%strong Purchase Requests :
+%h4 Purchase Requests :
 - if @client.quotes.present?
   = render :partial => 'quotes/quotes', :locals => {:quotes => @client.quotes, :model_class => Quote}
 
