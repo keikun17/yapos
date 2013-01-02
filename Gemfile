@@ -32,6 +32,7 @@ gem 'jquery-rails'
 gem 'mysql2'
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'haml-rails'
   gem 'pry'
 end
