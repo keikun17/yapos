@@ -3,6 +3,14 @@
     = f.label :name, :class => 'control-label'
     .controls
       = f.text_field :name, :class => 'text_field'
+  .control-group
+    = f.label :emails, :class => 'control-label'
+    .controls
+      = f.text_field :emails, :class => 'text_field'
+  .control-group
+    = f.label :contact_numbers, :class => 'control-label'
+    .controls
+      = f.text_field :contact_numbers, :class => 'text_field'
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), suppliers_path, :class => 'btn'

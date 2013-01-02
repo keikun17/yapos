@@ -1,5 +1,5 @@
 class Supplier < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :emails, :contact_numbers
 
   has_many :quotes
 end

@@ -7,6 +7,16 @@
   %br
   = @client.name
 
+%p
+  %strong= model_class.human_attribute_name(:emails) + ':'
+  %br
+  = @client.emails
+
+%p
+  %strong= model_class.human_attribute_name(:contact_numbers) + ':'
+  %br
+  = @client.contact_numbers
+
 %strong Purchase Requests :
 - if @client.quotes.present?
   = render :partial => 'quotes/quotes', :locals => {:quotes => @client.quotes, :model_class => Quote}
