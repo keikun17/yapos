@@ -16,13 +16,12 @@
       %tr
         %td= link_to quote.quote_reference, quote_path(quote)
         %td
-          = link_to quote.client_name, client_path(quote.client) if quote.client
+          = link_to_client(quote.client)
         %td
-          = link_to quote.order_reference, order_path(quote.order) if quote.order
+          = link_to_order(quote.order)
         %td= quote.quantity
         %td= truncate(quote.description, :length => 20, :omission => "...")
-        %td
-          = link_to quote.supplier_name, supplier_path(quote.supplier)
+        %td= link_to_supplier(quote.supplier)
         %td= quote.display_status
         %td
           = quote.quote_date.to_date if quote.quote_date

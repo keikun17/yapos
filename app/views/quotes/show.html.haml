@@ -7,9 +7,13 @@
   %br
   = @quote.quote_reference
 %p
+  %strong= model_class.human_attribute_name(:order_reference) + ':'
+  %br
+  = link_to_order(@quote.order)
+%p
   %strong= model_class.human_attribute_name(:client_name) + ':'
   %br
-  = @quote.client_name
+  = link_to_client(@quote.client)
 %p
   %strong= model_class.human_attribute_name(:description) + ':'
   %br
@@ -30,7 +34,8 @@
 %p
   %strong= model_class.human_attribute_name(:supplier_name) + ':'
   %br
-  = @quote.supplier_name
+  = link_to_supplier(@quote.supplier)
+
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), quotes_path, :class => 'btn'

@@ -7,4 +7,9 @@ module OrdersHelper
     str = str.join(', ')
     raw str
   end
+
+  def link_to_order(order)
+    h link_to(order.reference, order_path(order)) if order
+  end
+
 end
