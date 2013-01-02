@@ -11,7 +11,14 @@
   %br
   = @order.purchase_date.to_date
 
-%strong Purchase Requests :
+%h4 Purchase Requests :
+
+- if @order.custom_quote_reference.present?
+  %p
+    %strong= model_class.human_attribute_name(:custom_quote_reference) + ':'
+    %br
+    = @order.custom_quote_reference
+
 - if @order.quotes.present?
   = render :partial => 'quotes/quotes', :locals => {:quotes => @order.quotes, :model_class => Quote}
 
