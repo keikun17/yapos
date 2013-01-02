@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102115541) do
+ActiveRecord::Schema.define(:version => 20130102123648) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(:version => 20130102115541) do
   create_table "orders", :force => true do |t|
     t.string   "reference"
     t.datetime "purchase_date"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.string   "custom_quote_reference"
   end
 
   create_table "quotes", :force => true do |t|

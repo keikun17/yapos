@@ -8,14 +8,21 @@
     .controls
       = f.date_select :purchase_date, :class => 'datetime_select'
 
-  %fieldset
-    %legend Purchase Requests
-
+  %h3 Quotes (Purchase Requests)
+  %hr
+  %div
     = f.fields_for :quotes do |builder|
       = render 'quote_fields', :f => builder
 
     #purchase-requests
-      = link_to_add_fields "Reference Quotation" , f, :quotes
+      = link_to_add_fields "Click to add existing quotes" , f, :quotes
+
+  %h3 Custom Quote References (Orders without Quotes)
+  %hr
+  .control-group
+    = f.label :custom_quote_reference, "Custom Quote Reference"
+    .controls
+      = f.text_field :custom_quote_reference, :class => "text_field"
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
