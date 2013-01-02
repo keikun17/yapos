@@ -74,7 +74,6 @@ class QuotesController < ApplicationController
     @quote = @parent_quote.requote!
     respond_to do |format|
       if @quote.persisted?
-        @quote.reload
         format.html { redirect_to @quote, notice: 'Quote was successfully requoted.' }
         format.json { head :no_content }
       else
