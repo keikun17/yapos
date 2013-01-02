@@ -73,11 +73,12 @@ class QuotesController < ApplicationController
     @parent_quote = Quote.find(params[:id])
     @quote = @parent_quote.requote!
     respond_to do |format|
-      if @quote = @quote.persisted?
+      if @quote.persisted?
+        @quote.reload
         format.html { redirect_to @quote, notice: 'Quote was successfully requoted.' }
         format.json { head :no_content }
       else
-        format.html { redurect_to quotes_url }
+        format.html { redirect_to quotes_url }
         format.json { render json: @quote.errors, status: :unprocessable_entity }
       end
     end
