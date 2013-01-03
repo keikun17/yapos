@@ -19,9 +19,27 @@
     %br
     = @order.custom_quote_reference
 
+- if @order.client.present?
+  %p
+    %strong= model_class.human_attribute_name(:client) + ':'
+    %br
+    = @order.client_name
+
+- if @order.supplier.present?
+  %p
+    %strong= model_class.human_attribute_name(:supplier) + ':'
+    %br
+    = @order.supplier_name
+
 - if @order.quotes.present?
   = render :partial => 'quotes/quotes', :locals => {:quotes => @order.quotes, :model_class => Quote}
 
+%br
+
+%h4 Notes
+%p
+  =simple_format @order.description
+    
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), orders_path, :class => 'btn'
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(@order), :class => 'btn'

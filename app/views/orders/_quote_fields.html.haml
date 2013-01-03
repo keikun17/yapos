@@ -1,4 +1,4 @@
 .control-group
   = label_tag :quote_ids, "Quote Reference", :class => 'control-label'
   .controls
-    = select_tag 'quote_ids[]', options_for_select(Quote.all.collect{|o| [o.quote_reference, o.id]}, f.object.id), :include_blank => true, :class => 'select'
+    = select_tag 'quote_ids[]', options_for_select(Quote.unawarded.collect{|o| [o.quote_reference, o.id]}, f.object.id), :include_blank => true, :class => 'select'

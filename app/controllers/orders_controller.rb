@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
+    @order.quotes.build
 
     assign_quotes
     respond_to do |format|
@@ -36,6 +37,9 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
+    if @order.quotes.empty?
+      @order.quotes.build
+    end
   end
 
   # POST /orders
