@@ -15,6 +15,11 @@
   %br
   = @supplier.contact_numbers
 
+%p
+  %strong= model_class.human_attribute_name(:address) + ':'
+  %br
+  =simple_format @supplier.address
+
 %h4 Purchase Requests :
 - if @supplier.quotes.present?
   = render :partial => 'quotes/quotes', :locals => {:quotes => @supplier.quotes, :model_class => Quote}
