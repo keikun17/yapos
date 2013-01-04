@@ -43,10 +43,10 @@
   %tbody
     - @quote.requests.each do |request|
       %tr
-        %td= request.requested_specifications
-        %td= request.supplier_name
-        %td= request.quoted_specifications
-        %td= request.remarks
+        %td=simple_format request.requested_specifications
+        %td=simple_format request.supplier_name
+        %td=simple_format request.quoted_specifications
+        %td=simple_format request.remarks
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), quotes_path, :class => 'btn'
