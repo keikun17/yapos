@@ -4,7 +4,6 @@
       %th= model_class.human_attribute_name(:quote_reference)
       %th= model_class.human_attribute_name(:client)
       %th= model_class.human_attribute_name(:order_reference)
-      %th= model_class.human_attribute_name(:quantity)
       %th= model_class.human_attribute_name(:description)
       %th= model_class.human_attribute_name(:supplier)
       %th= model_class.human_attribute_name(:status)
@@ -19,7 +18,6 @@
           = link_to_client(quote.client)
         %td
           = link_to_order(quote.order)
-        %td= quote.quantity
         %td= truncate(quote.description, :length => 20, :omission => "...")
         %td= link_to_supplier(quote.supplier)
         %td= quote.display_status

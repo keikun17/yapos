@@ -6,7 +6,17 @@ class Quote < ActiveRecord::Base
     :status,
     :client_id,
     :supplier_id,
-    :order_id
+    :order_id,
+    :requests_attributes
+
+  has_many :requests
+
+  accepts_nested_attributes_for :requests, :allow_destroy => true, 
+    :reject_if => lambda { |r| r[:supplier].nil? &&
+                           r[:requested_specifications].blank? &&
+                           r[:quoted_specifications].blank? && 
+                           r[:remarks].blank? 
+  }
 
   belongs_to :client
   belongs_to :order

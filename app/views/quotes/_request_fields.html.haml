@@ -1,0 +1,11 @@
+.fields
+  = f.text_area :requested_specifications, :class => 'span3 text_area', :rows => 2
+
+  = f.select :supplier_id, options_for_select(Supplier.all.collect{|s| [s.name, s.id]}, f.object.supplier_id), :include_blank => true, :class => 'span2'
+
+  = f.text_area :quoted_specifications, :class => 'span3 text_area', :rows => 2
+
+  = f.text_area :remarks, :class => 'text_area span3', :rows => 2
+
+  = link_to_remove_fields "remove", f 
+

@@ -24,10 +24,6 @@
   %br
   = @quote.quote_date.to_date
 %p
-  %strong= model_class.human_attribute_name(:quantity) + ':'
-  %br
-  = @quote.quantity
-%p
   %strong= model_class.human_attribute_name(:status) + ':'
   %br
   = @quote.display_status
@@ -35,7 +31,22 @@
   %strong= model_class.human_attribute_name(:supplier_name) + ':'
   %br
   = link_to_supplier(@quote.supplier)
-
+ 
+%h4 Requests
+%table.table
+  %thead
+    %tr
+      %th Quoted Specs
+      %th Supplier
+      %th Supplied Specs
+      %th Remarks
+  %tbody
+    - @quote.requests.each do |request|
+      %tr
+        %td= request.requested_specifications
+        %td= request.supplier_name
+        %td= request.quoted_specifications
+        %td= request.remarks
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), quotes_path, :class => 'btn'
