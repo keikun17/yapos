@@ -1,0 +1,10 @@
+.fields
+  .control-group
+    - unless f.object.persisted?
+      = f.label :document, :class => 'control-label'
+    .controls
+      - if f.object.persisted?
+        = f.object[:document]
+      - else
+        = f.file_field :document, :class => 'field_field'
+      = link_to_remove_fields "remove", f

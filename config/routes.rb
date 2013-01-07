@@ -12,6 +12,11 @@ MlandcorpPos::Application.routes.draw do
     member do
       get 'requote'
     end
+    resources :attachments do
+      member do
+        get 'document'
+      end
+    end
   end
 
   root :to => 'quotes#index'

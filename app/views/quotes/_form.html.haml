@@ -28,6 +28,13 @@
     .controls
       = f.select :supplier_id, Supplier.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
 
+  %h3 Attachments
+  %hr
+  #attachments-fields
+    = f.fields_for :attachments do |builder|
+      = render :partial => "attachment_fields", :locals => {:f => builder}
+    = link_to_add_fields "Click to add attachments" , f, :attachments
+
   %h3 Requests
   %hr
   %div

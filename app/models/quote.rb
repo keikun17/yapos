@@ -7,16 +7,20 @@ class Quote < ActiveRecord::Base
     :client_id,
     :supplier_id,
     :order_id,
-    :requests_attributes
+    :requests_attributes,
+    :attachments_attributes
 
   has_many :requests
+  has_many :attachments, :as => :attachable
+
+  accepts_nested_attributes_for :attachments, :allow_destroy => true,
+    :reject_if => lambda { |a| a[:document].nil? }
 
   accepts_nested_attributes_for :requests, :allow_destroy => true, 
     :reject_if => lambda { |r| r[:supplier].nil? &&
                            r[:requested_specifications].blank? &&
                            r[:quoted_specifications].blank? && 
-                           r[:remarks].blank? 
-  }
+                           r[:remarks].blank?  }
 
   belongs_to :client
   belongs_to :order

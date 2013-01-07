@@ -32,6 +32,11 @@
   %br
   = link_to_supplier(@quote.supplier)
  
+%h4 Attachments
+%ul.attachments
+  - @quote.attachments.each do |attachment|
+    %li= link_to attachment[:document], quote_attachment_path(@quote, :id => attachment.id)
+
 %h4 Requests
 %table.table
   %thead

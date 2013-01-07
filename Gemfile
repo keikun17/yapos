@@ -8,6 +8,8 @@ gem 'rails', '3.2.9'
 gem 'sqlite3'
 gem 'devise'
 gem 'haml-rails'
+gem 'carrierwave'
+
 gem 'quiet_assets', :group => :development
 gem 'thin', :group => :development
 

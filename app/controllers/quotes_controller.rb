@@ -26,6 +26,7 @@ class QuotesController < ApplicationController
   def new
     @quote = Quote.new
     @quote.requests.build
+    @quote.attachments.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @quote }
@@ -36,6 +37,7 @@ class QuotesController < ApplicationController
   def edit
     @quote = Quote.find(params[:id])
     @quote.requests.build if @quote.requests.empty?
+    @quote.attachments.build if @quote.attachments.empty?
   end
 
   # POST /quotes
