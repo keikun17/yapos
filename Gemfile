@@ -12,6 +12,7 @@ gem 'carrierwave'
 
 gem 'quiet_assets', :group => :development
 gem 'thin', :group => :development
+gem 'will_paginate', '~> 3.0.4'
 
 # Gems used only for assets and not required
 # in production environments by default.

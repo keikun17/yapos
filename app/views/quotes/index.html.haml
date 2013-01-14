@@ -2,6 +2,8 @@
 .page-header
   %h1=t '.title', :default => model_class.model_name.human.pluralize
 
-= render :partial => 'quotes', :locals => {:quotes => @quotes, :model_class => model_class, :show_actions => true}
-
+.pull-right= will_paginate(@quotes)
 = link_to t('.new', :default => t("helpers.links.new")), new_quote_path, :class => 'btn btn-primary'
+= render :partial => 'quotes', :locals => {:quotes => @quotes, :model_class => model_class, :show_actions => true}
+.pull-right= will_paginate(@quotes)
+
