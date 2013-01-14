@@ -11,7 +11,7 @@ class Order < ActiveRecord::Base
   delegate :name, :to => :client, :allow_nil => true, :prefix => true
   delegate :name, :to => :supplier, :allow_nil => true, :prefix => true
 
-  default_scope order('created_at desc')
+  default_scope order('purchase_date desc')
 
   def clear_quotes
     self.quotes.update_all(:order_id => nil)
