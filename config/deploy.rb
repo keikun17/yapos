@@ -33,7 +33,7 @@ namespace :symlink do
   end
 
   task :uploads, :except => {:norelease => true} do
-    run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads" 
+    run "ln -nfs #{shared_path}/uploads #{release_path}/uploads" 
   end
 end
 
