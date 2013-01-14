@@ -19,11 +19,10 @@
     %br
     = @order.custom_quote_reference
 
-- if @order.client.present?
-  %p
-    %strong= model_class.human_attribute_name(:client) + ':'
-    %br
-    = @order.client_name
+%p
+  %strong= model_class.human_attribute_name(:client) + ':'
+  %br
+  = client_names(@order)
 
 - if @order.supplier.present?
   %p
