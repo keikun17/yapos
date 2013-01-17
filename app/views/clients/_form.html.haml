@@ -11,6 +11,10 @@
     = f.label :contact_numbers, :class => 'control-label'
     .controls
       = f.text_field :contact_numbers, :class => 'text_field'
+  .control-group
+    = f.label :address, :class => 'control-label'
+    .controls
+      = f.text_area :address, :class => 'text_area'
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), clients_path, :class => 'btn'
