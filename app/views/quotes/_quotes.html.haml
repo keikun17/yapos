@@ -4,21 +4,21 @@
       %th= model_class.human_attribute_name(:quote_reference)
       %th= model_class.human_attribute_name(:client)
       %th= model_class.human_attribute_name(:order_reference)
-      %th= model_class.human_attribute_name(:description)
+      %th{:width=> '30%'}= model_class.human_attribute_name(:description)
       %th= model_class.human_attribute_name(:supplier)
       %th= model_class.human_attribute_name(:status)
       %th= model_class.human_attribute_name(:quote_date)
       - if defined?(show_actions)
-        %th=t '.actions', :default => t("helpers.actions")
+        %th{:width => '10%'}=t '.actions', :default => t("helpers.actions")
   %tbody
     - quotes.each do |quote|
-      %tr
+      %tr{:class => quote_row_class(quote)}
         %td= link_to quote.quote_reference, quote_path(quote)
         %td
           = link_to_client(quote.client)
         %td
           = link_to_order(quote.order)
-        %td= truncate(quote.description, :length => 20, :omission => "...")
+        %td= truncate(quote.description, :length => 40, :omission => "...")
         %td= supplier_links(quote)
         %td= quote.display_status
         %td

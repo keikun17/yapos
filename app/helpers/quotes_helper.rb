@@ -9,4 +9,17 @@ module QuotesHelper
     end
     raw links.join(', ')
   end
+
+  def quote_row_class(quote)
+    case quote.display_status
+    when "Awarded"
+      'success'
+    when "Pending"
+      'warning'
+    when "Cancelled"
+      'error'
+    when "No Quote"
+      'info'
+    end
+  end
 end

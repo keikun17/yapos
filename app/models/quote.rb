@@ -36,9 +36,9 @@ class Quote < ActiveRecord::Base
 
   def display_status
     if order.present?
-      "Awarded"
+      text = "Awarded"
     else
-      status
+      text = status
     end
   end
 
