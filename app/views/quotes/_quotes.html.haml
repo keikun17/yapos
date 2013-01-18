@@ -4,10 +4,10 @@
       %th= model_class.human_attribute_name(:quote_reference)
       %th= model_class.human_attribute_name(:client)
       %th= model_class.human_attribute_name(:order_reference)
-      %th{:width=> '30%'}= model_class.human_attribute_name(:description)
+      %th{:width => '30%'}= model_class.human_attribute_name(:description)
       %th= model_class.human_attribute_name(:supplier)
       %th= model_class.human_attribute_name(:status)
-      %th= model_class.human_attribute_name(:quote_date)
+      %th{:width => '10%'}= model_class.human_attribute_name(:quote_date)
       - if defined?(show_actions)
         %th{:width => '10%'}=t '.actions', :default => t("helpers.actions")
   %tbody
