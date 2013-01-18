@@ -19,7 +19,7 @@
         %td
           = link_to_order(quote.order)
         %td= truncate(quote.description, :length => 20, :omission => "...")
-        %td= link_to_supplier(quote.supplier)
+        %td= supplier_links(quote)
         %td= quote.display_status
         %td
           = quote.quote_date.to_date if quote.quote_date

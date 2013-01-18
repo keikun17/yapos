@@ -30,7 +30,7 @@
 %p
   %strong= model_class.human_attribute_name(:supplier_name) + ':'
   %br
-  = link_to_supplier(@quote.supplier)
+  = supplier_links(@quote)
  
 %h4 Attachments
 %ul.attachments

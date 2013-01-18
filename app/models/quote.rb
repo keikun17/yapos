@@ -11,6 +11,7 @@ class Quote < ActiveRecord::Base
     :attachments_attributes
 
   has_many :requests
+  has_many :suppliers, :through => :requests
   has_many :attachments, :as => :attachable
 
   accepts_nested_attributes_for :attachments, :allow_destroy => true,
