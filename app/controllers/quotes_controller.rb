@@ -10,6 +10,17 @@ class QuotesController < ApplicationController
     end
   end
 
+  def search
+    valid_states = ['Pending', 'Cancelled', 'No Quote', 'Awarded']
+    if valid_states.include?(params[:search][:state])
+      @quotes = Quote.where(:status => params[:search][:state]).paginate(:page => params[:page], :per_page => 10)
+    else
+      flash[:error] = 'Invalid search terms'
+      redirect_to :back
+    end
+    render :index
+  end
+
   # GET /quotes/1
   # GET /quotes/1.json
   def show
