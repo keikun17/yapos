@@ -1,4 +1,7 @@
 class Quote < ActiveRecord::Base
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
   attr_accessible :description,
     :quantity,
     :quote_date,
@@ -33,6 +36,7 @@ class Quote < ActiveRecord::Base
 
   scope :unawarded, where(:order_id => nil)
   default_scope order('quote_date desc')
+
 
   def display_status
     if order.present?

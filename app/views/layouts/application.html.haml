@@ -31,6 +31,10 @@
               %li= link_to "Orders", orders_path
               %li= link_to "Clients", clients_path
               %li= link_to "Suppliers", suppliers_path
+              %li
+                = form_tag search_path do 
+                  = text_field_tag 'search[state]', '',:class => "navbar-search"
+                  = button_tag "Search", :class => "btn btn-small"
             .pull-right
               = link_to "Log out", destroy_user_session_path, :class => "btn btn-warning", :method => :delete
 

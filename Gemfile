@@ -9,6 +9,8 @@ gem 'devise'
 gem 'haml-rails'
 gem 'carrierwave'
 
+gem 'tire'
+
 gem 'quiet_assets', :group => :development
 gem 'thin'
 gem 'will_paginate', '~> 3.0.4'
