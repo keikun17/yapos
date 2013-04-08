@@ -10,7 +10,6 @@ gem 'haml-rails'
 gem 'carrierwave'
 
 gem 'tire'
-gem 'draper'
 
 gem 'quiet_assets', :group => :development
 gem 'thin'
