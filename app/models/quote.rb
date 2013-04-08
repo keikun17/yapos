@@ -37,7 +37,6 @@ class Quote < ActiveRecord::Base
   scope :unawarded, where(:order_id => nil)
   default_scope order('quote_date desc')
 
-
   def display_status
     if order.present?
       text = "Awarded"
