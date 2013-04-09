@@ -3,9 +3,7 @@ require 'delegate'
 class SearchResult < SimpleDelegator
 
   def class
-    def class
-      __get_obj__.class
-    end
+    __get_obj__.class
   end
 
   def self.decorate_collection(arr)
@@ -14,6 +12,17 @@ class SearchResult < SimpleDelegator
       decorated_collection << self.new(item)
     end
     decorated_collection
+  end
+
+  def description
+    self._type
+  end
+
+  def suppliers
+    case _type
+    when "quote"
+      self.supplier_names
+    end
   end
 
   def to_s

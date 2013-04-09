@@ -37,6 +37,20 @@ class Quote < ActiveRecord::Base
   scope :unawarded, where(:order_id => nil)
   default_scope order('quote_date desc')
 
+  def to_indexed_json
+    {
+      :quote_reference => self.quote_reference,
+      :client_name => self.client_name,
+      :supplier_names => supplier_names
+    }.to_json
+  end
+
+  def supplier_names
+    s = self.suppliers.map(&:name)
+    s << self.supplier_name
+    s
+  end
+
   def display_status
     if order.present?
       text = "Awarded"

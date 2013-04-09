@@ -1,2 +1,12 @@
-- @results.each do |result|
-  = link_to result.to_s, result
+%table.table.table-striped
+  %thead
+    %tr
+      %th 
+      %th
+      %th
+  %tbody
+    - @results.each do |result|
+      %tr
+        %td= link_to result.to_s, result
+        %td= result.description.to_s
+        %td= result.supplier_names.join(',')
