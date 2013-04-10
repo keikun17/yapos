@@ -1,12 +1,14 @@
 %table.table.table-striped
   %thead
     %tr
-      %th 
-      %th
-      %th
+      %th Link
+      %th Type
+      %th Client
+      %th Supplier
   %tbody
     - @results.each do |result|
       %tr
         %td= link_to result.to_s, result
         %td= result.description.to_s
-        %td= result.supplier_names.join(',')
+        %td= result.client
+        %td= result.suppliers

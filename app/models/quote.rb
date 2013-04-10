@@ -41,13 +41,29 @@ class Quote < ActiveRecord::Base
     {
       :quote_reference => self.quote_reference,
       :client_name => self.client_name,
-      :supplier_names => supplier_names
+      :supplier_names => supplier_names,
+      :display_status => self.display_status,
+      :description => description,
+      :r_specs => r_specs,
+      :q_specs => q_specs
     }.to_json
+  end
+
+  def q_specs
+    r = requests.map(&:quoted_specifications)
+    r = r.uniq.compact
+    r
+  end
+
+  def r_specs
+    r = requests.map(&:requested_specifications)
+    r = r.uniq.compact
   end
 
   def supplier_names
     s = self.suppliers.map(&:name)
     s << self.supplier_name
+    s = s.uniq.compact
     s
   end
 

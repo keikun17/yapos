@@ -21,7 +21,14 @@ class SearchResult < SimpleDelegator
   def suppliers
     case _type
     when "quote"
-      self.supplier_names
+      self.supplier_names.join(',')
+    end
+  end
+
+  def client
+    case _type
+    when "quote"
+      self.client_name
     end
   end
 
