@@ -5,10 +5,14 @@
       %th Type
       %th Client
       %th Supplier
+      %th Date
+      %th Status
   %tbody
     - @results.each do |result|
       %tr
         %td= link_to result.to_s, result
-        %td= result.description.to_s
+        %td= result._type
         %td= result.client
         %td= result.suppliers
+        %td= result.date
+        %td= result.display_status
