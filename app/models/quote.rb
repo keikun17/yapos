@@ -37,17 +37,30 @@ class Quote < ActiveRecord::Base
   scope :unawarded, where(:order_id => nil)
   default_scope order('quote_date desc')
 
+  # Tire/ElasticSearch Configuration
+  
+  mapping do 
+    
+    # For more info abou the #includ_in_all key 
+    # http://www.elasticsearch.org/guide/reference/mapping/all-field/
+    indexes :quote_date, {type: 'date', include_in_all: false}
+
+  end
+
   def to_indexed_json
     {
-      :quote_reference => self.quote_reference,
-      :client_name => self.client_name,
-      :supplier_names => supplier_names,
-      :display_status => self.display_status,
-      :description => description,
-      :r_specs => r_specs,
-      :q_specs => q_specs
+      quote_reference: self.quote_reference,
+      client_name: self.client_name,
+      supplier_names: supplier_names,
+      display_status: self.display_status,
+      description: description,
+      r_specs: r_specs,
+      q_specs: q_specs,
+      quote_date: quote_date
     }.to_json
   end
+
+  # /-- Tire/ElasticSearch config
 
   def q_specs
     r = requests.map(&:quoted_specifications)

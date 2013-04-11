@@ -14,8 +14,12 @@ class SearchResult < SimpleDelegator
     decorated_collection
   end
 
-  def description
-    self._type
+
+  def date
+    case _type
+    when "quote"
+      self.quote_date.split('T').first
+    end
   end
 
   def suppliers
