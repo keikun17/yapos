@@ -1,40 +1,43 @@
-= form_for @order, :html => { :class => 'form-horizontal' } do |f|
+
+.form-horizontal
   .control-group
-    = f.label :reference, :class => 'control-label'
+    = label_tag 'has_quote', 'Has Quote?', :class => 'control-label'
     .controls
-      = f.text_field :reference, :class => 'text_field'
+      = check_box_tag :has_quote
+
+= form_for @order, :html => { :class => 'form-horizontal' } do |f|
+
   .control-group
     = f.label :purchase_date, :class => 'control-label'
     .controls
       = f.date_select :purchase_date, :class => 'datetime_select'
 
-  %h3 Quotes
-  %hr
-  %div
-    = f.fields_for :quotes do |builder|
-      = render 'quote_fields', :f => builder
+  #fields-for-quoted
+    %h3 Quotes
+    %div
+      = f.fields_for :quotes do |builder|
+        = render 'quote_fields', :f => builder
+      #purchase-requests
+        = link_to_add_fields "Click to add existing quotes" , f, :quotes
 
-    #purchase-requests
-      = link_to_add_fields "Click to add existing quotes" , f, :quotes
+  #fields-for-custom
+    %h3 Custom Quotes
+    #custom-fields
+      %legend Fill these up if Order has no Quote
+      .control-group
+        = f.label :custom_quote_reference, "Custom Quote Reference" , :class => 'control-label'
+        .controls
+          = f.text_field :custom_quote_reference, :class => "text_field"
+      
+      .control-group
+        = f.label :supplier_id, "Supplier", :class => "control-label"
+        .controls
+          = f.select :supplier_id, Supplier.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
 
-  %hr
-
-  #custom-fields
-    %legend Fill these up if Order has no Quote
     .control-group
-      = f.label :custom_quote_reference, "Custom Quote Reference" , :class => 'control-label'
+      = f.label :client_id, :class => 'control-label'
       .controls
-        = f.text_field :custom_quote_reference, :class => "text_field"
-    
-    .control-group
-      = f.label :supplier_id, "Supplier", :class => "control-label"
-      .controls
-        = f.select :supplier_id, Supplier.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
-
-  .control-group
-    = f.label :client_id, :class => 'control-label'
-    .controls
-      = f.select :client_id, Client.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
+        = f.select :client_id, Client.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
 
   %h4 Notes
   %hr
