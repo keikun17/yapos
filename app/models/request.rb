@@ -14,3 +14,18 @@ class Request < ActiveRecord::Base
   delegate :name, :to => :supplier, :prefix =>true, :allow_nil => true
 
 end
+
+# == Schema Information
+#
+# Table name: requests
+#
+#  id                    :integer          not null, primary key
+#  specs                 :text
+#  quote_id              :integer
+#  supplier_id           :integer
+#  quoted_specifications :text
+#  remarks               :text
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#
+

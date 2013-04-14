@@ -12,6 +12,8 @@ gem 'carrierwave'
 gem 'tire'
 
 gem 'quiet_assets', :group => :development
+gem 'annotate', :group => :development
+
 gem 'thin'
 gem 'will_paginate', '~> 3.0.4'
 

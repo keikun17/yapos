@@ -11,3 +11,19 @@ class Offer < ActiveRecord::Base
 
   delegate :name, to: :supplier, prefix: true, allow_nil: true
 end
+
+# == Schema Information
+#
+# Table name: offers
+#
+#  id                  :integer          not null, primary key
+#  request_id          :integer
+#  supplier_id         :integer
+#  specs               :text
+#  price               :float
+#  currency            :string(255)
+#  currency_conversion :float
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
+
