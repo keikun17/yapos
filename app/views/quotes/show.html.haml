@@ -46,12 +46,12 @@
       %th Supplied Specs
       %th Remarks
   %tbody
-    - @quote.requests.each do |request|
+    - @requests.each do |req|
       %tr
-        %td=simple_format request.requested_specifications
-        %td=simple_format request.supplier_name
-        %td=simple_format request.quoted_specifications
-        %td=simple_format request.remarks
+        %td=simple_format req.specs
+        %td=simple_format req.supplier_name
+        %td=simple_format req.offered_brands
+        %td=simple_format req.remarks
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), quotes_path, :class => 'btn'
