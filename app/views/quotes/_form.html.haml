@@ -38,22 +38,18 @@
   %h3 Requests
   %hr
   %div
-    #purchase-headers
-      .span3 
-        %strong Requested Spec2
-      .span2
-        %strong Quoted Supplier
-      .span3 
-        %strong Quoted Specs
-      .span3 
-        %strong Remarks
-      .span1
+    %table
+      %tr
+        %th Requested Spec
+        %th Remarks
 
-    #purchase-request-fields
-      = f.fields_for :requests do |builder|
-        = render 'request_fields', :f => builder
+      %tbody
+        = f.fields_for :requests do |builder|
+          = render 'request_fields', :f => builder
 
-      = link_to_add_fields "Click to add requests" , f, :requests
+        %tr
+          %td
+            = link_to_add_fields "Click to add requests" , f, :requests, '$(this).parent()'
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
