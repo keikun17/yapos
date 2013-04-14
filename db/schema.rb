@@ -55,13 +55,13 @@ ActiveRecord::Schema.define(:version => 20130117115928) do
   end
 
   create_table "requests", :force => true do |t|
-    t.text     "requested_specifications"
+    t.text     "specs"
     t.integer  "quote_id"
     t.integer  "supplier_id"
     t.text     "quoted_specifications"
     t.text     "remarks"
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "suppliers", :force => true do |t|

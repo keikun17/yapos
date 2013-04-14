@@ -17,13 +17,14 @@ class Quote < ActiveRecord::Base
   has_many :suppliers, :through => :requests
   has_many :attachments, :as => :attachable
 
-  accepts_nested_attributes_for :attachments, :allow_destroy => true,
+  accepts_nested_attributes_for :attachments,
+    :allow_destroy => true,
     :reject_if => lambda { |a| a[:document].nil? }
 
-  accepts_nested_attributes_for :requests, :allow_destroy => true, 
+  accepts_nested_attributes_for :requests,
+    :allow_destroy => true, 
     :reject_if => lambda { |r| r[:supplier].nil? &&
-                           r[:requested_specifications].blank? &&
-                           r[:quoted_specifications].blank? && 
+                           r[:specs].blank? &&
                            r[:remarks].blank?  }
 
   belongs_to :client
@@ -63,13 +64,11 @@ class Quote < ActiveRecord::Base
   # /-- Tire/ElasticSearch config
 
   def q_specs
-    r = requests.map(&:quoted_specifications)
-    r = r.uniq.compact
-    r
+    raise("implement")
   end
 
   def r_specs
-    r = requests.map(&:requested_specifications)
+    r = requests.map(&:specs)
     r = r.uniq.compact
   end
 
