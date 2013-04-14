@@ -6,9 +6,9 @@ class Quote < ActiveRecord::Base
     :quantity,
     :quote_date,
     :quote_reference,
+    :supplier_id, 
     :status,
     :client_id,
-    :supplier_id,
     :order_id,
     :requests_attributes,
     :attachments_attributes

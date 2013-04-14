@@ -42,14 +42,12 @@
   %thead
     %tr
       %th Quoted Specs
-      %th Supplier
-      %th Supplied Specs
+      %th Offered Brands
       %th Remarks
   %tbody
     - @requests.each do |req|
       %tr
         %td=simple_format req.specs
-        %td=simple_format req.supplier_name
         %td=simple_format req.offered_brands
         %td=simple_format req.remarks
 
