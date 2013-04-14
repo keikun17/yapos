@@ -1,19 +1,11 @@
-require 'delegate'
+class SearchResult < Decorator
 
-class SearchResult < SimpleDelegator
-
-  def class
-    __get_obj__.class
-  end
-
-  def self.decorate_collection(arr)
-    decorated_collection = []
-    arr.each do |item|
-      decorated_collection << self.new(item)
+  def to_s
+    case _type
+    when "quote"
+      self.quote_reference
     end
-    decorated_collection
   end
-
 
   def date
     case _type
@@ -36,10 +28,4 @@ class SearchResult < SimpleDelegator
     end
   end
 
-  def to_s
-    case _type
-    when "quote"
-      self.quote_reference
-    end
-  end
 end
