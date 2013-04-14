@@ -1,10 +1,21 @@
 %tr.fields
   %td= f.text_area :specs, :class => 'span12 text_area', :rows => 2
   %td= f.text_area :remarks, :class => 'text_area span12', :rows => 2
+  %td
+  %td
   %td= link_to_remove_fields "remove", f
--# .offer-fields
--#   = f.fields_for :offers do |builder|
--#     = render 'offer_fields', :f => builder
--# 
--#   = link_to_add_fields "Click to add offer", f, :offers
--# 
+
+%tr
+  %th
+  %th Quote Specs 
+  %th Brand 
+  %th Price
+  %th
+= f.fields_for :offers do |builder|
+  = render 'offer_fields', :f => builder
+
+%tr{:style => 'border-bottom:2px solid black'}
+  %td
+  %td{:colspan => 4}
+    = link_to_add_fields "Click to add offer", f, :offers, '$(this).parent()'
+

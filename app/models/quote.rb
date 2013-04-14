@@ -55,19 +55,14 @@ class Quote < ActiveRecord::Base
       supplier_names: supplier_names,
       display_status: self.display_status,
       description: description,
-      r_specs: r_specs,
-      q_specs: q_specs,
+      request_specs: request_specs,
       quote_date: quote_date
     }.to_json
   end
 
   # /-- Tire/ElasticSearch config
 
-  def q_specs
-    raise("implement")
-  end
-
-  def r_specs
+  def request_specs
     r = requests.map(&:specs)
     r = r.uniq.compact
   end
