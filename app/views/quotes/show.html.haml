@@ -38,18 +38,33 @@
     %li= link_to attachment[:document], quote_attachment_path(@quote, :id => attachment.id)
 
 %h4 Requests
-%table.table
+%table.table.table-striped
   %thead
     %tr
       %th Quoted Specs
-      %th Offered Brands
-      %th Remarks
+      %th Offers
+      %th Buying Price
+      %th Selling Price
+      %th Order Reference
+      %th 
   %tbody
     - @requests.each do |req|
+      - offers = req.offers
+      - offer = offers.shift
       %tr
-        %td=simple_format req.specs
-        %td=simple_format req.offered_brands
-        %td=simple_format req.remarks
+        %td{rowspan: (offers.size)}= simple_format(req.specs)
+        %td= offer.supplier_name if offer
+        %td= offer.buying_price if offer
+        %td= offer.selling_price if offer
+        %td= offer.order_reference if offer
+
+      - offers.each do |offer|
+        %tr
+          %td
+          %td= offer.supplier_name
+          %td= offer.buying_price
+          %td= offer.selling_price
+          %td= offer.order_reference
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), quotes_path, :class => 'btn'

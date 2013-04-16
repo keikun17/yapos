@@ -13,6 +13,8 @@ class Request < ActiveRecord::Base
   }
   delegate :name, :to => :supplier, :prefix =>true, :allow_nil => true
 
+  validates :specs, :presence => true
+
 end
 
 # == Schema Information

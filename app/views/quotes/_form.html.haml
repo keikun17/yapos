@@ -1,5 +1,9 @@
 = form_for @quote, :html => { :class => 'form-horizontal' } do |f|
   .control-group
+    = f.label :quote_reference, :class => 'control-label'
+    .controls
+      = f.text_field :quote_reference, :class => 'text_field'
+  .control-group
     = f.label :client, :class => 'control-label'
     .controls
       = f.select :client_id, Client.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
@@ -7,10 +11,6 @@
     = f.label :quote_date, :class => 'control-label'
     .controls
       = f.date_select :quote_date, :class => 'datetime_select'
-  .control-group
-    = f.label :quote_reference, :class => 'control-label'
-    .controls
-      = f.text_field :quote_reference, :class => 'text_field'
   .control-group
     = f.label :description, :class => 'control-label'
     .controls
@@ -23,10 +23,6 @@
     = f.label :status, :class => 'control-label'
     .controls
       = f.select :status, ["Pending", "Cancelled", "No Quote"],  :class => 'select'
-  .control-group
-    = f.label :supplier, :class => 'control-label'
-    .controls
-      = f.select :supplier_id, Supplier.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
 
   %h3 Attachments
   %hr
@@ -42,6 +38,7 @@
       %tr
         %th Requested Spec
         %th Remarks
+        %th
         %th
         %th
         %th

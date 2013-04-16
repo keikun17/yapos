@@ -2,9 +2,11 @@ class Offer < ActiveRecord::Base
   attr_accessible :request,
     :supplier_id, 
     :specs,
-    :price,
+    :buying_price,
+    :selling_price,
     :currency,
-    :currency_conversion
+    :currency_conversion,
+    :order_reference
 
   belongs_to :request
   belongs_to :supplier

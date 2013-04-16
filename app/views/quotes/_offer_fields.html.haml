@@ -1,7 +1,9 @@
 %tr.fields
-  %td
+  %td{:style => 'border:none'}
   %td= f.text_area :specs, :class => 'span12 text_area', :rows => 2
   %td= f.select :supplier_id, options_for_select(Supplier.all.collect{|s| [s.name, s.id]}, f.object.supplier_id), :include_blank => true, :class => 'span2'
-  %td= f.text_field :price, :class => 'text_area span12', :rows => 2
+  %td= f.text_field :buying_price, :class => 'text_field span12', :rows => 2
+  %td= f.text_field :selling_price, :class => 'text_field span12', :rows => 2
+  %td= f.text_field :order_reference, :class => 'text_field span12', :rows => 2
   %td= link_to_remove_fields "remove", f 
 

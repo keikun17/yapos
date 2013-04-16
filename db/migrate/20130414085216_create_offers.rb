@@ -4,9 +4,11 @@ class CreateOffers < ActiveRecord::Migration
       t.references :request
       t.references :supplier
       t.text       :specs
-      t.float      :price
+      t.float      :buying_price
+      t.float      :selling_price
       t.string     :currency
       t.float      :currency_conversion
+      t.string     :order_reference
       t.timestamps
     end
   end

@@ -34,9 +34,11 @@ ActiveRecord::Schema.define(:version => 20130414091429) do
     t.integer  "request_id"
     t.integer  "supplier_id"
     t.text     "specs"
-    t.float    "price"
+    t.float    "buying_price"
+    t.float    "selling_price"
     t.string   "currency"
     t.float    "currency_conversion"
+    t.string   "order_reference"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end

@@ -3,13 +3,17 @@
   %td= f.text_area :remarks, :class => 'text_area span12', :rows => 2
   %td
   %td
+  %td
+  %td
   %td= link_to_remove_fields "remove", f
 
 %tr
   %th
   %th Quote Specs 
   %th Brand 
-  %th Price
+  %th Buying Price
+  %th Selling Price
+  %th Order Reference
   %th
 = f.fields_for :offers do |builder|
   = render 'offer_fields', :f => builder
