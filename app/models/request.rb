@@ -3,6 +3,7 @@ class Request < ActiveRecord::Base
     :remarks,
     :offers_attributes
 
+  belongs_to :quote
   belongs_to :supplier
   has_many :offers
 

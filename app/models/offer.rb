@@ -11,7 +11,17 @@ class Offer < ActiveRecord::Base
   belongs_to :request
   belongs_to :supplier
 
+  has_one :quote, :through => :request
+
+  scope :purchased, where("order_reference <> '' ")
+
   delegate :name, to: :supplier, prefix: true, allow_nil: true
+
+  delegate :quote_reference, 
+    to: :quote,
+    prefix: false,
+    allow_nil: true
+
 end
 
 # == Schema Information

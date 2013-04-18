@@ -7,21 +7,19 @@
 %table.table.table-striped
   %thead
     %tr
-      %th= model_class.human_attribute_name(:reference)
-      %th= model_class.human_attribute_name(:purchase_date)
-      %th= model_class.human_attribute_name(:quotes)
-      %th= model_class.human_attribute_name(:client)
-      %th=t '.actions', :default => t("helpers.actions")
+      %th= model_class.human_attribute_name(:order_reference)
+      %th= model_class.human_attribute_name(:request_reference) 
+      %th= model_class.human_attribute_name(:quoted_specifications)
+      %th= model_class.human_attribute_name(:specs)
+      %th= model_class.human_attribute_name(:buying_price)
+      %th= model_class.human_attribute_name(:selling_price)
   %tbody
     - @orders.each do |order|
       %tr
-        %td= link_to order.reference, order_path(order)
-        %td= order.purchase_date.to_date
-        %td= display_quotes(order)
-        %td= client_names(order)
-
-        %td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(order), :class => 'btn btn-mini'
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), order_path(order), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
-
+        %td= order.order_reference
+        %td= link_to order.quote_reference, order.quote
+        %td= order.request.specs
+        %td= order.specs
+        %td= order.buying_price
+        %td= order.selling_price
 .pull-right=will_paginate(@orders)
