@@ -18,9 +18,11 @@ two: {}
 #  request_id          :integer
 #  supplier_id         :integer
 #  specs               :text
-#  price               :float
+#  buying_price        :float
+#  selling_price       :float
 #  currency            :string(255)
 #  currency_conversion :float
+#  order_reference     :string(255)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
