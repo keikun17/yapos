@@ -14,7 +14,6 @@ class QuotesController < ApplicationController
   # GET /quotes/1.json
   def show
     @quote = Quote.find(params[:id])
-    @quote = QuoteDecorator.new(@quote)
     @requests = RequestDecorator.decorate_collection @quote.requests
 
     respond_to do |format|
