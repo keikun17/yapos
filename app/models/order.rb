@@ -21,13 +21,6 @@ class Order < ActiveRecord::Base
     self.quotes.update_all(:order_id => nil)
   end
 
-  def associate_with_quotes(quotes)
-    clear_quotes
-    quotes.each do |quote|
-      quote.update_attributes(:order_id => self.id)
-    end
-  end
-
 end
 
 # == Schema Information

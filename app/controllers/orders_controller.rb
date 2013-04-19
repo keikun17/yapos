@@ -30,9 +30,7 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
-    @order.quotes.build
 
-    assign_quotes
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @order }
@@ -42,9 +40,6 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
-    if @order.quotes.empty?
-      @order.quotes.build
-    end
   end
 
   # POST /orders
@@ -54,7 +49,6 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        assign_quotes
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
@@ -71,7 +65,6 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.update_attributes(params[:order])
-        assign_quotes
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { head :no_content }
       else
@@ -93,10 +86,5 @@ class OrdersController < ApplicationController
     end
   end
 
-  private
 
-  def assign_quotes
-    @quotes = Quote.where(:id => params[:quote_ids])
-    @order.associate_with_quotes(@quotes)
-  end
 end

@@ -1,24 +1,8 @@
-
-.form-horizontal
-  .control-group
-    = label_tag 'has_quote', 'Has Quote?', :class => 'control-label'
-    .controls
-      = check_box_tag :has_quote
-
 = form_for @order, :html => { :class => 'form-horizontal' } do |f|
-
   .control-group
     = f.label :purchase_date, :class => 'control-label'
     .controls
       = f.date_select :purchase_date, :class => 'datetime_select'
-
-  #fields-for-quoted
-    %h3 Quotes
-    %div
-      = f.fields_for :quotes do |builder|
-        = render 'quote_fields', :f => builder
-      #purchase-requests
-        = link_to_add_fields "Click to add existing quotes" , f, :quotes
 
   #fields-for-custom
     %h3 Custom Quotes
