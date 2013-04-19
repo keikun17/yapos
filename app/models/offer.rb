@@ -10,10 +10,14 @@ class Offer < ActiveRecord::Base
 
   belongs_to :request
   belongs_to :supplier
+  belongs_to :order,
+    :primary_key => 'reference', 
+    :foreign_key => 'order_reference'
 
   has_one :quote, :through => :request
 
   scope :purchased, where("order_reference <> '' ")
+
 
   delegate :name, to: :supplier, prefix: true, allow_nil: true
 
@@ -39,5 +43,6 @@ end
 #  order_reference     :string(255)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  po_date             :datetime
 #
 

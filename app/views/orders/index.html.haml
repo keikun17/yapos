@@ -7,19 +7,19 @@
 %table.table.table-striped
   %thead
     %tr
-      %th= model_class.human_attribute_name(:order_reference)
-      %th= model_class.human_attribute_name(:request_reference) 
-      %th= model_class.human_attribute_name(:quoted_specifications)
-      %th= model_class.human_attribute_name(:specs)
-      %th= model_class.human_attribute_name(:buying_price)
-      %th= model_class.human_attribute_name(:selling_price)
+      %th= model_class.human_attribute_name(:reference)
+      %th= model_class.human_attribute_name(:purchase_date)
+      %th= model_class.human_attribute_name(:offer_count)
+      %th= model_class.human_attribute_name(:total_sell)
+      %th= model_class.human_attribute_name(:total_buy)
   %tbody
-    - @orders.each do |order|
+    - @decorated_orders.each do |order|
       %tr
-        %td= order.order_reference
-        %td= link_to order.quote_reference, order.quote
-        %td= order.request.specs
-        %td= order.specs
-        %td= order.buying_price
-        %td= order.selling_price
+        %td= link_to order.reference, order
+        %td= order.display_purchase_date
+        %td= order.offers.count
+        %td= order.offers.sum(:buying_price)
+        %td= order.offers.sum(:selling_price)
+
+
 .pull-right=will_paginate(@orders)

@@ -8,10 +8,6 @@ module OrdersHelper
     raw str
   end
 
-  def link_to_order(order)
-    h link_to(order.reference, order_path(order)) if order
-  end
-
   def client_names(order)
     client_names = order.quotes.map(&:client_name)
     client_names << order.client_name

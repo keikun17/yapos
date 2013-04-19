@@ -7,9 +7,9 @@
   %br
   = @order.reference
 %p
-  %strong= model_class.human_attribute_name(:purchase_date) + ':'
+  %strong= model_class.human_attribute_name(:display_purchase_date) + ':'
   %br
-  = @order.purchase_date.to_date
+  = @order.display_purchase_date
 
 %h4 Purchase Requests :
 
@@ -31,7 +31,7 @@
     = @order.supplier_name
 
 - if @order.quotes.present?
-  = render :partial => 'quotes/quotes', :locals => {:quotes => @order.quotes, :model_class => Quote}
+  = render :partial => 'quotes/quotes', :locals => {:quotes => @quotes, :model_class => Quote}
 
 %br
 

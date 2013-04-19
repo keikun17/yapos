@@ -1,10 +1,9 @@
 require 'delegate'
 
 class Decorator < SimpleDelegator
-
-  def class
-    __get_obj__.class
-  end
+  include ActionView::Helpers
+  include ActionView::Context
+  include Rails.application.routes.url_helpers
 
   def self.decorate_collection(arr)
     decorated_collection = []

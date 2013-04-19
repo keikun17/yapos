@@ -9,7 +9,6 @@ class Quote < ActiveRecord::Base
     :supplier_id, 
     :status,
     :client_id,
-    :order_id,
     :requests_attributes,
     :attachments_attributes
 
@@ -17,6 +16,7 @@ class Quote < ActiveRecord::Base
   has_many :requests
   has_many :offers, :through => :requests
   has_many :suppliers, :through => :offers
+  has_many :orders, :through => :offers
 
   validates_associated :attachments
   validates_associated :requests
@@ -32,7 +32,6 @@ class Quote < ActiveRecord::Base
                            r[:remarks].blank?  }
 
   belongs_to :client
-  belongs_to :order
   belongs_to :supplier
 
   delegate :reference, :to => :order, :allow_nil => true, :prefix => true
@@ -79,7 +78,7 @@ class Quote < ActiveRecord::Base
   end
 
   def display_status
-    if order.present?
+    if !orders.empty?
       text = "Awarded"
     else
       text = status

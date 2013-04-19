@@ -9,7 +9,7 @@
 %p
   %strong= model_class.human_attribute_name(:order_reference) + ':'
   %br
-  = link_to_order(@quote.order)
+  = @quote.order_links
 %p
   %strong= model_class.human_attribute_name(:client_name) + ':'
   %br

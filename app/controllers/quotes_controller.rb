@@ -14,6 +14,7 @@ class QuotesController < ApplicationController
   # GET /quotes/1.json
   def show
     @quote = Quote.find(params[:id])
+    @quote = QuoteDecorator.new(@quote)
     @requests = RequestDecorator.decorate_collection @quote.requests
 
     respond_to do |format|
@@ -48,6 +49,7 @@ class QuotesController < ApplicationController
 
     respond_to do |format|
       if @quote.save
+        Purchase.create_or_append(@quote)
         format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
         format.json { render json: @quote, status: :created, location: @quote }
       else
@@ -64,6 +66,7 @@ class QuotesController < ApplicationController
 
     respond_to do |format|
       if @quote.update_attributes(params[:quote])
+        Purchase.create_or_append(@quote)
         format.html { redirect_to @quote, notice: 'Quote was successfully updated.' }
         format.json { head :no_content }
       else

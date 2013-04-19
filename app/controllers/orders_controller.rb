@@ -2,7 +2,9 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = PurchaseOrder.fetch.paginate(:page => params[:page], :per_page => 10)
+    @orders = Order.includes(:offers)
+    @orders = @orders.paginate(:page => params[:page], :per_page => 10)
+    @decorated_orders = OrderDecorator.decorate_collection(@orders.to_a)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +16,9 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.find(params[:id])
+    @order = OrderDecorator.new(@order)
+    
+    @quotes = QuoteDecorator.decorate_collection(@order.quotes)
 
     respond_to do |format|
       format.html # show.html.erb
