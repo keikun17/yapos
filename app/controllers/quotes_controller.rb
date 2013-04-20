@@ -3,6 +3,7 @@ class QuotesController < ApplicationController
   # GET /quotes.json
   def index
     @quotes = Quote.paginate(:page => params[:page], :per_page => 10)
+    @decorated_quotes = QuoteDecorator.decorate_collection(@quotes)
 
     respond_to do |format|
       format.html # index.html.erb
