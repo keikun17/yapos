@@ -1,8 +1,4 @@
 class Purchase
-  def self.fetch_offers
-    Offer.purchased
-  end
-
   def self.create_or_append(source)
     case source.class.to_s
     when "Quote"
