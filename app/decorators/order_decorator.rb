@@ -16,4 +16,16 @@ class OrderDecorator < Decorator
     link_to reference, order_path(self)
   end
 
+  def total_buy
+    offers.sum(:buying_price)
+  end
+  
+  def total_sell
+    offers.sum(:selling_price)
+  end
+
+  def earnings
+    total_buy - total_sell
+  end
+
 end

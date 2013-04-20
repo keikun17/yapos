@@ -10,16 +10,16 @@
       %th= model_class.human_attribute_name(:reference)
       %th= model_class.human_attribute_name(:purchase_date)
       %th= model_class.human_attribute_name(:offer_count)
-      %th= model_class.human_attribute_name(:total_sell)
       %th= model_class.human_attribute_name(:total_buy)
+      %th= model_class.human_attribute_name(:total_sell)
   %tbody
     - @decorated_orders.each do |order|
       %tr
         %td= link_to order.reference, order
         %td= order.display_purchase_date
         %td= order.offers.count
-        %td= order.offers.sum(:buying_price)
-        %td= order.offers.sum(:selling_price)
+        %td= order.total_buy
+        %td= order.total_sell
 
 
 .pull-right=will_paginate(@orders)
