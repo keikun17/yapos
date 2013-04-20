@@ -59,6 +59,7 @@ class Quote < ActiveRecord::Base
       display_status: self.display_status,
       description: description,
       request_specs: request_specs,
+      offered_specs: offered_specs,
       quote_date: quote_date
     }.to_json
   end
@@ -68,6 +69,13 @@ class Quote < ActiveRecord::Base
   def request_specs
     r = requests.map(&:specs)
     r = r.uniq.compact
+    r
+  end
+
+  def offered_specs
+    o = offers.map(&:specs)
+    o = o.uniq.compact
+    o
   end
 
   def supplier_names
