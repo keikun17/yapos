@@ -1,0 +1,11 @@
+%table.table
+  %tr
+    %th Order Reference
+    %th Total Buy
+    %th Total Sell
+  - @orders.each do |order|
+    %tr
+      %td= order.reference
+      %td= order.total_buy
+      %td= order.total_sell
+
