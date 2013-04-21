@@ -30,8 +30,35 @@
     %br
     = @order.supplier_name
 
-- if @order.quotes.present?
-  = render :partial => 'quotes/quotes', :locals => {:quotes => @quotes, :model_class => Quote}
+%table.table.table-striped
+  %thead
+    %th Quote Reference
+    %th Requested Spec
+    %th Purchased Spec
+    %th Brand
+    %th Buy Price
+    %th Sell Price
+      
+  %tbody
+    - @quotes.each do |quote|
+      - offer_count = quote.offers.size
+      - offers = quote.offers.purchased
+      - offer = offers.shift
+      %tr
+        %td{rowspan: offer_count}= quote.quote_reference
+        %td= offer.request.specs
+        %td= offer.specs
+        %td= offer.supplier_name
+        %td= offer.buying_price
+        %td= offer.selling_price
+      - offers.each do |offer|
+        %tr
+          %td= offer.request.specs
+          %td= offer.specs
+          %td= offer.supplier_name
+          %td= offer.buying_price
+          %td= offer.selling_price
+
 
 %br
 

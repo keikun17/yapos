@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
   has_many :offers, 
     :foreign_key => 'order_reference',
     :primary_key => 'reference'
-  has_many :quotes, :through => :offers
+  has_many :quotes, :through => :offers, :uniq => true
 
   belongs_to :client
   belongs_to :supplier
