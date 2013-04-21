@@ -1,9 +1,5 @@
 class SearchResult < Decorator
 
-  def class
-    __get_obj__.class
-  end
-
   def to_s
     case _type
     when "quote"
