@@ -49,10 +49,11 @@
       %th 
   %tbody
     - @requests.each do |req|
+      - offer_count = req.offers.size
       - offers = req.offers
       - offer = offers.shift
       %tr
-        %td{rowspan: (offers.size)}= simple_format(req.specs)
+        %td{rowspan: offer_count}= simple_format(req.specs)
         %td= offer.supplier_name if offer
         %td= offer.buying_price if offer
         %td= offer.selling_price if offer
