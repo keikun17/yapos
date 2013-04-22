@@ -3,7 +3,7 @@
   %h1=t '.title', :default => model_class.model_name.human.pluralize
 
 .pull-right=will_paginate(@orders)
-= link_to t('.new', :default => t("helpers.links.new")), new_order_path, :class => 'btn btn-primary'
+-# = link_to t('.new', :default => t("helpers.links.new")), new_order_path, :class => 'btn btn-primary'
 %table.table.table-striped
   %thead
     %tr
