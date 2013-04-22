@@ -21,8 +21,10 @@ class Purchase
   end
 
   def self.fetch_or_create_from_offer(offer)
-    Order.find_or_create_by_reference(offer.order_reference)
-    offer
+    if !offer.order_reference.blank?
+      Order.find_or_create_by_reference(offer.order_reference)
+      offer
+    end
   end
 
 end

@@ -10,6 +10,8 @@ class Order < ActiveRecord::Base
   belongs_to :client
   belongs_to :supplier
 
+  validates_presence_of :reference
+
   accepts_nested_attributes_for :quotes
 
   delegate :name, :to => :client, :allow_nil => true, :prefix => true
