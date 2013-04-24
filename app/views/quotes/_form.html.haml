@@ -1,6 +1,6 @@
 = form_for @quote, :html => { :class => 'form-horizontal' } do |f|
   .control-group
-    = f.label :quote_reference, :class => 'control-label'
+    = f.label :quote_reference, 'Client PR#' ,:class => 'control-label'
     .controls
       = f.text_field :quote_reference, :class => 'text_field'
   .control-group
@@ -15,10 +15,6 @@
     = f.label :description, :class => 'control-label'
     .controls
       = f.text_area :description, :class => 'text_area', :class => "span8", :rows => 3
-  .control-group
-    = f.label :order_reference, :class => 'control-label'
-    .controls
-      = f.select :order_id, Order.all.collect{|c| [c.reference, c.id]}, {:include_blank => '- None -'}, :class => 'select'
   .control-group
     = f.label :status, :class => 'control-label'
     .controls

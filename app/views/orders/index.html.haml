@@ -7,11 +7,11 @@
 %table.table.table-striped
   %thead
     %tr
-      %th= model_class.human_attribute_name(:reference)
+      %th Client PO#
       %th= model_class.human_attribute_name(:purchase_date)
       %th= model_class.human_attribute_name(:offer_count)
-      %th= model_class.human_attribute_name(:total_buy)
-      %th= model_class.human_attribute_name(:total_sell)
+      %th Total Supplier Price
+      %th Total Offered Price
   %tbody
     - @decorated_orders.each do |order|
       %tr
