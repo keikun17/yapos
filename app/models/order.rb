@@ -1,6 +1,15 @@
 class Order < ActiveRecord::Base
-  attr_accessible :purchase_date, :reference, :quotes_attributes, :quotes,
-    :custom_quote_reference, :description, :client_id, :supplier_id
+  attr_accessible :purchase_date, 
+    :reference,
+    :quotes_attributes,
+    :quotes,
+    :custom_quote_reference,
+    :description,
+    :client_id,
+    :supplier_id,
+    :attachments_attributes
+
+  has_many :attachments, :as => :attachable
 
   has_many :offers, 
     :foreign_key => 'order_reference',
@@ -11,8 +20,12 @@ class Order < ActiveRecord::Base
   belongs_to :supplier
 
   validates_presence_of :reference
+  validates_associated :attachments
 
   accepts_nested_attributes_for :quotes
+  accepts_nested_attributes_for :attachments,
+    :allow_destroy => true,
+    :reject_if => lambda { |a| a[:document].nil? }
 
   delegate :name, :to => :client, :allow_nil => true, :prefix => true
   delegate :name, :to => :supplier, :allow_nil => true, :prefix => true

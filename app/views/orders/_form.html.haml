@@ -23,6 +23,13 @@
       .controls
         = f.select :client_id, Client.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
 
+  %h3 Attachments
+  %hr
+  #attachments-fields
+    = f.fields_for :attachments do |builder|
+      = render "attachment_fields", {:f => builder}
+    = link_to_add_fields "Click to add attachments" , f, :attachments
+
   %h4 Notes
   %hr
   .controls

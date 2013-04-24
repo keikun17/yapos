@@ -1,7 +1,13 @@
 MlandcorpPos::Application.routes.draw do
   devise_for :users
 
-  resources :orders
+  resources :orders do
+    resources :attachments do
+      member do
+        get 'document'
+      end
+    end
+  end
 
 
   resources :suppliers
