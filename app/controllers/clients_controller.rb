@@ -14,6 +14,8 @@ class ClientsController < ApplicationController
   # GET /clients/1.json
   def show
     @client = Client.find(params[:id])
+    @quotes = @client.quotes
+    @quotes = QuoteDecorator.decorate_collection(@quotes)
 
     respond_to do |format|
       format.html # show.html.erb

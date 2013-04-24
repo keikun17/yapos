@@ -22,7 +22,7 @@
 
 %h4 Purchase Requests :
 - if @supplier.quotes.present?
-  = render :partial => 'quotes/quotes', :locals => {:quotes => @supplier.quotes, :model_class => Quote}
+  = render :partial => 'quotes/quotes', :locals => {:quotes => @quotes, :model_class => Quote}
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), suppliers_path, :class => 'btn'
