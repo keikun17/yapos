@@ -1,9 +1,9 @@
 %table.table.table-striped
   %thead
     %tr
-      %th= model_class.human_attribute_name(:quote_reference)
-      %th= model_class.human_attribute_name(:client)
-      %th= model_class.human_attribute_name(:order_reference)
+      %th Client PR#
+      %th Client Name
+      %th Client PO#
       %th{:width => '30%'}= model_class.human_attribute_name(:description)
       %th= model_class.human_attribute_name(:supplier)
       %th= model_class.human_attribute_name(:status)
@@ -14,8 +14,7 @@
     - quotes.each do |quote|
       %tr{:class => quote_row_class(quote)}
         %td= link_to quote.quote_reference, quote_path(quote)
-        %td
-          = link_to_client(quote.client)
+        %td= link_to_client(quote.client)
         %td= quote.order_links
         %td= truncate(quote.description, :length => 40, :omission => "...")
         %td= supplier_links(quote)

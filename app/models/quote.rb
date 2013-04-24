@@ -72,6 +72,10 @@ class Quote < ActiveRecord::Base
     r
   end
 
+  def supplier_po
+    "implement"
+  end
+
   def offered_specs
     o = offers.map(&:specs)
     o = o.uniq.compact
