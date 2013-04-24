@@ -13,7 +13,7 @@
   %tbody
     - quotes.each do |quote|
       %tr{:class => quote_row_class(quote)}
-        %td= link_to quote.quote_reference, quote_path(quote)
+        %td= link_to quote.quote_reference, quote
         %td= link_to_client(quote.client)
         %td= quote.order_links
         %td= truncate(quote.description, :length => 40, :omission => "...")
