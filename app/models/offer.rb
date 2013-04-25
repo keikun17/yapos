@@ -6,7 +6,8 @@ class Offer < ActiveRecord::Base
     :selling_price,
     :currency,
     :currency_conversion,
-    :order_reference
+    :order_reference, 
+    :remarks
 
   belongs_to :request
   belongs_to :supplier

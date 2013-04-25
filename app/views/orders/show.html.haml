@@ -41,6 +41,7 @@
     %th Requested Spec
     %th Purchased Spec
     %th Supplier
+    %th Remarks
     %th Supplier's Price
     %th Offered Price
       
@@ -54,6 +55,7 @@
         %td= offer.request.specs
         %td= offer.specs
         %td= offer.supplier_name
+        %td= offer.remarks
         %td= offer.buying_price
         %td= offer.selling_price
       - offers.each do |offer|

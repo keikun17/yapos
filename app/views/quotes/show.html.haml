@@ -37,12 +37,14 @@
   - @quote.attachments.each do |attachment|
     %li= link_to attachment[:document], quote_attachment_path(@quote, :id => attachment.id)
 
-%h4 Requests
+%h3 Requests
 %table.table.table-striped
   %thead
     %tr
       %th Quoted Specs
-      %th Offers
+      %th Offered Specs
+      %th Supplier
+      %th Offer Remarks
       %th Buying Price
       %th Selling Price
       %th Order Reference
@@ -53,8 +55,14 @@
       - offers = req.offers
       - offer = offers.shift
       %tr
-        %td{rowspan: offer_count}= simple_format(req.specs)
+        %td{rowspan: offer_count}
+          = simple_format(req.specs)
+          - if !req.remarks.blank?
+            %strong Remarks:
+            #{simple_format(req.remarks)}
+        %td= offer.specs if offer
         %td= offer.supplier_name if offer
+        %td= offer.remarks if offer
         %td= offer.buying_price if offer
         %td= offer.selling_price if offer
         %td= offer.order_reference if offer
@@ -62,6 +70,7 @@
       - offers.each do |offer|
         %tr
           %td= offer.supplier_name
+          %td= offer.remarks 
           %td= offer.buying_price
           %td= offer.selling_price
           %td= offer.order_reference
