@@ -32,10 +32,13 @@
   %br
   = supplier_links(@quote)
  
-%h4 Attachments
-%ul.attachments
-  - @quote.attachments.each do |attachment|
-    %li= link_to attachment[:document], quote_attachment_path(@quote, :id => attachment.id)
+%h3 Attachments
+- if @quote.attachments.empty?
+  No Attachments
+- else
+  %ul.attachments
+    - @quote.attachments.each do |attachment|
+      %li= link_to attachment[:document], quote_attachment_path(@quote, :id => attachment.id)
 
 %h3 Requests
 %table.table.table-striped

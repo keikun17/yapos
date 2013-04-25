@@ -30,10 +30,13 @@
     %br
     = @order.supplier_name
 
-%h4 Attachments
-%ul.attachments
-  - @order.attachments.each do |attachment|
-    %li= link_to attachment[:document], order_attachment_path(@order, :id => attachment.id)
+%h3 Attachments
+- if @order.attachments.empty?
+  No Attachments
+- else
+  %ul.attachments
+    - @order.attachments.each do |attachment|
+      %li= link_to attachment[:document], order_attachment_path(@order, :id => attachment.id)
 
 %table.table.table-striped
   %thead
