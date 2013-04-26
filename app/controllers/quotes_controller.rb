@@ -2,7 +2,7 @@ class QuotesController < ApplicationController
   # GET /quotes
   # GET /quotes.json
   def index
-    @quotes = Quote.paginate(:page => params[:page], :per_page => 10)
+    @quotes = Quote.paginate(:page => params[:page], :per_page => 20)
     @decorated_quotes = QuoteDecorator.decorate_collection(@quotes)
 
     respond_to do |format|

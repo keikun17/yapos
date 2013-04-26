@@ -15,7 +15,8 @@
   %tbody
     - @decorated_orders.each do |order|
       %tr
-        %td= link_to order.reference, order
+        %td
+          %strong= link_to order.reference, order
         %td= order.display_purchase_date
         %td= order.offers.count
         %td= order.total_buy
