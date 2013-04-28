@@ -10,6 +10,10 @@ class Purchase
     end
   end
 
+  def self.total_profit
+    Offer.purchased.sum(:selling_price) - Offer.purchased.sum(:buying_price)
+  end
+
   private
 
   def self.fetch_or_create_from_quote(quote)
