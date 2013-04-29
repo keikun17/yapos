@@ -24,8 +24,8 @@ class OrderDecorator < Decorator
     offers.sum(:selling_price)
   end
 
-  def earnings
-    total_buy - total_sell
+  def total_profit
+    total_sell - total_buy
   end
 
 end
