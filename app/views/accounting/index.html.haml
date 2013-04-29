@@ -7,10 +7,13 @@
     %th Order Reference
     %th Total Supplier's Price
     %th Total Buying Price
+    %th Total Profit
+    %th Client Ordered At
   - @orders.each do |order|
     %tr
       %td= order.reference
       %td= order.total_buy
       %td= order.total_sell
       %td= order.total_profit
+      %td= order.display_purchase_date
 
