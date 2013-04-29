@@ -7,11 +7,14 @@
 %table.table.table-striped
   %thead
     %tr
-      %th Client PO#
+      %th PO#
+      %th Client
       %th Client Purchased at
-      %th Ordered From Supplier at
+      %th Our PO#
+      %th Ordered from Supplier at
+      %th Estimated EX-Works Date
+      %th Estimated Delivery Date
       %th Delivered at
-      %th= model_class.human_attribute_name(:offer_count)
       %th Total Supplier Price
       %th Total Offered Price
   %tbody
@@ -19,12 +22,18 @@
       %tr
         %td
           %strong= link_to order.reference, order
+        %td= order.client_links
         %td= order.display_purchase_date
         %td
           %i Implement
         %td
           %i Implement
-        %td= order.offers.count
+        %td
+          %i Implement
+        %td
+          %i Implement
+        %td
+          %i Implement
         %td= order.total_buy
         %td= order.total_sell
 

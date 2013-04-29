@@ -16,8 +16,8 @@ class Order < ActiveRecord::Base
     :primary_key => 'reference'
   has_many :quotes, :through => :offers, :uniq => true
 
-  belongs_to :client
-  belongs_to :supplier
+  has_many :clients, :through => :quotes, :uniq => true
+  has_many :suppliers, :through => :offers, :uniq => true
 
   validates_presence_of :reference
   validates_associated :attachments
@@ -26,9 +26,6 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :attachments,
     :allow_destroy => true,
     :reject_if => lambda { |a| a[:document].nil? }
-
-  delegate :name, :to => :client, :allow_nil => true, :prefix => true
-  delegate :name, :to => :supplier, :allow_nil => true, :prefix => true
 
   default_scope order('purchase_date is null desc, purchase_date desc')
 

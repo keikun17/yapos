@@ -12,6 +12,22 @@ class OrderDecorator < Decorator
     str
   end
 
+  def supplier_links
+    links = []
+    suppliers.each do |supplier|
+      links << link_to(supplier.name, supplier_path(supplier.name))
+    end
+    raw links.join(',')
+  end
+
+  def client_links
+    links = []
+    clients.each do |client|
+      links << link_to(client.name, client_path(client.name))
+    end
+    raw links.join(',')
+  end
+
   def link
     link_to reference, order_path(self)
   end

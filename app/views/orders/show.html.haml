@@ -24,13 +24,13 @@
 %p
   %strong= model_class.human_attribute_name(:client) + ':'
   %br
-  = client_names(@order)
+  = @order.client_links
 
-- if @order.supplier.present?
+- if @order.suppliers.present?
   %p
     %strong= model_class.human_attribute_name(:supplier) + ':'
     %br
-    = @order.supplier_name
+    = @order.supplier_links
 
 %h3 Attachments
 - if @order.attachments.empty?
