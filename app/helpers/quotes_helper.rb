@@ -14,8 +14,8 @@ module QuotesHelper
     case quote.display_status
     when "Awarded"
       'success'
-    when "Pending"
-      'warning'
+    when "Not Awarded"
+      'error'
     when "Cancelled"
       'error'
     when "No Quote"
