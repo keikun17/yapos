@@ -1,6 +1,6 @@
 - model_class = Order
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize
+  %h1=t '.title', :default => "Order/Delivery Monitoring"
 
 .pull-right=will_paginate(@orders)
 -# = link_to t('.new', :default => t("helpers.links.new")), new_order_path, :class => 'btn btn-primary'
@@ -13,29 +13,51 @@
       %th Our PO#
       %th Ordered from Supplier at
       %th Estimated EX-Works Date
+      %th EX-Works Date
       %th Estimated Delivery Date
       %th Delivered at
-      %th Total Supplier Price
-      %th Total Offered Price
   %tbody
     - @decorated_orders.each do |order|
+      - offer_count = order.offers.size
+      - offers = order.offers
+      - offer = offers.shift
+      - offers = OfferDecorator.decorate_collection(offers)
+      - offer = OfferDecorator.new(offer)
+
       %tr
-        %td
+        %td{rowspan: offer_count}
           %strong= link_to order.reference, order
-        %td= order.client_links
+        %td
+          - if offer && offer.client
+            = link_to(offer.client.name, client_path(offer.client))
         %td= order.display_purchase_date
+        %td= offer.supplier_order_reference
         %td
-          %i Implement
+          %i= offer.ordered_from_supplier_at
         %td
-          %i Implement
+          %i= offer.estimated_manufacture_end_date
         %td
-          %i Implement
+          %i= offer.actual_manufacture_end_date
         %td
-          %i Implement
+          %i= offer.estimated_delivery_date
         %td
-          %i Implement
-        %td= order.total_buy
-        %td= order.total_sell
+          %i= offer.delivered_at
 
-
+        - offers.each do |offer|
+          %tr
+            %td
+              = link_to(offer.client.name, client_path(offer.client))
+            %td= order.display_purchase_date
+            %td
+              %i= offer.supplier_order_reference
+            %td
+              %i= offer.ordered_from_supplier_at
+            %td
+              %i= offer.estimated_manufacture_end_date
+            %td
+              %i= offer.actual_manufacture_end_date
+            %td
+              %i= offer.estimated_delivery_date
+            %td
+              %i= offer.delivered_at
 .pull-right=will_paginate(@orders)

@@ -7,7 +7,8 @@ class Offer < ActiveRecord::Base
     :currency,
     :currency_conversion,
     :order_reference, 
-    :remarks
+    :remarks, 
+    :supplier_order_attributes
 
   belongs_to :request
   belongs_to :supplier
@@ -16,17 +17,49 @@ class Offer < ActiveRecord::Base
     :foreign_key => 'order_reference'
 
   has_one :quote, :through => :request
+  has_one :supplier_order
+  has_one :client, :through => :quote
+
+  accepts_nested_attributes_for :supplier_order 
 
   scope :purchased, where("order_reference <> '' ")
 
-
   delegate :name, to: :supplier, prefix: true, allow_nil: true
 
-  delegate :quote_reference, 
+  delegate :reference, 
     to: :quote,
-    prefix: false,
+    prefix: true,
     allow_nil: true
 
+  delegate :reference,
+    to: :supplier_order,
+    prefix: true,
+    allow_nil: true
+
+  delegate :ordered_at,
+    to: :supplier_order,
+    prefix: true,
+    allow_nil: true
+
+  delegate :estimated_manufactured_at,
+    to: :supplier_order,
+    prefix: true,
+    allow_nil: true
+
+  delegate :manufactured_at,
+    to: :supplier_order,
+    prefix: true,
+    allow_nil: true
+
+  delegate :estimated_delivered_at,
+    to: :supplier_order,
+    prefix: true,
+    allow_nil: true
+
+  delegate :delivered_at,
+    to: :supplier_order,
+    prefix: true,
+    allow_nil: true
 end
 
 # == Schema Information

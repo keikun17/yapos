@@ -7,7 +7,8 @@ class Order < ActiveRecord::Base
     :description,
     :client_id,
     :supplier_id,
-    :attachments_attributes
+    :attachments_attributes, 
+    :offers_attributes
 
   has_many :attachments, :as => :attachable
 
@@ -18,11 +19,13 @@ class Order < ActiveRecord::Base
 
   has_many :clients, :through => :quotes, :uniq => true
   has_many :suppliers, :through => :offers, :uniq => true
+  has_many :supplier_orders, :through => :offers
 
   validates_presence_of :reference
   validates_associated :attachments
 
   accepts_nested_attributes_for :quotes
+  accepts_nested_attributes_for :offers
   accepts_nested_attributes_for :attachments,
     :allow_destroy => true,
     :reject_if => lambda { |a| a[:document].nil? }
