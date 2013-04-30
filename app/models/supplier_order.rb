@@ -5,3 +5,20 @@ class SupplierOrder < ActiveRecord::Base
 
   belongs_to :offer
 end
+
+# == Schema Information
+#
+# Table name: supplier_orders
+#
+#  id                        :integer          not null, primary key
+#  offer_id                  :integer
+#  reference                 :string(255)
+#  ordered_at                :datetime
+#  estimated_manufactured_at :datetime
+#  manufactured_at           :datetime
+#  estimated_delivered_at    :datetime
+#  delivered_at              :datetime
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#
+

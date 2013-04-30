@@ -21,5 +21,6 @@ end
 #  order_reference     :string(255)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  remarks             :text
 #
 
