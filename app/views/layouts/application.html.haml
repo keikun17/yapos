@@ -10,6 +10,8 @@
     /[if lt IE 9]
       = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
     = stylesheet_link_tag "application", :media => "all"
+    - if @print_preview
+      = stylesheet_link_tag "print_preview", :media => "all"
     %link(href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144")
     %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
     %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
@@ -17,27 +19,28 @@
     -# %link(href="images/favicon.ico" rel="shortcut icon")
 
   %body
-    .navbar.navbar-fluid-top
-      .navbar-inner
-        .container-fluid
-          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.brand(href="#") MLANDCORP POS
-          .container.nav-collapse
-            %ul.nav
-              %li= link_to "Quotes", quotes_path
-              %li= link_to "Orders", orders_path
-              %li= link_to "Clients", clients_path
-              %li= link_to "Suppliers", suppliers_path
-              %li= link_to "Accounting", accounting_path
-              %li
-                = form_tag search_path do 
-                  = text_field_tag 'search[string]', '',:class => "navbar-search"
-                  = button_tag "Search", :class => "btn btn-small"
-            .pull-right
-              = link_to "Log out", destroy_user_session_path, :class => "btn btn-warning", :method => :delete
+    -unless @print_preview
+      .navbar.navbar-fluid-top
+        .navbar-inner
+          .container-fluid
+            %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.brand(href="#") MLANDCORP POS
+            .container.nav-collapse
+              %ul.nav
+                %li= link_to "Quotes", quotes_path
+                %li= link_to "Orders", orders_path
+                %li= link_to "Clients", clients_path
+                %li= link_to "Suppliers", suppliers_path
+                %li= link_to "Accounting", accounting_path
+                %li
+                  = form_tag search_path do 
+                    = text_field_tag 'search[string]', '',:class => "navbar-search"
+                    = button_tag "Search", :class => "btn btn-small"
+              .pull-right
+                = link_to "Log out", destroy_user_session_path, :class => "btn btn-warning", :method => :delete
 
     .container-fluid
 
@@ -54,7 +57,6 @@
           = yield
     
       %footer
-        %p &copy; Maryland Industrial Corp 2012
     /
       Javascripts
       \==================================================

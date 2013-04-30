@@ -20,6 +20,7 @@ MlandcorpPos::Application.routes.draw do
     end
     member do
       get 'requote'
+      get 'printable_view'
     end
     resources :attachments do
       member do

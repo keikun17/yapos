@@ -1,0 +1,95 @@
+%div{style: 'font-size:9px'}
+  %br
+  %br
+  %br
+  %br
+  %br
+  Date: #{@quote.quote_date.to_date.to_s(:long)}
+
+  %h4= @quote.client_name
+  =@quote.client.address
+
+  %br
+  %br
+
+  %table
+    %tr
+      %td
+        %strong ATTENTION
+      %td :
+      %td{colspan: 5}
+        %strong= @quote.contact_person
+    %tr
+      %td
+        %strong SUBJECT
+      %td :
+      %td{colspan: 6}
+        %strong= @quote.quote_reference
+
+    %tr
+      %td{colspan:8}
+
+
+  %table
+    %tr
+      %td{colspan: 8}
+        %strong As per your request we are pleased to quote on the following requirements
+  %br
+  %br
+
+  %table.table.table-bordered
+    %tr
+    - @requests.each do |request|
+      %tr
+        %td
+          %strong Item-#{@requests.index(request) + 1}
+        %td
+          %strong Qty:
+          #{request.quantity}
+        %td
+          %strong Unit:
+          = request.unit
+        %td{colspan:5}
+          %strong Desc/Specs:
+          = request.specs
+        
+
+      - unless request.offers.empty?
+        %tr
+          %th{style: 'border-left: none'}
+          %th Offer#
+          %th Brand
+          %th Specs
+          %th Unit Price
+          %th Delivery
+          %th Terms
+          %th Warranty
+        - offers = OfferDecorator.decorate_collection(request.offers)
+        - offers.each do |offer|
+          %tr
+            %td{style: 'border:none'}
+            %td= offers.index(offer) + 1
+            %td= offer.supplier_name
+            %td= offer.specs
+            %td= offer.display_selling_price
+            %td= offer.delivery
+            %td= offer.terms
+            %td= offer.warranty
+
+      %tr
+        %td{style: 'border-top:none;border-left:none'} &nbsp;
+        %td{colspan: 7} &nbsp;
+
+
+  %strong Thank you for the opportunity to quote and we hope to receive your valued order
+  %br
+  %br
+    
+
+
+  %strong= @quote.signatory
+  %br
+  = @quote.signatory_position
+          
+
+
