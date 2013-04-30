@@ -1,5 +1,7 @@
 class Request < ActiveRecord::Base
   attr_accessible :specs, 
+    :quantity, 
+    :unit,
     :remarks,
     :offers_attributes
 

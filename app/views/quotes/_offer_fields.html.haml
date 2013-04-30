@@ -1,10 +1,74 @@
 %tr.fields
   %td{:style => 'border:none'}
-  %td= f.text_area :specs, :class => 'span12 text_area', :rows => 2
-  %td= f.select :supplier_id, options_for_select(Supplier.all.collect{|s| [s.name, s.id]}, f.object.supplier_id), :include_blank => true, :class => 'span2'
-  %td= f.text_area :remarks, :class => 'span12 text_area', :rows => 2
-  %td= f.text_field :buying_price, :class => 'text_field span12', :rows => 2
-  %td= f.text_field :selling_price, :class => 'text_field span12', :rows => 2
-  %td= f.text_field :order_reference, :class => 'text_field span12', :rows => 2
+  %td
+    .row-fluid
+      .input-prepend
+        .add-on.span5
+          Brand
+        = f.select :supplier_id, options_for_select(Supplier.all.collect{|s| [s.name, s.id]}, f.object.supplier_id), {:include_blank => true}, :class => 'compact'
+    = f.text_area :specs, :class => 'span12 text_area', :rows => 4, :placeholder => "Specs"
+  %td
+    .row-fluid
+      .span12
+        .control-group
+          %label.span4.control-label Currency
+          .controls.span8
+            = f.select(:currency, Currency.all, {}, class: 'span12')
+
+    .row-fluid
+      .span12
+        .control-group
+          %label.span4.control-label Rate
+          .controls.span8
+            .input-append.span12
+              = f.text_field :currency_conversion, :class => 'prependedInput span7', :placeholder => '1.00'
+              .add-on
+                PHP
+
+    .row-fluid
+      .span12
+        .control-group
+          %label.span4.control-label Price Tax Status
+          .controls.span8
+            = f.text_field :price_vat_status, :class => 'text_field span12', :placeholder => "VAT EX or VAT INC"
+
+    .row-fluid
+      .span12
+        .control-group
+          %label.span4.control-label Supplier Price
+          .controls.span8
+            = f.text_field :buying_price, :class => 'text_field span12'
+
+    .row-fluid
+      .span12
+        .control-group
+          %label.span4.control-label Our Price
+          .controls.span8
+            = f.text_field :selling_price, :class => 'text_field span12'
+
+  %td
+    .row-fluid
+      .span12
+        .control-group
+          %label.span4.control-label Terms
+          .controls.span8
+            = f.text_field :terms, :class => 'text_field span12'
+
+    .row-fluid
+      .span12
+        .control-group
+          %label.span4.control-label Delivery
+          .controls.span8
+            = f.text_field :delivery, :class => 'text_field span12'
+
+    .row-fluid
+      .span12
+        .control-group
+          %label.span4.control-label Warranty
+          .controls.span8
+            = f.text_field :warranty, :class => 'text_field span12'
+
+
+  %td= f.text_field :order_reference, :class => 'text_field span12'
   %td= link_to_remove_fields "remove", f 
 

@@ -8,32 +8,11 @@ class OfferDecorator < Decorator
   #   $ 40.00/unit
   # If PHP 
   def display_selling_price
-    #TODO:IMPLEMENT
-    #{offer.currency} #{offer.selling_price} (#{offer.selling_price_tax_status})
-    content_tag :i do
-      "$40.00/Unit"
+    str = "#{self.currency.to_s}#{self.selling_price}"
+    if !self.price_vat_status.blank?
+      str = str + "(#{self.price_vat_status})"
     end
-  end
-
-  def delivery
-    #TODO:IMPLEMENT
-    content_tag :i do
-      "30-40 days"
-    end
-  end
-
-  def warranty
-    #TODO:IMPLEMENT
-    content_tag :i do
-      "1 Year Under normal operating conditions"
-    end
-  end
-
-  def terms
-    #TODO:IMPLEMENT
-    content_tag :i do
-      "30 days advance payment"
-    end
+    str
   end
 
   def ordered_from_supplier_at

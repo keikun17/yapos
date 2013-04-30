@@ -1,20 +1,15 @@
 %tr.fields
-  %td= f.text_area :specs, :class => 'span12 text_area', :rows => 2
-  %td= f.text_area :remarks, :class => 'text_area span12', :rows => 2
-  %td
-  %td
-  %td
-  %td
-  %td
+  %td= f.text_field :quantity, :class => 'span12 text_field'
+  %td= f.text_field :unit, :class => 'span12 text_field'
+  %td{colspan: 2}= f.text_area :specs, :class => 'span12 text_area', :rows => 4
+  %td{colspan: 2}= f.text_area :remarks, :class => 'text_area span12', :rows => 4 
   %td= link_to_remove_fields "remove", f
 
 %tr
   %th
   %th Quote Specs 
-  %th Brand 
-  %th Remarks
-  %th Supplier's Price
-  %th Offered Price
+  %th Price Details
+  %th Misc Details
   %th Client PO#
   %th
 = f.fields_for :offers do |builder|

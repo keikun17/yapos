@@ -1,32 +1,37 @@
 class Offer < ActiveRecord::Base
+
   attr_accessible :request,
-    :supplier_id, 
+    :supplier_id,
     :specs,
     :buying_price,
     :selling_price,
     :currency,
     :currency_conversion,
-    :order_reference, 
-    :remarks, 
+    :price_vat_status,
+    :order_reference,
+    :remarks,
+    :terms,
+    :delivery,
+    :warranty,
     :supplier_order_attributes
 
   belongs_to :request
   belongs_to :supplier
   belongs_to :order,
-    :primary_key => 'reference', 
+    :primary_key => 'reference',
     :foreign_key => 'order_reference'
 
   has_one :quote, :through => :request
   has_one :supplier_order
   has_one :client, :through => :quote
 
-  accepts_nested_attributes_for :supplier_order 
+  accepts_nested_attributes_for :supplier_order
 
   scope :purchased, where("order_reference <> '' ")
 
   delegate :name, to: :supplier, prefix: true, allow_nil: true
 
-  delegate :reference, 
+  delegate :reference,
     to: :quote,
     prefix: true,
     allow_nil: true

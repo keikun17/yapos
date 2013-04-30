@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430121848) do
+ActiveRecord::Schema.define(:version => 20130430153556) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "attachable_id"
@@ -42,6 +42,10 @@ ActiveRecord::Schema.define(:version => 20130430121848) do
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.text     "remarks"
+    t.string   "terms"
+    t.string   "delivery"
+    t.string   "warranty"
+    t.string   "price_vat_status"
   end
 
   add_index "offers", ["order_reference"], :name => "index_offers_on_order_reference"
@@ -81,6 +85,8 @@ ActiveRecord::Schema.define(:version => 20130430121848) do
     t.text     "remarks"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+    t.float    "quantity"
+    t.string   "unit"
   end
 
   create_table "supplier_orders", :force => true do |t|
