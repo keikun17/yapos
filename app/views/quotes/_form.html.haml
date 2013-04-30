@@ -3,22 +3,41 @@
     = f.label :quote_reference, 'Client PR#' ,:class => 'control-label'
     .controls
       = f.text_field :quote_reference, :class => 'text_field'
+
   .control-group
     = f.label :client, :class => 'control-label'
     .controls
       = f.select :client_id, Client.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
+
+  .control-group
+    = f.label :contact_person, :class => 'control-label'
+    .controls
+      = f.text_field :contact_person, :class => 'text_field'
+
   .control-group
     = f.label :quote_date, :class => 'control-label'
     .controls
       = f.date_select :quote_date, :class => 'datetime_select'
+
   .control-group
     = f.label :description, :class => 'control-label'
     .controls
       = f.text_area :description, :class => 'text_area', :class => "span8", :rows => 3
+
   .control-group
     = f.label :status, :class => 'control-label'
     .controls
       = f.select :status, ["Pending", "Cancelled", "No Quote"],  :class => 'select'
+
+  .control-group
+    = f.label :signatory, :class => 'control-label'
+    .controls
+      = f.text_field :signatory, :class => 'text_field'
+
+  .control-group
+    = f.label :signatory_position, :class => 'control-label'
+    .controls
+      = f.text_field :signatory_position, :class => 'text_field'
 
   %h3 Attachments
   %hr

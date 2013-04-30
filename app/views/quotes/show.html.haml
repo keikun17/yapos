@@ -16,6 +16,12 @@
   %strong= model_class.human_attribute_name(:client_name) + ':'
   %br
   = link_to_client(@quote.client)
+
+%p
+  %strong= model_class.human_attribute_name(:contact_person) + ':'
+  %br
+  = @quote.contact_person
+
 %p
   %strong= model_class.human_attribute_name(:description) + ':'
   %br
@@ -34,6 +40,16 @@
   %br
   = supplier_links(@quote)
  
+%p
+  %strong= model_class.human_attribute_name(:signatory) + ':'
+  %br
+  = @quote.signatory
+
+%p
+  %strong= model_class.human_attribute_name(:signatory_position) + ':'
+  %br
+  = @quote.signatory_position
+
 %h3 Attachments
 - if @quote.attachments.empty?
   No Attachments

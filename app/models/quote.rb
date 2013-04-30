@@ -3,6 +3,9 @@ class Quote < ActiveRecord::Base
   include Tire::Model::Callbacks
 
   attr_accessible :description,
+    :signatory, 
+    :signatory_position,
+    :contact_person,
     :quantity,
     :quote_date,
     :quote_reference,

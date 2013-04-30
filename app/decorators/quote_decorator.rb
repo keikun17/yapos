@@ -4,19 +4,4 @@ class QuoteDecorator < Decorator
     links.uniq!
     raw links.join(',')
   end
-
-  def contact_person
-    #TODO:IMPLEMENT
-    content_tag :i do
-      "Mr. Juan Dela Cruz"
-    end
-  end
-
-  def signatory
-    "Ress Magsipoc"
-  end
-
-  def signatory_position
-    "Manager"
-  end
 end
