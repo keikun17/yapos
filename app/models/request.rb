@@ -32,5 +32,7 @@ end
 #  remarks               :text
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  quantity              :float
+#  unit                  :string(255)
 #
 

@@ -83,5 +83,9 @@ end
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  remarks             :text
+#  terms               :string(255)
+#  delivery            :string(255)
+#  warranty            :string(255)
+#  price_vat_status    :string(255)
 #
 
