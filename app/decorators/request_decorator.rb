@@ -11,15 +11,10 @@ class RequestDecorator < Decorator
     offer_count + offset.to_i
   end
 
-  def unit
-    content_tag :i do
-      ["Pieces", "Rolls", "Meter"].sample
+  def display_quantity
+    if (str = "#{quantity} #{unit}").blank?
+      str = "1.00 Unit"
     end
-  end
-
-  def quantity
-    content_tag :i do
-      ["10", "20", "15"].sample
-    end
+    str
   end
 end

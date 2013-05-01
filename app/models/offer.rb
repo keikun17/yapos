@@ -30,6 +30,7 @@ class Offer < ActiveRecord::Base
   scope :purchased, where("order_reference <> '' ")
 
   delegate :name, to: :supplier, prefix: true, allow_nil: true
+  delegate :unit, to: :request, prefix: true, allow_nil: true
 
   delegate :reference,
     to: :quote,

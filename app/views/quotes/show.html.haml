@@ -65,36 +65,59 @@
       %th Quoted Specs
       %th Offered Specs
       %th Supplier
-      %th Offer Remarks
-      %th Buying Price
-      %th Selling Price
+      %th Delivery/Terms/Warranty
+      %th Unit Buying Price
+      %th Unit Selling Price
       %th Order Reference
       %th 
   %tbody
     - @requests.each do |req|
       - offer_count = req.offers.size
       - offers = req.offers
+      - offers = OfferDecorator.decorate_collection(offers)
       - offer = offers.shift
+      - if offer
+        - offer = OfferDecorator.new(offer)
       %tr
         %td{rowspan: offer_count}
+          %strong= req.display_quantity
           = simple_format(req.specs)
           - if !req.remarks.blank?
             %strong Remarks:
             #{simple_format(req.remarks)}
         %td= offer.specs if offer
         %td= offer.supplier_name if offer
-        %td= offer.remarks if offer
-        %td= offer.buying_price if offer
-        %td= offer.selling_price if offer
+        %td
+          - if offer
+            %strong Delivery:
+            = offer.delivery
+            %br
+            %strong Terms:
+            = offer.terms
+            %br
+            %strong Warranty:
+            = offer.warranty
+            %br
+        %td= offer.display_buying_price if offer
+        %td= offer.display_selling_price if offer
         %td= offer.order_reference if offer
 
       - offers.each do |offer|
         %tr
           %td= offer.specs
           %td= offer.supplier_name
-          %td= offer.remarks 
-          %td= offer.buying_price
-          %td= offer.selling_price
+          %td
+            %strong Delivery:
+            = offer.delivery
+            %br
+            %strong Terms:
+            = offer.terms
+            %br
+            %strong Warranty:
+            = offer.warranty
+            %br
+          %td= offer.display_buying_price
+          %td= offer.display_selling_price
           %td= offer.order_reference
 
 .form-actions
