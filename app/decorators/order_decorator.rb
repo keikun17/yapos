@@ -52,7 +52,7 @@ class OrderDecorator < Decorator
   end
 
   def display_total_sell
-    Currency::LOCAL_CURRENCY + " " + total_buy.to_s
+    Currency::LOCAL_CURRENCY + " " + total_sell.to_s
   end
 
   def display_total_profit
