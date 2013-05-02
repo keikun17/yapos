@@ -30,5 +30,7 @@ two: {}
 #  delivery            :string(255)
 #  warranty            :string(255)
 #  price_vat_status    :string(255)
+#  total_buying_price  :float
+#  total_selling_price :float
 #
 
