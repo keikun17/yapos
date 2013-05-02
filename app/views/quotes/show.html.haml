@@ -3,6 +3,7 @@
   %h1
     = t '.title', :default => @quote.quote_reference
     = link_to t('.edit', :default => t("helpers.links.edit")), edit_quote_path(@quote), :class => 'btn'
+    = link_to 'Print', printable_view_quote_path(@quote), :class => 'btn'
 
 %p
   %strong= model_class.human_attribute_name(:quote_reference) + ':'
