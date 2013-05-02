@@ -20,7 +20,7 @@ class OfferDecorator < Decorator
   end
 
   def display_buying_price
-    str = "#{self.currency.to_s}#{self.selling_price}/#{self.request_unit}"
+    str = "#{self.currency.to_s}#{self.buying_price}/#{self.request_unit}"
     if !self.price_vat_status.blank?
       str = str + "(#{self.price_vat_status})"
     end
