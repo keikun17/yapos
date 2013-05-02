@@ -1,8 +1,16 @@
 %tr.fields
-  %td= f.text_field :quantity, :class => 'span12 text_field'
-  %td= f.text_field :unit, :class => 'span12 text_field'
-  %td{colspan: 2}= f.text_area :specs, :class => 'span12 text_area', :rows => 4
-  %td{colspan: 2}= f.text_area :remarks, :class => 'text_area span12', :rows => 4 
+  %td
+    %strong Quantity
+    = f.text_field :quantity, :class => 'span12 text_field'
+  %td
+    %strong Unit
+    = f.text_field :unit, :class => 'span12 text_field'
+  %td{colspan: 2}
+    %strong Request Specs
+    = f.text_area :specs, :class => 'span12 text_area', :rows => 4
+  %td{colspan: 2}
+    %strong Remarks
+    =f.text_area :remarks, :class => 'text_area span12', :rows => 4 
   %td= link_to_remove_fields "remove", f
 
 %tr

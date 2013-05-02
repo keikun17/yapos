@@ -50,12 +50,6 @@
   %hr
   %div
     %table.table.table-bordered
-      %tr
-        %th Quantity
-        %th Unit
-        %th{colspan:2} Requested Spec
-        %th{colspan:2} Remarks
-        %th
       = f.fields_for :requests do |builder|
         = render 'request_fields', :f => builder
 
