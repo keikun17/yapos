@@ -1,11 +1,12 @@
 %tr.fields
   %td{:style => 'border:none'}
   %td
-    .row-fluid
-      .input-prepend
-        .add-on.span5
-          Brand
-        = f.select :supplier_id, options_for_select(Supplier.all.collect{|s| [s.name, s.id]}, f.object.supplier_id), {:include_blank => true}, :class => 'compact'
+    Brand
+    %br
+    =  f.select :supplier_id, options_for_select(Supplier.all.collect{|s| [s.name, s.id]}, f.object.supplier_id), {:include_blank => true}, :class => 'compact'
+    %br
+    Specs/Description
+    %br
     = f.text_area :specs, :class => 'span12 text_area', :rows => 4, :placeholder => "Specs"
   %td
     .row-fluid
@@ -68,6 +69,12 @@
           .controls.span8
             = f.text_field :warranty, :class => 'text_field span12'
 
+    .row-fluid
+      .span12
+        .control-group
+          %label.span4.control-label Notes
+          .controls.span8
+            = f.text_area :remarks, :class => 'text_area span12', :rows => 4
 
   %td= f.text_field :order_reference, :class => 'text_field span12'
   %td= link_to_remove_fields "remove", f 

@@ -4,6 +4,8 @@
   %br
   %br
   %br
+  %br
+  %br
   Date: #{@quote.quote_date.to_date.to_s(:long)}
 
   %h4= @quote.client_name
@@ -49,7 +51,7 @@
         %td
           %strong Unit:
           = request.unit
-        %td{colspan:5}
+        %td{colspan:6}
           %strong Desc/Specs:
           = request.specs
         
@@ -61,6 +63,7 @@
           %th Brand
           %th Specs
           %th Unit Price
+          %th Notes
           %th Delivery
           %th Terms
           %th Warranty
@@ -72,13 +75,14 @@
             %td= offer.supplier_name
             %td= offer.specs
             %td= offer.display_selling_price
+            %td= offer.remarks
             %td= offer.delivery
             %td= offer.terms
             %td= offer.warranty
 
       %tr
         %td{style: 'border-top:none;border-left:none'} &nbsp;
-        %td{colspan: 7} &nbsp;
+        %td{colspan: 8} &nbsp;
 
 
   %strong Thank you for the opportunity to quote and we hope to receive your valued order

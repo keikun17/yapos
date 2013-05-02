@@ -89,6 +89,9 @@
         %td= offer.supplier_name if offer
         %td
           - if offer
+            %strong Notes:
+            = offer.remarks
+            %br
             %strong Delivery:
             = offer.delivery
             %br
@@ -107,6 +110,9 @@
           %td= offer.specs
           %td= offer.supplier_name
           %td
+            %strong Notes:
+            = offer.remarks
+            %br
             %strong Delivery:
             = offer.delivery
             %br
