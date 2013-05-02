@@ -1,5 +1,8 @@
 class OrderDecorator < Decorator
 
+  attr_accessor :total_buy
+  attr_accessor :total_sell
+
   def display_purchase_date
     if purchase_date.nil?
       str = content_tag :i do
@@ -33,15 +36,27 @@ class OrderDecorator < Decorator
   end
 
   def total_buy
-    offers.sum(:buying_price)
+    @total_buy ||= offers.sum(:total_buying_price)
   end
   
   def total_sell
-    offers.sum(:selling_price)
+    @total_sell ||= offers.sum(:total_selling_price)
   end
 
   def total_profit
     total_sell - total_buy
+  end
+
+  def display_total_buy
+    Currency::LOCAL_CURRENCY + " " + total_buy.to_s
+  end
+
+  def display_total_sell
+    Currency::LOCAL_CURRENCY + " " + total_buy.to_s
+  end
+
+  def display_total_profit
+    Currency::LOCAL_CURRENCY + " " + total_profit.to_s
   end
 
 end

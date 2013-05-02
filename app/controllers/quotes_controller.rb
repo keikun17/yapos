@@ -50,6 +50,7 @@ class QuotesController < ApplicationController
 
     respond_to do |format|
       if @quote.save
+        @quote.compute_total_offered_prices
         Purchase.create_or_append(@quote)
         format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
         format.json { render json: @quote, status: :created, location: @quote }
@@ -67,6 +68,7 @@ class QuotesController < ApplicationController
 
     respond_to do |format|
       if @quote.update_attributes(params[:quote])
+        @quote.compute_total_offered_prices
         Purchase.create_or_append(@quote)
         format.html { redirect_to @quote, notice: 'Quote was successfully updated.' }
         format.json { head :no_content }

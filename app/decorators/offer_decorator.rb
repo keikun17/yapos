@@ -27,6 +27,22 @@ class OfferDecorator < Decorator
     str
   end
 
+  def display_total_buying_price
+    str = "#{Currency::LOCAL_CURRENCY}#{self.total_buying_price}"
+    if !self.price_vat_status.blank?
+      str = str + "(#{self.price_vat_status})"
+    end
+    str
+  end
+
+  def display_total_selling_price
+    str = "#{Currency::LOCAL_CURRENCY}#{self.total_selling_price}"
+    if !self.price_vat_status.blank?
+      str = str + "(#{self.price_vat_status})"
+    end
+    str
+  end
+
   def ordered_from_supplier_at
     if date = __getobj__.supplier_order_ordered_at
       date.to_date.to_s

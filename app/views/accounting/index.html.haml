@@ -12,8 +12,8 @@
   - @orders.each do |order|
     %tr
       %td= order.reference
-      %td= order.total_buy
-      %td= order.total_sell
-      %td= order.total_profit
+      %td= order.display_total_buy
+      %td= order.display_total_sell
+      %td= order.display_total_profit
       %td= order.display_purchase_date
 

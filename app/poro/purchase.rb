@@ -11,7 +11,7 @@ class Purchase
   end
 
   def self.total_profit
-    Offer.purchased.sum(:selling_price) - Offer.purchased.sum(:buying_price)
+    Offer.purchased.sum(:total_selling_price) - Offer.purchased.sum(:total_buying_price)
   end
 
   private

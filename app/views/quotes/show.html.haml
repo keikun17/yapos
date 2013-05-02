@@ -67,8 +67,8 @@
       %th Offered Specs
       %th Supplier
       %th Delivery/Terms/Warranty
-      %th Unit Buying Price
-      %th Unit Selling Price
+      %th Buying Price
+      %th Selling Price
       %th Order Reference
       %th 
   %tbody
@@ -102,8 +102,20 @@
             %strong Warranty:
             = offer.warranty
             %br
-        %td= offer.display_buying_price if offer
-        %td= offer.display_selling_price if offer
+          %td
+            - if offer
+              %strong Unit Price:
+              = offer.display_buying_price
+              %br
+              %strong Total:
+              = offer.display_total_buying_price
+          %td
+            - if offer
+              %strong Unit Price:
+              = offer.display_selling_price
+              %br
+              %strong Total:
+              = offer.display_total_selling_price
         %td= offer.order_reference if offer
 
       - offers.each do |offer|
@@ -123,8 +135,18 @@
             %strong Warranty:
             = offer.warranty
             %br
-          %td= offer.display_buying_price
-          %td= offer.display_selling_price
+          %td
+            %strong Unit Price:
+            = offer.display_buying_price
+            %br
+            %strong Total:
+            = offer.display_total_buying_price
+          %td
+            %strong Unit Price:
+            = offer.display_selling_price
+            %br
+            %strong Total:
+            = offer.display_total_selling_price
           %td= offer.order_reference
 
 .form-actions

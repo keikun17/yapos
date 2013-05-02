@@ -17,7 +17,8 @@ class Quote < ActiveRecord::Base
 
   has_many :attachments, :as => :attachable
   has_many :requests
-  has_many :offers, :through => :requests
+  has_many :offers, :through => :requests 
+
   has_many :suppliers, :through => :offers
   has_many :orders, :through => :offers
 
@@ -111,6 +112,10 @@ class Quote < ActiveRecord::Base
     repeat_order.quote_reference = repeat_order.quote_reference + "-" + Date.today.strftime('%Y%m%d') 
     repeat_order.save
     repeat_order
+  end
+
+  def compute_total_offered_prices
+    offers.map(&:update_total_prices)
   end
 
 end
