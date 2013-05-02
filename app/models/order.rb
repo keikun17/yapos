@@ -1,5 +1,8 @@
 class Order < ActiveRecord::Base
-  attr_accessible :purchase_date, 
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
+  attr_accessible :purchase_date,
     :reference,
     :quotes_attributes,
     :quotes,
@@ -7,12 +10,12 @@ class Order < ActiveRecord::Base
     :description,
     :client_id,
     :supplier_id,
-    :attachments_attributes, 
+    :attachments_attributes,
     :offers_attributes
 
   has_many :attachments, :as => :attachable
 
-  has_many :offers, 
+  has_many :offers,
     :foreign_key => 'order_reference',
     :primary_key => 'reference'
   has_many :quotes, :through => :offers, :uniq => true
@@ -32,8 +35,34 @@ class Order < ActiveRecord::Base
 
   default_scope order('purchase_date is null desc, purchase_date desc')
 
+  # Tire/ElasticSearch Configuration
+
+  mapping do
+    indexes :purchase_date, {type: 'date', include_in_all: false}
+  end
+
+  def to_indexed_json
+    {
+      reference: self.reference,
+      client_names: self.clients_names,
+      supplier_names: supplier_names,
+      status: 'implement',
+      purchase_date: self.purchase_date
+    }.to_json
+  end
+
+  # /-- Tire/ElasticSearch config
+
   def clear_quotes
     self.quotes.update_all(:order_id => nil)
+  end
+
+  def client_names
+    self.clients.uniq.map(&:name)
+  end
+
+  def supplier_names
+    self.suppliers.uniq.map(&:name)
   end
 
 end
