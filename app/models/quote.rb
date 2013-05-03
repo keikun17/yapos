@@ -43,7 +43,7 @@ class Quote < ActiveRecord::Base
   delegate :name, :to => :supplier, :allow_nil => true, :prefix => true
 
   scope :unawarded, where(:order_id => nil)
-  default_scope order('quote_date desc')
+  default_scope order('quote_date desc, id desc')
 
   # Tire/ElasticSearch Configuration
   
