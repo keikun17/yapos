@@ -44,7 +44,7 @@ class Order < ActiveRecord::Base
   def to_indexed_json
     {
       reference: self.reference,
-      client_names: self.clients_names,
+      client_names: self.client_names,
       supplier_names: supplier_names,
       status: 'implement',
       purchase_date: self.purchase_date
