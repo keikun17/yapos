@@ -5,6 +5,7 @@
 %table.table
   %tr
     %th Order Reference
+    %th Clients
     %th Total Supplier's Price
     %th Total Buying Price
     %th Total Profit
@@ -12,6 +13,7 @@
   - @orders.each do |order|
     %tr
       %td= order.reference
+      %td= order.client_links
       %td= order.display_total_buy
       %td= order.display_total_sell
       %td= order.display_total_profit
