@@ -12,7 +12,7 @@
     %th Client Ordered At
   - @orders.each do |order|
     %tr
-      %td= order.reference
+      %td= link_to order.reference, order
       %td= order.client_links
       %td= order.display_total_buy
       %td= order.display_total_sell
