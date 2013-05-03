@@ -14,7 +14,7 @@ class Request < ActiveRecord::Base
     :reject_if => lambda { |o| o[:specs].blank? &&
                           o[:price].blank? 
   }
-  delegate :name, :to => :supplier, :prefix =>true, :allow_nil => true
+  delegate :name, :to => :supplier, :prefix => true, :allow_nil => true
 
   validates :specs, :presence => true
 
