@@ -7,7 +7,7 @@ class Request < ActiveRecord::Base
 
   belongs_to :quote
   belongs_to :supplier
-  has_many :offers
+  has_many :offers, dependent: :destroy
 
   accepts_nested_attributes_for :offers,
     :allow_destroy => true,

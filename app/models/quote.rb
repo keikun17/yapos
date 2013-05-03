@@ -16,7 +16,7 @@ class Quote < ActiveRecord::Base
     :attachments_attributes
 
   has_many :attachments, :as => :attachable
-  has_many :requests
+  has_many :requests, dependent: :destroy
   has_many :offers, :through => :requests 
 
   has_many :suppliers, :through => :offers

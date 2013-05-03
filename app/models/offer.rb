@@ -24,7 +24,7 @@ class Offer < ActiveRecord::Base
     :foreign_key => 'order_reference'
 
   has_one :quote, :through => :request
-  has_one :supplier_order
+  has_one :supplier_order, dependent: :destroy
   has_one :client, :through => :quote
 
   accepts_nested_attributes_for :supplier_order
