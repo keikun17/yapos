@@ -4,23 +4,26 @@ class OfferDecorator < Decorator
     __getobj__.supplier_order_reference || 'Not yet ordered'
   end
 
+  def request_unit
+    __getobj__.request_unit.blank? ? 'Unit' : __getobj__.request_unit
+  end
+
   # If Dollars
   #   $40.00/unit
   # If PHP
   def display_selling_price
-    str = "#{self.currency.to_s}#{self.selling_price}/#{self.request_unit}"
+    str = number_to_currency(self.selling_price, unit: self.currency)
+    str = str + "/#{self.request_unit}"
     if !self.price_vat_status.blank?
       str = str + "(#{self.price_vat_status})"
     end
     str
   end
 
-  def request_unit
-    __getobj__.request_unit.blank? ? 'Unit' : __getobj__.request_unit
-  end
-
   def display_buying_price
-    str = "#{self.currency.to_s}#{self.buying_price}/#{self.request_unit}"
+    # str = "#{self.currency.to_s}#{self.buying_price}/#{self.request_unit}"
+    str = number_to_currency(self.buying_price, unit: self.currency)
+    str = str + "/#{self.request_unit}"
     if !self.price_vat_status.blank?
       str = str + "(#{self.price_vat_status})"
     end
@@ -28,7 +31,7 @@ class OfferDecorator < Decorator
   end
 
   def display_total_buying_price
-    str = "#{Currency::LOCAL_CURRENCY}#{self.total_buying_price}"
+    str = number_to_currency(self.total_buying_price, unit: Currency::LOCAL_CURRENCY)
     if !self.price_vat_status.blank?
       str = str + "(#{self.price_vat_status})"
     end
@@ -36,7 +39,7 @@ class OfferDecorator < Decorator
   end
 
   def display_total_selling_price
-    str = "#{Currency::LOCAL_CURRENCY}#{self.total_selling_price}"
+    str = number_to_currency(self.total_selling_price, unit: Currency::LOCAL_CURRENCY)
     if !self.price_vat_status.blank?
       str = str + "(#{self.price_vat_status})"
     end

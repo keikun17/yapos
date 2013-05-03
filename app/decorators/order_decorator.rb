@@ -48,15 +48,15 @@ class OrderDecorator < Decorator
   end
 
   def display_total_buy
-    Currency::LOCAL_CURRENCY + " " + total_buy.to_s
+    number_to_currency(total_buy, unit: Currency::LOCAL_CURRENCY)
   end
 
   def display_total_sell
-    Currency::LOCAL_CURRENCY + " " + total_sell.to_s
+    number_to_currency(total_sell, unit: Currency::LOCAL_CURRENCY)
   end
 
   def display_total_profit
-    Currency::LOCAL_CURRENCY + " " + total_profit.to_s
+    number_to_currency(total_profit, unit: Currency::LOCAL_CURRENCY)
   end
 
 end
