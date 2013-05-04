@@ -1,4 +1,6 @@
 class Purchase
+  include ActionView::Helpers::NumberHelper
+
   def self.create_or_append(source)
     case source.class.to_s
     when "Quote"
@@ -14,7 +16,20 @@ class Purchase
     Offer.purchased.sum(:total_selling_price) - Offer.purchased.sum(:total_buying_price)
   end
 
+  def self.display_total_profit
+    helper.number_to_currency(total_profit, unit: Currency::LOCAL_CURRENCY)
+  end
+
   private
+
+  def self.helper
+    Helper.instance
+  end
+
+  class Helper
+    include Singleton
+    include ActionView::Helpers::NumberHelper
+  end
 
   def self.fetch_or_create_from_quote(quote)
     quote.offers.each do |offer|

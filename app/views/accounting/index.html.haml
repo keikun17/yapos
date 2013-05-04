@@ -14,8 +14,8 @@
     %tr
       %td= link_to order.reference, order
       %td= order.client_links
-      %td= order.display_total_buy
-      %td= order.display_total_sell
+      %td.text-warning= order.display_total_buy
+      %td.text-success= order.display_total_sell
       %td= order.display_total_profit
       %td= order.display_purchase_date
 
