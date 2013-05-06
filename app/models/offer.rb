@@ -35,20 +35,22 @@ class Offer < ActiveRecord::Base
   delegate :name, to: :supplier, prefix: true, allow_nil: true
 
   # Request Delegation
-  delegate :quantity, to: :request, prefix: true, allow_nil: true
-  delegate :unit, to: :request, prefix: true, allow_nil: true
-  delegate :specs, :to => :request, :prefix => true, :allow_nil => true
+  delegate :quantity,
+    :unit, 
+    :specs, :to => :request, :prefix => true, :allow_nil => true
 
   # Quote Delegation
   delegate :reference, to: :quote, prefix: true, allow_nil: true
 
   # Supplier Order Delegation
-  delegate :reference, to: :supplier_order, prefix: true, allow_nil: true
-  delegate :ordered_at, to: :supplier_order, prefix: true, allow_nil: true
-  delegate :estimated_manufactured_at, to: :supplier_order, prefix: true, allow_nil: true
-  delegate :manufactured_at, to: :supplier_order, prefix: true, allow_nil: true
-  delegate :estimated_delivered_at, to: :supplier_order, prefix: true, allow_nil: true
-  delegate :delivered_at, to: :supplier_order, prefix: true, allow_nil: true
+  delegate :reference,
+    :ordered_at, 
+    :estimated_manufactured_at, 
+    :manufactured_at, 
+    :estimated_delivered_at, 
+    :delivered_at, 
+    :delivered?, 
+    :ordered_from_supplier?, to: :supplier_order, prefix: true, allow_nil: true
 
   def update_total_prices
     quantity = self.request_quantity.blank? ? 1 : self.request_quantity

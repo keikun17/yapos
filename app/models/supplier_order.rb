@@ -4,6 +4,14 @@ class SupplierOrder < ActiveRecord::Base
     :estimated_delivered_at, :delivered_at
 
   belongs_to :offer
+
+  def delivered?
+    !self.delivered_at.blank?
+  end
+
+  def ordered_from_supplier?
+    !self.reference.blank? && !self.ordered_at.blank?
+  end
 end
 
 # == Schema Information

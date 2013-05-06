@@ -4,7 +4,7 @@
 
 .pull-right=will_paginate(@orders)
 -# = link_to t('.new', :default => t("helpers.links.new")), new_order_path, :class => 'btn btn-primary'
-%table.table.table-striped
+%table.table
   %thead
     %tr
       %th PO#
@@ -25,7 +25,7 @@
       - offer = offers.shift
 
       - if offer
-        %tr
+        %tr{class: offer_row_class(offer)}
           %td{rowspan: offer_count}
             %strong= link_to order.reference, order
           %td= offer.summary
@@ -46,7 +46,7 @@
             %i= offer.delivered_at
 
           - offers.each do |offer|
-            %tr
+            %tr{class: offer_row_class(offer)}
               %td= offer.summary
               %td
                 = link_to(offer.client.name, client_path(offer.client))

@@ -29,6 +29,16 @@ class OfferDecorator < Decorator
     str
   end
 
+  def display_status
+    if self.supplier_order_delivered?
+      "Delivered"
+    elsif self.supplier_order_ordered_from_supplier?
+      "Ordered"
+    else
+      "Not yet ordered"
+    end
+  end
+
   def display_buying_price
     # str = "#{self.currency.to_s}#{self.buying_price}/#{self.request_unit}"
     str = number_to_currency(self.buying_price, unit: self.currency)
