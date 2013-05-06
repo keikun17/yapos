@@ -21,7 +21,7 @@ class OfferDecorator < Decorator
   #   $40.00/unit
   # If PHP
   def display_selling_price
-    str = number_to_currency(self.selling_price, unit: self.currency)
+    str = number_to_currency(self.selling_price || 0, unit: self.currency)
     str = str + "/#{self.request_unit}"
     if !self.price_vat_status.blank?
       str = str + "(#{self.price_vat_status})"
@@ -41,7 +41,7 @@ class OfferDecorator < Decorator
 
   def display_buying_price
     # str = "#{self.currency.to_s}#{self.buying_price}/#{self.request_unit}"
-    str = number_to_currency(self.buying_price, unit: self.currency)
+    str = number_to_currency(self.buying_price || 0, unit: self.currency)
     str = str + "/#{self.request_unit}"
     if !self.price_vat_status.blank?
       str = str + "(#{self.price_vat_status})"
