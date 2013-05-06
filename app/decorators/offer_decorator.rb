@@ -40,7 +40,6 @@ class OfferDecorator < Decorator
   end
 
   def display_buying_price
-    # str = "#{self.currency.to_s}#{self.buying_price}/#{self.request_unit}"
     str = number_to_currency(self.buying_price || 0, unit: self.currency)
     str = str + "/#{self.request_unit}"
     if !self.price_vat_status.blank?
@@ -50,7 +49,7 @@ class OfferDecorator < Decorator
   end
 
   def display_total_buying_price
-    str = number_to_currency(self.total_buying_price, unit: Currency::LOCAL_CURRENCY)
+    str = number_to_currency(self.total_buying_price || 0, unit: Currency::LOCAL_CURRENCY)
     if !self.price_vat_status.blank?
       str = str + "(#{self.price_vat_status})"
     end
@@ -58,7 +57,7 @@ class OfferDecorator < Decorator
   end
 
   def display_total_selling_price
-    str = number_to_currency(self.total_selling_price, unit: Currency::LOCAL_CURRENCY)
+    str = number_to_currency(self.total_selling_price || 0, unit: Currency::LOCAL_CURRENCY)
     if !self.price_vat_status.blank?
       str = str + "(#{self.price_vat_status})"
     end
