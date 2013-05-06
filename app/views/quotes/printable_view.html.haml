@@ -50,7 +50,7 @@
           = request.unit
         %td{colspan:6}
           %strong Desc/Specs:
-          = request.specs
+          = simple_format(request.specs)
         
 
       - unless request.offers.empty?
@@ -70,7 +70,7 @@
             %td{style: 'border:none'}
             %td= offers.index(offer) + 1
             %td= offer.supplier_name
-            %td= offer.specs
+            %td= simple_format(offer.specs)
             %td= offer.display_selling_price
             %td= offer.remarks
             %td= offer.delivery

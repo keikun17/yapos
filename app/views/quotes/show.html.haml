@@ -86,7 +86,7 @@
           - if !req.remarks.blank?
             %strong Remarks:
             #{simple_format(req.remarks)}
-        %td= offer.specs if offer
+        %td= simple_format(offer.specs) if offer
         %td= offer.supplier_name if offer
         %td
           - if offer
@@ -120,7 +120,7 @@
 
       - offers.each do |offer|
         %tr
-          %td= offer.specs
+          %td= simple_format(offer.specs)
           %td= offer.supplier_name
           %td
             %strong Notes:
