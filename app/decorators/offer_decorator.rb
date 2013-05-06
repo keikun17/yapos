@@ -8,6 +8,15 @@ class OfferDecorator < Decorator
     __getobj__.request_unit.blank? ? 'Unit' : __getobj__.request_unit
   end
 
+  def summary
+    str = ""
+    if self.request_quantity && self.request_unit
+      str = self.request_quantity.to_s
+      str += ' ' +  self.request_unit + ' '
+    end
+    str += self.specs
+  end
+
   # If Dollars
   #   $40.00/unit
   # If PHP

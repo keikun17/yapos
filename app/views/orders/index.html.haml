@@ -8,6 +8,7 @@
   %thead
     %tr
       %th PO#
+      %th Item
       %th Client
       %th Client Purchased at
       %th Our PO#
@@ -27,6 +28,7 @@
         %tr
           %td{rowspan: offer_count}
             %strong= link_to order.reference, order
+          %td= offer.summary
           %td
             - if offer && offer.client
               = link_to(offer.client.name, client_path(offer.client))
@@ -45,6 +47,7 @@
 
           - offers.each do |offer|
             %tr
+              %td= offer.summary
               %td
                 = link_to(offer.client.name, client_path(offer.client))
               %td= order.display_purchase_date
