@@ -20,44 +20,44 @@
     - @decorated_orders.each do |order|
       - offer_count = order.offers.size
       - offers = order.offers
-      - offer = offers.shift
       - offers = OfferDecorator.decorate_collection(offers)
-      - offer = OfferDecorator.new(offer)
+      - offer = offers.shift
 
-      %tr
-        %td{rowspan: offer_count}
-          %strong= link_to order.reference, order
-        %td
-          - if offer && offer.client
-            = link_to(offer.client.name, client_path(offer.client))
-        %td= order.display_purchase_date
-        %td= offer.supplier_order_reference
-        %td
-          %i= offer.ordered_from_supplier_at
-        %td
-          %i= offer.estimated_manufacture_end_date
-        %td
-          %i= offer.actual_manufacture_end_date
-        %td
-          %i= offer.estimated_delivery_date
-        %td
-          %i= offer.delivered_at
-
-        - offers.each do |offer|
-          %tr
-            %td
+      - if offer
+        %tr
+          %td{rowspan: offer_count}
+            %strong= link_to order.reference, order
+          %td
+            - if offer && offer.client
               = link_to(offer.client.name, client_path(offer.client))
-            %td= order.display_purchase_date
-            %td
-              %i= offer.supplier_order_reference
-            %td
-              %i= offer.ordered_from_supplier_at
-            %td
-              %i= offer.estimated_manufacture_end_date
-            %td
-              %i= offer.actual_manufacture_end_date
-            %td
-              %i= offer.estimated_delivery_date
-            %td
-              %i= offer.delivered_at
+          %td= order.display_purchase_date
+          %td= offer.supplier_order_reference
+          %td
+            %i= offer.ordered_from_supplier_at
+          %td
+            %i= offer.estimated_manufacture_end_date
+          %td
+            %i= offer.actual_manufacture_end_date
+          %td
+            %i= offer.estimated_delivery_date
+          %td
+            %i= offer.delivered_at
+
+          - offers.each do |offer|
+            %tr
+              %td
+                = link_to(offer.client.name, client_path(offer.client))
+              %td= order.display_purchase_date
+              %td
+                %i= offer.supplier_order_reference
+              %td
+                %i= offer.ordered_from_supplier_at
+              %td
+                %i= offer.estimated_manufacture_end_date
+              %td
+                %i= offer.actual_manufacture_end_date
+              %td
+                %i= offer.estimated_delivery_date
+              %td
+                %i= offer.delivered_at
 .pull-right=will_paginate(@orders)
