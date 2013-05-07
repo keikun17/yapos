@@ -10,8 +10,6 @@
 
   %h4= @quote.client_name
   =@quote.client.address
-
-  %br
   %br
 
   %table
@@ -77,11 +75,12 @@
             %td= offer.terms
             %td= offer.warranty
 
+  - unless @quote.remarks.blank?
+    %strong= simple_format(@quote.remarks)
+    %br
+
   %strong Thank you for the opportunity to quote and we hope to receive your valued order
   %br
-  %br
-    
-
 
   %strong= @quote.signatory
   %br

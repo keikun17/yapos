@@ -13,7 +13,8 @@ class Quote < ActiveRecord::Base
     :status,
     :client_id,
     :requests_attributes,
-    :attachments_attributes
+    :attachments_attributes,
+    :remarks
 
   has_many :attachments, :as => :attachable
   has_many :requests, dependent: :destroy

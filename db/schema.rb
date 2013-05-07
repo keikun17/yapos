@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502053434) do
+ActiveRecord::Schema.define(:version => 20130507022415) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "attachable_id"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20130502053434) do
     t.string   "signatory"
     t.string   "signatory_position"
     t.string   "contact_person"
+    t.text     "remarks"
   end
 
   create_table "requests", :force => true do |t|
