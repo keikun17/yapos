@@ -9,7 +9,7 @@
   Date: #{@quote.quote_date.to_date.to_s(:long)}
 
   %h4= @quote.client_name
-  =@quote.client.address
+  =simple_format(@quote.client.address)
   %br
 
   %table
