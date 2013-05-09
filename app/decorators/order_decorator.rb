@@ -26,7 +26,7 @@ class OrderDecorator < Decorator
   def client_links
     links = []
     clients.each do |client|
-      links << link_to(client.name, client_path(client.name))
+      links << link_to(client.name, client_path(client))
     end
     raw links.join(',')
   end
