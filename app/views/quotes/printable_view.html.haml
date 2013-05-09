@@ -10,9 +10,9 @@
 
   %h4= @quote.client_name
   - unless @quote.client.address.blank?
-    =simple_format(@quote.client.address)
+    =simple_format(@quote.client.address, class: 'compact')
 
-  %table
+  %table.table-compact
     %tr
       %td
         %strong ATTENTION
@@ -30,12 +30,9 @@
       %td{colspan:8}
 
 
-  %table
-    %tr
-      %td{colspan: 8}
-        %strong As per your request we are pleased to quote on the following requirements
-  %table.table.table-bordered
-    %tr
+  %strong As per your request we are pleased to quote on the following requirements
+
+  %table.table.table-bordered.table-compact
     - @requests.each do |request|
       %tr
         %td
@@ -78,10 +75,12 @@
 
   %strong Thank you for the opportunity to quote and we hope to receive your valued order
   %br
-
-  %strong= @quote.signatory
   %br
-  = @quote.signatory_position
+
+  %p.compact
+    %strong= @quote.signatory
+    %br
+    = @quote.signatory_position
           
 
 

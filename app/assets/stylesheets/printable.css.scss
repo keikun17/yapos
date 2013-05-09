@@ -1,0 +1,24 @@
+p.compact{
+  line-height: 12px;
+}
+
+.table-compact {
+  th, td {
+    padding: 0px;
+  }
+  p { margin-bottom: 0px}
+}
+
+table.table.table-compact {
+
+  th, td {
+    line-height: 12px;
+    padding: 0px 5px 0px 5px;
+  }
+  
+  p {
+    line-height: 12px;
+    margin-bottom: 0px;
+  }
+} 
+
