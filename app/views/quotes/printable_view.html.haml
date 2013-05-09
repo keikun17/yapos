@@ -46,10 +46,7 @@
         %td
           %strong Unit:
           = request.unit
-        %td{colspan:6}
-          %strong Desc/Specs:
-          = simple_format(request.specs)
-        
+        %td{colspan:6}= simple_format("<strong>Desc/Specs</strong>: #{request.specs}") 
 
       - unless request.offers.empty?
         %tr
