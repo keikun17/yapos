@@ -8348,22 +8348,27 @@ p.compact {
   line-height: 12px;
 }
 
-/* line 6, ../../app/assets/stylesheets/printable.css.scss */
+/* line 7, ../../app/assets/stylesheets/printable.css.scss */
 .table-compact th, .table-compact td {
   padding: 0px;
 }
-/* line 9, ../../app/assets/stylesheets/printable.css.scss */
+/* line 11, ../../app/assets/stylesheets/printable.css.scss */
 .table-compact p {
   margin-bottom: 0px;
 }
 
 /* line 14, ../../app/assets/stylesheets/printable.css.scss */
-table.table.table-compact th, table.table.table-compact td {
+table.table.table-bordered.table-compact {
+  border: 1px solid black !important;
+}
+/* line 16, ../../app/assets/stylesheets/printable.css.scss */
+table.table.table-bordered.table-compact th, table.table.table-bordered.table-compact td {
+  border: 1px solid black !important;
   line-height: 12px;
   padding: 0px 5px 0px 5px;
 }
-/* line 19, ../../app/assets/stylesheets/printable.css.scss */
-table.table.table-compact p {
+/* line 22, ../../app/assets/stylesheets/printable.css.scss */
+table.table.table-bordered.table-compact p {
   line-height: 12px;
   margin-bottom: 0px;
 }

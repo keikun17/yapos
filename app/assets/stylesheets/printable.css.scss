@@ -3,15 +3,18 @@ p.compact{
 }
 
 .table-compact {
+
   th, td {
     padding: 0px;
   }
+
   p { margin-bottom: 0px}
 }
 
-table.table.table-compact {
-
+table.table.table-bordered.table-compact {
+  border: 1px solid black !important;
   th, td {
+    border: 1px solid black !important;
     line-height: 12px;
     padding: 0px 5px 0px 5px;
   }

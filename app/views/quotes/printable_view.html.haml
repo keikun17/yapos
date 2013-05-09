@@ -36,26 +36,26 @@
     - @requests.each do |request|
       %tr
         %td
-          %strong Item-#{@requests.index(request) + 1}
+          %strong ITEM##{@requests.index(request) + 1}
         %td
-          %strong Qty:
+          %strong QTY:
           #{request.quantity}
         %td
-          %strong Unit:
+          %strong UNIT:
           = request.unit
         %td{colspan:6}= simple_format("<strong>Desc/Specs</strong>: #{request.specs}") 
 
       - unless request.offers.empty?
         %tr
           %th{style: 'border-left: none'}
-          %th Offer#
-          %th Brand
-          %th Specs
-          %th Unit Price
-          %th Notes
-          %th Delivery
-          %th Terms
-          %th Warranty
+          %th OFFER#
+          %th BRAND
+          %th SPECS
+          %th UNIT PRICE
+          %th NOTES
+          %th DELIVERY
+          %th TERMS
+          %th WARRANTY
         - offers = OfferDecorator.decorate_collection(request.offers)
         - offers.each do |offer|
           %tr
@@ -70,8 +70,9 @@
             %td= offer.warranty
 
   - unless @quote.remarks.blank?
-    %strong= simple_format(@quote.remarks)
-    %br
+    %p.compact
+      %strong= simple_format(@quote.remarks)
+      %br
 
   %strong Thank you for the opportunity to quote and we hope to receive your valued order
   %br
