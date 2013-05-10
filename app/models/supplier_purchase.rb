@@ -33,17 +33,19 @@ end
 #
 # Table name: supplier_purchases
 #
-#  id          :integer          not null, primary key
-#  order_id    :integer
-#  reference   :string(255)
-#  recipient   :string(255)
-#  string      :string(255)
-#  address     :string(255)
-#  delivery    :text
-#  price_basis :text
-#  remarks     :text
-#  terms       :text
-#  warranty    :text
-#  ordered_at  :datetime
+#  id                 :integer          not null, primary key
+#  order_id           :integer
+#  reference          :string(255)
+#  recipient          :string(255)
+#  string             :string(255)
+#  address            :string(255)
+#  delivery           :text
+#  price_basis        :text
+#  remarks            :text
+#  terms              :text
+#  warranty           :text
+#  ordered_at         :datetime
+#  signatory          :string(255)
+#  signatory_position :string(255)
 #
 
