@@ -26,4 +26,22 @@ class SupplierPurchase < ActiveRecord::Base
     client.name
   end
 end
-  
+
+# == Schema Information
+#
+# Table name: supplier_purchases
+#
+#  id          :integer          not null, primary key
+#  order_id    :integer
+#  reference   :string(255)
+#  recipient   :string(255)
+#  string      :string(255)
+#  address     :string(255)
+#  delivery    :text
+#  price_basis :text
+#  remarks     :text
+#  terms       :text
+#  warranty    :text
+#  ordered_at  :datetime
+#
+
