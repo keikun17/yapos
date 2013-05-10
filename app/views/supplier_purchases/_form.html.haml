@@ -21,11 +21,16 @@
       = f.text_field :reference, :class => 'text_field disabledInput', disabled: 'true'
 
   .control-group
+    = f.label :ordered_at, 'Date', :class => 'control-label'
+    .controls
+      = f.date_select :ordered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
+
+  .control-group
     = label_tag 'subject', 'Subject', :class => 'control-label'
     .controls
       = text_field_tag :subject, @supplier_purchase.client_name, :class => 'text_field disabledInput', disabled: 'true'
 
-    
+
 
   %table.table.table-condensed.table-bordered
     %tr
