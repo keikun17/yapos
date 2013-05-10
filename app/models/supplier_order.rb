@@ -33,5 +33,12 @@ end
 #  delivered_at              :datetime
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  recipient                 :string(255)
+#  address                   :string(255)
+#  delivery                  :text
+#  price_basis               :text
+#  remarks                   :text
+#  terms                     :text
+#  warranty                  :text
 #
 

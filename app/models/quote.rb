@@ -139,5 +139,6 @@ end
 #  signatory          :string(255)
 #  signatory_position :string(255)
 #  contact_person     :string(255)
+#  remarks            :text
 #
 
