@@ -7,7 +7,9 @@ class SupplierPurchase < ActiveRecord::Base
     :remarks,
     :terms,
     :warranty,
-    :ordered_at
+    :ordered_at,
+    :signatory,
+    :signatory_position
 
   belongs_to :order
   has_many :supplier_orders,

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507083356) do
+ActiveRecord::Schema.define(:version => 20130510094704) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "attachable_id"
@@ -116,6 +116,8 @@ ActiveRecord::Schema.define(:version => 20130507083356) do
     t.text     "terms"
     t.text     "warranty"
     t.datetime "ordered_at"
+    t.string   "signatory"
+    t.string   "signatory_position"
   end
 
   add_index "supplier_purchases", ["order_id"], :name => "index_supplier_purchases_on_order_id"
