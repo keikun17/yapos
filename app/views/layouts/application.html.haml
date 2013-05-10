@@ -37,9 +37,9 @@
                 %li= link_to "Accounting", accounting_path
                 %li
                   = form_tag search_path do 
-                    = text_field_tag 'search[string]', '',:class => "navbar-search"
+                    = text_field_tag 'search[string]', '',:class => "navbar-search input-small"
                     = select_tag 'search[type]', options_for_select(['quote','order']), class: 'compact navbar-search'
-                    = button_tag "Search", :class => "btn btn-small"
+                    = button_tag "Search", :class => "btn btn-medium"
               .pull-right
                 = link_to "Log out", destroy_user_session_path, :class => "btn btn-warning", :method => :delete
 
