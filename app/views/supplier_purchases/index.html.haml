@@ -1,0 +1,15 @@
+.page-header
+  %h1 Supplier Orders
+
+
+.pull-right=will_paginate(@supplier_purchases)
+-# = link_to t('.new', :default => t("helpers.links.new")), new_order_path, :class => 'btn btn-primary'
+%table.table.table-condensed
+  %thead
+    %th SUPPLIER PO#
+    %th
+  %tbody
+    - @supplier_purchases.each do |supplier_purchase|
+      %tr
+        %td= supplier_purchase.reference
+        %td= link_to 'Edit', edit_supplier_purchase_path(supplier_purchase),:class => 'btn btn-mini'

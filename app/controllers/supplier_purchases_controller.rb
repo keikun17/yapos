@@ -1,0 +1,29 @@
+class SupplierPurchasesController < ApplicationController
+
+  def index
+    @supplier_purchases = SupplierPurchase.paginate(page: params[:page], per_page: 20)
+  end
+
+  def print
+    @supplier_purchase = SupplierPurchase.find(params[:id])
+  end
+
+  def edit
+    @supplier_purchase = SupplierPurchase.find(params[:id])
+    @supplier_purchase = SupplierPurchaseDecorator.new(@supplier_purchase)
+  end
+
+  def update
+    @supplier_purchase = SupplierPurchase.find(params[:id])
+    respond_to do |format|
+      if @supplier_purchase.update_attributes(params[:supplier_purchase])
+        format.html { redirect_to supplier_purchases_path, notice: 'Supplier Purchase was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+end
