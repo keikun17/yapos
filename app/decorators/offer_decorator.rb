@@ -1,11 +1,15 @@
 class OfferDecorator < Decorator
 
   def supplier_order_reference
-    __getobj__.supplier_order_reference || 'Not yet ordered'
+    __getobj__.supplier_order_reference || 'Not Ordered'
   end
 
   def request_unit
     __getobj__.request_unit.blank? ? 'Unit' : __getobj__.request_unit
+  end
+
+  def request
+    @request ||= RequestDecorator.new(__getobj__.request)  
   end
 
   def summary
@@ -35,7 +39,7 @@ class OfferDecorator < Decorator
     elsif self.supplier_order_ordered_from_supplier?
       "Ordered"
     else
-      "Not yet ordered"
+      "Not Ordered"
     end
   end
 
@@ -68,7 +72,7 @@ class OfferDecorator < Decorator
     if date = __getobj__.supplier_order_ordered_at
       date.to_date.to_s
     else
-       'Not yet ordered'
+       'Not Ordered'
     end
   end
 
