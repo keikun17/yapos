@@ -20,6 +20,10 @@ end
 gem 'thin'
 gem 'will_paginate', '~> 3.0.4'
 
+group :production do
+  gem 'mysql2'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -33,12 +37,10 @@ group :assets do
   gem 'therubyracer'
   gem 'less-rails'
   gem 'twitter-bootstrap-rails'
-
   gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'jquery-rails'
-gem 'mysql2'
 
 group :development, :test do
   gem 'sqlite3'
