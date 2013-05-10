@@ -20,6 +20,8 @@ class Order < ActiveRecord::Base
     :primary_key => 'reference'
   has_many :quotes, :through => :offers, :uniq => true
 
+  has_many :supplier_purchases, through: :supplier_orders, uniq: true
+
   has_many :clients, :through => :quotes, :uniq => true
   has_many :suppliers, :through => :offers, :uniq => true
   has_many :supplier_orders, :through => :offers

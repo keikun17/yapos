@@ -1,13 +1,18 @@
 class SupplierOrder < ActiveRecord::Base
-  attr_accessible :reference, :offer_id, :ordered_at, 
+  attr_accessible :reference, :offer_id, :ordered_at,
     :estimated_manufactured_at, :manufactured_at,
-    :estimated_delivered_at, :delivered_at
+    :estimated_delivered_at, :delivered_at, :ordered_at
 
+  belongs_to :supplier_purchase,
+    foreign_key: :reference,
+    primary_key: :reference
   belongs_to :offer
 
   def delivered?
     !self.delivered_at.blank?
   end
+
+  delegate :supplier_name, to: :offer, allow_nil: true, prefix: false
 
   def ordered_from_supplier?
     !self.reference.blank? && !self.ordered_at.blank?
