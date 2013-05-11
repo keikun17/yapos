@@ -6,6 +6,8 @@ class SupplierPurchasesController < ApplicationController
 
   def print
     @supplier_purchase = SupplierPurchase.find(params[:id])
+    @supplier_purchase = SupplierPurchaseDecorator.new(@supplier_purchase)
+    @print_preview = true
   end
 
   def edit

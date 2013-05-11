@@ -1,0 +1,14 @@
+%table.table.table-condensed.table-bordered
+  %tr
+    %th Item#
+    %th QTY
+    %th Description
+    %th Unit Price
+    %th Amount
+  - supplier_orders.each do |supplier_order|
+    %tr
+      %td= supplier_orders.index(supplier_order) + 1
+      %td= supplier_order.offer.request.display_quantity
+      %td= supplier_order.offer.specs
+      %td= supplier_order.offer.display_buying_price
+      %td= supplier_order.offer.display_total_selling_price

@@ -1,0 +1,60 @@
+%div{style: 'font-size:9px'}
+  %br
+  %br
+  %br
+  %br
+  %br
+  %br
+  %br
+
+  %table.table-compact
+    %tr
+      %td
+        %strong TO
+      %td : #{@supplier_purchase.supplier_name}
+    %tr
+      %td
+        %strong ADDRESS
+      %td : #{@supplier_purchase.address}
+
+    %tr
+      %td
+        %strong ATTENTION
+      %td : #{@supplier_purchase.recipient}
+    %tr
+      %td
+        %strong SUBJECT
+      %td : #{@supplier_purchase.reference} - #{@supplier_purchase.client_name}
+
+  = render 'supplier_orders', supplier_orders: @supplier_purchase.supplier_orders
+
+  %table
+    %tr
+      %td
+        %strong Delivery
+      %td : #{@supplier_purchase.delivery}
+
+    %tr
+      %td
+        %strong Price Basis
+      %td : #{@supplier_purchase.price_basis}
+
+    %tr
+      %td 
+        %strong Terms
+      %td : #{@supplier_purchase.terms}
+
+    %tr
+      %td
+        %strong Warranty
+      %td : #{@supplier_purchase.warranty}
+
+  %strong #{@supplier_purchase.remarks}
+
+  %br
+  %br
+  %strong #{@supplier_purchase.signatory}
+  %br
+  %strong #{@supplier_purchase.signatory_position}
+
+

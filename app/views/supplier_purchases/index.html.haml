@@ -12,4 +12,6 @@
     - @supplier_purchases.each do |supplier_purchase|
       %tr
         %td= supplier_purchase.reference
-        %td= link_to 'Edit', edit_supplier_purchase_path(supplier_purchase),:class => 'btn btn-mini'
+        %td
+          = link_to 'Edit', edit_supplier_purchase_path(supplier_purchase),:class => 'btn btn-mini'
+          = link_to 'Print', print_supplier_purchase_path(supplier_purchase),:class => 'btn btn-mini'
