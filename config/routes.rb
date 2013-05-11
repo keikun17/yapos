@@ -9,6 +9,11 @@ MlandcorpPos::Application.routes.draw do
     end
   end
 
+  resources :supplier_purchases do
+    member do
+      get 'print'
+    end
+  end
 
   resources :suppliers
 
