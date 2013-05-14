@@ -4,11 +4,11 @@ class SupplierPurchaseDecorator < Decorator
   end
 
   def client
-    supplier_orders.first.offer.client
+    @client ||= supplier_orders.first.offer.client
   end
 
   def client_name
-    client.name
+    client.name if client
   end
 
   def offer
