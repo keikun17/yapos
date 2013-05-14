@@ -1,15 +1,26 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.0.rc1' #TODO: rails4
+gem 'haml-rails'
+gem 'sass-rails', '~> 4.0.0.rc1' #TODO: rails4
+gem 'coffee-rails', '4.0.0' #TODO: rails4
+gem 'less-rails'
+gem 'jquery-rails'
+gem 'twitter-bootstrap-rails'
+
+# attr_protected and attr_accessible has been extracted to a gem
+gem 'protected_attributes'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'devise'
-gem 'haml-rails'
+gem 'devise', github:'plataformatec/devise',  branch:'rails4' #TODO: rails4
 gem 'carrierwave'
 
+# Preferred Elasticsearch gem/mapper
 gem 'tire'
+
+gem 'json', '~> 1.7.7'
 
 group :development do 
   gem 'quiet_assets'
@@ -24,27 +35,17 @@ group :production do
   gem 'mysql2'
 end
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer', :platforms => :ruby
 
-  gem 'libv8'
-  gem 'therubyracer'
-  gem 'less-rails'
-  gem 'twitter-bootstrap-rails'
-  gem 'uglifier', '>= 1.0.3'
-end
+gem 'libv8'
+gem 'therubyracer'
+gem 'uglifier', '>= 1.3.0'
 
-gem 'jquery-rails'
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'haml-rails'
   gem 'pry'
 end
 
