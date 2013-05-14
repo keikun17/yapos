@@ -22,7 +22,7 @@ class CreateSupplierPurchasesTable < ActiveRecord::Migration
     add_index :supplier_purchases, :reference
 
     Offer.where('order_reference is not null').all.each do |offer|
-      unless offer.supplier_order.reference.blank?
+      unless offer.supplier_order.nil? or offer.supplier_order.reference.blank?
         a = offer.order.supplier_purchases.find_or_create_by_reference(offer.supplier_order.reference)
         puts a.inspect
       else
