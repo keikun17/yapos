@@ -14,6 +14,8 @@ class SupplierOrder < ActiveRecord::Base
 
   delegate :supplier_name, to: :offer, allow_nil: true, prefix: false
 
+  validate :offer_id, presence: true
+
   def ordered_from_supplier?
     !self.reference.blank? && !self.ordered_at.blank?
   end
