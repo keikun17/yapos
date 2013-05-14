@@ -1,5 +1,6 @@
 class SupplierPurchase < ActiveRecord::Base
   attr_accessible :order_id,
+    :reference,
     :recipient,
     :address,
     :delivery,
