@@ -1,11 +1,10 @@
 %div{style: 'font-size:9px'}
-  %br
-  %br
-  %br
-  %br
-  %br
-  %br
-  %br
+  %h2= Yapos::SETTINGS[:company_name]
+  %h5= Yapos::SETTINGS[:address]
+  %h5= Yapos::SETTINGS[:contact_number]
+  %h5= Yapos::SETTINGS[:email_address]
+
+  %hr
   Date: #{@quote.quote_date.to_date.to_s(:long)}
 
   %h4= @quote.client_name

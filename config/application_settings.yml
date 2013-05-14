@@ -1,0 +1,17 @@
+development:
+  company_name: "Maryland Industrial Supply and Services Corp."
+  address: "2150 Manansala Building M. Billones St. Bambang Pasig City 1600"
+  contact_number: "Tel No : 571-9186 - Telefax : 571-7385"
+  email_address: "Email: mlandcorp@gmail.com"
+
+production:
+  company_name: "Maryland Industrial Supply and Services Corp."
+  address: "2150 Manansala Building M. Billones St. Bambang Pasig City 1600"
+  contact_number: "Tel No : 571-9186 - Telefax : 571-7385"
+  email_address: "Email: mlandcorp@gmail.com"
+
+test:
+  company_name: "Maryland Industrial Supply and Services Corp."
+  address: "2150 Manansala Building M. Billones St. Bambang Pasig City 1600"
+  contact_number: "Tel No : 571-9186 - Telefax : 571-7385"
+  email_address: "Email: mlandcorp@gmail.com"
