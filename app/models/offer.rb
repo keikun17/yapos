@@ -29,7 +29,7 @@ class Offer < ActiveRecord::Base
 
   accepts_nested_attributes_for :supplier_order
 
-  scope :purchased, where("order_reference <> '' ")
+  scope :purchased, -> { where("order_reference <> '' ") }
 
   # Supplier Delegation
   delegate :name, to: :supplier, prefix: true, allow_nil: true

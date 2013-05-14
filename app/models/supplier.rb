@@ -5,7 +5,7 @@ class Supplier < ActiveRecord::Base
   has_many :offers
   has_many :supplier_orders, through: :offers
 
-  default_scope order('name asc')
+  default_scope -> { order('name asc') }
 
 end
 
