@@ -1,14 +1,16 @@
 class Purchase
   include ActionView::Helpers::NumberHelper
 
-  def self.create_or_append(source)
-    case source.class.to_s
-    when "Quote"
-      fetch_or_create_from_quote(source)
-    when "Offer"
-      fetch_or_create_from_offer(source)
-    else
-      raise("not implement for #{source.class}")
+  # FIXME: Violates Single responsibility?
+  # 1. Finds or Creates order record that every 'purchased' offer should have
+  # 2. Finds or Creates the supplier_order that every 'purchased' offer record should have
+  def self.make(purchased_offers)
+    purchased_offers.each do |offer|
+      # 1
+      Order.find_or_create_by(reference: offer.order_reference)
+
+      # 2
+      offer.create_supplier_order
     end
   end
 
@@ -29,26 +31,6 @@ class Purchase
   class Helper
     include Singleton
     include ActionView::Helpers::NumberHelper
-  end
-
-  def self.fetch_or_create_from_quote(quote)
-    quote.offers.each do |offer|
-      fetch_or_create_from_offer(offer)
-    end
-
-    quote
-  end
-
-  # TODO  : this is a mess
-  def self.fetch_or_create_from_offer(offer)
-    if !offer.order_reference.blank?
-      Order.find_or_create_by_reference(offer.order_reference)
-      if offer.supplier_order.nil?
-        offer.create_supplier_order
-      end
-      offer.reload
-      offer.order.supplier_purchases.find_or_create_by_reference(offer.supplier_order.reference)
-    end
   end
 
 end
