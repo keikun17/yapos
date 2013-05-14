@@ -39,11 +39,15 @@ class Purchase
     quote
   end
 
+  # TODO  : this is a mess
   def self.fetch_or_create_from_offer(offer)
     if !offer.order_reference.blank?
       Order.find_or_create_by_reference(offer.order_reference)
-      order.supplier_purchases.find_or_create_by_reference(offer.supplier_order.reference)
-      offer.create_supplier_order
+      if offer.supplier_order.nil?
+        offer.create_supplier_order
+      end
+      offer.reload
+      offer.order.supplier_purchases.find_or_create_by_reference(offer.supplier_order.reference)
     end
   end
 
