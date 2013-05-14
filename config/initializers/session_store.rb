@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-Yapos::Application.config.session_store :cookie_store, key: '_mlandcorp-pos_session'
+Yapos::Application.config.session_store :cookie_store, key: '_yapos_session'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
