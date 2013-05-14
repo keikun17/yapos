@@ -1,4 +1,4 @@
-MlandcorpPos::Application.routes.draw do
+Yapos::Application.routes.draw do
   devise_for :users
 
   resources :orders do

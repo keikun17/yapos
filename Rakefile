@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-MlandcorpPos::Application.load_tasks
+Yapos::Application.load_tasks
