@@ -1,4 +1,4 @@
-%div{style: 'font-size:9px'}
+%div{style: "font-size:9px"}
   %h2= Yapos::SETTINGS[:company_name]
   %h5= Yapos::SETTINGS[:address]
   %h5= Yapos::SETTINGS[:contact_number]
@@ -33,7 +33,7 @@
 
   %table.table.table-bordered.table-compact
     - @requests.each do |request|
-      %tr{style: 'background-color:black; color:white'}
+      %tr{style: 'background-color:black !important; color:white !important'}
         %td{width:'50px'}
           %strong ITEM NO.
         %td{width: '50px'}
@@ -55,8 +55,8 @@
 
 
       - unless request.offers.empty?
-        %tr{style: 'background-color:black; color:white'}
-          %th{style: 'background-color:white; border-left: none'}
+        %tr{style: 'background-color:black !important; color:white !important'}
+          %th{style: 'background-color:white !important; border-left: none'}
           %th OFFER#
           %th BRAND
           %th OFFER SPECS
