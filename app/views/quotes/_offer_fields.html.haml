@@ -47,6 +47,13 @@
           .controls.span8
             = f.text_field :selling_price, :class => 'text_field span12'
 
+    .row-fluid
+      .span12
+        .control-group
+          %label.span4.control-label Price Basis
+          .controls.span8
+            = f.text_field :price_basis, :class => 'text_field span12', :placeholder => "FOB LOCATION"
+
   %td
     .row-fluid
       .span12

@@ -15,7 +15,8 @@ class Offer < ActiveRecord::Base
     :warranty,
     :supplier_order_attributes,
     :total_buying_price,
-    :total_selling_price
+    :total_selling_price,
+    :price_basis
 
   belongs_to :request
   belongs_to :supplier

@@ -21,17 +21,6 @@ class OfferDecorator < Decorator
     str += self.specs
   end
 
-  # If Dollars
-  #   $40.00/unit
-  # If PHP
-  def display_selling_price
-    str = number_to_currency(self.selling_price || 0, unit: self.currency)
-    str = str + "/#{self.request_unit}"
-    if !self.price_vat_status.blank?
-      str = str + "(#{self.price_vat_status})"
-    end
-    str
-  end
 
   def display_status
     if self.supplier_order_delivered?
@@ -43,29 +32,45 @@ class OfferDecorator < Decorator
     end
   end
 
+  # If Dollars
+  #   $40.00/unit
+  # If PHP
+  def display_selling_price
+    str = number_to_currency(self.selling_price || 0, unit: self.currency)
+    str = str + "/#{self.request_unit}"
+    if !self.price_suffix.blank?
+      str = str + "(#{self.price_suffix})"
+    end
+    str
+  end
+
   def display_buying_price
     str = number_to_currency(self.buying_price || 0, unit: self.currency)
     str = str + "/#{self.request_unit}"
-    if !self.price_vat_status.blank?
-      str = str + "(#{self.price_vat_status})"
+    if !self.price_suffix.blank?
+      str = str + "(#{self.price_suffix})"
     end
     str
   end
 
   def display_total_buying_price
     str = number_to_currency(self.total_buying_price || 0, unit: Currency::LOCAL_CURRENCY)
-    if !self.price_vat_status.blank?
-      str = str + "(#{self.price_vat_status})"
+    if !self.price_suffix.blank?
+      str = str + "(#{self.price_suffix})"
     end
     str
   end
 
   def display_total_selling_price
     str = number_to_currency(self.total_selling_price || 0, unit: Currency::LOCAL_CURRENCY)
-    if !self.price_vat_status.blank?
-      str = str + "(#{self.price_vat_status})"
+    if !self.price_suffix.blank?
+      str = str + "(#{self.price_suffix})"
     end
     str
+  end
+
+  def price_suffix
+    @suffix ||= [self.price_vat_status,self.price_basis].compact.join(" ")
   end
 
   def ordered_from_supplier_at
