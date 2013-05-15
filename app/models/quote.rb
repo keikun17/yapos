@@ -102,17 +102,9 @@ class Quote < ActiveRecord::Base
     end
   end
 
+  # FIXME : Reimplement
   def requote!
-    clone_attrs = self.attributes.symbolize_keys
-    clone_attrs.delete(:created_at)
-    clone_attrs.delete(:id)
-    clone_attrs.delete(:updated_at)
-    clone_attrs.delete(:order_id)
-
-    repeat_order = self.class.new(clone_attrs)
-    repeat_order.quote_reference = repeat_order.quote_reference + "-" + Date.today.strftime('%Y%m%d') 
-    repeat_order.save
-    repeat_order
+    raise("implement")
   end
 
   def compute_total_offered_prices
