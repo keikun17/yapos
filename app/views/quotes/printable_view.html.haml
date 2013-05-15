@@ -51,10 +51,14 @@
           %th BRAND
           %th SPECS
           %th UNIT PRICE
-          %th NOTES
-          %th DELIVERY
-          %th TERMS
-          %th WARRANTY
+          - unless @quote.offer_details_mergable?(:remarks)
+            %th NOTES
+          - unless @quote.offer_details_mergable?(:delivery)
+            %th DELIVERY
+          - unless @quote.offer_details_mergable?(:terms)
+            %th TERMS
+          - unless @quote.offer_details_mergable?(:warranty)
+            %th WARRANTY
         - offers = OfferDecorator.decorate_collection(request.offers)
         - offers.each do |offer|
           %tr
@@ -63,10 +67,36 @@
             %td= offer.supplier_name
             %td= simple_format(offer.specs)
             %td= offer.display_selling_price
-            %td= offer.remarks
-            %td= offer.delivery
-            %td= offer.terms
-            %td= offer.warranty
+            - unless @quote.offer_details_mergable?(:remarks)
+              %td= offer.remarks
+            - unless @quote.offer_details_mergable?(:delivery)
+              %td= offer.delivery
+            - unless @quote.offer_details_mergable?(:terms)
+              %td= offer.terms
+            - unless @quote.offer_details_mergable?(:warranty)
+              %td= offer.warranty
+
+  %table.table-compact
+    - if @quote.offer_details_mergable?(:remarks) and !@quote.solo_offer_remarks.blank?
+      %tr
+        %td
+          %strong NOTES
+        %td : #{@quote.solo_offer_remarks}
+    - if @quote.offer_details_mergable?(:delivery) and !@quote.solo_offer_delivery.blank?
+      %tr
+        %td
+          %strong DELIVERY
+        %td : #{@quote.solo_offer_delivery}
+    - if @quote.offer_details_mergable?(:terms) and !@quote.solo_offer_terms.blank?
+      %tr
+        %td
+          %strong TERMS
+        %td : #{@quote.solo_offer_terms}
+    - if @quote.offer_details_mergable?(:warranty) and !@quote.solo_offer_warranty.blank?
+      %tr
+        %td
+          %strong WARRANTY
+        %td : #{@quote.solo_offer_warranty}
 
   - unless @quote.remarks.blank?
     %p.compact
