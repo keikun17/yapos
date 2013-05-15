@@ -33,30 +33,21 @@
 
   %table.table.table-bordered.table-compact
     - @requests.each do |request|
-      %tr{style: 'background-color:black !important; color:white !important'}
-        %td{width:'50px'}
-          %strong ITEM NO.
-        %td{width: '50px'}
-          %strong QTY:
-        %td{width: '100px'}
-          %strong UNIT:
-        %td{colspan:6}
-          %strong REQUESTED SPECS:
       %tr
-        %td
-          %strong ITEM##{@requests.index(request) + 1}
-        %td
-          %strong= request.quantity
-        %td
-          %strong
-            = request.unit
-        %td{colspan:6}
-          %strong= simple_format("#{request.specs}")
+        %th{width:'50px'} ITEM NO.
+        %th{width: '50px'} QTY:
+        %th{width: '100px'} UNIT:
+        %th{colspan:6} REQUESTED SPECS:
+      %tr
+        %td ITEM##{@requests.index(request) + 1}
+        %td= request.quantity
+        %td= request.unit
+        %td{colspan:6}= simple_format("#{request.specs}")
 
 
       - unless request.offers.empty?
-        %tr{style: 'background-color:black !important; color:white !important'}
-          %th{style: 'background-color:white !important; border-left: none'}
+        %tr
+          %th
           %th OFFER#
           %th BRAND
           %th OFFER SPECS
