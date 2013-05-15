@@ -36,8 +36,8 @@ Yapos::Application.routes.draw do
 
   root :to => 'quotes#index'
 
-  match 'search' => 'searches#search', :as => 'search'
-  match 'accounting' => 'accounting#index', :as => 'accounting'
+  get 'search' => 'searches#search', :as => 'search'
+  get 'accounting' => 'accounting#index', :as => 'accounting'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
