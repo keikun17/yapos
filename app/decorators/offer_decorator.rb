@@ -9,7 +9,7 @@ class OfferDecorator < Decorator
   end
 
   def request
-    @request ||= RequestDecorator.new(__getobj__.request)  
+    @request ||= RequestDecorator.new(__getobj__.request)
   end
 
   def summary
