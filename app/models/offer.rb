@@ -96,5 +96,6 @@ end
 #  price_vat_status    :string(255)
 #  total_buying_price  :float
 #  total_selling_price :float
+#  price_basis         :string(255)
 #
 
