@@ -33,24 +33,34 @@
 
   %table.table.table-bordered.table-compact
     - @requests.each do |request|
+      %tr{style: 'background-color:black; color:white'}
+        %td{width:'50px'}
+          %strong ITEM NO.
+        %td{width: '50px'}
+          %strong QTY:
+        %td{width: '100px'}
+          %strong UNIT:
+        %td{colspan:6}
+          %strong REQUESTED SPECS:
       %tr
         %td
           %strong ITEM##{@requests.index(request) + 1}
         %td
-          %strong QTY:
-          #{request.quantity}
+          %strong= request.quantity
         %td
-          %strong UNIT:
-          = request.unit
-        %td{colspan:6}= simple_format("<strong>Desc/Specs</strong>: #{request.specs}")
+          %strong
+            = request.unit
+        %td{colspan:6}
+          %strong= simple_format("#{request.specs}")
+
 
       - unless request.offers.empty?
-        %tr
-          %th{style: 'border-left: none'}
+        %tr{style: 'background-color:black; color:white'}
+          %th{style: 'background-color:white; border-left: none'}
           %th OFFER#
           %th BRAND
-          %th SPECS
-          %th UNIT PRICE
+          %th OFFER SPECS
+          %th{width: '170px'} UNIT PRICE
           - unless @quote.offer_details_mergable?(:remarks)
             %th NOTES
           - unless @quote.offer_details_mergable?(:delivery)
@@ -63,7 +73,7 @@
         - offers.each do |offer|
           %tr
             %td{style: 'border:none'}
-            %td= offers.index(offer) + 1
+            %td OFFER##{offers.index(offer) + 1}
             %td= offer.supplier_name
             %td= simple_format(offer.specs)
             %td= offer.display_selling_price
