@@ -34,10 +34,10 @@
   %table.table.table-bordered.table-compact
     - @requests.each do |request|
       %tr
-        %th{width:'50px'} ITEM NO.
-        %th{width: '50px'} QTY:
+        %th{width:'80px'} ITEM NO.
+        %th{width: '80px'} QTY:
         %th{width: '100px'} UNIT:
-        %th{colspan:6} REQUESTED ITEM:
+        %th{colspan:6} REQUESTED:
       %tr
         %td ITEM##{@requests.index(request) + 1}
         %td= request.quantity
@@ -50,7 +50,7 @@
           %th
           %th OFFER NO.
           %th BRAND:
-          %th OFFER ITEM:
+          %th OFFERED:
           %th{width: '170px'} UNIT PRICE
           - unless @quote.offer_details_mergable?(:remarks)
             %th NOTES
