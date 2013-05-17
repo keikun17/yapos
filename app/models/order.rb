@@ -48,7 +48,9 @@ class Order < ActiveRecord::Base
       client_names: self.client_names,
       supplier_names: supplier_names,
       status: 'implement',
-      purchase_date: self.purchase_date
+      purchase_date: self.purchase_date,
+      actual_specs: actual_specs,
+      offer_specs: offer_specs
     }.to_json
   end
 
@@ -62,6 +64,18 @@ class Order < ActiveRecord::Base
                                             reference: offer.supplier_order.reference)
       end
     end
+  end
+
+  def actual_specs
+    as = supplier_orders.map(&:actual_specs)
+    as = as.uniq.compact
+    as
+  end
+
+  def offer_specs
+    os = offers.map(&:specs)
+    os = os.uniq.compact
+    os
   end
 
   def clear_quotes
