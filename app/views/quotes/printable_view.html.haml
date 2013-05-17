@@ -1,8 +1,5 @@
 %div{style: "font-size:9px"}
-  %h2= Yapos::SETTINGS[:company_name]
-  %h5= Yapos::SETTINGS[:address]
-  %h5= Yapos::SETTINGS[:contact_number]
-  %h5= Yapos::SETTINGS[:email_address]
+  = render 'shared/print_header', print_header: Yapos::SETTINGS
 
   %hr
   Date: #{@quote.quote_date.to_date.to_s(:long)}
