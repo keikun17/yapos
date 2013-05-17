@@ -88,21 +88,25 @@
         %td
           %strong NOTES
         %td : #{@quote.solo_offer_remarks}
-    - if @quote.offer_details_mergable?(:delivery) and !@quote.solo_offer_delivery.blank?
+
+    - if @quote.offer_details_mergable?(:supplier_name) and !@quote.solo_offer_supplier_name.blank?
       %tr
         %td
           %strong BRAND
-        %td : #{@quote.solo_offer_delivery}
-    - if @quote.offer_details_mergable?(:supplier_name) and !@quote.supplier_name.blank?
+        %td : #{@quote.solo_offer_supplier_name}
+
+    - if @quote.offer_details_mergable?(:delivery) and !@quote.solo_offer_delivery.blank?
       %tr
         %td
           %strong DELIVERY
         %td : #{@quote.solo_offer_delivery}
+
     - if @quote.offer_details_mergable?(:terms) and !@quote.solo_offer_terms.blank?
       %tr
         %td
           %strong TERMS
         %td : #{@quote.solo_offer_terms}
+
     - if @quote.offer_details_mergable?(:warranty) and !@quote.solo_offer_warranty.blank?
       %tr
         %td
