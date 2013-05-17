@@ -6,13 +6,18 @@ class SupplierOrder < ActiveRecord::Base
   belongs_to :supplier_purchase,
     foreign_key: :reference,
     primary_key: :reference
+
   belongs_to :offer
+
 
   def delivered?
     !self.delivered_at.blank?
   end
 
   delegate :supplier_name, to: :offer, allow_nil: true, prefix: false
+  delegate :total_buying_price, to: :offer, allow_nil: true, prefix: true
+  delegate :price_vat_status, to: :offer, allow_nil: true, prefix: true
+  delegate :price_basis, to: :offer, allow_nil: true, prefix: true
 
   validate :offer_id, presence: true
 

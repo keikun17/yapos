@@ -12,3 +12,9 @@
       %td= supplier_order.offer.specs
       %td= supplier_order.offer.display_buying_price
       %td= supplier_order.offer.display_total_buying_price
+
+  - #FIXME : DEPENDENCY ON @supplier_purchase is UGLY!
+  %tr
+    %td{colspan:3}
+    %th TOTAL
+    %td= @supplier_purchase.display_total_amount
