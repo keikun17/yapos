@@ -67,7 +67,7 @@
         - offers = OfferDecorator.decorate_collection(request.offers)
         - offers.each do |offer|
           %tr
-            %td{style: 'border:none'}
+            %td{style: 'text-align:right'}
               = "##{offers.index(offer) + 1}" if offers.count > 1
             - unless @quote.offer_details_mergable?(:supplier_name)
               %td= offer.supplier_name

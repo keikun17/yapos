@@ -12,9 +12,8 @@ p.compact{
 }
 
 table.table.table-bordered.table-compact {
-  border: 1px solid black !important;
   th, td {
-    border: 1px solid black !important;
+    // border: 1px solid black !important;
     line-height: 14px;
     padding: 0px 5px 0px 5px;
   }
