@@ -30,7 +30,7 @@
     .controls
       = text_field_tag :subject, @supplier_purchase.client_name, :class => 'text_field disabledInput', disabled: 'true'
 
-  = render 'supplier_orders', supplier_orders: @supplier_purchase.supplier_orders
+  = render 'supplier_orders', suppler_purchase: @supplier_purchase
 
 
   .control-group

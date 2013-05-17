@@ -28,7 +28,7 @@
         %strong SUBJECT
       %td : #{@supplier_purchase.client_name}
 
-  = render 'supplier_orders', supplier_orders: @supplier_purchase.supplier_orders
+  = render 'supplier_orders', supplier_purchase: @supplier_purchase
 
   %table
     - if !@supplier_purchase.delivery.blank?

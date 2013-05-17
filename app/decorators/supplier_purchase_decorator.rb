@@ -41,7 +41,7 @@ class SupplierPurchaseDecorator < Decorator
   def total_amount_suffix
     @total_amount_suffix ||= if supplier_orders.first
       str = [supplier_orders.first.offer_price_vat_status, self.supplier_orders.first.offer_price_basis].compact.join(" ")
-      if str
+      if !str.blank?
         str ="(#{str})"
       end
       str
