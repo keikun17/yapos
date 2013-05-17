@@ -34,25 +34,29 @@
   = render 'supplier_orders', supplier_orders: @supplier_purchase.supplier_orders
 
   %table
-    %tr
-      %td
-        %strong Delivery
-      %td : #{@supplier_purchase.delivery}
+    - if !@supplier_purchase.delivery.blank?
+      %tr
+        %td
+          %strong Delivery
+        %td : #{@supplier_purchase.delivery}
 
-    %tr
-      %td
-        %strong Price Basis
-      %td : #{@supplier_purchase.price_basis}
+    - if !@supplier_purchase.price_basis.blank?
+      %tr
+        %td
+          %strong Price Basis
+        %td : #{@supplier_purchase.price_basis}
 
-    %tr
-      %td 
-        %strong Terms
-      %td : #{@supplier_purchase.terms}
+    - if !@supplier_purchase.terms.blank?
+      %tr
+        %td
+          %strong Terms
+        %td : #{@supplier_purchase.terms}
 
-    %tr
-      %td
-        %strong Warranty
-      %td : #{@supplier_purchase.warranty}
+    - if !@supplier_purchase.warranty.blank?
+      %tr
+        %td
+          %strong Warranty
+        %td : #{@supplier_purchase.warranty}
 
   %strong #{@supplier_purchase.remarks}
 
