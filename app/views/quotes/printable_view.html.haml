@@ -34,12 +34,14 @@
   %table.table.table-bordered.table-compact
     - @requests.each do |request|
       %tr
-        %th{width:'40px'} ITEM#:
+        - if @requests.count > 1
+          %th{width:'40px'} ITEM#:
         %th{width: '50px'} QTY:
         %th{width: '100px'} UNIT:
         %th{colspan:6} REQUESTED:
       %tr
-        %td ##{@requests.index(request) + 1}
+        - if @requests.count > 1
+          %td ##{@requests.index(request) + 1}
         %td= request.quantity
         %td= request.unit
         %td{colspan:6}= simple_format("#{request.specs}")
@@ -48,8 +50,8 @@
       - unless request.offers.empty?
         %tr
           %th
-          -# - if request.offers.count > 1
-          %th OFFER#:
+            - if request.offers.count > 1
+              OFFER#:
           - unless @quote.offer_details_mergable?(:supplier_name)
             %th BRAND:
           %th{colspan: @quote.offer_spec_colspan} OFFERED:
@@ -66,8 +68,7 @@
         - offers.each do |offer|
           %tr
             %td{style: 'border:none'}
-              -# - if offers.count > 1
-              %td ##{offers.index(offer) + 1}
+              = "##{offers.index(offer) + 1}" if offers.count > 1
             - unless @quote.offer_details_mergable?(:supplier_name)
               %td= offer.supplier_name
             %td{colspan: @quote.offer_spec_colspan}= simple_format(offer.specs)
