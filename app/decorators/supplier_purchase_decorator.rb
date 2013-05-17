@@ -1,17 +1,11 @@
 class SupplierPurchaseDecorator < Decorator
 
-  #FIXME : ugly
   def supplier_name
-    if !supplier_orders.empty?
-      supplier_orders.first.supplier_name
-    end
+    @supplier_name ||=  first_supplier_name
   end
 
-  #FIXME : ugly
   def client
-    if !supplier_orders.empty?
-      @client ||= supplier_orders.first.offer.client
-    end
+    @client ||= first_client
   end
 
   # FIXME : make me deal with non local currency amounts
@@ -37,6 +31,18 @@ class SupplierPurchaseDecorator < Decorator
   end
 
   private
+
+  def first_supplier_name
+    if !supplier_orders.empty?
+      supplier_orders.first.supplier_name
+    end
+  end
+
+  def first_client
+    if !supplier_orders.empty?
+      supplier_orders.first.offer.client
+    end
+  end
 
   def total_amount_suffix
     @total_amount_suffix ||= if supplier_orders.first
