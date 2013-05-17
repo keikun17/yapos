@@ -1,5 +1,17 @@
 class OfferDecorator < Decorator
 
+  def actual_specs
+    @actual_specs ||= (self.supplier_order.actual_specs || self.specs)
+  end
+
+  def supplier_purchase_link
+    if self.supplier_purchase
+      link_to self.supplier_purchase_reference, print_supplier_purchase_path(self.supplier_purchase)
+    else
+      self.supplier_order_reference
+    end
+  end
+
   def supplier_order_reference
     __getobj__.supplier_order_reference || 'Not Ordered'
   end
@@ -13,12 +25,19 @@ class OfferDecorator < Decorator
   end
 
   def summary
-    str = ""
-    if self.request_quantity && self.request_unit
-      str = self.request_quantity.to_s
-      str += ' ' +  self.request_unit + ' '
+    content_tag :div do
+      if self.request_quantity && self.request_unit
+        content_tag :span do
+          self.request_quantity.to_s
+        end
+        content_tag :span do
+          self.request_unit
+        end
+      end
+      content_tag :p do
+        self.specs
+      end
     end
-    str += self.specs
   end
 
 

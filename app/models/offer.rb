@@ -26,6 +26,7 @@ class Offer < ActiveRecord::Base
 
   has_one :quote, :through => :request
   has_one :supplier_order, dependent: :destroy
+  has_one :supplier_purchase, :through => :supplier_order
   has_one :client, :through => :quote
 
   accepts_nested_attributes_for :supplier_order
@@ -45,12 +46,13 @@ class Offer < ActiveRecord::Base
 
   # Supplier Order Delegation
   delegate :reference,
-    :ordered_at, 
-    :estimated_manufactured_at, 
-    :manufactured_at, 
-    :estimated_delivered_at, 
-    :delivered_at, 
-    :delivered?, 
+    :ordered_at,
+    :estimated_manufactured_at,
+    :manufactured_at,
+    :estimated_delivered_at,
+    :delivered_at,
+    :delivered?,
+    :actual_specs,
     :ordered_from_supplier?, to: :supplier_order, prefix: true, allow_nil: true
 
   def update_total_prices

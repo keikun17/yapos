@@ -1,7 +1,8 @@
 class SupplierOrder < ActiveRecord::Base
   attr_accessible :reference, :offer_id, :ordered_at,
     :estimated_manufactured_at, :manufactured_at,
-    :estimated_delivered_at, :delivered_at, :ordered_at
+    :estimated_delivered_at, :delivered_at, :ordered_at,
+    :actual_specs
 
   belongs_to :supplier_purchase,
     foreign_key: :reference,

@@ -47,11 +47,13 @@
   %thead
     %th Quote Reference
     %th Requested Spec
+    %th Offered Spec
     %th Purchased Spec
     %th Supplier
     %th Remarks
     %th Supplier's Price
     %th Offered Price
+    %th Our PO#
 
   %tbody
     - @quotes.each do |quote|
@@ -64,6 +66,7 @@
           %strong= link_to quote.quote_reference, quote
         %td= offer.request_specs
         %td= offer.specs
+        %td= offer.actual_specs
         %td= offer.supplier_name
         %td= offer.remarks
         %td= offer.display_buying_price
@@ -71,7 +74,8 @@
       - offers.each do |offer|
         %tr
           %td= offer.request_specs
-          %td= offer.specs if offer
+          %td= offer.specs
+          %td= offer.actual_specs
           %td= offer.supplier_name
           %td= offer.display_buying_price
           %td= offer.display_selling_price

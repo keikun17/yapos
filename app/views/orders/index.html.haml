@@ -28,7 +28,11 @@
         %tr{class: offer_row_class(offer)}
           %td{rowspan: offer_count}
             %strong= link_to order.reference, order
-          %td= offer.summary
+          %td
+            = offer.summary
+            - if !offer.supplier_order_actual_specs.blank?
+              %span.label.label-important Actual: 
+              =offer.supplier_order_actual_specs
           %td
             - if offer && offer.client
               = link_to(offer.client.name, client_path(offer.client))
