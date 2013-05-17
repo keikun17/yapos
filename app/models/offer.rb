@@ -35,10 +35,11 @@ class Offer < ActiveRecord::Base
 
   # Supplier Delegation
   delegate :name, to: :supplier, prefix: true, allow_nil: true
+  delegate :reference, to: :supplier_purchase, prefix: true, allow_nil: true
 
   # Request Delegation
   delegate :quantity,
-    :unit, 
+    :unit,
     :specs, :to => :request, :prefix => true, :allow_nil => true
 
   # Quote Delegation
