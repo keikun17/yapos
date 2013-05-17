@@ -1,14 +1,17 @@
 class SupplierPurchaseDecorator < Decorator
-
+  
   #FIXME : ugly
   def supplier_name
-    if supplier_orders.first
+    if !supplier_orders.empty?
       supplier_orders.first.supplier_name
     end
   end
 
+  #FIXME : ugly
   def client
-    @client ||= supplier_orders.first.offer.client
+    if !supplier_orders.empty?
+      @client ||= supplier_orders.first.offer.client
+    end
   end
 
   def client_name
