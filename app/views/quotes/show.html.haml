@@ -116,7 +116,7 @@
               %br
               %strong Total:
               = offer.display_total_selling_price
-        %td= offer.order_reference if offer
+        %td= link_to offer.order_reference, offer.order if offer and offer.order
 
       - offers.each do |offer|
         %tr
@@ -147,7 +147,7 @@
             %br
             %strong Total:
             = offer.display_total_selling_price
-          %td= offer.order_reference
+          %td= link_to offer.order_reference, offer.order if offer.order
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), quotes_path, :class => 'btn'
