@@ -1,6 +1,10 @@
 class SupplierPurchaseDecorator < Decorator
+
+  #FIXME : ugly
   def supplier_name
-    supplier_orders.first.supplier_name
+    if supplier_orders.first
+      supplier_orders.first.supplier_name
+    end
   end
 
   def client
