@@ -61,7 +61,7 @@
           - unless @quote.offer_details_mergable?(:delivery)
             %th DELIVERY
           - unless @quote.offer_details_mergable?(:terms)
-            %th TERMS
+            %th{width: '140px'} TERMS
           - unless @quote.offer_details_mergable?(:warranty)
             %th WARRANTY
         - offers = OfferDecorator.decorate_collection(request.offers)
