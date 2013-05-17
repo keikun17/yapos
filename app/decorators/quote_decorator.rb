@@ -12,6 +12,22 @@ class QuoteDecorator < Decorator
     details.count <= 1
   end
 
+  def offer_spec_colspan
+    merged_columns = [:supplier_name, :supplier, :remarks, :delivery, :warranty, :terms]
+    counter = 0
+    @offer_spec_colspan ||= merged_columns.collect do |attr|
+      counter +=1 if offer_details_mergable?(attr)
+      counter
+    end.last
+    @offer_spec_colspan
+  end
+
+  def solo_offer_supplier_name
+    if @solo_offer ||= self.offers.first
+      return @solo_offer.supplier_name
+    end
+  end
+
   def solo_offer_remarks
     if @solo_offer ||= self.offers.first
       return @solo_offer.remarks

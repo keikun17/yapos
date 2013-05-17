@@ -48,9 +48,11 @@
       - unless request.offers.empty?
         %tr
           %th
+          -# - if request.offers.count > 1
           %th OFFER#:
-          %th BRAND:
-          %th OFFERED:
+          - unless @quote.offer_details_mergable?(:supplier_name)
+            %th BRAND:
+          %th{colspan: @quote.offer_spec_colspan} OFFERED:
           %th{width: '140px'} UNIT PRICE
           - unless @quote.offer_details_mergable?(:remarks)
             %th NOTES
@@ -64,9 +66,11 @@
         - offers.each do |offer|
           %tr
             %td{style: 'border:none'}
-            %td ##{offers.index(offer) + 1}
-            %td= offer.supplier_name
-            %td= simple_format(offer.specs)
+              -# - if offers.count > 1
+              %td ##{offers.index(offer) + 1}
+            - unless @quote.offer_details_mergable?(:supplier_name)
+              %td= offer.supplier_name
+            %td{colspan: @quote.offer_spec_colspan}= simple_format(offer.specs)
             %td= offer.display_selling_price
             - unless @quote.offer_details_mergable?(:remarks)
               %td= offer.remarks
@@ -84,6 +88,11 @@
           %strong NOTES
         %td : #{@quote.solo_offer_remarks}
     - if @quote.offer_details_mergable?(:delivery) and !@quote.solo_offer_delivery.blank?
+      %tr
+        %td
+          %strong BRAND
+        %td : #{@quote.solo_offer_delivery}
+    - if @quote.offer_details_mergable?(:supplier_name) and !@quote.supplier_name.blank?
       %tr
         %td
           %strong DELIVERY
