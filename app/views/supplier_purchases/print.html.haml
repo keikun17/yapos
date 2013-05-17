@@ -55,7 +55,8 @@
           %strong Warranty
         %td : #{@supplier_purchase.warranty}
 
-  %strong #{@supplier_purchase.remarks}
+  %strong
+    =simple_format(@supplier_purchase.remarks)
 
   %br
   %br
