@@ -55,8 +55,7 @@
               %td
                 = link_to(offer.client.name, client_path(offer.client))
               %td= order.display_purchase_date
-              %td
-                %i= offer.supplier_order_reference
+              %td= offer.supplier_purchase_link
               %td
                 %i= offer.ordered_from_supplier_at
               %td
