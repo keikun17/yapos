@@ -17,7 +17,6 @@ class SupplierPurchaseDecorator < Decorator
       end
   end
 
-
   def client_name
     client.name if client
   end
