@@ -20,10 +20,16 @@
       %td
         %strong ATTENTION
       %td : #{@supplier_purchase.recipient}
+
+    %tr
+      %td
+        %strong PO#
+      %td : #{@supplier_purchase.reference}
+
     %tr
       %td
         %strong SUBJECT
-      %td : #{@supplier_purchase.reference} - #{@supplier_purchase.client_name}
+      %td : #{@supplier_purchase.client_name}
 
   = render 'supplier_orders', supplier_orders: @supplier_purchase.supplier_orders
 
