@@ -46,11 +46,8 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails', '~> 2.0'
   gem 'pry'
-end
-
-group :test do
-  gem 'rspec'
 end
 
 # To use ActiveModel has_secure_password
