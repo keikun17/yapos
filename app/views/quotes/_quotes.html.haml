@@ -17,7 +17,9 @@
           %strong= link_to quote.quote_reference, quote
         %td= link_to_client(quote.client)
         %td= quote.order_links
-        %td= truncate(quote.description, :length => 40, :omission => "...")
+        %td
+          = quote.quantity_labels 
+          = truncate(quote.description, :length => 40, :omission => "...")
         %td= supplier_links(quote)
         %td= quote.display_status
         %td

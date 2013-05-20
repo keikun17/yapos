@@ -28,10 +28,18 @@ class OfferDecorator < Decorator
   #   quantity_class  : class used for the quantity + uom span-label
   def summary(options = {})
     content_tag(:div) do
-      inner = _summary_prefix(options[:quantity_class])
+      inner = quantity_label(options[:quantity_class])
       inner.safe_concat(' ')
       inner.safe_concat(self.specs)
     end
+  end
+
+  def quantity_label(label_class="")
+    RequestDecorator.new(__getobj__.request).to_label('label label-important')
+  end
+
+  def complete_quantity
+    [ self.request_quantity.to_s, self.request_unit ].join(' ')
   end
 
   def display_status
@@ -128,12 +136,6 @@ class OfferDecorator < Decorator
 
   private
 
-  def _summary_prefix(label_class= "")
-    label = content_tag(:span,  class: label_class) do 
-      [ self.request_quantity.to_s, self.request_unit ].join(' ')
-    end
-    label
-  end
 
   def display_none
     'None'

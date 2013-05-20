@@ -17,4 +17,12 @@ class RequestDecorator < Decorator
     end
     str
   end
+
+  def to_label(html_options={})
+    content_tag(:span,  class: html_options) do 
+      display_quantity
+    end
+  end
+
+
 end
