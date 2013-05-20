@@ -11,6 +11,12 @@ class QuotesController < ApplicationController
     end
   end
 
+  def pending
+    @quotes = Quote.with_pending_requests
+    @quotes = @quotes.paginate(page: params[:page], per_page: 20)
+    @decorated_quotes = QuoteDecorator.decorate_collection(@quotes)
+  end
+
   # GET /quotes/1
   # GET /quotes/1.json
   def show

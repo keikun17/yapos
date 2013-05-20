@@ -4,10 +4,10 @@
       %th Client PR#
       %th Client Name
       %th Client PO#
-      %th{:width => '30%'}= model_class.human_attribute_name(:description)
-      %th= model_class.human_attribute_name(:supplier)
-      %th= model_class.human_attribute_name(:status)
-      %th{:width => '10%'}= model_class.human_attribute_name(:quote_date)
+      %th{:width => '30%'} description
+      %th Supplier
+      %th Status
+      %th{:width => '10%'} Client Requested At
       - if defined?(show_actions)
         %th{:width => '10%'}=t '.actions', :default => t("helpers.actions")
   %tbody
