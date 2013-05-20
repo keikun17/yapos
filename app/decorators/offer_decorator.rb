@@ -13,7 +13,8 @@ class OfferDecorator < Decorator
   end
 
   def supplier_order_reference
-    __getobj__.supplier_order_reference || 'Not Ordered'
+    off_ref = __getobj__.supplier_order_reference 
+    off_ref.blank? ? "Not Ordered" : off_ref
   end
 
   def request_unit

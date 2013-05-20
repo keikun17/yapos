@@ -4,8 +4,8 @@ class OrdersController < ApplicationController
   def index
     @orders = Order.includes( offers: :supplier_order )
     @orders = @orders.order("orders.purchase_date desc")
-    @orders = @orders.order("orders.purchase_date <> '' desc")
-    @orders = @orders.order("supplier_orders.reference <> '' desc")
+    @orders = @orders.order("supplier_orders.reference <> '' asc")
+    @orders = @orders.order("supplier_orders.reference is null desc")
     @orders = @orders.paginate(:page => params[:page], :per_page => 10)
 
     @decorated_orders = OrderDecorator.decorate_collection(@orders.to_a)
