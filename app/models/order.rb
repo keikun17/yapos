@@ -34,8 +34,6 @@ class Order < ActiveRecord::Base
     :allow_destroy => true,
     :reject_if => lambda { |a| a[:document].nil? }
 
-  default_scope -> { order('purchase_date is null desc, purchase_date desc') }
-
   # Tire/ElasticSearch Configuration
 
   mapping do
