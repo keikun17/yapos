@@ -2,8 +2,12 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.includes(:offers)
+    @orders = Order.includes( offers: :supplier_order )
+    @orders = @orders.order('supplier_orders.ordered_at desc')
+    @orders = @orders.order('supplier_orders.ordered_at is null desc')
+    @orders = @orders.order('supplier_orders.reference is null desc')
     @orders = @orders.paginate(:page => params[:page], :per_page => 10)
+
     @decorated_orders = OrderDecorator.decorate_collection(@orders.to_a)
 
     respond_to do |format|
