@@ -88,10 +88,7 @@ class Quote < ActiveRecord::Base
   end
 
   def supplier_names
-    s = self.suppliers.map(&:name)
-    s << self.supplier_name
-    s = s.uniq.compact
-    s
+    self.suppliers.uniq.map(&:name)
   end
 
   def display_status
