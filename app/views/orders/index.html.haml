@@ -29,7 +29,7 @@
           %td{rowspan: offer_count}
             %strong= link_to order.reference, order
           %td
-            = offer.summary(quantity_class: 'label label-important')
+            = offer.summary(quantity_class: 'label label-inverse')
             - if !offer.supplier_order_actual_specs.blank?
               %span.label.label-important Actual: 
               =offer.supplier_order_actual_specs
@@ -52,7 +52,7 @@
           - offers.each do |offer|
             %tr{class: offer_row_class(offer)}
               %td
-                = offer.summary(quantity_class: 'label label-important').html_safe
+                = offer.summary(quantity_class: 'label label-inverse').html_safe
                 - if !offer.supplier_order_actual_specs.blank?
                   %span.label.label-important Actual: 
                   =offer.supplier_order_actual_specs
