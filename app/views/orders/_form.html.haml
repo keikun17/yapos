@@ -1,6 +1,6 @@
 = form_for @order, :html => { :class => 'form-horizontal' } do |f|
   .control-group
-    = f.label :purchase_date, :class => 'control-label'
+    = f.label :purchase_date, "Client Ordered at",  :class => 'control-label'
     .controls
       = f.date_select :purchase_date,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
 
