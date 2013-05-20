@@ -24,22 +24,15 @@ class OfferDecorator < Decorator
     @request ||= RequestDecorator.new(__getobj__.request)
   end
 
-  def summary
-    content_tag :div do
-      if self.request_quantity && self.request_unit
-        content_tag :span do
-          self.request_quantity.to_s
-        end
-        content_tag :span do
-          self.request_unit
-        end
-      end
-      content_tag :p do
-        self.specs
-      end
+  # Takes options hash
+  #   quantity_class  : class used for the quantity + uom span-label
+  def summary(options = {})
+    content_tag(:div) do
+      inner = _summary_prefix(options[:quantity_class])
+      inner.safe_concat(' ')
+      inner.safe_concat(self.specs)
     end
   end
-
 
   def display_status
     if self.supplier_order_delivered?
@@ -134,6 +127,13 @@ class OfferDecorator < Decorator
   end
 
   private
+
+  def _summary_prefix(label_class= "")
+    label = content_tag(:span,  class: label_class) do 
+      [ self.request_quantity.to_s, self.request_unit ].join(' ')
+    end
+    label
+  end
 
   def display_none
     'None'
