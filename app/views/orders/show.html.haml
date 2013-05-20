@@ -16,9 +16,8 @@
   %br
   = @order.display_purchase_date
 
-%h4 Purchase Requests :
-
 - if @order.custom_quote_reference.present?
+  %h4 Purchase Requests :
   %p
     %strong= model_class.human_attribute_name(:custom_quote_reference) + ':'
     %br
