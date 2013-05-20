@@ -35,7 +35,7 @@ class OfferDecorator < Decorator
   end
 
   def quantity_label(label_class="")
-    RequestDecorator.new(__getobj__.request).to_label('label label-important')
+    RequestDecorator.new(__getobj__.request).to_label(label_class)
   end
 
   def complete_quantity
