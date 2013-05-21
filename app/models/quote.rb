@@ -44,7 +44,7 @@ class Quote < ActiveRecord::Base
   delegate :name, :to => :supplier, :allow_nil => true, :prefix => true
 
   scope :unawarded, -> { where(:order_id => nil) }
-  scope :with_pending_requests, -> { includes(:offers).where(offers: {request_id: nil}).where("quotes.status != ?", "Not Awarded") }
+  scope :with_pending_requests, -> { includes(:offers).where(offers: {request_id: nil}).where("quotes.status != 'Not Awarded' and quotes.status != 'No Quote'") }
   default_scope -> { order('quotes.quote_date desc, quotes.id desc') }
 
   # Tire/ElasticSearch Configuration
