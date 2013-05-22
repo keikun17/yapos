@@ -7,11 +7,15 @@
 %table.table.table-condensed
   %thead
     %th SUPPLIER PO#
+    %th Ordered from Supplier at
+    %th Supplier
     %th
   %tbody
-    - @supplier_purchases.each do |supplier_purchase|
+    - @decorated_supplier_purchases.each do |supplier_purchase|
       %tr
         %td= supplier_purchase.reference
+        %td= supplier_purchase.display_ordered_at
+        %td= supplier_purchase.supplier_name
         %td
           = link_to 'Edit', edit_supplier_purchase_path(supplier_purchase),:class => 'btn btn-mini'
           = link_to 'Print', print_supplier_purchase_path(supplier_purchase),:class => 'btn btn-mini'

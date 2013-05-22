@@ -17,10 +17,14 @@ class SupplierPurchase < ActiveRecord::Base
     primary_key: :reference,
     foreign_key: :reference
 
+  #FIXME : UGLY
   def supplier_name
-    supplier_orders.first.supplier_name
+    unless supplier_orders.empty?
+      supplier_orders.first.supplier_name
+    end
   end
 
+  #FIXME : UGLY
   def client
     supplier_orders.first.offer.client
   end

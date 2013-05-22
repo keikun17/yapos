@@ -2,6 +2,7 @@ class SupplierPurchasesController < ApplicationController
 
   def index
     @supplier_purchases = SupplierPurchase.paginate(page: params[:page], per_page: 20)
+    @decorated_supplier_purchases = SupplierPurchaseDecorator.decorate_collection(@supplier_purchases)
   end
 
   def print

@@ -4,6 +4,18 @@ class SupplierPurchaseDecorator < Decorator
     @supplier_name ||=  first_supplier_name
   end
 
+  def display_ordered_at
+    if self.ordered_at.nil?
+      str = content_tag :i do
+        "Please Fill Up"
+      end
+    else
+      str = self.ordered_at.to_date
+    end
+
+    str
+  end
+
   def client
     @client ||= first_client
   end
