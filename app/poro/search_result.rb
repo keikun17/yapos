@@ -9,12 +9,13 @@ class SearchResult < Decorator
     end
   end
 
+  #FIXME : Use Inheritance
   def date
     case _type
     when "quote"
-      self.quote_date.split('T').first
+      self.quote_date.split('T').first if !self.quote_date.nil?
     when "order"
-      self.purchase_date.split('T').first
+      self.purchase_date.split('T').first if !self.purchase_date.nil?
     end
   end
 
