@@ -4,7 +4,6 @@
   = f.fields_for :supplier_order do |ff|
     %td= ff.text_area :actual_specs
     %td= ff.text_field :reference
-    %td= ff.date_select :ordered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
     %td= ff.date_select :estimated_manufactured_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
     %td= ff.date_select :manufactured_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
     %td= ff.date_select :estimated_delivered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'

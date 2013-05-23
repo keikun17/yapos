@@ -95,7 +95,7 @@ class OfferDecorator < Decorator
   end
 
   def ordered_from_supplier_at
-    if date = __getobj__.supplier_order_ordered_at
+    if date = __getobj__.supplier_purchase_ordered_at
       date.to_date.to_s
     else
        'Not Ordered'

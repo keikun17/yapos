@@ -10,7 +10,7 @@ class SupplierPurchaseDecorator < Decorator
         "Please Fill Up"
       end
     else
-      str = self.ordered_at.to_date
+      str = self.ordered_at.to_date.to_s(:long)
     end
 
     str

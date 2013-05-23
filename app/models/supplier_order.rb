@@ -1,7 +1,11 @@
 class SupplierOrder < ActiveRecord::Base
-  attr_accessible :reference, :offer_id, :ordered_at,
-    :estimated_manufactured_at, :manufactured_at,
-    :estimated_delivered_at, :delivered_at, :ordered_at,
+  attr_accessible :reference,
+    :offer_id,
+    :ordered_at, #FIXME : remove this and delegate to supplier_purchase
+    :estimated_manufactured_at,
+    :manufactured_at,
+    :estimated_delivered_at,
+    :delivered_at,
     :actual_specs
 
   belongs_to :supplier_purchase,
@@ -19,6 +23,7 @@ class SupplierOrder < ActiveRecord::Base
   delegate :total_buying_price, to: :offer, allow_nil: true, prefix: true
   delegate :price_vat_status, to: :offer, allow_nil: true, prefix: true
   delegate :price_basis, to: :offer, allow_nil: true, prefix: true
+  delegate :ordered_at, to: :supplier_purchase, allow_nil: true, prefix: true
 
   validate :offer_id, presence: true
 

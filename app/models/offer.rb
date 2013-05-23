@@ -56,6 +56,8 @@ class Offer < ActiveRecord::Base
     :actual_specs,
     :ordered_from_supplier?, to: :supplier_order, prefix: true, allow_nil: true
 
+  delegate :ordered_at, to: :supplier_purchase, allow_nil: true, prefix: true
+
   def update_total_prices
     quantity = self.request_quantity.blank? ? 1 : self.request_quantity
     if self.currency == Currency::LOCAL_CURRENCY
