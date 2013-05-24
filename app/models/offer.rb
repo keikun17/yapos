@@ -43,7 +43,7 @@ class Offer < ActiveRecord::Base
     :specs, :to => :request, :prefix => true, :allow_nil => true
 
   # Quote Delegation
-  delegate :reference, to: :quote, prefix: true, allow_nil: true
+  delegate :quote_reference, to: :quote, prefix: false, allow_nil: true
 
   # Supplier Order Delegation
   delegate :reference,

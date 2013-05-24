@@ -14,8 +14,7 @@ class SuppliersController < ApplicationController
   # GET /suppliers/1.json
   def show
     @supplier = Supplier.find(params[:id])
-    @quotes = @supplier.quotes
-    @quotes = QuoteDecorator.decorate_collection(@quotes)
+    @offers = OfferDecorator.decorate_collection(@supplier.offers)
 
     respond_to do |format|
       format.html # show.html.erb

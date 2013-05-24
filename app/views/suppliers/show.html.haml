@@ -20,9 +20,28 @@
   %br
   =simple_format @supplier.address
 
+%hr
+
 %h4 Purchase Requests :
-- if @supplier.quotes.present?
-  = render :partial => 'quotes/quotes', :locals => {:quotes => @quotes, :model_class => Quote}
+%table.table.table-condensed 
+  %thead
+    %tr
+      %th CLIENT PR#
+      %th CLIENT PO#
+      %th Offered Specs
+      %th Supplier's Unit Price
+      %th Our Unit Price
+    - @offers.each do |offer|
+      %tr
+        %td= link_to offer.quote_reference, offer.quote
+        %td= link_to offer.order_reference, offer.order
+        %td
+          = offer.quantity_label('label label-inverse')
+          = offer.actual_specs
+        %td= offer.display_buying_price
+        %td= offer.display_selling_price
+
+
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), suppliers_path, :class => 'btn'
