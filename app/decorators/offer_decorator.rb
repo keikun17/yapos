@@ -1,7 +1,7 @@
 class OfferDecorator < Decorator
 
   def actual_specs
-    @actual_specs ||= (self.supplier_order.actual_specs || self.specs)
+    @actual_specs ||= (self.supplier_order_actual_specs || self.specs)
   end
 
   def supplier_purchase_link
