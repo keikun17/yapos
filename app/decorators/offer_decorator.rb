@@ -27,7 +27,7 @@ class OfferDecorator < Decorator
 
   # Takes options hash
   #   quantity_class  : class used for the quantity + uom span-label
-  def summary(options = {})
+  def display_specs(options = {})
     content_tag(:div) do
       inner = quantity_label(options[:quantity_class])
       inner.safe_concat(' ')
