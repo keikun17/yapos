@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130517062357) do
+ActiveRecord::Schema.define(version: 20130524073417) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -49,9 +49,11 @@ ActiveRecord::Schema.define(version: 20130517062357) do
     t.float    "total_buying_price"
     t.float    "total_selling_price"
     t.string   "price_basis"
+    t.string   "summary"
   end
 
   add_index "offers", ["order_reference"], name: "index_offers_on_order_reference"
+  add_index "offers", ["summary"], name: "index_offers_on_summary"
 
   create_table "orders", force: true do |t|
     t.string   "reference"

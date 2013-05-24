@@ -48,7 +48,8 @@ class Order < ActiveRecord::Base
       status: 'implement',
       purchase_date: self.purchase_date,
       actual_specs: actual_specs,
-      offer_specs: offer_specs
+      offer_specs: offer_specs,
+      offer_summaries: offer_summaries
     }.to_json
   end
 
@@ -74,6 +75,12 @@ class Order < ActiveRecord::Base
     os = offers.map(&:specs)
     os = os.uniq.compact
     os
+  end
+
+  def offer_summaries
+    osum = offers.map(&:summary)
+    osum = osum.uniq.compact
+    osum
   end
 
   def clear_quotes

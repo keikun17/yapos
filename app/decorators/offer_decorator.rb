@@ -35,6 +35,10 @@ class OfferDecorator < Decorator
     end
   end
 
+  def display_summary
+    @display_summary ||= summary || link_to('Please edit and add offer spec summary/code', edit_quote_path(__getobj__.quote))
+  end
+
   def quantity_label(label_class="")
     RequestDecorator.new(__getobj__.request).to_label(label_class)
   end
