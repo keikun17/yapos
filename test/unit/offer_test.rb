@@ -29,5 +29,6 @@ end
 #  total_buying_price  :float
 #  total_selling_price :float
 #  price_basis         :string(255)
+#  summary             :string(255)
 #
 
