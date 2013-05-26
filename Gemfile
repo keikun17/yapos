@@ -23,6 +23,7 @@ gem 'tire'
 gem 'json', '~> 1.7.7'
 
 group :development do 
+  gem "rails_best_practices"
   gem 'quiet_assets'
   gem 'annotate'
   gem 'taps', '~> 0.3.24'
