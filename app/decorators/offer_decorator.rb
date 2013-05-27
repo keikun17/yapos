@@ -64,7 +64,7 @@ class OfferDecorator < Decorator
     str = number_to_currency(self.selling_price || 0, unit: self.currency)
     str = str + "/#{self.request_unit}"
     if !self.price_suffix.blank?
-      str = str + "(#{self.price_suffix})"
+      str = str + " (#{self.price_suffix})"
     end
     str
   end
@@ -73,7 +73,7 @@ class OfferDecorator < Decorator
     str = number_to_currency(self.buying_price || 0, unit: self.currency)
     str = str + "/#{self.request_unit}"
     if !self.price_suffix.blank?
-      str = str + "(#{self.price_suffix})"
+      str = str + " (#{self.price_suffix})"
     end
     str
   end
@@ -81,7 +81,7 @@ class OfferDecorator < Decorator
   def display_total_buying_price
     str = number_to_currency(self.total_buying_price || 0, unit: Currency::LOCAL_CURRENCY)
     if !self.price_suffix.blank?
-      str = str + "(#{self.price_suffix})"
+      str = str + " (#{self.price_suffix})"
     end
     str
   end
@@ -89,7 +89,7 @@ class OfferDecorator < Decorator
   def display_total_selling_price
     str = number_to_currency(self.total_selling_price || 0, unit: Currency::LOCAL_CURRENCY)
     if !self.price_suffix.blank?
-      str = str + "(#{self.price_suffix})"
+      str = str + " (#{self.price_suffix})"
     end
     str
   end

@@ -34,7 +34,7 @@
         - if @requests.count > 1
           %th{width:'40px'} ITEM#:
         %th{width: '50px'} QTY:
-        %th{width: '100px'} UNIT:
+        %th{width: '80px'} UNIT:
         %th{colspan:6} REQUESTED:
       %tr
         - if @requests.count > 1
@@ -50,15 +50,15 @@
             - if request.offers.count > 1
               OFFER#:
           - unless @quote.offer_details_mergable?(:supplier_name)
-            %th BRAND:
+            %th{width: '80px'} BRAND:
           %th{colspan: @quote.offer_spec_colspan} OFFERED:
-          %th{width: '140px'} UNIT PRICE
+          %th{width: '80px'} UNIT PRICE
           - unless @quote.offer_details_mergable?(:remarks)
             %th NOTES
           - unless @quote.offer_details_mergable?(:delivery)
-            %th DELIVERY
+            %th{width: '80px'} DELIVERY
           - unless @quote.offer_details_mergable?(:terms)
-            %th{width: '140px'} TERMS
+            %th{width: '80px'} TERMS
           - unless @quote.offer_details_mergable?(:warranty)
             %th WARRANTY
         - offers = OfferDecorator.decorate_collection(request.offers)
