@@ -42,6 +42,17 @@
   = supplier_links(@quote)
  
 %p
+  %strong Internal Notes:
+  %br
+  = simple_format(@quote.internal_notes)
+
+%p
+  %strong Remarks
+  %em (Will be shown at the bottom of the printable view):
+  %br
+  = simple_format(@quote.remarks)
+
+%p
   %strong= model_class.human_attribute_name(:signatory) + ':'
   %br
   = @quote.signatory
@@ -50,16 +61,6 @@
   %strong= model_class.human_attribute_name(:signatory_position) + ':'
   %br
   = @quote.signatory_position
-
-%p
-  %strong Internal Notes:
-  %br
-  = simple_format(@quote.internal_notes)
-
-%p
-  %strong Remarks:
-  %br
-  = simple_format(@quote.remarks)
 
 %h3 Attachments
 - if @quote.attachments.empty?
