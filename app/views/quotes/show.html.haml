@@ -51,6 +51,16 @@
   %br
   = @quote.signatory_position
 
+%p
+  %strong Internal Notes:
+  %br
+  = simple_format(@quote.internal_notes)
+
+%p
+  %strong Remarks:
+  %br
+  = simple_format(@quote.remarks)
+
 %h3 Attachments
 - if @quote.attachments.empty?
   No Attachments

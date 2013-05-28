@@ -40,6 +40,11 @@
       = f.text_field :signatory_position, :class => 'text_field'
 
   .control-group
+    = f.label :internal_notes, :class => 'control-label'
+    .controls
+      = f.text_area :internal_notes, :class => 'text_area', :class => "span8", :rows => 3
+
+  .control-group
     = f.label :remarks, :class => 'control-label'
     .controls
       = f.text_area :remarks, :class => 'text_area', :class => "span8", :rows => 3

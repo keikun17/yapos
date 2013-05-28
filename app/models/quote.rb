@@ -14,7 +14,8 @@ class Quote < ActiveRecord::Base
     :client_id,
     :requests_attributes,
     :attachments_attributes,
-    :remarks
+    :remarks,
+    :internal_notes
 
   has_many :attachments, :as => :attachable
   has_many :requests, dependent: :destroy
