@@ -2,13 +2,14 @@
   %h1 RFQs with requests with no offers (includes multi-items)
 
 %ul.nav.nav-tabs
+  %li.active
+    = nav_pending_quote(pending_quotes_path)
   %li
     = link_to 'Show All', quotes_path
-  %li.active
-    = link_to 'Pending', pending_quotes_path
+
+= link_to t('.new', :default => t("helpers.links.new")), new_quote_path, :class => 'btn btn-primary'
+.pull-right= will_paginate(@quotes)
 
 = render :partial => 'quotes', :locals => {:quotes => @decorated_quotes, :show_actions => true}
 .pull-right= will_paginate(@quotes)
 
-= link_to t('.new', :default => t("helpers.links.new")), new_quote_path, :class => 'btn btn-primary'
-.pull-right= will_paginate(@quotes)

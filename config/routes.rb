@@ -35,7 +35,7 @@ Yapos::Application.routes.draw do
     end
   end
 
-  root :to => 'quotes#index'
+  root :to => 'quotes#pending'
 
   get 'search' => 'searches#search', :as => 'search'
   get 'accounting' => 'accounting#index', :as => 'accounting'

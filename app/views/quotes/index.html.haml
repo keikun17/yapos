@@ -3,10 +3,11 @@
 
 
 %ul.nav.nav-tabs
+  %li
+    = nav_pending_quote(pending_quotes_path)
   %li.active
     = link_to 'Show All', quotes_path
-  %li
-    = link_to 'Pending', pending_quotes_path
+
 = link_to t('.new', :default => t("helpers.links.new")), new_quote_path, :class => 'btn btn-primary'
 .pull-right= will_paginate(@quotes)
 
