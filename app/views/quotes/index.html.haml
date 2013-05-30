@@ -4,7 +4,7 @@
 
 %ul.nav.nav-tabs
   %li
-    = nav_pending_quote(pending_quotes_path)
+    = link_to_badge("Quote Required", pending_quotes_path, count: Quote.with_pending_requests.count)
   %li.active
     = link_to 'All Quoted', quotes_path
 
