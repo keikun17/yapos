@@ -24,7 +24,6 @@ Yapos::Application.routes.draw do
   resources :clients
   resources :quotes do 
     collection do
-      get 'search'
       get 'pending'
     end
     member do
