@@ -2,10 +2,8 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.includes( offers: :supplier_order )
+    @orders = Order.ordered
     @orders = @orders.order("orders.purchase_date desc")
-    @orders = @orders.order("supplier_orders.reference <> '' asc")
-    @orders = @orders.order("supplier_orders.reference is null desc")
     @orders = @orders.paginate(:page => params[:page], :per_page => 10)
 
     @decorated_orders = OrderDecorator.decorate_collection(@orders.to_a)
@@ -14,6 +12,13 @@ class OrdersController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @orders }
     end
+  end
+
+  def pending
+    @orders = Order.not_yet_ordered
+    @orders = @orders.order("orders.purchase_date desc")
+    @orders = @orders.paginate(per_page: 20, page: params[:page])
+    @decorated_orders = OrderDecorator.decorate_collection(@orders)
   end
 
   # GET /orders/1

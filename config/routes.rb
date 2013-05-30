@@ -2,6 +2,9 @@ Yapos::Application.routes.draw do
   devise_for :users
 
   resources :orders do
+    collection do
+      get 'pending'
+    end
     resources :attachments do
       member do
         get 'document'

@@ -34,6 +34,8 @@ class Order < ActiveRecord::Base
     :allow_destroy => true,
     :reject_if => lambda { |a| a[:document].nil? }
 
+  scope :not_yet_ordered, -> { includes( offers: :supplier_order ).where( "supplier_orders.reference = '' or supplier_orders.reference is null" ) }
+  scope :ordered, -> { includes(offers: :supplier_order).where( "supplier_orders.reference != '' and supplier_orders.reference is not null" ) }
   # Tire/ElasticSearch Configuration
 
   mapping do

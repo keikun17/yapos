@@ -12,4 +12,11 @@ module ApplicationHelper
     link_to_function(name, "add_fields(#{target}, \"#{association}\", \"#{escape_javascript(fields)}\")", class: 'btn btn-small btn-success')
   end
 
+  def link_to_badge(text, path, options = {})
+    text = content_tag(:span, text)
+    counter = content_tag(:span, options.delete(:count), class: 'badge badge-important') 
+    text.safe_concat(' ').safe_concat( counter)
+    link_to(text, path, options)
+  end
+
 end

@@ -1,6 +1,11 @@
-- model_class = Order
 .page-header
-  %h1=t '.title', :default => "Order/Delivery Monitoring"
+  %h1 Order monitoring
+
+%ul.nav.nav-tabs
+  %li
+    = link_to_badge("Supplier PO required", pending_orders_path, count: Order.not_yet_ordered.count)
+  %li.active
+    = link_to "Manufacturing/In Transit/For Delivery", orders_path
 
 .pull-right=will_paginate(@orders)
 -# = link_to t('.new', :default => t("helpers.links.new")), new_order_path, :class => 'btn btn-primary'
