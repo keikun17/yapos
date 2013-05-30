@@ -1,0 +1,77 @@
+.page-header
+  %h1 Pending Client POs that needs to be ordered from Suppliers
+
+%ul.nav.nav-tabs
+  %li.active
+    = link_to_badge("Supplier PO required", pending_orders_path, count: Order.not_yet_ordered.count)
+  %li
+    = link_to "Manufacturing/In Transit/For Delivery", orders_path
+
+.pull-right=will_paginate(@orders)
+%table.table.table-condensed
+  %thead
+    %tr
+      %th PO#
+      %th.span4 Item
+      %th Client
+      %th Client Purchased at
+      %th Our PO#
+      %th Ordered from Supplier at
+      %th Estimated EX-Works Date
+      %th EX-Works Date
+      %th Estimated Delivery Date
+      %th Delivered at
+  %tbody
+    - @decorated_orders.each do |order|
+      - offer_count = order.offers.size
+      - offers = order.offers
+      - offers = OfferDecorator.decorate_collection(offers)
+      - offer = offers.shift
+
+      - if offer
+        %tr{class: offer_row_class(offer)}
+          %td{rowspan: offer_count}
+            %strong= link_to order.reference, order
+          %td
+            = offer.display_specs(quantity_class: 'label label-inverse')
+            - if !offer.supplier_order_actual_specs.blank?
+              %span.label.label-important Actual: 
+              =offer.supplier_order_actual_specs
+          %td
+            - if offer && offer.client
+              = link_to(offer.client.name, client_path(offer.client))
+          %td= order.display_purchase_date
+          %td= offer.supplier_purchase_link
+          %td
+            %i= offer.supplier_purchase_ordered_at
+          %td
+            %i= offer.estimated_manufacture_end_date
+          %td
+            %i= offer.actual_manufacture_end_date
+          %td
+            %i= offer.estimated_delivery_date
+          %td
+            %i= offer.delivered_at
+
+          - offers.each do |offer|
+            %tr{class: offer_row_class(offer)}
+              %td
+                = offer.display_specs(quantity_class: 'label label-inverse').html_safe
+                - if !offer.supplier_order_actual_specs.blank?
+                  %span.label.label-important Actual: 
+                  =offer.supplier_order_actual_specs
+              %td
+                = link_to(offer.client.name, client_path(offer.client))
+              %td= order.display_purchase_date
+              %td= offer.supplier_purchase_link
+              %td
+                %i= offer.ordered_from_supplier_at
+              %td
+                %i= offer.estimated_manufacture_end_date
+              %td
+                %i= offer.actual_manufacture_end_date
+              %td
+                %i= offer.estimated_delivery_date
+              %td
+                %i= offer.delivered_at
+.pull-right=will_paginate(@orders)
