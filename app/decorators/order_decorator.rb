@@ -1,7 +1,7 @@
 class OrderDecorator < Decorator
 
-  def offers
-    @offers ||= OfferDecorator.decorate_collection(decorated_object.offers)
+  def decorated_offers
+    @decorated_offers ||= OfferDecorator.decorate_collection(decorated_object.offers)
   end
 
   def display_purchase_date

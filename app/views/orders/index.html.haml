@@ -24,9 +24,8 @@
       %th Delivered at
   %tbody
     - @decorated_orders.each do |order|
-      - offer_count = order.offers.size
-      - offers = order.offers
-      - offers = OfferDecorator.decorate_collection(offers)
+      - offer_count = order.offers.count
+      - offers = order.decorated_offers
       - offer = offers.shift
 
       - if offer
