@@ -27,9 +27,11 @@ class OfferDecorator < Decorator
 
   # Takes options hash
   #   quantity_class  : class used for the quantity + uom span-label
-  def display_specs(options = {})
+  def display_specs(html_options = {})
+    html_options[:class] ||= 'label label-inverse'
+
     content_tag(:div) do
-      inner = quantity_label(options[:quantity_class])
+      inner = quantity_label(html_options[:class])
       inner.safe_concat(' ')
       inner.safe_concat(self.specs)
     end
