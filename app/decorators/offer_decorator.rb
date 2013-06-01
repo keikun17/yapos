@@ -109,13 +109,8 @@ class OfferDecorator < Decorator
     @suffix ||= [self.price_vat_status,self.price_basis].compact.join(" ")
   end
 
-  # TODO : remove rescue block after record cleanup
   def ordered_from_supplier_at
-    begin
-      _decorated_supplier_purchase.display_ordered_at
-    rescue
-      'INVALID RECORD'
-    end
+    _decorated_supplier_purchase.display_ordered_at
   end
 
   def estimated_manufacture_end_date
