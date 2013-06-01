@@ -14,7 +14,7 @@
     - @decorated_supplier_purchases.each do |supplier_purchase|
       %tr
         %td= supplier_purchase.reference
-        %td= supplier_purchase.display_ordered_at
+        %td= supplier_purchase.ordered_from_supplier_at
         %td= supplier_purchase.supplier_name
         %td
           = link_to 'Edit', edit_supplier_purchase_path(supplier_purchase),:class => 'btn btn-mini'

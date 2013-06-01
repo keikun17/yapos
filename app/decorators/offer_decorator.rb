@@ -1,5 +1,13 @@
 class OfferDecorator < Decorator
 
+  # Decorated Associations
+  def decorated_supplier_purchase
+    @decorated_supplier_purchase ||= SupplierPurchaseDecorator.new(decorated_object.supplier_purchase)
+  end
+  # End of Decorated Association
+
+  delegate :ordered_from_supplier_at, to: :decorated_supplier_purchase, prefix: false, allow_nil: true
+
   def actual_specs
     @actual_specs ||= (self.supplier_order_actual_specs || self.specs)
   end
@@ -109,10 +117,6 @@ class OfferDecorator < Decorator
     @suffix ||= [self.price_vat_status,self.price_basis].compact.join(" ")
   end
 
-  def ordered_from_supplier_at
-    _decorated_supplier_purchase.display_ordered_at
-  end
-
   def estimated_manufacture_end_date
     if date = __getobj__.supplier_order_estimated_manufactured_at
       date.to_date.to_s
@@ -147,9 +151,6 @@ class OfferDecorator < Decorator
   end
 
   private
-    def _decorated_supplier_purchase
-      @decorated_supplier_purchase ||= SupplierPurchaseDecorator.new(decorated_object.supplier_purchase)
-    end
 
     def display_none
       'None'

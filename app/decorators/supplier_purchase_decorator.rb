@@ -4,7 +4,7 @@ class SupplierPurchaseDecorator < Decorator
     @supplier_name ||=  first_supplier_name
   end
 
-  def display_ordered_at
+  def ordered_from_supplier_at
     if self.ordered_at.nil?
       str = content_tag :i do
         link_to "Please Fill Up", edit_supplier_purchase_path(decorated_object)
