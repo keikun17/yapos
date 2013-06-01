@@ -109,11 +109,12 @@ class OfferDecorator < Decorator
     @suffix ||= [self.price_vat_status,self.price_basis].compact.join(" ")
   end
 
+  # TODO : remove rescue block after record cleanup
   def ordered_from_supplier_at
-    if date = __getobj__.supplier_purchase_ordered_at
-      date.to_date.to_s
-    else
-       'Not Ordered'
+    begin
+      _decorated_supplier_purchase.display_ordered_at
+    rescue
+      'INVALID RECORD'
     end
   end
 
@@ -151,9 +152,12 @@ class OfferDecorator < Decorator
   end
 
   private
+    def _decorated_supplier_purchase
+      @decorated_supplier_purchase ||= SupplierPurchaseDecorator.new(decorated_object.supplier_purchase)
+    end
 
+    def display_none
+      'None'
+    end
 
-  def display_none
-    'None'
-  end
 end
