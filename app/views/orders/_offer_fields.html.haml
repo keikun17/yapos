@@ -1,6 +1,9 @@
 %tr
   %td= f.object.supplier_name
   %td= f.object.specs
+
+  - #TODO dynamically building association in view.. YUCK!
+  - f.object.build_supplier_order if f.object.supplier_order.nil?
   = f.fields_for :supplier_order do |ff|
     %td= ff.text_area :actual_specs
     %td= ff.text_field :reference
