@@ -19,4 +19,12 @@ module ApplicationHelper
     link_to(text, path, options)
   end
 
+  def link_to_modal(text, object, html_options = {})
+    html_options[:class] ||= 'btn'
+    html_options[:role] ||= 'button'
+    html_options[:data] ||= {toggle: 'modal'}
+
+    link_to(text, "##{dom_id(object)}", html_options)
+  end
+
 end

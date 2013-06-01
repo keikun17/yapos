@@ -31,12 +31,9 @@
               = link_to(offer.client.name, client_path(offer.client))
           %td
             = offer.display_specs(quantity_class: 'label label-inverse')
-            - if !offer.supplier_order_actual_specs.blank?
-              %span.label.label-important Actual: 
-              =offer.supplier_order_actual_specs
-          %td
-            - if offer && offer.client
-              = link_to(offer.client.name, client_path(offer.client))
+            = offer.display_actual_specs
+
+          %td= link_to_modal("Purchase", offer)
 
           - offers.each do |offer|
             %tr{class: offer_row_class(offer)}
@@ -44,9 +41,11 @@
                 = link_to(offer.client.name, client_path(offer.client))
               %td
                 = offer.display_specs(quantity_class: 'label label-inverse').html_safe
-                - if !offer.supplier_order_actual_specs.blank?
-                  %span.label.label-important Actual: 
-                  =offer.supplier_order_actual_specs
-              %td
-                = link_to(offer.client.name, client_path(offer.client))
+                = offer.display_actual_specs
+              %td= link_to_modal("Purchase", offer)
+
+- @decorated_orders.each do |order|
+  - order.offers.each do |offer|
+    = render 'offers/modals/pending', modal_id: dom_id(offer), offer: offer
+
 .pull-right=will_paginate(@orders)
