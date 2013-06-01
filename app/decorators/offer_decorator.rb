@@ -37,6 +37,15 @@ class OfferDecorator < Decorator
     end
   end
 
+  def display_actual_specs(text = "Actual:", html_options = {})
+    html_options[:class] ||= 'label label-important'
+
+    if !__getobj__.supplier_order_actual_specs.blank?
+      label = content_tag(:span, text, class: html_options[:class])
+      label.safe_concat(__getobj__.supplier_order_actual_specs)
+    end
+  end
+
   def display_summary
     @display_summary ||= summary || link_to('Please edit and add offer spec summary/code', edit_quote_path(__getobj__.quote))
   end
