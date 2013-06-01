@@ -7,7 +7,7 @@ class SupplierPurchaseDecorator < Decorator
   def display_ordered_at
     if self.ordered_at.nil?
       str = content_tag :i do
-        "Please Fill Up"
+        link_to "Please Fill Up", edit_supplier_purchase_path(decorated_object)
       end
     else
       str = self.ordered_at.to_date.to_s(:long)

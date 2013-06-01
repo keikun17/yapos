@@ -7,7 +7,7 @@ class OrderDecorator < Decorator
   def display_purchase_date
     if purchase_date.nil?
       str = content_tag :i do
-        "Please Fill Up"
+        link_to "Please Fill Up", edit_order_path(decorated_object)
       end
     else
       str = purchase_date.to_date
