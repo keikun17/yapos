@@ -3,6 +3,8 @@
   %td= f.object.specs
 
   - #TODO dynamically building association in view.. YUCK!
+  - # Maybe just run a rake task that makes sure all offer without supplier_orders 
+  - # be inserted with a blank one?
   - f.object.build_supplier_order if f.object.supplier_order.nil?
   = f.fields_for :supplier_order do |ff|
     %td= ff.text_area :actual_specs
