@@ -59,6 +59,10 @@ class Offer < ActiveRecord::Base
 
   delegate :ordered_at, to: :supplier_purchase, allow_nil: true, prefix: true
 
+  def purchase_from_supplier
+    SupplierPurchase.find_or_create_by(order_id: self.order.id, reference: self.supplier_order.reference)
+  end
+
   def update_total_prices
     quantity = self.request_quantity.blank? ? 1 : self.request_quantity
     if self.currency == Currency::LOCAL_CURRENCY

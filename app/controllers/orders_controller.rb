@@ -58,7 +58,7 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
 
     respond_to do |format|
-      if @order.save and @order.purchase_from_supplier
+      if @order.save and @order.purchase_selected_offers
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
@@ -74,7 +74,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
 
     respond_to do |format|
-      if @order.update_attributes(params[:order]) and @order.purchase_from_supplier
+      if @order.update_attributes(params[:order]) and @order.purchase_selected_offers
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { head :no_content }
       else

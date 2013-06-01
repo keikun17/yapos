@@ -57,12 +57,14 @@ class Order < ActiveRecord::Base
 
   # /-- Tire/ElasticSearch config
 
-  def purchase_from_supplier
+  def purchase_selected_offers
+    # TODO : impplement 'client_purchased' scope on Offer instead of an iteration
+    # and condition checks
+    # 
+    # e.g. : self.offers.client_purchased.map(&:purchase_from_supplier)
     self.offers.each do |offer|
       unless offer.supplier_order.nil? or offer.supplier_order.reference.blank?
-        order = offer.order
-        SupplierPurchase.find_or_create_by(order_id: order.id,
-                                            reference: offer.supplier_order.reference)
+        offer.purchase_from_supplier
       end
     end
   end
