@@ -13,4 +13,7 @@ class Decorator < SimpleDelegator
     decorated_collection
   end
 
+  def decorated_object
+    __getobj__
+  end
 end
