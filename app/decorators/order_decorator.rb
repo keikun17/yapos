@@ -1,7 +1,8 @@
 class OrderDecorator < Decorator
 
-  attr_accessor :total_buy
-  attr_accessor :total_sell
+  def offers
+    @offers ||= OfferDecorator.decorate_collection(decorated_object.offers)
+  end
 
   def display_purchase_date
     if purchase_date.nil?
