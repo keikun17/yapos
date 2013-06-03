@@ -18,7 +18,9 @@ class Request < ActiveRecord::Base
 
   validates :specs, :presence => true
 
-  scope :pending_client_order, -> {includes(:offers).where(offers: {order_reference: nil}) }
+  scope :pending_client_order, -> do
+    includes(:offers).merge(Offer.pending_client_order)
+  end
 
 end
 

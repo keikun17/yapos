@@ -51,7 +51,7 @@ class Quote < ActiveRecord::Base
   default_scope -> { order('quotes.quote_date desc, quotes.id desc') }
 
   scope :not_closed, where("quotes.status != 'Not Awarded' and quotes.status != 'No Quote'");
-  scope :pending_client_order, not_closed.includes(:offers).merge(Request.pending_client_order)
+  scope :pending_client_order, not_closed.includes(:requests).merge(Request.pending_client_order)
 
   # Tire/ElasticSearch Configuration
   
