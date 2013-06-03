@@ -30,16 +30,16 @@
       = f.select :status, ["Pending", "Cancelled", "No Quote"],  :class => 'select'
 
   .control-group
-    = f.label :signatory, :class => 'control-label'
-    .controls
-      = f.text_field :signatory, :class => 'text_field'
-
-  .control-group
     = f.label :remarks, :class => 'control-label'
     .controls
       = f.text_area :remarks, :class => 'text_area', :class => "span8", :rows => 3
       %br
       %em (Will be shown at the bottom of the printable view)
+
+  .control-group
+    = f.label :signatory, :class => 'control-label'
+    .controls
+      = f.text_field :signatory, :class => 'text_field'
 
   .control-group
     = f.label :signatory_position, :class => 'control-label'
