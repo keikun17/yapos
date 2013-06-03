@@ -18,6 +18,8 @@ class Request < ActiveRecord::Base
 
   validates :specs, :presence => true
 
+  scope :pending_client_order, -> {includes(:offers).where(offers: {order_reference: nil}) }
+
 end
 
 # == Schema Information

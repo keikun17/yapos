@@ -27,6 +27,7 @@ Yapos::Application.routes.draw do
   resources :quotes do 
     collection do
       get 'pending'
+      get 'pending_client_po'
     end
     member do
       get 'requote'

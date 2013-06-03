@@ -3,7 +3,9 @@
 
 %ul.nav.nav-tabs
   %li.active
-    = link_to_badge("Quote Required", pending_quotes_path, count: Quote.with_pending_requests.count)
+    = link_to_badge("Offer Required", pending_quotes_path, count: Quote.with_pending_requests.count)
+  %li
+    = link_to_badge('Awaiting PO', pending_client_po_quotes_path, count: Quote.pending_client_order.count)
   %li
     = link_to 'All Quoted', quotes_path
 

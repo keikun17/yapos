@@ -11,6 +11,14 @@ class QuotesController < ApplicationController
     end
   end
 
+  # TODO : Change name? the path name is ugly (pending_client_po_quote_path)
+  # must be a sign that there is a better name for this out there.
+  def pending_client_po
+    @quotes = Quote.pending_client_order.paginate(page: params[:page], per_page:20)
+    @decorated_quotes = QuoteDecorator.decorate_collection(@quotes)
+    render 'index'
+  end
+
   def pending
     @quotes = Quote.with_pending_requests
     @quotes = @quotes.paginate(page: params[:page], per_page: 20)
