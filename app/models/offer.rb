@@ -20,6 +20,15 @@ class Offer < ActiveRecord::Base
     :price_basis
 
   belongs_to :request
+
+  counter_culture :request, column_name: Proc.new {|model|
+    binding.pry
+    "#{model.client_purchased_status}_count"
+  }, :column_names => {
+    ["offers.order_reference <> ''"] => 'client_purchased_count',
+    ["offers.order_reference = '' or offers.order_reference is null"] => 'non_client_purchased_count'
+  }
+
   belongs_to :supplier
   belongs_to :order,
     :primary_key => 'reference',
@@ -60,6 +69,15 @@ class Offer < ActiveRecord::Base
 
   delegate :ordered_at, to: :supplier_purchase, allow_nil: true, prefix: true
 
+  def client_purchased_status
+    binding.pry
+    if self.order_reference.blank?
+      'non_client_purchased_count'
+    else
+      'client_purchased_count'
+    end
+  end
+  
   def purchase_from_supplier
     SupplierPurchase.find_or_create_by(order_id: self.order.id, reference: self.supplier_order.reference)
   end

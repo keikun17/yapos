@@ -36,6 +36,7 @@ group :production do
   gem 'mysql2'
 end
 
+gem 'counter_culture'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', :platforms => :ruby
