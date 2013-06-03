@@ -16,7 +16,6 @@ class QuotesController < ApplicationController
   def pending_client_po
     @quotes = Quote.pending_client_order.paginate(page: params[:page], per_page:20)
     @decorated_quotes = QuoteDecorator.decorate_collection(@quotes)
-    render 'index'
   end
 
   def pending
