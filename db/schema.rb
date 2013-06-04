@@ -90,12 +90,12 @@ ActiveRecord::Schema.define(version: 20130603165907) do
     t.integer  "supplier_id"
     t.text     "quoted_specifications"
     t.text     "remarks"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.float    "quantity"
     t.string   "unit"
-    t.integer  "client_purchased_count"
-    t.integer  "non_client_purchased_count"
+    t.integer  "client_purchased_count",     default: 0
+    t.integer  "non_client_purchased_count", default: 0
   end
 
   create_table "supplier_orders", force: true do |t|

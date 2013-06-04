@@ -19,7 +19,7 @@ class Request < ActiveRecord::Base
   validates :specs, :presence => true
 
   scope :pending_client_order, -> do
-    includes(:offers).merge(Offer.pending_client_order)
+    where('requests.non_client_purchased_count > 0 and requests.client_purchased_count = 0')
   end
 
 end
