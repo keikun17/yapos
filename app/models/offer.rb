@@ -69,7 +69,6 @@ class Offer < ActiveRecord::Base
   delegate :ordered_at, to: :supplier_purchase, allow_nil: true, prefix: true
 
   def client_purchased_status
-    binding.pry
     if self.order_reference.blank?
       'non_client_purchased_count'
     else
