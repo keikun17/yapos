@@ -22,7 +22,6 @@ class Offer < ActiveRecord::Base
   belongs_to :request
 
   counter_culture :request, column_name: Proc.new {|model|
-    binding.pry
     "#{model.client_purchased_status}_count"
   }, :column_names => {
     ["offers.order_reference <> ''"] => 'client_purchased_count',
