@@ -27,6 +27,7 @@
   %thead
     %tr
       %th CLIENT PR#
+      %th CLIENT
       %th CLIENT PO#
       %th Offered Specs
       %th Supplier's Unit Price
@@ -34,6 +35,7 @@
     - @offers.each do |offer|
       %tr
         %td= link_to offer.quote_reference, offer.quote
+        %td= link_to offer.client_name, client_path(offer.client)
         %td= link_to offer.order_reference, offer.order
         %td
           = offer.quantity_label('label label-inverse')
