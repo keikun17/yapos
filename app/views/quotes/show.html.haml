@@ -113,14 +113,14 @@
             %strong Warranty:
             = offer.warranty
             %br
-          %td
+          %td.text-warning
             - if offer
               %strong Unit Price:
               = offer.display_buying_price
               %br
               %strong Total:
               = offer.display_total_buying_price
-          %td
+          %td.text-success
             - if offer
               %strong Unit Price:
               = offer.display_selling_price
