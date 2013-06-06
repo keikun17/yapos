@@ -134,7 +134,9 @@
       - offers.each do |offer|
         %tr
           %td= simple_format(offer.specs)
-          %td= offer.supplier_name
+          %td
+            - if offer.supplier
+              = link_to offer.supplier_name, offer.supplier
           %td
             %strong Notes:
             = offer.remarks
