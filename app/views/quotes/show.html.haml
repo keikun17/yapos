@@ -81,7 +81,7 @@
       %th Buying Price
       %th Selling Price
       %th Order Reference
-      %th 
+      %th
   %tbody
     - @requests.each do |req|
       - offer_count = req.offers.size
@@ -98,7 +98,9 @@
             %strong Remarks:
             #{simple_format(req.remarks)}
         %td= simple_format(offer.specs) if offer
-        %td= offer.supplier_name if offer
+        %td
+          - if offer and offer.supplier
+            = link_to offer.supplier_name, offer.supplier
         %td
           - if offer
             %strong Notes:
