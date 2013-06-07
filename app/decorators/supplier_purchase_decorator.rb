@@ -4,6 +4,10 @@ class SupplierPurchaseDecorator < Decorator
     @supplier_name ||=  first_supplier_name
   end
 
+  def link_to_supplier
+    @supplier_link ||= first_supplier_link
+  end
+
   def ordered_from_supplier_at(options={})
     options[:required_text] ||= 'Please Fill Up'
     if self.ordered_at.nil?
@@ -47,6 +51,12 @@ class SupplierPurchaseDecorator < Decorator
   def first_supplier_name
     if !supplier_orders.empty?
       supplier_orders.first.supplier_name
+    end
+  end
+
+  def first_supplier_link
+    if !supplier_orders.empty? and !order.nil?
+      link_to first_supplier_name, supplier_path(decorated_object.order.suppliers.first)
     end
   end
 
