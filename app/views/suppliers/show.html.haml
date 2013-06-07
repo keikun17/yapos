@@ -29,6 +29,7 @@
       %th CLIENT PR#
       %th CLIENT
       %th CLIENT PO#
+      %th Ordered from Supplier At
       %th Offered Specs
       %th Supplier's Unit Price
       %th Our Unit Price
@@ -38,8 +39,9 @@
         %td= link_to offer.client_name, client_path(offer.client)
         %td
           = link_to offer.order_reference, offer.order
+        %td
           - if offer.supplier_order_ordered_from_supplier?
-            = offer.ordered_from_supplier_at
+            = offer.ordered_from_supplier_at(required_text: 'Edit PO to add date')
         %td
           = offer.quantity_label('label label-inverse')
           = offer.display_summary

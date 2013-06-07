@@ -4,10 +4,11 @@ class SupplierPurchaseDecorator < Decorator
     @supplier_name ||=  first_supplier_name
   end
 
-  def ordered_from_supplier_at
+  def ordered_from_supplier_at(options={})
+    options[:required_text] ||= 'Please Fill Up'
     if self.ordered_at.nil?
       str = content_tag :i do
-        link_to "Please Fill Up", edit_supplier_purchase_path(decorated_object)
+        link_to options[:required_text], edit_supplier_purchase_path(decorated_object)
       end
     else
       str = self.ordered_at.to_date.to_s(:long)
