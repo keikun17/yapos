@@ -1,8 +1,8 @@
 class SupplierPurchasesController < ApplicationController
 
   def index
-    @supplier_purchase = SupplierPurchase.where("reference <> ''")
-    @supplier_purchases = @supplier_purchase.order('ordered_at desc')
+    @supplier_purchases = SupplierPurchase.where("reference <> ''")
+    @supplier_purchases = @supplier_purchases.order('ordered_at desc')
     @supplier_purchases = @supplier_purchases.order('ordered_at is null desc')
     @supplier_purchases = @supplier_purchases.paginate(page: params[:page], per_page: 20)
     @decorated_supplier_purchases = SupplierPurchaseDecorator.decorate_collection(@supplier_purchases)
