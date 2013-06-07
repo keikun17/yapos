@@ -19,7 +19,7 @@ class OrderDecorator < Decorator
   def supplier_links
     links = []
     suppliers.each do |supplier|
-      links << link_to(supplier.name, supplier_path(supplier.name))
+      links << link_to(supplier.name, supplier_path(supplier))
     end
     raw links.join(',')
   end
