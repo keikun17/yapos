@@ -42,6 +42,9 @@ class Offer < ActiveRecord::Base
 
   scope :purchased, -> { where("order_reference <> '' ") }
   scope :pending_client_order, -> { where("offers.order_reference = '' or offers.order_reference is null") }
+  scope :by_supplier_order_date, -> do
+    includes(:supplier_order).order("supplier_orders.ordered_at is null desc").order("supplier_orders.ordered_at desc")
+  end
 
   # Client Delegation
   delegate :name, to: :client, prefix: true, allow_nil: true

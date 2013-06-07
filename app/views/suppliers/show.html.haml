@@ -36,7 +36,10 @@
       %tr
         %td= link_to offer.quote_reference, offer.quote
         %td= link_to offer.client_name, client_path(offer.client)
-        %td= link_to offer.order_reference, offer.order
+        %td
+          = link_to offer.order_reference, offer.order
+          - if offer.supplier_order_ordered_from_supplier?
+            = offer.ordered_from_supplier_at
         %td
           = offer.quantity_label('label label-inverse')
           = offer.display_summary
