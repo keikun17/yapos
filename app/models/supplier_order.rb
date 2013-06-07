@@ -28,7 +28,7 @@ class SupplierOrder < ActiveRecord::Base
   validate :offer_id, presence: true
 
   def ordered_from_supplier?
-    !self.reference.blank? && !self.ordered_at.blank?
+    !self.reference.blank? && !ordered_at.blank?
   end
 end
 
