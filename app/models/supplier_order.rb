@@ -23,6 +23,8 @@ class SupplierOrder < ActiveRecord::Base
   delegate :total_buying_price, to: :offer, allow_nil: true, prefix: true
   delegate :price_vat_status, to: :offer, allow_nil: true, prefix: true
   delegate :price_basis, to: :offer, allow_nil: true, prefix: true
+
+  delegate :ordered_at, to: :supplier_purchase, allow_nil: true, prefix: false
   delegate :ordered_at, to: :supplier_purchase, allow_nil: true, prefix: true
 
   validate :offer_id, presence: true

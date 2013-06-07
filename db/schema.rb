@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130603165907) do
+ActiveRecord::Schema.define(version: 20130607093706) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(version: 20130603165907) do
   create_table "supplier_orders", force: true do |t|
     t.integer  "offer_id"
     t.string   "reference"
-    t.datetime "ordered_at"
     t.datetime "estimated_manufactured_at"
     t.datetime "manufactured_at"
     t.datetime "estimated_delivered_at"
