@@ -66,7 +66,9 @@
         %td= offer.request_specs
         %td= offer.specs
         %td= offer.actual_specs
-        %td= offer.supplier_name
+        %td
+          - if offer.supplier.present?
+            = link_to offer.supplier_name, offer_path(offer.supplier)
         %td= offer.remarks
         %td= offer.display_buying_price
         %td= offer.display_selling_price
@@ -76,7 +78,9 @@
           %td= offer.request_specs
           %td= offer.specs
           %td= offer.actual_specs
-          %td= offer.supplier_name
+          %td
+            - if offer.supplier.present?
+              link_to offer.supplier_name, offer_path(supplier.offer)
           %td= offer.remarks
           %td= offer.display_buying_price
           %td= offer.display_selling_price
