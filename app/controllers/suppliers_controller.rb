@@ -14,7 +14,17 @@ class SuppliersController < ApplicationController
   # GET /suppliers/1.json
   def show
     @supplier = Supplier.find(params[:id])
-    @offers = OfferDecorator.decorate_collection(@supplier.offers.by_supplier_order_date)
+    @offers = @supplier.offers
+
+    @offers = if only_pending_offers?
+                @offers.pending_client_order.by_quote_date
+              elsif only_client_purchased_offers?
+                @offers.purchased.by_supplier_order_date
+              else
+                @offers.by_quote_date
+              end
+
+    @offers = OfferDecorator.decorate_collection(@offers)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -81,4 +91,15 @@ class SuppliersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def only_pending_offers?
+    params[:filter_offers].eql?('pending_offers')
+  end
+
+  def only_client_purchased_offers?
+    params[:filter_offers].eql?('ordered_offers')
+  end
+  
 end

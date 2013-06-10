@@ -42,6 +42,9 @@ class Offer < ActiveRecord::Base
 
   scope :purchased, -> { where("order_reference <> '' ") }
   scope :pending_client_order, -> { where("offers.order_reference = '' or offers.order_reference is null") }
+  scope :by_quote_date, -> do
+    includes(:quote).order("quotes.quote_date desc")
+  end
   scope :by_supplier_order_date, -> do
     includes(supplier_order: :supplier_purchase).order("supplier_purchases.ordered_at is null desc").order("supplier_purchases.ordered_at desc")
   end
