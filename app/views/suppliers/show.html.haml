@@ -52,7 +52,7 @@
         %td
           = link_to offer.order_reference, offer.order
         %td
-          - if offer.supplier_order_ordered_from_supplier?
+          - if offer.supplier_purchase
             = offer.ordered_from_supplier_at(required_text: 'Edit PO to add date')
         %td
           = offer.quantity_label('label label-inverse')
