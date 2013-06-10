@@ -150,6 +150,12 @@ class OfferDecorator < Decorator
     end
   end
 
+  def quote_date
+    if !decorated_object.quote_date.blank?
+      decorated_object.quote_date.to_date.to_s(:long)
+    end
+  end
+
   private
 
     def display_none

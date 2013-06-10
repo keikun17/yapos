@@ -47,6 +47,7 @@
     - @offers.each do |offer|
       %tr
         %td= link_to offer.quote_reference, offer.quote
+        %td= offer.quote_date
         %td= link_to offer.client_name, client_path(offer.client)
         %td
           = link_to offer.order_reference, offer.order
