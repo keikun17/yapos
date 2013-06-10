@@ -25,5 +25,6 @@ end
 #  signatory_position :string(255)
 #  contact_person     :string(255)
 #  remarks            :text
+#  internal_notes     :text
 #
 

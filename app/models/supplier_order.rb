@@ -41,7 +41,6 @@ end
 #  id                        :integer          not null, primary key
 #  offer_id                  :integer
 #  reference                 :string(255)
-#  ordered_at                :datetime
 #  estimated_manufactured_at :datetime
 #  manufactured_at           :datetime
 #  estimated_delivered_at    :datetime

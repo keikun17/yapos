@@ -28,15 +28,17 @@ end
 #
 # Table name: requests
 #
-#  id                    :integer          not null, primary key
-#  specs                 :text
-#  quote_id              :integer
-#  supplier_id           :integer
-#  quoted_specifications :text
-#  remarks               :text
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
-#  quantity              :float
-#  unit                  :string(255)
+#  id                         :integer          not null, primary key
+#  specs                      :text
+#  quote_id                   :integer
+#  supplier_id                :integer
+#  quoted_specifications      :text
+#  remarks                    :text
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  quantity                   :float
+#  unit                       :string(255)
+#  client_purchased_count     :integer          default(0)
+#  non_client_purchased_count :integer          default(0)
 #
 
