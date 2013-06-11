@@ -13,6 +13,8 @@ class SupplierPurchase < ActiveRecord::Base
     :signatory_position
 
   belongs_to :order
+  has_many :offers, through: :supplier_orders
+
   has_many :supplier_orders,
     primary_key: :reference,
     foreign_key: :reference
