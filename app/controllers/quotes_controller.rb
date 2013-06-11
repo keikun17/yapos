@@ -64,7 +64,11 @@ class QuotesController < ApplicationController
     respond_to do |format|
       if @quote.save
         @quote.compute_total_offered_prices
+
+        # FIME : write this quote instance method `@quote.order_purchased_from_supplier?`
+        # that contains the line below
         Purchase.make(@quote.offers.purchased)
+
         format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
         format.json { render json: @quote, status: :created, location: @quote }
       else
