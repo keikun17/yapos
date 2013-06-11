@@ -1,9 +1,10 @@
 class SupplierPurchasesController < ApplicationController
 
   def index
-    @supplier_purchases = SupplierPurchase.where("reference <> ''")
-    @supplier_purchases = @supplier_purchases.order('ordered_at desc')
-    @supplier_purchases = @supplier_purchases.order('ordered_at is null desc')
+    @supplier_purchases = SupplierPurchase.where("supplier_purchases.reference <> ''")
+    @supplier_purchases = @supplier_purchases.includes(:supplier_orders).where('supplier_orders.id is not null')
+    @supplier_purchases = @supplier_purchases.order('supplier_purchases.ordered_at desc')
+    @supplier_purchases = @supplier_purchases.order('supplier_purchases.ordered_at is null desc')
     @supplier_purchases = @supplier_purchases.paginate(page: params[:page], per_page: 20)
     @decorated_supplier_purchases = SupplierPurchaseDecorator.decorate_collection(@supplier_purchases)
   end
