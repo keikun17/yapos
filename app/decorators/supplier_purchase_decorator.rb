@@ -54,6 +54,7 @@ class SupplierPurchaseDecorator < Decorator
     end
   end
 
+  # FIXME Ugly!, the 'order' association in particular...
   def first_supplier_link
     if !supplier_orders.empty? and !order.nil?
       link_to first_supplier_name, supplier_path(decorated_object.order.suppliers.first)
