@@ -157,10 +157,10 @@
             %strong Total:
             = offer.display_total_buying_price
           %td
-            %strong Unit Price:
+            %strong.text-warning Unit Price:
             = offer.display_selling_price
             %br
-            %strong Total:
+            %strong.text-success Total:
             = offer.display_total_selling_price
           %td= link_to offer.order_reference, offer.order if offer.order
 
