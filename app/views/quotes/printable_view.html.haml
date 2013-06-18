@@ -54,7 +54,7 @@
           %th{colspan: @quote.offer_spec_colspan} OFFERED:
           %th{width: '80px'} UNIT PRICE
           - unless @quote.offer_details_mergable?(:remarks)
-            %th NOTES
+            %th{width: '80px'} NOTES
           - unless @quote.offer_details_mergable?(:delivery)
             %th{width: '80px'} DELIVERY
           - unless @quote.offer_details_mergable?(:terms)
