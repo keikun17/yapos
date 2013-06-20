@@ -95,8 +95,9 @@
           %strong= req.display_quantity
           = simple_format(req.specs)
           - if !req.remarks.blank?
-            %strong Remarks:
-            #{simple_format(req.remarks)}
+            .text-info
+              %strong Internal Notes:
+              #{simple_format(req.remarks)}
         %td= simple_format(offer.specs) if offer
         %td
           - if offer and offer.supplier
