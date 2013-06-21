@@ -7,6 +7,8 @@
       %th= model_class.human_attribute_name(:name)
       %th= model_class.human_attribute_name(:emails)
       %th= model_class.human_attribute_name(:contact_numbers)
+      %th Orders
+      %th Quotes
       %th=t '.actions', :default => t("helpers.actions")
   %tbody
     - @clients.each do |client|
@@ -14,6 +16,8 @@
         %td= link_to client.name, client_path(client)
         %td= client.emails
         %td= client.contact_numbers
+        %td= client.order_count
+        %td= client.quote_count
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_client_path(client), :class => 'btn btn-mini'
           = link_to t('.destroy', :default => t("helpers.links.destroy")), client_path(client), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'

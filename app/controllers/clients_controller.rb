@@ -2,7 +2,7 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.all
+    @clients = ClientDecorator.decorate_collection(Client.all)
 
     respond_to do |format|
       format.html # index.html.erb
