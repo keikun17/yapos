@@ -24,6 +24,8 @@ class Quote < ActiveRecord::Base
   has_many :suppliers, :through => :offers
   has_many :orders, :through => :offers
 
+  has_many :supplier_orders, through: :orders
+
   validates_associated :attachments
   validates_associated :requests
 
