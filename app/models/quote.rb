@@ -47,19 +47,49 @@ class Quote < ActiveRecord::Base
   delegate :name, :to => :supplier, :allow_nil => true, :prefix => true
 
   scope :unawarded, -> { where(:order_id => nil) }
+  scope :not_closed, where("quotes.status not in ('Cancelled', 'No Quote', 'Not Awarded')");
+
   scope :with_pending_requests, -> do
-    includes(:offers).where(offers: {request_id: nil}).where("quotes.status != 'Not Awarded' and quotes.status != 'No Quote'") 
+    not_closed.includes(:offers).where(offers: {request_id: nil})
   end
+
   default_scope -> { order('quotes.quote_date desc, quotes.id desc') }
 
-  scope :not_closed, where("quotes.status not in ('Cancelled', 'No Quote', 'Not Awarded')");
   scope :pending_client_order, not_closed.includes(:requests).merge(Request.pending_client_order)
+  scope :pending_supplier_order, -> {
+    s = not_closed.includes([:supplier_orders, :offers])
+
+    # Where the Supplier order has no Supplier PO Reference
+    s = s.where("supplier_orders.reference = '' or supplier_orders.reference is null")
+
+    # Quotes that at least has at least 1 client ordered offer
+    s = s.where("offers.id is not null").where("offers.order_reference <> ''")
+
+    # s = s.where("offers.order_reference <> ''")
+    s
+  }
+
+  scope :manufacturing, -> do
+    s = not_closed.includes(:supplier_orders)
+    s = s.where("supplier_orders.reference != '' or supplier_orders.reference is not null")
+    s = s.where("supplier_orders.delivered_at is null")
+    s
+  end
+
+  scope :for_delivery, -> do
+    s = not_closed.includes(:supplier_orders)
+    s = s.where("supplier_orders.reference <> ''")
+    s = s.where("supplier_orders.estimated_manufactured_at is not null")
+    s = s.where("'#{Time.now.to_s(:db)}' > supplier_orders.estimated_manufactured_at")
+    s = s.where("supplier_orders.delivered_at is null")
+    s
+  end
 
   # Tire/ElasticSearch Configuration
-  
-  mapping do 
-    
-    # For more info abou the #includ_in_all key 
+
+  mapping do
+
+    # For more info abou the #includ_in_all key
     # http://www.elasticsearch.org/guide/reference/mapping/all-field/
     indexes :quote_date, {type: 'date', include_in_all: false}
 

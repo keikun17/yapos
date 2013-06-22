@@ -1,6 +1,8 @@
 Yapos::Application.routes.draw do
   devise_for :users
 
+  get 'kanban', to: 'kanban#show'
+
   resources :orders do
     collection do
       get 'pending'
