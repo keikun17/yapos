@@ -19,7 +19,7 @@ class Quote < ActiveRecord::Base
 
   has_many :attachments, :as => :attachable
   has_many :requests, dependent: :destroy
-  has_many :offers, :through => :requests 
+  has_many :offers, :through => :requests
 
   has_many :suppliers, :through => :offers
   has_many :orders, :through => :offers
@@ -32,7 +32,7 @@ class Quote < ActiveRecord::Base
     :reject_if => lambda { |a| a[:document].nil? }
 
   accepts_nested_attributes_for :requests,
-    :allow_destroy => true, 
+    :allow_destroy => true,
     :reject_if => lambda { |r| r[:supplier].nil? &&
                            r[:specs].blank? &&
                            r[:remarks].blank?  }

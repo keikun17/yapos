@@ -1,6 +1,6 @@
 class Request < ActiveRecord::Base
-  attr_accessible :specs, 
-    :quantity, 
+  attr_accessible :specs,
+    :quantity,
     :unit,
     :remarks,
     :offers_attributes
@@ -12,7 +12,7 @@ class Request < ActiveRecord::Base
   accepts_nested_attributes_for :offers,
     :allow_destroy => true,
     :reject_if => lambda { |o| o[:specs].blank? &&
-                          o[:price].blank? 
+                          o[:price].blank?
   }
   delegate :name, :to => :supplier, :prefix => true, :allow_nil => true
 
