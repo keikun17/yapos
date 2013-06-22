@@ -3,13 +3,13 @@ class Quote < ActiveRecord::Base
   include Tire::Model::Callbacks
 
   attr_accessible :description,
-    :signatory, 
+    :signatory,
     :signatory_position,
     :contact_person,
     :quantity,
     :quote_date,
     :quote_reference,
-    :supplier_id, 
+    :supplier_id,
     :status,
     :client_id,
     :requests_attributes,
