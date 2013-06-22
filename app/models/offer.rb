@@ -80,9 +80,9 @@ class Offer < ActiveRecord::Base
 
   def client_purchased_status
     if self.order_reference.blank?
-      'non_client_purchased_count'
+      'non_client_purchased'
     else
-      'client_purchased_count'
+      'client_purchased'
     end
   end
   
