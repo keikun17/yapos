@@ -52,7 +52,7 @@
           - quote.supplier_orders.each do |supplier_order|
             - request = RequestDecorator.new(supplier_order.offer.request)
             %ul
-              %li
+              %li{style: 'margin-bottom: 5px'}
                 = request.to_label('label label-important')
                 = supplier_order.offer.summary
                 %br
@@ -72,7 +72,7 @@
           - quote.supplier_orders.each do |supplier_order|
             - request = RequestDecorator.new(supplier_order.offer.request)
             %ul
-              %li
+              %li{style: 'margin-bottom: 5px'}
                 = request.to_label('label label-important')
                 = supplier_order.offer.summary
                 %br
@@ -94,7 +94,7 @@
           - quote.supplier_orders.each do |supplier_order|
             - request = RequestDecorator.new(supplier_order.offer.request)
             %ul
-              %li
+              %li{style: 'margin-bottom: 5px'}
                 = request.to_label('label label-important')
                 = supplier_order.offer.summary
                 %br
