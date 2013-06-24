@@ -3,7 +3,6 @@ class SupplierOrder < ActiveRecord::Base
     :offer_id,
     :ordered_at, #FIXME : remove this and delegate to supplier_purchase
     :estimated_manufactured_at,
-    :manufactured_at,
     :estimated_delivered_at,
     :delivered_at,
     :actual_specs
@@ -42,7 +41,6 @@ end
 #  offer_id                  :integer
 #  reference                 :string(255)
 #  estimated_manufactured_at :datetime
-#  manufactured_at           :datetime
 #  estimated_delivered_at    :datetime
 #  delivered_at              :datetime
 #  created_at                :datetime         not null

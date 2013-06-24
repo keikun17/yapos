@@ -70,7 +70,6 @@ class Offer < ActiveRecord::Base
   delegate :reference,
     :ordered_at,
     :estimated_manufactured_at,
-    :manufactured_at,
     :estimated_delivered_at,
     :delivered_at,
     :delivered?,

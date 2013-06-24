@@ -19,7 +19,6 @@
       %th Our PO#
       %th Ordered from Supplier at
       %th Estimated EX-Works Date
-      %th EX-Works Date
       %th Estimated Delivery Date
       %th Delivered at
   %tbody
@@ -47,8 +46,6 @@
           %td
             %i= offer.estimated_manufacture_end_date
           %td
-            %i= offer.actual_manufacture_end_date
-          %td
             %i= offer.estimated_delivery_date
           %td
             %i= offer.delivered_at
@@ -68,8 +65,6 @@
                 %i= offer.ordered_from_supplier_at
               %td
                 %i= offer.estimated_manufacture_end_date
-              %td
-                %i= offer.actual_manufacture_end_date
               %td
                 %i= offer.estimated_delivery_date
               %td

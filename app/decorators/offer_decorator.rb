@@ -125,15 +125,6 @@ class OfferDecorator < Decorator
     end
   end
 
-  def actual_manufacture_end_date
-    if date = __getobj__.supplier_order_manufactured_at
-    date.to_date.to_s
-    else
-      display_none
-    end
-
-  end
-
   def estimated_delivery_date
     if date = __getobj__.supplier_order_estimated_delivered_at
       date.to_date.to_s

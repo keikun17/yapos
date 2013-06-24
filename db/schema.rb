@@ -11,20 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130607093706) do
+ActiveRecord::Schema.define(version: 20130624052622) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
     t.string   "attachable_type"
     t.string   "document"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "clients", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "emails"
     t.string   "contact_numbers"
     t.text     "address"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20130607093706) do
     t.string   "currency"
     t.float    "currency_conversion"
     t.string   "order_reference"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.text     "remarks"
     t.string   "terms"
     t.string   "delivery"
@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 20130607093706) do
   create_table "orders", force: true do |t|
     t.string   "reference"
     t.datetime "purchase_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "custom_quote_reference"
     t.text     "description"
     t.integer  "supplier_id"
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 20130607093706) do
     t.float    "quantity"
     t.text     "description"
     t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "client_id"
     t.integer  "supplier_id"
     t.integer  "order_id"
@@ -90,8 +90,8 @@ ActiveRecord::Schema.define(version: 20130607093706) do
     t.integer  "supplier_id"
     t.text     "quoted_specifications"
     t.text     "remarks"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.float    "quantity"
     t.string   "unit"
     t.integer  "client_purchased_count",     default: 0
@@ -102,11 +102,10 @@ ActiveRecord::Schema.define(version: 20130607093706) do
     t.integer  "offer_id"
     t.string   "reference"
     t.datetime "estimated_manufactured_at"
-    t.datetime "manufactured_at"
     t.datetime "estimated_delivered_at"
     t.datetime "delivered_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.text     "actual_specs"
   end
 
@@ -131,8 +130,8 @@ ActiveRecord::Schema.define(version: 20130607093706) do
 
   create_table "suppliers", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "emails"
     t.string   "contact_numbers"
     t.text     "address"
@@ -149,8 +148,8 @@ ActiveRecord::Schema.define(version: 20130607093706) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
