@@ -8,6 +8,8 @@
         %label.control-label Specs
         .controls
           = simple_format(supplier_order.offer.summary)
+          %br
+          = simple_format(supplier_order.offer.display_actual_specs)
 
       .control-group
         = f.label :delivered_at, 'Delivered at', class: 'control-label'

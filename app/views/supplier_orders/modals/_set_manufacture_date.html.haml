@@ -8,6 +8,7 @@
         %label.control-label Specs
         .controls
           = simple_format(supplier_order.offer.summary)
+          = simple_format(supplier_order.offer.display_actual_specs)
 
       .control-group
         = f.label :estimated_manufactured_at, 'Estimate Manufacture/Completion date', class: 'control-label'
