@@ -56,7 +56,7 @@ class Quote < ActiveRecord::Base
   default_scope -> { order('quotes.quote_date desc, quotes.id desc') }
 
   scope :pending_client_order, not_closed.includes(:requests).merge(Request.pending_client_order)
-  scope :pending_supplier_order, -> {
+  scope :pending_supplier_order, -> do
     s = not_closed.includes([:supplier_orders, :offers])
 
     # Where the Supplier order has no Supplier PO Reference
@@ -67,20 +67,28 @@ class Quote < ActiveRecord::Base
 
     # s = s.where("offers.order_reference <> ''")
     s
-  }
+  end
+
+  # Quotes that needs to be have the ex-works date set
+  scope :for_scheduling, -> do
+    s = not_closed.includes(:supplier_orders)
+    s = s.where("supplier_orders.reference != '' or supplier_orders.reference is not null")
+    s = s.where("supplier_orders.estimated_manufactured_at is null")
+    s = s.where("supplier_orders.delivered_at is null")
+    s
+  end
 
   scope :manufacturing, -> do
     s = not_closed.includes(:supplier_orders)
     s = s.where("supplier_orders.reference != '' or supplier_orders.reference is not null")
+    s = s.where("'#{Time.now.to_s(:db)}' < supplier_orders.estimated_manufactured_at")
     s = s.where("supplier_orders.delivered_at is null")
     s
   end
 
   scope :for_delivery, -> do
     s = not_closed.includes(:supplier_orders)
-    s = s.where("supplier_orders.reference <> ''")
-    s = s.where("supplier_orders.estimated_manufactured_at is not null")
-    s = s.where("'#{Time.now.to_s(:db)}' > supplier_orders.estimated_manufactured_at")
+    s = s.where("'#{Time.now.to_s(:db)}' >= supplier_orders.estimated_manufactured_at")
     s = s.where("supplier_orders.delivered_at is null")
     s
   end
