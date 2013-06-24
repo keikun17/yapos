@@ -28,12 +28,16 @@
           - quote.offers.pending_supplier_order.each do |offer|
             - request = RequestDecorator.new(offer.request)
             %ul
-              %li
+              %li{style: 'margin-bottom: 5px'}
                 = request.to_label('label label-important')
-                = offer.summary
+                = offer.summary || offer.specs
                 %br
                 %strong Client PO:
+                %br
                 = offer.order_reference
+                = link_to_modal("Order from Supplier", offer, {class: 'btn btn-small btn-primary'})
+
+            = render 'offers/modals/pending', modal_id: dom_id(offer), offer: OfferDecorator.new(offer)
 
 
   .span3
@@ -50,6 +54,7 @@
                 = supplier_order.offer.summary
                 %br
                 %strong Client PO:
+                %br
                 = supplier_order.offer.order_reference
                 %br
                 %strong Supplier PO:
@@ -69,6 +74,7 @@
                 = supplier_order.offer.summary
                 %br
                 %strong Client PO:
+                %br
                 = supplier_order.offer.order_reference
                 %br
                 %strong Supplier PO:
@@ -90,6 +96,7 @@
                 = supplier_order.offer.summary
                 %br
                 %strong Client PO:
+                %br
                 = supplier_order.offer.order_reference
                 %br
                 %strong Supplier PO:
