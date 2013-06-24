@@ -3,7 +3,7 @@
     %h4 Needs Quote
     %ul.unstyled
       - @need_quote.each do |quote|
-        %li{style: ' border-left: 2px solid blue; margin-top: 5px; padding-left: 5px'}
+        %li{style: ' border-left: 4px solid blue; border-top: 1px solid blue; margin-top: 5px; padding-left: 2px'}
           = link_to quote.client_name, quote_path(quote)
           - RequestDecorator.decorate_collection(quote.requests.without_offers).each do |request|
             %ul
@@ -13,7 +13,7 @@
     %h4 Need Client PO
     %ul.unstyled
       - @waiting_client_order.each do |quote|
-        %li{style: 'border-left: 2px solid green; margin-top: 5px; padding-left: 5px'}
+        %li{style: 'border-left: 4px solid green; border-top: 1px solid green; margin-top: 5px; padding-left: 2px'}
           = link_to quote.client_name, quote_path(quote)
           - RequestDecorator.decorate_collection(quote.requests.pending_client_order).each do |request|
             %ul
@@ -23,13 +23,15 @@
     %h4 Need to Order from Supplier
     %ul.unstyled
       - @need_supplier_order.each do |quote|
-        = link_to quote.quote_reference, quote_path(quote)
-        %li{style: 'border-left: 2px solid red; margin-top: 5px; padding-left: 5px'}
+        %li{style: 'border-left: 4px solid red; border-top: 1px solid red; margin-top: 5px; padding-left: 2px'}
+          = link_to quote.quote_reference, quote_path(quote)
           - quote.offers.purchased.each do |offer|
             - request = RequestDecorator.new(offer.request)
             %ul
               %li
                 = request.to_label('label label-important')
+                %br
+                %strong Client PO:
                 = offer.order_reference
 
 
@@ -37,41 +39,57 @@
     %h4 For Scheduling
     %ul.unstyled
       - @for_scheduling.each do |quote|
-        %li{style: 'border-left: 2px solid pink; margin-top: 5px; padding-left: 5px'}
+        %li{style: 'border-left: 4px solid pink; border-top: 1px solid pink; margin-top: 5px; padding-left: 2px'}
           = link_to quote.quote_reference, quote_path(quote)
           - quote.supplier_orders.each do |supplier_order|
             - request = RequestDecorator.new(supplier_order.offer.request)
             %ul
               %li
                 = request.to_label('label label-important')
+                %br
+                %strong Client PO:
                 = supplier_order.offer.order_reference
+                %br
+                %strong Supplier PO:
                 = supplier_order.reference
 
   .span2
     %h4 Manufacture / Process Started
     %ul.unstyled
       - @manufacturing.each do |quote|
-        %li{style: 'border-left: 2px solid yellow; margin-top: 5px; padding-left: 5px'}
+        %li{style: 'border-left: 4px solid orange; border-top: 1px solid orange; margin-top: 5px; padding-left: 2px'}
           = link_to quote.quote_reference, quote_path(quote)
           - quote.supplier_orders.each do |supplier_order|
             - request = RequestDecorator.new(supplier_order.offer.request)
             %ul
               %li
                 = request.to_label('label label-important')
+                %br
+                %strong Client PO:
                 = supplier_order.offer.order_reference
+                %br
+                %strong Supplier PO:
                 = supplier_order.reference
+                %br
+                %strong Finish:
                 = supplier_order.estimated_manufactured_at.to_date
   .span2
     %h4 For Delivery
     %ul.unstyled
       - @for_delivery.each do |quote|
-        %li{style: 'border-left: 2px solid violet; margin-top: 5px; padding-left: 5px'}
+        %li{style: 'border-left: 4px solid violet; border-top: 1px solid violet; margin-top: 5px; padding-left: 5px'}
           = link_to quote.quote_reference, quote_path(quote)
           - quote.supplier_orders.each do |supplier_order|
             - request = RequestDecorator.new(supplier_order.offer.request)
             %ul
               %li
                 = request.to_label('label label-important')
+                %br
+                %strong Client PO:
                 = supplier_order.offer.order_reference
+                %br
+                %strong Supplier PO:
                 = supplier_order.reference
+                %br
+                %strong Finish:
                 = supplier_order.estimated_manufactured_at.to_date
