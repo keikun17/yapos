@@ -16,6 +16,8 @@ Yapos::Application.routes.draw do
 
   resources :offers, only: :update
 
+  resources :supplier_orders, only: :update
+
   resources :supplier_purchases do
     member do
       get 'print'

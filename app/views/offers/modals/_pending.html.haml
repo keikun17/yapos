@@ -11,14 +11,14 @@
           = simple_format(offer.display_actual_specs)
 
       - #TODO: dynamically building objects in views.. YUCK!
-      - offer.build_supplier_order if offer.supplier_order.nil? 
+      - offer.build_supplier_order if offer.supplier_order.nil?
 
       = f.fields_for :supplier_order do |ff|
         .control-group
           = ff.label :reference_po, 'Supplier PO Number', class: 'control-label'
           .controls
             = ff.text_field :reference, class: 'span6 text_field'
-        
+
     .modal-footer
       %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
       = f.submit nil, :class => 'btn btn-primary'
