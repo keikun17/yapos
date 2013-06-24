@@ -1,7 +1,9 @@
-%h4 For Delivery
+%h3 For Delivery
 %ul.unstyled
   - quotes.each do |quote|
     %li{style: 'border-left: 4px solid green; border-top: 1px solid green; margin-top: 5px; padding-left: 5px'}
+      %h4= quote.client_name
+      %br
       %strong= link_to quote.quote_reference, quote_path(quote)
       - quote.supplier_orders.each do |supplier_order|
         - request = RequestDecorator.new(supplier_order.offer.request)
