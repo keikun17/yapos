@@ -13,6 +13,7 @@
           %li{style: 'margin-bottom: 5px'}
             = request.to_label('label label-important')
             = offer.summary || offer.specs
+            %span.label.label-inverse= offer.supplier_name
             %br
             %strong Client PO:
             = offer.order_reference

@@ -9,12 +9,13 @@
         %ul
           %li{style: 'margin-bottom: 5px'}
             = request.to_label('label label-important')
-            = supplier_order.offer.summary
+            = supplier_order.offer.summary || supplier_order.offer.specs
             %br
             %strong Client PO:
             = supplier_order.offer.order_reference
             %br
             %strong Supplier PO:
+            %span.label.label-inverse= supplier_order.offer.supplier_name
             = supplier_order.reference
             %br
             = link_to_modal("Estimate Manufacture Date", supplier_order, {class: 'btn btn-small btn-primary'})
