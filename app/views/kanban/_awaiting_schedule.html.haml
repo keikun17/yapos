@@ -1,7 +1,7 @@
 %h4 For Scheduling
 %ul.unstyled
   - quotes.each do |quote|
-    %li{style: 'border-left: 4px solid pink; border-top: 1px solid pink; margin-top: 5px; padding-left: 2px'}
+    %li{style: 'border-left: 4px solid blue; border-top: 1px solid blue; margin-top: 5px; padding-left: 2px'}
       %strong= link_to quote.quote_reference, quote_path(quote)
       - quote.supplier_orders.each do |supplier_order|
         - request = RequestDecorator.new(supplier_order.offer.request)
