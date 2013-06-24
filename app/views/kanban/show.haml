@@ -23,9 +23,12 @@
     %h4 Need to Order from Supplier
     %ul.unstyled
       - @need_supplier_order.each do |quote|
+        - offers = quote.offers.pending_supplier_order
+        - next if offers.empty?
         %li{style: 'border-left: 4px solid red; border-top: 1px solid red; margin-top: 5px; padding-left: 2px'}
           %strong= link_to quote.quote_reference, quote_path(quote)
-          - quote.offers.pending_supplier_order.each do |offer|
+
+          - offers.each do |offer|
             - request = RequestDecorator.new(offer.request)
             %ul
               %li{style: 'margin-bottom: 5px'}
