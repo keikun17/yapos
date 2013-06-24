@@ -29,6 +29,7 @@
             %a.brand(href="#") MLANDCORP POS
             .container.nav-collapse
               %ul.nav
+                %li= link_to "Graph", kanban_path
                 %li= link_to "RFQs", pending_quotes_path
                 %li= link_to "Client Orders", pending_orders_path
                 %li= link_to "Supplier Orders", supplier_purchases_path

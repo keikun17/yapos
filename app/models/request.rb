@@ -22,6 +22,19 @@ class Request < ActiveRecord::Base
     where('requests.non_client_purchased_count > 0 and requests.client_purchased_count = 0')
   end
 
+  scope :without_offers, -> do
+    includes(:offers).where(offers: {id: nil})
+  end
+
+  scope :with_offers, -> do
+    s = includes(:offers).where('offers.id is not null')
+  end
+
+  scope :with_client_purchased_offers, -> do
+    s.with_offers
+    s = s.where('offers.order_reference is not nul')
+  end
+
 end
 
 # == Schema Information
