@@ -25,7 +25,7 @@
       - @need_supplier_order.each do |quote|
         %li{style: 'border-left: 4px solid red; border-top: 1px solid red; margin-top: 5px; padding-left: 2px'}
           = link_to quote.quote_reference, quote_path(quote)
-          - quote.offers.purchased.each do |offer|
+          - quote.offers.pending_supplier_order.each do |offer|
             - request = RequestDecorator.new(offer.request)
             %ul
               %li
