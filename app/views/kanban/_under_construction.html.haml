@@ -11,11 +11,16 @@
             = supplier_order.offer.summary
             %br
             %strong Client PO:
-            %br
             = supplier_order.offer.order_reference
             %br
             %strong Supplier PO:
             = supplier_order.reference
             %br
-            %strong Finish:
+            %strong Manufactured:
             = supplier_order.estimated_manufactured_at.to_date
+            %br
+            = link_to_modal("Change Manufacture Date", supplier_order, {class: 'btn btn-small btn-primary'})
+            = link_to_modal("Mark as Delivered", supplier_order, {class: 'btn btn-small btn-success', modal_id: 'delivery'})
+
+        = render 'supplier_orders/modals/set_manufacture_date', modal_id: dom_id(supplier_order), supplier_order: SupplierOrderDecorator.new(supplier_order)
+        = render 'supplier_orders/modals/mark_as_delivered', modal_id: dom_id(supplier_order) + 'delivery', supplier_order: SupplierOrderDecorator.new(supplier_order)

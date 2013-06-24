@@ -10,9 +10,9 @@
           = simple_format(supplier_order.offer.display_actual_specs)
 
       .control-group
-        = f.label :estimated_manufactured_at, 'Estimate Manufacture/Completion date', class: 'control-label'
+        = f.label :delivered_at, 'Delivered at', class: 'control-label'
         .controls
-          = f.date_select :estimated_manufactured_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
+          = f.date_select :delivered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
 
     .modal-footer
       %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close

@@ -19,12 +19,15 @@ module ApplicationHelper
     link_to(text, path, options)
   end
 
+  # The html_options(:modal_id) is used to refer to succeeding modal views
+  # for an object that already has a modal
   def link_to_modal(text, object, html_options = {})
     html_options[:class] ||= 'btn'
     html_options[:role] ||= 'button'
     html_options[:data] ||= {toggle: 'modal'}
+    modal_id = html_options.delete(:modal_id) || ""
 
-    link_to(text, "##{dom_id(object)}", html_options)
+    link_to(text, "##{dom_id(object) + modal_id}", html_options)
   end
 
 end

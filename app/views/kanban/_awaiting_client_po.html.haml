@@ -14,8 +14,8 @@
             = offer.summary || offer.specs
             %br
             %strong Client PO:
-            %br
             = offer.order_reference
+            %br
             = link_to_modal("Order from Supplier", offer, {class: 'btn btn-small btn-primary'})
 
         = render 'offers/modals/pending', modal_id: dom_id(offer), offer: OfferDecorator.new(offer)
