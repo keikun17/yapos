@@ -1,0 +1,21 @@
+%h4 Manufacture / Process Started
+%ul.unstyled
+  - quotes.each do |quote|
+    %li{style: 'border-left: 4px solid orange; border-top: 1px solid orange; margin-top: 5px; padding-left: 2px'}
+      %strong= link_to quote.quote_reference, quote_path(quote)
+      - quote.supplier_orders.each do |supplier_order|
+        - request = RequestDecorator.new(supplier_order.offer.request)
+        %ul
+          %li{style: 'margin-bottom: 5px'}
+            = request.to_label('label label-important')
+            = supplier_order.offer.summary
+            %br
+            %strong Client PO:
+            %br
+            = supplier_order.offer.order_reference
+            %br
+            %strong Supplier PO:
+            = supplier_order.reference
+            %br
+            %strong Finish:
+            = supplier_order.estimated_manufactured_at.to_date

@@ -1,0 +1,21 @@
+%h4 Need to Order from Supplier
+%ul.unstyled
+  - quotes.each do |quote|
+    - offers = quote.offers.pending_supplier_order
+    - next if offers.empty?
+    %li{style: 'border-left: 4px solid red; border-top: 1px solid red; margin-top: 5px; padding-left: 2px'}
+      %strong= link_to quote.quote_reference, quote_path(quote)
+
+      - offers.each do |offer|
+        - request = RequestDecorator.new(offer.request)
+        %ul
+          %li{style: 'margin-bottom: 5px'}
+            = request.to_label('label label-important')
+            = offer.summary || offer.specs
+            %br
+            %strong Client PO:
+            %br
+            = offer.order_reference
+            = link_to_modal("Order from Supplier", offer, {class: 'btn btn-small btn-primary'})
+
+        = render 'offers/modals/pending', modal_id: dom_id(offer), offer: OfferDecorator.new(offer)
