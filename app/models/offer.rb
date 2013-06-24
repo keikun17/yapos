@@ -41,6 +41,7 @@ class Offer < ActiveRecord::Base
   accepts_nested_attributes_for :supplier_order
 
   scope :purchased, -> { where("order_reference <> '' ") }
+  scope :unpurchased, -> { where("order_reference = '' or order_reference is null") }
   scope :pending_client_order, -> { where("offers.order_reference = '' or offers.order_reference is null") }
   scope :by_quote_date, -> do
     includes(:quote).order("quotes.quote_date desc")
