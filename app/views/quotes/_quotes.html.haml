@@ -8,6 +8,8 @@
       %th Supplier
       %th Status
       %th{:width => '10%'} Client Requested At
+      %th{:width => '10%'} Recorded at
+      %th{:width => '10%'} Updated at
       - if defined?(show_actions)
         %th{:width => '10%'}=t '.actions', :default => t("helpers.actions")
   %tbody
@@ -18,12 +20,15 @@
         %td= link_to_client(quote.client)
         %td= quote.order_links
         %td
-          = quote.quantity_labels 
+          = quote.quantity_labels
           = truncate(quote.description, :length => 40, :omission => "...")
         %td= supplier_links(quote)
         %td= quote.display_status
         %td
           = quote.quote_date.to_date if quote.quote_date
+        %td= quote.created_at.to_date
+        %td= quote.updated_at.to_date
+
         - if defined?(show_actions)
           %td
             = link_to t('.edit', :default => t("helpers.links.edit")), edit_quote_path(quote), :class => 'btn btn-mini'
