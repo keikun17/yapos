@@ -10,7 +10,9 @@ class Purchase
       Order.find_or_create_by(reference: offer.order_reference)
 
       # 2
-      offer.create_supplier_order
+      if offer.supplier_order.nil?
+        offer.create_supplier_order
+      end
     end
   end
 
