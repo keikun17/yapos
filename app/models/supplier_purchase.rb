@@ -14,6 +14,7 @@ class SupplierPurchase < ActiveRecord::Base
 
   belongs_to :order
   has_many :offers, through: :supplier_orders
+  has_many :quotes, through: :offers
 
   has_many :supplier_orders,
     primary_key: :reference,
