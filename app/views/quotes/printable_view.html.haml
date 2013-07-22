@@ -20,7 +20,10 @@
         %strong SUBJECT
       %td :
       %td{colspan: 6}
-        %strong= @quote.quote_reference
+        %strong
+          = @quote.quote_reference 
+          - if @supplier_names
+            (#{@supplier_names})
 
     %tr
       %td{colspan:8}
@@ -44,10 +47,10 @@
         %td{colspan:6}= simple_format("#{request.specs}")
 
 
-      - unless request.offers.empty?
+      - unless request.offers.from_supplier(@suppliers).empty?
         %tr
           %th
-            - if request.offers.count > 1
+            - if request.offers.from_supplier(@suppliers).count > 1
               OFFER#:
           - unless @quote.offer_details_mergable?(:supplier_name)
             %th{width: '80px'} BRAND:
@@ -61,7 +64,7 @@
             %th{width: '80px'} TERMS
           - unless @quote.offer_details_mergable?(:warranty)
             %th WARRANTY
-        - offers = OfferDecorator.decorate_collection(request.offers)
+        - offers = OfferDecorator.decorate_collection(request.offers.from_supplier(@suppliers))
         - offers.each do |offer|
           %tr
             %td{style: 'text-align:right'}

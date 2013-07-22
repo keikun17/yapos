@@ -42,6 +42,16 @@ class Offer < ActiveRecord::Base
 
   scope :purchased, -> { where("order_reference <> '' ") }
 
+  scope :from_supplier, ->(suppliers = 'all') do
+    if suppliers.eql?('all')
+      s = where('supplier_id is not null')
+    else
+      supplier_ids = suppliers.map(&:id)
+      s = where(supplier_id: supplier_ids)
+    end
+    s
+  end
+
   # FIXME unpurchased and pending_client_order are doing the same thing yo!
   scope :unpurchased, -> { where("order_reference = '' or order_reference is null") }
   scope :pending_client_order, -> { where("offers.order_reference = '' or offers.order_reference is null") }
@@ -94,7 +104,7 @@ class Offer < ActiveRecord::Base
       'client_purchased'
     end
   end
-  
+
   def purchase_from_supplier
     SupplierPurchase.find_or_create_by(order_id: self.order.id, reference: self.supplier_order.reference)
   end

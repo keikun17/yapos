@@ -4,6 +4,8 @@
     = t '.title', :default => @quote.quote_reference
     = link_to t('.edit', :default => t("helpers.links.edit")), edit_quote_path(@quote), :class => 'btn'
     = link_to 'Print', printable_view_quote_path(@quote), :class => 'btn'
+    - @quote.suppliers.each do |supplier|
+      = link_to "Print only #{supplier.name} offers", printable_view_quote_path(@quote, supplier_id: supplier.id), :class => 'btn'
 
 %p
   %strong= model_class.human_attribute_name(:quote_date) + ':'
@@ -47,7 +49,7 @@
   %strong= model_class.human_attribute_name(:supplier_name) + ':'
   %br
   = supplier_links(@quote)
- 
+
 %p
   %strong Internal Notes:
   %br

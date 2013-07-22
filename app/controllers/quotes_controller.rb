@@ -101,9 +101,17 @@ class QuotesController < ApplicationController
     @quote = QuoteDecorator.new(@quote)
     @requests = @quote.requests
     @requests = RequestDecorator.decorate_collection(@requests)
+
+    if params[:supplier_id].empty?
+      @suppliers = 'all'
+    else
+      @suppliers = @quote.suppliers.where(id: params[:supplier_id])
+      @supplier_names = @suppliers.map(&:name).join(',')
+    end
+
     @print_preview = true
   end
-  
+
   def requote
     @parent_quote = Quote.find(params[:id])
     @quote = @parent_quote.requote!
@@ -129,4 +137,5 @@ class QuotesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end
