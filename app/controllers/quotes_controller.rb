@@ -105,7 +105,7 @@ class QuotesController < ApplicationController
     if params[:supplier_id].nil?
       @suppliers = 'all'
     else
-      @suppliers = @quote.suppliers.where(id: params[:supplier_id])
+      @suppliers = @quote.suppliers.where(id: params[:supplier_id]).uniq
       @supplier_names = @suppliers.map(&:name).join(',')
     end
 
