@@ -102,7 +102,7 @@ class QuotesController < ApplicationController
     @requests = @quote.requests
     @requests = RequestDecorator.decorate_collection(@requests)
 
-    if params[:supplier_id].empty?
+    if params[:supplier_id].nil?
       @suppliers = 'all'
     else
       @suppliers = @quote.suppliers.where(id: params[:supplier_id])
