@@ -4,7 +4,7 @@
     = t '.title', :default => @quote.quote_reference
     = link_to t('.edit', :default => t("helpers.links.edit")), edit_quote_path(@quote), :class => 'btn'
     = link_to 'Print', printable_view_quote_path(@quote), :class => 'btn'
-    - @quote.suppliers.each do |supplier|
+    - @quote.suppliers.uniq.each do |supplier|
       = link_to "Print only #{supplier.name} offers", printable_view_quote_path(@quote, supplier_id: supplier.id), :class => 'btn'
 
 %p
