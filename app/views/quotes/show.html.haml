@@ -50,10 +50,10 @@
   %br
   = supplier_links(@quote)
 
-%p.text-info
+%p
   %strong Internal Notes:
   %br
-  = simple_format(@quote.internal_notes)
+  = simple_format(@quote.internal_notes, class: 'text-info')
 
 %p
   %strong Remarks
