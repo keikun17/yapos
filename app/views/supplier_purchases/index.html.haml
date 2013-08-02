@@ -8,6 +8,7 @@
   %thead
     %th SUPPLIER PO#
     %th RFQs
+    %th ClientPOs
     %th Ordered from Supplier at
     %th Supplier
     %th
@@ -18,6 +19,7 @@
         %td
           - supplier_purchase.quotes.each do |quote|
             = link_to quote.quote_reference, quote_path(quote)
+        %td= link_to(supplier_purchase.order.reference, order_path(supplier_purchase.order)) if supplier_purchase.order
         %td= supplier_purchase.ordered_from_supplier_at
         %td
           = supplier_purchase.link_to_supplier
