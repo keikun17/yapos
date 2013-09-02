@@ -40,6 +40,7 @@
       %th PO Date
       %th Qty
       %th Specs
+      %th Supplier
       %th Estimated Ex-works
       %th Estimated Delivery
       %th Actual Delivery Date
@@ -52,6 +53,7 @@
         %td= offer.display_purchase_date
         %td= offer.complete_quantity
         %td= offer.summary
+        %td= offer.supplier_name
         %td= offer.estimated_manufacture_end_date
         %td= offer.estimated_delivery_date
         %td= offer.delivered_at
