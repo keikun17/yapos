@@ -21,7 +21,7 @@ class OfferDecorator < Decorator
   end
 
   def supplier_order_reference
-    off_ref = __getobj__.supplier_order_reference 
+    off_ref = __getobj__.supplier_order_reference
     off_ref.blank? ? "Not Ordered" : off_ref
   end
 
@@ -144,6 +144,17 @@ class OfferDecorator < Decorator
   def quote_date
     if !decorated_object.quote_date.blank?
       decorated_object.quote_date.to_date.to_s(:long)
+    end
+  end
+
+  def display_purchase_date
+    if decorated_object.order
+      order = OrderDecorator.new(decorated_object.order)
+      if order
+        order.display_purchase_date
+      else
+        nil
+      end
     end
   end
 

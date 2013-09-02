@@ -27,8 +27,11 @@ Yapos::Application.routes.draw do
   resources :suppliers
 
 
-  resources :clients
-  resources :quotes do 
+  resources :clients  do
+    resources :offers, module: 'clients'
+  end
+
+  resources :quotes do
     collection do
       get 'pending'
       get 'pending_client_po'

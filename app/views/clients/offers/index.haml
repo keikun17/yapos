@@ -1,0 +1,33 @@
+.page-header
+  %h1
+    Offers
+  %h3
+    = @client.name
+
+.pull-right= will_paginate(@offers)
+
+%table.table.table-condensed
+  %thead
+    %tr
+      %th PR
+      %th Client PO
+      %th PO Date
+      %th Qty
+      %th Specs
+      %th Estimated Ex-works
+      %th Estimated Delivery
+      %th Actual Delivery Date
+
+  - @decorated_offers.each do |offer|
+    %tbody
+      %tr
+        %td= link_to offer.quote_reference, offer.quote
+        %td= link_to offer.order_reference, offer.order
+        %td= offer.display_purchase_date
+        %td= offer.complete_quantity
+        %td= offer.summary
+        %td= offer.estimated_manufacture_end_date
+        %td= offer.estimated_delivery_date
+        %td= offer.delivered_at
+
+.pull-right= will_paginate(@offers)
