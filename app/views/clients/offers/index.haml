@@ -1,9 +1,35 @@
+- model_class = Client
 .page-header
-  %h1
-    Offers
-  %h3
-    = @client.name
+  %h1=t '.title', :default => model_class.model_name.human
 
+%p
+  %strong= model_class.human_attribute_name(:name) + ':'
+  %br
+  = @client.name
+
+%p
+  %strong= model_class.human_attribute_name(:emails) + ':'
+  %br
+  = @client.emails
+
+%p
+  %strong= model_class.human_attribute_name(:contact_numbers) + ':'
+  %br
+  = @client.contact_numbers
+
+%p
+  %strong= model_class.human_attribute_name(:address) + ':'
+  %br
+  =simple_format @client.address
+
+
+%ul.nav.nav-tabs
+  %li
+    = link_to_badge("Awaiting Client Purchase (Sorted by Quote Date)", client_path(@client) )
+  %li.active
+    = link_to_badge("Client Purchased (Sorted by Order Date)", client_offers_path(client_id: @client.id) )
+
+%h4 Purchase Requests :
 .pull-right= will_paginate(@offers)
 
 %table.table.table-condensed
