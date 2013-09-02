@@ -2,7 +2,8 @@
   %thead
     %tr
       %th Client PR#
-      %th Client Name
+      - unless params[:controller] == 'clients'
+        %th Client Name
       %th Client PO#
       %th{:width => '30%'} description
       %th Supplier
@@ -15,7 +16,8 @@
       %tr{:class => quote_row_class(quote)}
         %td
           %strong= link_to quote.quote_reference, quote
-        %td= link_to_client(quote.client)
+        - unless params[:controller] == 'clients'
+          %td= link_to_client(quote.client)
         %td= quote.order_links
         %td
           = quote.quantity_labels
