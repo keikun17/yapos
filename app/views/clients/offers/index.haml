@@ -25,11 +25,11 @@
 
 %ul.nav.nav-tabs
   %li
-    = link_to_badge("Awaiting Client Purchase (Sorted by Quote Date)", client_path(@client) )
+    = link_to_badge("Purchase Requests", client_path(@client) )
   %li.active
-    = link_to_badge("Client Purchased (Sorted by Order Date)", client_offers_path(client_id: @client.id) )
+    = link_to_badge("Offers", client_offers_path(client_id: @client.id) )
 
-%h4 Purchase Requests :
+%h4 Offers :
 .pull-right= will_paginate(@offers)
 
 %table.table.table-condensed
