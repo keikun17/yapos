@@ -1,26 +1,4 @@
-- model_class = Client
-.page-header
-  %h1=t '.title', :default => model_class.model_name.human
-
-%p
-  %strong= model_class.human_attribute_name(:name) + ':'
-  %br
-  = @client.name
-
-%p
-  %strong= model_class.human_attribute_name(:emails) + ':'
-  %br
-  = @client.emails
-
-%p
-  %strong= model_class.human_attribute_name(:contact_numbers) + ':'
-  %br
-  = @client.contact_numbers
-
-%p
-  %strong= model_class.human_attribute_name(:address) + ':'
-  %br
-  =simple_format @client.address
+= render 'clients/details', client: @client
 
 %ul.nav.nav-tabs
   %li.active
