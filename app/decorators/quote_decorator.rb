@@ -12,6 +12,11 @@ class QuoteDecorator < Decorator
     raw links.join(',')
   end
 
+  def order_dates
+    dates = OrderDecorator.decorate_collection(self.orders).collect(&:display_purchase_date)
+    raw dates.join(',')
+  end
+
   # Maybe this belongs here instead of the model because this
   # is leaning more toward behavior than data
   def offer_details_mergable?(attr)
