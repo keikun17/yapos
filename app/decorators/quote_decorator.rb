@@ -1,11 +1,11 @@
 class QuoteDecorator < Decorator
   # Associations
-  
-  def requests 
+
+  def requests
     @requests ||= RequestDecorator.decorate_collection(__getobj__.requests)
   end
-  
-  # 
+
+  #
   def order_links
     links = OrderDecorator.decorate_collection(self.orders).collect(&:link)
     links.uniq!
@@ -35,7 +35,7 @@ class QuoteDecorator < Decorator
   end
 
   def quantity_labels
-    requests.map{|x| 
+    requests.map{|x|
       x.to_label("label label-inverse")
     }.join(' ').html_safe
   end
