@@ -12,6 +12,6 @@
 = link_to t('.new', :default => t("helpers.links.new")), new_quote_path, :class => 'btn btn-primary'
 .pull-right= will_paginate(@quotes)
 
-= render :partial => 'quotes', :locals => {:quotes => @decorated_quotes, :show_actions => true}
+= render :partial => 'unordered_quotes', :locals => {:quotes => @decorated_quotes, :show_actions => true}
 .pull-right= will_paginate(@quotes)
 

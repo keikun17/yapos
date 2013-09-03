@@ -1,3 +1,4 @@
+
 %table.table.table-condensed
   %thead
     %tr
@@ -9,7 +10,6 @@
       %th Supplier
       %th Status
       %th{:width => '10%'} Client Requested At
-      %th{:width => '10%'} Client Purchased At
       - if defined?(show_actions)
         %th{:width => '10%'}=t '.actions', :default => t("helpers.actions")
   %tbody
@@ -26,7 +26,6 @@
         %td= supplier_links(quote)
         %td= quote.display_status
         %td= quote.quote_date.to_date if quote.quote_date
-        %td= quote.order_dates
 
         - if defined?(show_actions)
           %td
