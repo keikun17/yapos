@@ -18,6 +18,9 @@ class SupplierPurchasesController < ApplicationController
   def edit
     @supplier_purchase = SupplierPurchase.find(params[:id])
     @supplier_purchase = SupplierPurchaseDecorator.new(@supplier_purchase)
+    if @supplier_purchase.ordered_at.nil?
+      @supplier_purchase.ordered_at = (Time.now)
+    end
   end
 
   def update
