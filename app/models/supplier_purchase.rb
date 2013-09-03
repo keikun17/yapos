@@ -28,6 +28,13 @@ class SupplierPurchase < ActiveRecord::Base
   end
 
   #FIXME : UGLY
+  def supplier_address
+    unless supplier_orders.empty?
+      supplier_orders.first.supplier_address
+    end
+  end
+
+  #FIXME : UGLY
   def client
     supplier_orders.first.offer.client
   end

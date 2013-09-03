@@ -19,7 +19,8 @@ class SupplierPurchasesController < ApplicationController
     @supplier_purchase = SupplierPurchase.find(params[:id])
     @supplier_purchase = SupplierPurchaseDecorator.new(@supplier_purchase)
     if @supplier_purchase.ordered_at.nil?
-      @supplier_purchase.ordered_at = (Time.now)
+      @supplier_purchase.address = @supplier_purchase.supplier_address
+      @supplier_purchase.ordered_at = Time.now
     end
   end
 
