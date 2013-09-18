@@ -1,9 +1,14 @@
 %tr
   %td= f.object.supplier_name
-  %td= f.object.specs
+  %td
+    = f.object.specs
+    - if !f.object.summary.blank?
+      %span.label.label-success
+        =f.object.summary
+
 
   - #TODO dynamically building association in view.. YUCK!
-  - # Maybe just run a rake task that makes sure all offer without supplier_orders 
+  - # Maybe just run a rake task that makes sure all offer without supplier_orders
   - # be inserted with a blank one?
   - f.object.build_supplier_order if f.object.supplier_order.nil?
   = f.fields_for :supplier_order do |ff|
