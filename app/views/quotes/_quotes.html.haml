@@ -22,7 +22,11 @@
         %td= quote.order_links
         %td
           = quote.quantity_labels
-          = truncate(quote.description, :length => 40, :omission => "...")
+          - unless quote.description.blank?
+            = truncate(quote.description, :length => 40, :omission => "...")
+          - else
+            = link_to "Please fill up description", edit_quote_path(quote)
+
         %td= supplier_links(quote)
         %td= quote.display_status
         %td= quote.quote_date.to_date if quote.quote_date
