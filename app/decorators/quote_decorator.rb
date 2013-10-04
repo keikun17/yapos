@@ -14,7 +14,7 @@ class QuoteDecorator < Decorator
 
   def order_dates
     dates = OrderDecorator.decorate_collection(self.orders).collect(&:display_purchase_date)
-    raw dates.join(',')
+    raw dates.uniq.join(',')
   end
 
   # Maybe this belongs here instead of the model because this
