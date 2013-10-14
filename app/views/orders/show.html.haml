@@ -72,7 +72,9 @@
         %td= offer.remarks
         %td= offer.display_buying_price
         %td= offer.display_selling_price
-        %td= offer.supplier_purchase_link
+        %td
+          = offer.supplier_purchase_link
+          = offer.edit_supplier_purchase_link
       - offers.each do |offer|
         %tr
           %td= offer.request_specs
@@ -84,7 +86,9 @@
           %td= offer.remarks
           %td= offer.display_buying_price
           %td= offer.display_selling_price
-          %td= offer.supplier_purchase_link
+          %td
+            = offer.supplier_purchase_link
+            = offer.edit_supplier_purchase_link
 
 
 %br

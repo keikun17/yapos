@@ -20,6 +20,15 @@ class OfferDecorator < Decorator
     end
   end
 
+  def edit_supplier_purchase_link
+    if self.supplier_purchase
+      link = link_to "edit", edit_supplier_purchase_path(self.supplier_purchase)
+      raw "(#{link})"
+    else
+      self.supplier_order_reference
+    end
+  end
+
   def supplier_order_reference
     off_ref = __getobj__.supplier_order_reference
     off_ref.blank? ? "Not Ordered" : off_ref
