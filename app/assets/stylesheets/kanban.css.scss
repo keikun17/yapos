@@ -1,0 +1,8 @@
+@import "compass/css3";
+
+.supplier-po-needed{
+  border: 1px solid red;
+  @include box-shadow(red 2px 2px 2px)
+
+}
+

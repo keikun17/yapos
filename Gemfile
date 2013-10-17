@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.0.rc1' #TODO: rails4
+gem 'rails', '4.0.0' #TODO: rails4
 gem 'haml-rails'
-gem 'sass-rails', '~> 4.0.0.rc1' #TODO: rails4
+gem 'sass-rails', '4.0.0' #TODO: rails4
 gem 'coffee-rails', '4.0.0' #TODO: rails4
 gem 'less-rails'
 gem 'jquery-rails'
@@ -22,7 +22,7 @@ gem 'tire'
 
 gem 'json', '~> 1.7.7'
 
-group :development do 
+group :development do
   gem "rails_best_practices"
   gem 'quiet_assets'
   gem 'annotate'
@@ -36,6 +36,7 @@ group :production do
   gem 'mysql2'
 end
 
+gem 'compass-rails', git: 'git://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
 gem 'counter_culture'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
