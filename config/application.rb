@@ -58,6 +58,10 @@ module Yapos
     config.assets.version = '1.0'
 
     # Do not init the Rails app when you are just compiling assets
-    config.assets.initialize_on_precompile=false 
+    config.assets.initialize_on_precompile=false
+    config.assets.precompile += ["fontawesome-webfont.ttf",
+                                 "fontawesome-webfont.eot",
+                                 "fontawesome-webfont.svg",
+                                 "fontawesome-webfont.woff"]
   end
 end
