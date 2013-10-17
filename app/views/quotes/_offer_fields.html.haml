@@ -59,36 +59,33 @@
             = f.text_field :price_basis, :class => 'text_field span12', :placeholder => "FOB LOCATION"
 
   %td
-    .row-fluid
-      .span12
-        .control-group
-          %label.span4.control-label Terms
-          .controls.span8
-            = f.text_field :terms, :class => 'text_field span12', data: { field_group: 'terms' }
-            %button.icon-share.btn-mini{ data: { field_group: 'terms' } }
-    .row-fluid
-      .span12
-        .control-group
-          %label.span4.control-label Delivery
-          .controls.span8
-            = f.text_field :delivery, :class => 'text_field span12', data: { field_group: 'delivery'}
-            %button.icon-share.btn-mini{ data: {field_group: 'delivery'} }
+    %p
+      .control-group
+        %label.span2.control-label Terms
+        .controls.span10
+          = f.text_field :terms, :class => 'text_field span10', data: { field_group: 'terms' }
+          %button.icon-share.btn-mini{ data: { field_group: 'terms' } }
+    %p
+      .control-group
+        %label.span2.control-label Delivery
+        .controls.span10
+          = f.text_field :delivery, :class => 'text_field span10', data: { field_group: 'delivery'}
+          %button.icon-share.btn-mini{ data: {field_group: 'delivery'} }
 
-    .row-fluid
-      .span12
-        .control-group
-          %label.span4.control-label Warranty
-          .controls.span8
-            = f.text_field :warranty, :class => 'text_field span12', data: { field_group: 'warranty'}
-            %button.icon-share.btn-mini{ data: {field_group: 'warranty'} }
+    %p
+      .control-group
+        %label.span2.control-label WTY
+        .controls.span10
+          = f.text_field :warranty, :class => 'text_field span10', data: { field_group: 'warranty'}
+          %button.icon-share.btn-mini{ data: {field_group: 'warranty'} }
 
-    .row-fluid
-      .span12
-        .control-group
-          %label.span4.control-label Notes
-          .controls.span8
-            = f.text_area :remarks, :class => 'text_area span12', :rows => 4
+    %p
+      .control-group
+        %label.span2.control-label Notes
+        .controls.span10
+          = f.text_field :remarks, :class => 'text_area span10', data: { field_group: 'request_notes'}
+          %button.icon-share.btn-mini{ data: {field_group: 'request_notes'} }
 
-  %td= f.text_field :order_reference, :class => 'text_field span12'
+  %td= f.text_field :order_reference, :class => 'text_field span6'
   %td= link_to_remove_fields "remove", f
 

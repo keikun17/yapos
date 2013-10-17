@@ -1,20 +1,33 @@
 %tr.fields
   %td
-    %strong Quantity
-    = f.text_field :quantity, :class => 'span12 text_field'
+    %p
+      %strong Quantity
+    %p
+      = f.text_field :quantity, :class => 'span12 text_field'
+
   %td
-    %strong Unit
-    = f.text_field :unit, :class => 'span12 text_field'
+    %p
+      %strong Unit
+    %p
+      = f.text_field :unit, :class => 'span12 text_field'
+
   %td{colspan: 2}
-    %strong Request Specs
+    %p
+      %strong Request Specs
+    %p
     = f.text_area :specs, :class => 'span12 text_area', :rows => 4
+
   %td
-    %strong Internal Notes (Does not appear in printable doc)
-    =f.text_area :remarks, :class => 'text_area span12', :rows => 4
+    %p
+      %strong Internal Notes
+    %p
+      =f.text_area :remarks, :class => 'text_area span12', :rows => 2
+    %p
+      (Will not appear in print)
   %td= link_to_remove_fields "remove", f
 
 %tr
-  %th
+  %th.borderless-left
   %th Offered Specs
   %th Price Details
   %th Misc Details
