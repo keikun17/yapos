@@ -65,21 +65,22 @@
           %label.span4.control-label Terms
           .controls.span8
             = f.text_field :terms, :class => 'text_field span12', data: { field_group: 'terms' }
-            = link_to "Copy to Same Supplier", '', data: { field_group: 'terms' }
-
+            %button.icon-share.btn-mini{ data: { field_group: 'terms' } }
     .row-fluid
       .span12
         .control-group
           %label.span4.control-label Delivery
           .controls.span8
-            = f.text_field :delivery, :class => 'text_field span12'
+            = f.text_field :delivery, :class => 'text_field span12', data: { field_group: 'delivery'}
+            %button.icon-share.btn-mini{ data: {field_group: 'delivery'} }
 
     .row-fluid
       .span12
         .control-group
           %label.span4.control-label Warranty
           .controls.span8
-            = f.text_field :warranty, :class => 'text_field span12'
+            = f.text_field :warranty, :class => 'text_field span12', data: { field_group: 'warranty'}
+            %button.icon-share.btn-mini{ data: {field_group: 'warranty'} }
 
     .row-fluid
       .span12
