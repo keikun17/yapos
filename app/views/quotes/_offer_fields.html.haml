@@ -64,7 +64,8 @@
         .control-group
           %label.span4.control-label Terms
           .controls.span8
-            = f.text_field :terms, :class => 'text_field span12'
+            = f.text_field :terms, :class => 'text_field span12', data: { field_group: 'terms' }
+            = link_to "Copy to Same Supplier", '', data: { field_group: 'terms' }
 
     .row-fluid
       .span12
@@ -88,5 +89,5 @@
             = f.text_area :remarks, :class => 'text_area span12', :rows => 4
 
   %td= f.text_field :order_reference, :class => 'text_field span12'
-  %td= link_to_remove_fields "remove", f 
+  %td= link_to_remove_fields "remove", f
 
