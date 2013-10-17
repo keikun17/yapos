@@ -6,7 +6,7 @@ gem 'sass-rails', '~> 4.0.0.rc1' #TODO: rails4
 gem 'coffee-rails', '4.0.0' #TODO: rails4
 gem 'less-rails'
 gem 'jquery-rails'
-gem 'twitter-bootstrap-rails', '2.2.6'
+gem 'twitter-bootstrap-rails', '2.2.8'
 
 # attr_protected and attr_accessible has been extracted to a gem
 gem 'protected_attributes'
