@@ -1,8 +1,15 @@
 @import "compass/css3";
 
 .supplier-po-needed{
-  border: 1px solid red;
-  @include box-shadow(red 2px 2px 2px)
-
+  border: 2px solid red;
+  margin: 5px 0 0 0;
+  padding: 0 0 0 2px;
+  @include box-shadow(red 2px 2px 2px);
 }
 
+.for-scheduling{
+  border: 2px solid blue;
+  margin: 5px 0 0 0;
+  padding: 0 0 0 2px;
+  @include box-shadow(blue 2px 2px 2px);
+}

@@ -1,7 +1,7 @@
 %h3 For Scheduling
 %ul.unstyled
   - quotes.each do |quote|
-    %li{style: 'border-left: 4px solid blue; border-top: 1px solid blue; margin-top: 5px; padding-left: 2px'}
+    %li.for-scheduling
       %h4= quote.client_name
       %strong= link_to quote.quote_reference, quote_path(quote)
       - quote.supplier_orders.each do |supplier_order|
