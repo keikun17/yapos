@@ -1,7 +1,7 @@
 %h3 Manufacture / Process Started
 %ul.unstyled
   - quotes.each do |quote|
-    %li{style: 'border-left: 4px solid orange; border-top: 1px solid orange; margin-top: 5px; padding-left: 2px'}
+    %li.under-manufacturing
       %h4= quote.client_name
       %strong= link_to quote.quote_reference, quote_path(quote)
       - quote.supplier_orders.each do |supplier_order|
