@@ -64,27 +64,28 @@
         %label.span2.control-label Terms
         .controls.span10
           = f.text_field :terms, :class => 'text_field span10', data: { field_group: 'terms' }
-          %button.icon-share.btn-mini{ data: { field_group: 'terms' } }
+          %button.icon-share.btn-mini{ data: { field_group: 'terms' }, title: "Copy to all offers for the same supplier" }
     %p
       .control-group
         %label.span2.control-label Delivery
         .controls.span10
           = f.text_field :delivery, :class => 'text_field span10', data: { field_group: 'delivery'}
-          %button.icon-share.btn-mini{ data: {field_group: 'delivery'} }
+          %button.icon-share.btn-mini{ data: {field_group: 'delivery'}, title: "Copy to all offers for the same supplier" }
 
     %p
       .control-group
         %label.span2.control-label WTY
         .controls.span10
           = f.text_field :warranty, :class => 'text_field span10', data: { field_group: 'warranty'}
-          %button.icon-share.btn-mini{ data: {field_group: 'warranty'} }
+          %button.icon-share.btn-mini{ data: {field_group: 'warranty'}, title: "Copy to all offers for the same supplier" }
 
     %p
       .control-group
         %label.span2.control-label Notes
         .controls.span10
           = f.text_field :remarks, :class => 'text_area span10', data: { field_group: 'request_notes'}
-          %button.icon-share.btn-mini{ data: {field_group: 'request_notes'} }
+
+          %button.icon-share.btn-mini{ data: {field_group: 'request_notes'}, title: "Copy to all offers for the same supplier" }
 
   %td= f.text_field :order_reference, :class => 'text_field span12'
   %td= link_to_remove_fields "remove", f
