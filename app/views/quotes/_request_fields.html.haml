@@ -1,5 +1,5 @@
 %tr.fields
-  %td
+  %td.span1
     %p
       %strong Quantity
     %p
@@ -37,7 +37,7 @@
   = render 'offer_fields', :f => builder
 
 %tr{:style => 'border-bottom:2px solid black'}
-  %td
+  %td.borderless-left.borderless-top
   %td{:colspan => 4}
     = link_to_add_fields "Click to add offer", f, :offers, '$(this).parent()'
 
