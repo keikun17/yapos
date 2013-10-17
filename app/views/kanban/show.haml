@@ -1,23 +1,4 @@
 .row-fluid
-  -# .span2
-  -#   %h4 Needs Quote
-  -#   %ul.unstyled
-  -#     - @need_quote.each do |quote|
-  -#       %li{style: ' border-left: 4px solid blue; border-top: 1px solid blue; margin-top: 5px; padding-left: 2px'}
-  -#         = link_to quote.client_name, quote_path(quote)
-  -#         - RequestDecorator.decorate_collection(quote.requests.without_offers).each do |request|
-  -#           %ul
-  -#             %li= request.to_label('label label-important')
-
-  -# .span2
-  -#   %h4 Need Client PO
-  -#   %ul.unstyled
-  -#     - @waiting_client_order.each do |quote|
-  -#       %li{style: 'border-left: 4px solid green; border-top: 1px solid green; margin-top: 5px; padding-left: 2px'}
-  -#         = link_to quote.client_name, quote_path(quote)
-  -#         - RequestDecorator.decorate_collection(quote.requests.pending_client_order).each do |request|
-  -#           %ul
-  -#             %li= request.to_label('label label-important')
 
   .span3
     = render 'awaiting_client_po', quotes: @need_supplier_order
