@@ -1,7 +1,8 @@
 module ApplicationHelper
 
   def link_to_remove_fields(name, f, target = 'this')
-    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(#{target})", class: 'btn btn-small btn-danger')
+    anchor_text = content_tag :i, name,  class: 'icon-trash'
+    f.hidden_field(:_destroy) + link_to_function(raw(anchor_text), "remove_fields(#{target})", class: 'btn btn-danger')
   end
 
   def link_to_add_fields(name, f, association, target = 'this')
@@ -14,7 +15,7 @@ module ApplicationHelper
 
   def link_to_badge(text, path, options = {})
     text = content_tag(:span, text)
-    counter = content_tag(:span, options.delete(:count), class: 'badge badge-important') 
+    counter = content_tag(:span, options.delete(:count), class: 'badge badge-important')
     text.safe_concat(' ').safe_concat( counter)
     link_to(text, path, options)
   end
