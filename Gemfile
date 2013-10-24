@@ -8,6 +8,8 @@ gem 'less-rails'
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails', '2.2.8'
 
+gem 'draper'
+
 # attr_protected and attr_accessible has been extracted to a gem
 gem 'protected_attributes'
 

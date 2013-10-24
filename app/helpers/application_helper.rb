@@ -32,4 +32,12 @@ module ApplicationHelper
     link_to(text, "##{dom_id(object) + modal_id}", html_options)
   end
 
+  def display_quantity(quantity, unit)
+
+    content_tag :span, class: "label label-important" do
+      [quantity, unit].join(" ")
+    end
+
+  end
+
 end

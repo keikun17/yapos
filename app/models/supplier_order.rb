@@ -13,6 +13,8 @@ class SupplierOrder < ActiveRecord::Base
 
   belongs_to :offer
 
+  delegate :request, to: :offer, allow_nil: true
+
 
   def delivered?
     !self.delivered_at.blank?

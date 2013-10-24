@@ -1,10 +1,5 @@
-class ClientDecorator < Decorator
+class ClientDecorator < Draper::Decorator
 
-  def quote_count
-    decorated_object.quotes.count
-  end
+  delegate_all
 
-  def order_count
-    decorated_object.orders.count
-  end
 end

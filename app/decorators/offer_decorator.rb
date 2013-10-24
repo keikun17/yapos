@@ -1,8 +1,10 @@
-class OfferDecorator < Decorator
+class OfferDecorator < Draper::Decorator
+
+  delegate_all
 
   # Decorated Associations
   def decorated_supplier_purchase
-    @decorated_supplier_purchase ||= SupplierPurchaseDecorator.new(decorated_object.supplier_purchase)
+    @decorated_supplier_purchase ||= SupplierPurchaseDecorator.new(self.supplier_purchase)
   end
   # End of Decorated Association
 
@@ -30,24 +32,18 @@ class OfferDecorator < Decorator
   end
 
   def supplier_order_reference
-    off_ref = __getobj__.supplier_order_reference
+    off_ref = self.supplier_order_reference
     off_ref.blank? ? "Not Ordered" : off_ref
   end
 
   def request_unit
-    __getobj__.request_unit.blank? ? 'Unit' : __getobj__.request_unit
+    self.request_unit.blank? ? 'Unit' : self.request_unit
   end
 
-  def request
-    @request ||= RequestDecorator.new(__getobj__.request)
-  end
-
-  # Takes options hash
-  #   quantity_class  : class used for the quantity + uom span-label
   def display_specs(html_options = {})
     html_options[:class] ||= 'label label-inverse'
 
-    content_tag(:div) do
+    h.content_tag(:div) do
       inner = quantity_label(html_options[:class])
       inner.safe_concat(' ')
       inner.safe_concat(self.specs)
@@ -57,18 +53,18 @@ class OfferDecorator < Decorator
   def display_actual_specs(text = "Actual:", html_options = {})
     html_options[:class] ||= 'label label-important'
 
-    if !__getobj__.supplier_order_actual_specs.blank?
-      label = content_tag(:span, text, class: html_options[:class])
-      label.safe_concat(__getobj__.supplier_order_actual_specs)
+    if !self.supplier_order_actual_specs.blank?
+      label = h.content_tag(:span, text, class: html_options[:class])
+      label.safe_concat(self.supplier_order_actual_specs)
     end
   end
 
   def display_summary
-    @display_summary ||= summary || link_to('Please edit and add offer spec summary/code', edit_quote_path(__getobj__.quote))
+    @display_summary ||= summary || link_to('Please edit and add offer spec summary/code', edit_quote_path(self.quote))
   end
 
   def quantity_label(label_class="")
-    RequestDecorator.new(__getobj__.request).to_label(label_class)
+    request.decorate.to_label(label_class)
   end
 
   def complete_quantity
@@ -127,7 +123,7 @@ class OfferDecorator < Decorator
   end
 
   def estimated_manufacture_end_date
-    if date = __getobj__.supplier_order_estimated_manufactured_at
+    if date = self.supplier_order_estimated_manufactured_at
       date.to_date.to_s
     else
       display_none
@@ -135,7 +131,7 @@ class OfferDecorator < Decorator
   end
 
   def estimated_delivery_date
-    if date = __getobj__.supplier_order_estimated_delivered_at
+    if date = self.supplier_order_estimated_delivered_at
       date.to_date.to_s
     else
       display_none
@@ -143,7 +139,7 @@ class OfferDecorator < Decorator
   end
 
   def delivered_at
-    if date = __getobj__.supplier_order_delivered_at
+    if date = self.supplier_order_delivered_at
       date.to_date.to_s
     else
       display_none
@@ -151,14 +147,14 @@ class OfferDecorator < Decorator
   end
 
   def quote_date
-    if !decorated_object.quote_date.blank?
-      decorated_object.quote_date.to_date.to_s(:long)
+    if !self.quote_date.blank?
+      self.quote_date.to_date.to_s(:long)
     end
   end
 
   def display_purchase_date
-    if decorated_object.order
-      order = OrderDecorator.new(decorated_object.order)
+    if self.order
+      order = OrderDecorator.new(self.order)
       if order
         order.display_purchase_date
       else

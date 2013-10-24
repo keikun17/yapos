@@ -8,5 +8,4 @@ window.OffersController = ($scope) ->
 
   $scope.showForm = ($event) ->
     replace =  $event.target
-    console.log replace
 

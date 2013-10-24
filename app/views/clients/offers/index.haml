@@ -9,7 +9,12 @@
 %h4 Offers :
 .pull-right= will_paginate(@offers)
 
-%table.table.table-condensed
+
+%div{'ng-app' => ''}
+
+  %script
+
+%table.table.table-condensed{'ng-app' => "" }
   %thead
     %tr
       %th PR

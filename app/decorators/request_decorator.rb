@@ -1,10 +1,13 @@
-class RequestDecorator < Decorator
+class RequestDecorator < Draper::Decorator
+
+  delegate_all
+
   def offered_brands
-    self.offers.map(&:supplier_name).join(',')
+    offers.map(&:supplier_name).join(',')
   end
 
   def offer_count
-    self.offers.count
+    offers.count
   end
 
   def offset_offer_count(offset)
@@ -12,6 +15,7 @@ class RequestDecorator < Decorator
   end
 
   def display_quantity
+    ActiveSupport::Deprecation.warn "Deprecate this use deprecate_quantity view helper instead", caller
     if (str = "#{quantity} #{unit}").blank?
       str = "1.00 Unit"
     end
@@ -19,7 +23,8 @@ class RequestDecorator < Decorator
   end
 
   def to_label(label_class)
-    content_tag(:span,  class: label_class) do
+    ActiveSupport::Deprecation.warn "Deprecate this use deprecate_quantity view helper instead", caller
+    h.content_tag(:span,  class: label_class) do
       display_quantity
     end
   end

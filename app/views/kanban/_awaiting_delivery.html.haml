@@ -8,7 +8,7 @@
         - request = RequestDecorator.new(supplier_order.offer.request)
         %ul
           %li{style: 'margin-bottom: 5px'}
-            = request.to_label('label label-important')
+            %span.label-label-important= request.to_label('label label-important')
             = supplier_order.offer.summary || supplier_order.offer.specs
             = supplier_order.offer.supplier_name
             %br

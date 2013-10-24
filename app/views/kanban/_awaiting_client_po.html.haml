@@ -1,17 +1,16 @@
 %h3 Need to Order from Supplier
 %ul.unstyled
   - quotes.each do |quote|
-    - offers = quote.offers.pending_supplier_order
+    - offers = quote.offers.pending_supplier_order.decorate
     - next if offers.empty?
     %li.supplier-po-needed
       %h4= quote.client_name
       %strong= link_to quote.quote_reference, quote_path(quote)
 
       - offers.each do |offer|
-        - request = RequestDecorator.new(offer.request)
         %ul
           %li{style: 'margin-bottom: 5px'}
-            = request.to_label('label label-important')
+            = display_quantity(offer.request.quantity, offer.request.unit)
             = offer.summary || offer.specs
             %span.label.label-inverse= offer.supplier_name
             %br
