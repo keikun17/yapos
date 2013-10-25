@@ -6,8 +6,8 @@ class OrderDecorator < ApplicationDecorator
 
   def display_purchase_date
     if purchase_date.nil?
-      str = content_tag :i do
-        link_to "Please Fill Up", edit_order_path(self)
+      str = h.content_tag :i do
+        h.link_to "Please Fill Up", edit_order_path(self)
       end
     else
       str = purchase_date.to_date
@@ -19,21 +19,21 @@ class OrderDecorator < ApplicationDecorator
   def supplier_links
     links = []
     suppliers.each do |supplier|
-      links << link_to(supplier.name, supplier_path(supplier))
+      links << h.link_to(supplier.name, supplier_path(supplier))
     end
-    raw links.join(',')
+    links.join(',').html_safe
   end
 
   def client_links
     links = []
     clients.each do |client|
-      links << link_to(client.name, client_path(client))
+      links << h.link_to(client.name, client_path(client))
     end
-    raw links.join(',')
+    links.join(',').html_safe
   end
 
   def link
-    link_to reference, order_path(self)
+    h.link_to reference, h.order_path(self)
   end
 
   def total_buy

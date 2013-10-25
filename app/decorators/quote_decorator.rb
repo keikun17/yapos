@@ -1,20 +1,15 @@
-class QuoteDecorator < Decorator
+class QuoteDecorator < ApplicationDecorator
   # Associations
 
-  def requests
-    @requests ||= RequestDecorator.decorate_collection(__getobj__.requests)
-  end
-
-  #
   def order_links
     links = OrderDecorator.decorate_collection(self.orders).collect(&:link)
     links.uniq!
-    raw links.join(',')
+    links.join(',').html_safe
   end
 
   def order_dates
     dates = OrderDecorator.decorate_collection(self.orders).collect(&:display_purchase_date)
-    raw dates.uniq.join(',')
+    dates.join(',').html_safe
   end
 
   # Maybe this belongs here instead of the model because this
