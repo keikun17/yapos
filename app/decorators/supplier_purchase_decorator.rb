@@ -12,7 +12,7 @@ class SupplierPurchaseDecorator < Draper::Decorator
     options[:required_text] ||= 'Please Fill Up'
     if self.ordered_at.nil?
       str = content_tag :i do
-        link_to options[:required_text], edit_supplier_purchase_path(decorated_object)
+        link_to options[:required_text], edit_supplier_purchase_path(self)
       end
     else
       str = self.ordered_at.to_date.to_s(:long)
