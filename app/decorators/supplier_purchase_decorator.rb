@@ -28,9 +28,9 @@ class SupplierPurchaseDecorator < ApplicationDecorator
   # FIXME : make me deal with non local currency amounts
   def display_total_amount
     @display_total_amount ||= if !supplier_orders.empty?
-                                number_to_currency(supplier_orders.map(&:offer_total_buying_price).compact.sum || 0, unit: Currency::LOCAL_CURRENCY) + total_amount_suffix
+                                h.number_to_currency(supplier_orders.map(&:offer_total_buying_price).compact.sum || 0, unit: Currency::LOCAL_CURRENCY) + total_amount_suffix
                               else
-                                number_to_currency(0, unit: Currency::LOCAL_CURRENCY) + total_amount_suffix
+                                h.number_to_currency(0, unit: Currency::LOCAL_CURRENCY) + total_amount_suffix
                               end
   end
 

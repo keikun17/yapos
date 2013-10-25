@@ -1,6 +1,4 @@
-class OfferDecorator < Draper::Decorator
-
-  delegate_all
+class OfferDecorator < ApplicationDecorator
 
   # Decorated Associations
   def decorated_supplier_purchase
@@ -34,10 +32,6 @@ class OfferDecorator < Draper::Decorator
   def supplier_order_reference
     off_ref = self.supplier_order_reference
     off_ref.blank? ? "Not Ordered" : off_ref
-  end
-
-  def request_unit
-    self.request_unit.blank? ? 'Unit' : self.request_unit
   end
 
   def display_specs(html_options = {})
@@ -85,7 +79,7 @@ class OfferDecorator < Draper::Decorator
   #   $40.00/unit
   # If PHP
   def display_selling_price
-    str = number_to_currency(self.selling_price || 0, unit: self.currency)
+    str = h.number_to_currency(self.selling_price || 0, unit: self.currency)
     str = str + "/#{self.request_unit}"
     if !self.price_suffix.blank?
       str = str + " (#{self.price_suffix})"
@@ -94,7 +88,7 @@ class OfferDecorator < Draper::Decorator
   end
 
   def display_buying_price
-    str = number_to_currency(self.buying_price || 0, unit: self.currency)
+    str = h.number_to_currency(self.buying_price || 0, unit: self.currency)
     str = str + "/#{self.request_unit}"
     if !self.price_suffix.blank?
       str = str + " (#{self.price_suffix})"
@@ -103,7 +97,7 @@ class OfferDecorator < Draper::Decorator
   end
 
   def display_total_buying_price
-    str = number_to_currency(self.total_buying_price || 0, unit: Currency::LOCAL_CURRENCY)
+    str = h.number_to_currency(self.total_buying_price || 0, unit: Currency::LOCAL_CURRENCY)
     if !self.price_suffix.blank?
       str = str + " (#{self.price_suffix})"
     end
@@ -111,7 +105,7 @@ class OfferDecorator < Draper::Decorator
   end
 
   def display_total_selling_price
-    str = number_to_currency(self.total_selling_price || 0, unit: Currency::LOCAL_CURRENCY)
+    str = h.number_to_currency(self.total_selling_price || 0, unit: Currency::LOCAL_CURRENCY)
     if !self.price_suffix.blank?
       str = str + " (#{self.price_suffix})"
     end

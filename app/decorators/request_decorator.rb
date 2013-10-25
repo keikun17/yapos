@@ -1,4 +1,4 @@
-class RequestDecorator < Draper::Decorator
+class RequestDecorator < ApplicationDecorator
 
   delegate_all
 
