@@ -1,9 +1,5 @@
-class SupplierOrderDecorator < Decorator
-  def order
-    @order ||= OrderDecorator.new(__getobj__.order)
-  end
+class SupplierOrderDecorator < Draper::Decorator
 
-  def offer
-    @offer ||= OfferDecorator.new(__getobj__.offer)
-  end
+  delegate_all
+
 end

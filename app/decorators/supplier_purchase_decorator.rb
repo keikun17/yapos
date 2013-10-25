@@ -1,4 +1,4 @@
-class SupplierPurchaseDecorator < Decorator
+class SupplierPurchaseDecorator < Draper::Decorator
 
   def supplier_name
     @supplier_name ||=  first_supplier_name
@@ -39,11 +39,11 @@ class SupplierPurchaseDecorator < Decorator
   end
 
   def offer
-    @offer ||= OfferDecorator.new(__getobj__.offer)
+    @offer ||= OfferDecorator.new(self.offer)
   end
 
   def supplier_orders
-    @supplier_orders ||= SupplierOrderDecorator.decorate_collection(__getobj__.supplier_orders)
+    @supplier_orders ||= SupplierOrderDecorator.decorate_collection(self.supplier_orders)
   end
 
   private
@@ -57,7 +57,7 @@ class SupplierPurchaseDecorator < Decorator
   # FIXME Ugly!, the 'order' association in particular...
   def first_supplier_link
     if !supplier_orders.empty? and !order.nil?
-      link_to first_supplier_name, supplier_path(decorated_object.order.suppliers.first)
+      link_to first_supplier_name, supplier_path(self..order.suppliers.first)
     end
   end
 

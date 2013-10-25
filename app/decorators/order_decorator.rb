@@ -1,13 +1,15 @@
-class OrderDecorator < Decorator
+class OrderDecorator < Draper::Decorator
+
+  delegate_all
 
   def decorated_offers
-    @decorated_offers ||= OfferDecorator.decorate_collection(decorated_object.offers)
+    @decorated_offers ||= OfferDecorator.decorate_collection(self.offers)
   end
 
   def display_purchase_date
     if purchase_date.nil?
       str = content_tag :i do
-        link_to "Please Fill Up", edit_order_path(decorated_object)
+        link_to "Please Fill Up", edit_order_path(self)
       end
     else
       str = purchase_date.to_date
