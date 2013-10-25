@@ -27,7 +27,7 @@
             - else
               = link_to "Please fill up description", edit_quote_path(quote)
 
-          - quote.requests.each do |request|
+          - quote.requests.decorate.each do |request|
             %p
               %span.label.label-inverse= request.display_quantity
               = truncate(request.specs, length: 200)
