@@ -30,7 +30,7 @@ class QuoteDecorator < ApplicationDecorator
   end
 
   def quantity_labels
-    requests.map{|x|
+    requests.decorate.map{|x|
       x.to_label("label label-inverse")
     }.join(' ').html_safe
   end
