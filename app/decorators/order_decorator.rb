@@ -1,6 +1,4 @@
-class OrderDecorator < Draper::Decorator
-
-  delegate_all
+class OrderDecorator < ApplicationDecorator
 
   def decorated_offers
     @decorated_offers ||= OfferDecorator.decorate_collection(self.offers)

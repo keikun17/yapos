@@ -1,4 +1,4 @@
-class ClientDecorator < Draper::Decorator
+class ClientDecorator < ApplicationDecorator
 
   delegate_all
 
