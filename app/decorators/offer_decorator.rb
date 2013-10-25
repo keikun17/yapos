@@ -53,7 +53,7 @@ class OfferDecorator < ApplicationDecorator
   end
 
   def display_summary
-    @display_summary ||= summary || link_to('Please edit and add offer spec summary/code', edit_quote_path(self.quote))
+    @display_summary ||= summary || h.link_to('Please edit and add offer spec summary/code', h.edit_quote_path(self.quote))
   end
 
   def quantity_label(label_class="")
@@ -140,9 +140,7 @@ class OfferDecorator < ApplicationDecorator
   end
 
   def quote_date
-    if !self.quote_date.blank?
-      self.quote_date.to_date.to_s(:long)
-    end
+    super.blank? ? self.quote_date.to_date.to_s(:long) : super
   end
 
   def display_purchase_date
