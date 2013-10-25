@@ -30,8 +30,7 @@ class OfferDecorator < ApplicationDecorator
   end
 
   def supplier_order_reference
-    off_ref = self.supplier_order_reference
-    off_ref.blank? ? "Not Ordered" : off_ref
+    super.blank? ? "Not Ordered" : super
   end
 
   def display_specs(html_options = {})
