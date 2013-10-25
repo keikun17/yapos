@@ -1,4 +1,4 @@
-class SupplierPurchaseDecorator < Draper::Decorator
+class SupplierPurchaseDecorator < ApplicationDecorator
 
   def supplier_name
     @supplier_name ||=  first_supplier_name
@@ -11,8 +11,8 @@ class SupplierPurchaseDecorator < Draper::Decorator
   def ordered_from_supplier_at(options={})
     options[:required_text] ||= 'Please Fill Up'
     if self.ordered_at.nil?
-      str = content_tag :i do
-        link_to options[:required_text], edit_supplier_purchase_path(self)
+      str = h.content_tag :i do
+        h.link_to options[:required_text], h.edit_supplier_purchase_path(self)
       end
     else
       str = self.ordered_at.to_date.to_s(:long)
@@ -42,10 +42,6 @@ class SupplierPurchaseDecorator < Draper::Decorator
     @offer ||= OfferDecorator.new(self.offer)
   end
 
-  def supplier_orders
-    @supplier_orders ||= SupplierOrderDecorator.decorate_collection(self.supplier_orders)
-  end
-
   private
 
   def first_supplier_name
@@ -57,7 +53,7 @@ class SupplierPurchaseDecorator < Draper::Decorator
   # FIXME Ugly!, the 'order' association in particular...
   def first_supplier_link
     if !supplier_orders.empty? and !order.nil?
-      link_to first_supplier_name, supplier_path(self..order.suppliers.first)
+      h.link_to first_supplier_name, h.supplier_path(self.order.suppliers.first)
     end
   end
 

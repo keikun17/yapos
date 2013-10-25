@@ -13,7 +13,7 @@
     %th Supplier
     %th
   %tbody
-    - @decorated_supplier_purchases.each do |supplier_purchase|
+    - @supplier_purchases.each do |supplier_purchase|
       %tr{class: "#{'error' if supplier_purchase.ordered_at.blank?}"}
         %td= link_to supplier_purchase.reference, print_supplier_purchase_path(supplier_purchase)
         %td

@@ -5,19 +5,16 @@ class SupplierPurchasesController < ApplicationController
     @supplier_purchases = @supplier_purchases.includes(:supplier_orders).where('supplier_orders.id is not null')
     @supplier_purchases = @supplier_purchases.order('supplier_purchases.ordered_at desc')
     @supplier_purchases = @supplier_purchases.order('supplier_purchases.ordered_at is null desc')
-    @supplier_purchases = @supplier_purchases.paginate(page: params[:page], per_page: 40)
-    @decorated_supplier_purchases = SupplierPurchaseDecorator.decorate_collection(@supplier_purchases)
+    @supplier_purchases = @supplier_purchases.paginate(page: params[:page], per_page: 40).decorate
   end
 
   def print
-    @supplier_purchase = SupplierPurchase.find(params[:id])
-    @supplier_purchase = SupplierPurchaseDecorator.new(@supplier_purchase)
+    @supplier_purchase = SupplierPurchase.find(params[:id]).decorate
     @print_preview = true
   end
 
   def edit
-    @supplier_purchase = SupplierPurchase.find(params[:id])
-    @supplier_purchase = SupplierPurchaseDecorator.new(@supplier_purchase)
+    @supplier_purchase = SupplierPurchase.find(params[:id]).decorate
     if @supplier_purchase.ordered_at.nil?
       @supplier_purchase.address = @supplier_purchase.supplier_address
       @supplier_purchase.ordered_at = Time.now
