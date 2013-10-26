@@ -4,8 +4,20 @@
 
 console.log "Shit"
 
-window.OffersController = ($scope) ->
+services = angular.module('app', ['ngResource'])
 
+services.factory "Offer", [ '$resource', ($resource) ->
+  return $resource "/clients/#{window.client_id}/offers.json?page=#{window.page}"
+]
+
+services.controller "OffersController", (Offer, $scope) ->
+
+  $scope.client_id = window.client_id
   $scope.showForm = ($event) ->
     replace =  $event.target
+    # window.x = replace
+    # console.log replace
+
+    window.list = Offer.query()
+    console.log window.list
 
