@@ -13,11 +13,15 @@ services.factory "Offer", [ '$resource', ($resource) ->
 services.controller "OffersController", (Offer, $scope) ->
 
   $scope.client_id = window.client_id
-  $scope.showForm = ($event) ->
-    replace =  $event.target
-    # window.x = replace
-    # console.log replace
 
-    window.list = Offer.query()
-    console.log window.list
+  # $scope.showForm = ($event) ->
+  #   replace =  $event.target
+  #   # window.x = replace
+  #   # console.log replace
+
+  $scope.offers = Offer.query ->
+    # for offer in $scope.offers
+    #   offer.id = 'kek'
+
+
 
