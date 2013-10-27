@@ -27,18 +27,33 @@
       %th Actual Delivery Date
 
   %tbody{'ng-controller' => 'OffersController'}
-    - @offers.each do |offer|
-      %tr
-        %td= link_to offer.quote_reference, offer.quote
-        %td= link_to offer.order_reference, offer.order
-        %td= offer.display_purchase_date
-        %td= offer.complete_quantity
-        %td= offer.summary
-        %td= offer.supplier_name
-        %td{'ng-click'=> 'showForm($event)'}
-          = offer.estimated_manufacture_end_date
-        %td= offer.estimated_delivery_date
-        %td= offer.delivered_at
+
+    %tr{'ng-repeat' => 'offer in offers'}
+      %td {{ offer.id }}
+      %td {{ offer.order_id }}
+      %td {{ offer.quote_id }}
+      %td {{ offer.quote_reference }}
+      %td {{ offer.order_reference }}
+      %td {{ offer.display_purchase_date }}
+      %td {{ offer.complete_quantity }}
+      %td {{ offer.summary }}
+      %td {{ offer.supplier_name }}
+      %td {{ offer.estimated_manufacture_end_date }}
+      %td {{ offer.estimated_delivery_date }}
+      %td {{ offer.delivered_at }}
+-# 
+-#     - @offers.each do |offer|
+-#       %tr
+-#         %td= link_to offer.quote_reference, offer.quote
+-#         %td= link_to offer.order_reference, offer.order
+-#         %td= offer.display_purchase_date
+-#         %td= offer.complete_quantity
+-#         %td= offer.summary
+-#         %td= offer.supplier_name
+-#         %td{'ng-click'=> 'showForm($event)'}
+-#           = offer.estimated_manufacture_end_date
+-#         %td= offer.estimated_delivery_date
+-#         %td= offer.delivered_at
 
 .pull-right= will_paginate(@offers)
 
