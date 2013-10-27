@@ -10,6 +10,8 @@ gem 'twitter-bootstrap-rails', '2.2.8'
 
 gem 'draper'
 
+gem 'active_model_serializers'
+
 # attr_protected and attr_accessible has been extracted to a gem
 gem 'protected_attributes'
 
