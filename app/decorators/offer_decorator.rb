@@ -145,7 +145,7 @@ class OfferDecorator < ApplicationDecorator
 
   def display_purchase_date
     if self.order
-      order = OrderDecorator.new(self.order)
+      order = self.order.decorate
       if order
         order.display_purchase_date
       else
