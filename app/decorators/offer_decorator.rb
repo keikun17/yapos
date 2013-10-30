@@ -135,7 +135,14 @@ class OfferDecorator < ApplicationDecorator
     if date = self.supplier_order_delivered_at
       date.to_date.to_s
     else
-      display_none
+      if supplier_order
+        h.content_tag :p do
+          html  = h.link_to_modal("Actual Delivery", self.supplier_order, {class: 'btn btn-small btn-success', modal_id: 'delivery'})
+          html << (h.render 'supplier_orders/modals/mark_as_delivered', modal_id: h.dom_id(supplier_order) + 'delivery', supplier_order: supplier_order.decorate)
+        end
+      else
+        display_none
+      end
     end
   end
 
@@ -157,7 +164,7 @@ class OfferDecorator < ApplicationDecorator
   private
 
     def display_none
-      'None'
+      'No PO'
     end
 
 end
