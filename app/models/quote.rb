@@ -155,6 +155,10 @@ class Quote < ActiveRecord::Base
     end
   end
 
+  def awarded?
+    display_status.eql?("Awarded")
+  end
+
   # FIXME : Reimplement
   def requote!
     raise("implement")
