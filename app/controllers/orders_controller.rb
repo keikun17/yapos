@@ -49,6 +49,7 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
+    @order.purchase_date ||= Time.now
     @order.attachments.build if @order.attachments.empty?
   end
 
