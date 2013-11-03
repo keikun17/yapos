@@ -19,8 +19,21 @@
         - unless params[:controller] == 'clients'
           %td= link_to_client(quote.client)
         %td
-          = quote.quantity_labels
-          = truncate(quote.description, :length => 40, :omission => "...")
+          - unless quote.description.blank? and quote.requests.empty?
+            = truncate(quote.description, :length => 40, :omission => "...")
+          - else
+            = link_to "Please fill up description", edit_quote_path(quote)
+
+          - quote.requests.decorate.each do |request|
+            %p
+              %span.label.label-inverse= request.display_quantity
+              = truncate(request.specs, length: 200)
+              - delivery_dates = request.offers.map{|offer| offer.supplier_order_delivered_at }.compact 
+              - if quote.awarded?
+                - if !delivery_dates.empty?
+                  %span.label.label-success Delivered at :#{delivery_dates.map(&:to_date).join(',')}
+                - else
+                  %span.label.label-warning Not yet delivered
         %td= supplier_links(quote)
         %td= quote.display_status
         %td= quote.quote_date.to_date if quote.quote_date
