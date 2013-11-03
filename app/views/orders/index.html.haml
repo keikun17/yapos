@@ -47,8 +47,7 @@
             %i= offer.estimated_manufacture_end_date
           %td
             %i= offer.estimated_delivery_date
-          %td
-            %i= offer.delivered_at
+          %td= offer.delivered_at
 
           - offers.each do |offer|
             %tr{class: offer_row_class(offer)}
