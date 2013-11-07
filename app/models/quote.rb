@@ -179,6 +179,7 @@ class Quote < ActiveRecord::Base
 
     end
 
+    duplicate_quote.status = "Pending"
     duplicate_quote.save
     duplicate_quote
   end
