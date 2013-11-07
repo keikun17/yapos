@@ -161,7 +161,26 @@ class Quote < ActiveRecord::Base
 
   # FIXME : Reimplement
   def requote!
-    raise("implement")
+    duplicate_quote = self.dup
+
+    self.requests.each do |request|
+      duplicate_request = request.dup
+
+      request.offers.each do |offer|
+        duplicate_offer = offer.dup
+        duplicate_offer.order_reference = nil
+        duplicate_offer.request_id = nil
+
+        duplicate_request.offers << duplicate_offer
+      end
+
+      duplicate_request.quote_id = nil
+      duplicate_quote.requests << duplicate_request
+
+    end
+
+    duplicate_quote.save
+    duplicate_quote
   end
 
   def compute_total_offered_prices
