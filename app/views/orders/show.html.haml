@@ -49,7 +49,8 @@
     %th Offered Spec
     %th Purchased Spec
     %th Supplier
-    %th Remarks
+    %th Estimated Delivery
+    %th Delivered at
     %th Supplier's Price
     %th Offered Price
     %th Our PO#
@@ -69,7 +70,8 @@
         %td
           - if offer.supplier.present?
             = link_to offer.supplier_name, supplier_path(offer.supplier)
-        %td= offer.remarks
+        %td= offer.estimated_delivery_date
+        %td= offer.delivered_at
         %td= offer.display_buying_price
         %td= offer.display_selling_price
         %td
@@ -83,7 +85,8 @@
           %td
             - if offer.supplier.present?
               = link_to offer.supplier_name, supplier_path(offer.supplier)
-          %td= offer.remarks
+          %td= offer.estimated_delivery_date
+          %td= offer.delivered_at
           %td= offer.display_buying_price
           %td= offer.display_selling_price
           %td
