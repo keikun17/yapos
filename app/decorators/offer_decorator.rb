@@ -137,7 +137,7 @@ class OfferDecorator < ApplicationDecorator
     else
       if supplier_order
         h.content_tag :p do
-          html  = h.link_to_modal("Actual Delivery", self.supplier_order, {class: 'btn btn-small btn-success', modal_id: 'delivery'})
+          html  = h.link_to_modal("Set Delivery", self.supplier_order, {class: 'btn btn-small btn-success', modal_id: 'delivery'})
           html << (h.render 'supplier_orders/modals/mark_as_delivered', modal_id: h.dom_id(supplier_order) + 'delivery', supplier_order: supplier_order.decorate)
         end
       else
