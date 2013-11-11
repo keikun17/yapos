@@ -37,7 +37,7 @@
           %td
             = offer.display_specs(quantity_class: 'label label-inverse')
             - if !offer.supplier_order_actual_specs.blank?
-              %span.label.label-important Actual: 
+              %span.label.label-important Actual:
               =offer.supplier_order_actual_specs
           %td= order.display_purchase_date
           %td= offer.supplier_purchase_link
@@ -56,7 +56,7 @@
               %td
                 = offer.display_specs(quantity_class: 'label label-inverse').html_safe
                 - if !offer.supplier_order_actual_specs.blank?
-                  %span.label.label-important Actual: 
+                  %span.label.label-important Actual:
                   =offer.supplier_order_actual_specs
               %td= order.display_purchase_date
               %td= offer.supplier_purchase_link
