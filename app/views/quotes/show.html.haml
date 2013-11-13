@@ -114,17 +114,17 @@
             = link_to offer.supplier_name, offer.supplier
         %td
           - if offer
-            %strong Notes:
-            = offer.remarks
+            %strong Terms:
+            = offer.terms
             %br
             %strong Delivery:
             = offer.delivery
             %br
-            %strong Terms:
-            = offer.terms
-            %br
             %strong Warranty:
             = offer.warranty
+            %br
+            %strong Notes:
+            = offer.remarks
             %br
           %td.text-warning
             - if offer
@@ -149,17 +149,17 @@
             - if offer.supplier
               = link_to offer.supplier_name, offer.supplier
           %td
-            %strong Notes:
-            = offer.remarks
+            %strong Terms:
+            = offer.terms
             %br
             %strong Delivery:
             = offer.delivery
             %br
-            %strong Terms:
-            = offer.terms
-            %br
             %strong Warranty:
             = offer.warranty
+            %br
+            %strong Notes:
+            = offer.remarks
             %br
           %td.text-warning
             %strong Unit Price:
