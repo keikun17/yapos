@@ -16,7 +16,7 @@
     - quotes.each do |quote|
       %tr{:class => quote_row_class(quote)}
         %td
-          %strong= link_to quote.quote_reference, quote
+          %strong= link_to quote.display_reference, quote
         - unless params[:controller] == 'clients'
           %td= link_to_client(quote.client)
         %td= quote.order_links

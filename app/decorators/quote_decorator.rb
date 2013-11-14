@@ -1,6 +1,10 @@
 class QuoteDecorator < ApplicationDecorator
   # Associations
 
+  def display_reference
+    quote_reference.blank? ? "(NO REFERENCE ##{id})" : quote_reference
+  end
+
   def order_links
     links = OrderDecorator.decorate_collection(self.orders).collect(&:link)
     links.uniq!
