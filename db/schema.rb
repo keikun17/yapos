@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130624052622) do
+ActiveRecord::Schema.define(version: 20131114022650) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -96,6 +96,19 @@ ActiveRecord::Schema.define(version: 20130624052622) do
     t.string   "unit"
     t.integer  "client_purchased_count",     default: 0
     t.integer  "non_client_purchased_count", default: 0
+  end
+
+  create_table "stocks", force: true do |t|
+    t.float    "quantity"
+    t.string   "reference"
+    t.string   "unit"
+    t.integer  "supplier_id"
+    t.text     "description"
+    t.text     "remarks"
+    t.datetime "date_acquired"
+    t.datetime "date_used_up"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "supplier_orders", force: true do |t|

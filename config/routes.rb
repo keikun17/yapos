@@ -3,6 +3,8 @@ Yapos::Application.routes.draw do
 
   get 'kanban', to: 'kanban#show'
 
+  resources :stocks
+
   resources :orders do
     collection do
       get 'pending'
