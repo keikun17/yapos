@@ -1,0 +1,44 @@
+= form_for @stock, html: {class: 'form-horizontal'} do |f|
+  .control-group
+    = f.label :reference, 'Reference', class: 'control-label'
+    .controls
+      = f.text_field :reference, class: 'text_field'
+
+  .control-group
+    = f.label :supplier, 'Brand', class: 'control-label'
+    .controls
+      = f.select :supplier_id, Supplier.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
+
+  .control-group
+    = f.label :quantity, 'Quantity', class: 'control-label'
+    .controls
+      = f.text_field :quantity, class: 'text_field'
+
+  .control-group
+    = f.label :unit, 'Unit', class: 'control-label'
+    .controls
+      = f.text_field :unit, class: 'text_field'
+    
+  .control-group
+    = f.label :description, 'Description', class: 'control-label'
+    .controls
+      = f.text_area :description, class: 'text_area'
+
+  .control-group
+    = f.label :remarks, 'Remarks', class: 'control-label'
+    .controls
+      = f.text_area :remarks, class: 'text_area'
+
+  .control-group
+    = f.label :date_acquired, 'Date Acquired', class: 'control-label'
+    .controls
+      = f.date_select :date_acquired,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
+
+  .control-group
+    = f.label :date_used_up, 'Date Used Up', class: 'control-label'
+    .controls
+      = f.date_select :date_used_up,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
+
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), stocks_path, :class => 'btn'

@@ -1,4 +1,13 @@
 class Stock < ActiveRecord::Base
+  attr_accessible :reference,
+    :supplier_id,
+    :quantity,
+    :unit,
+    :description,
+    :remarks,
+    :date_acquired,
+    :date_used_up
+
 end
 
 # == Schema Information
