@@ -44,7 +44,6 @@ end
 #  offer_id                  :integer
 #  reference                 :string(255)
 #  estimated_manufactured_at :datetime
-#  manufactured_at           :datetime
 #  estimated_delivered_at    :datetime
 #  delivered_at              :datetime
 #  created_at                :datetime         not null
