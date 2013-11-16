@@ -7,7 +7,20 @@ Hi Stocks
   %thead
     %tr
       %th Reference
+      %th Quantity
+      %th Unit
+      %th description
+      %th remarks
+      %th Acquired
+      %th Used up
+
   %tbody
     - @stocks.each do |stock|
       %tr
-        %td= stock.reference
+        %td=link_to stock.reference, stock_path(stock)
+        %td= stock.quantity
+        %td= stock.unit
+        %td= stock.description
+        %td= stock.remarks
+        %td= stock.date_acquired
+        %td= stock.date_used_up
