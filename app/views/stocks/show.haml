@@ -1,0 +1,39 @@
+.page-header
+  %h1
+    = t '.title', :default => @stock.reference
+    = link_to t('.edit', :default => t("helpers.links.edit")), edit_stock_path(@stock), :class => 'btn'
+
+%p
+  %strong Reference
+  %br
+  = @stock.reference
+
+%p
+  %strong Quantity
+  %br
+  = @stock.quantity
+
+%p
+  %strong Unit
+  %br
+  = @stock.unit
+
+%p
+  %strong Description
+  %br
+  = @stock.reference
+
+%p
+  %strong Remarks
+  %br
+  = @stock.remarks
+
+%p
+  %strong Date Acquired
+  %br
+  = @stock.date_acquired
+
+%p
+  %strong Date Used up
+  %br
+  = @stock.date_used_up
