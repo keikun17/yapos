@@ -56,7 +56,7 @@ class Quote < ActiveRecord::Base
 
   default_scope -> { order('quotes.quote_date desc, quotes.id desc') }
 
-  scope :pending_client_order, not_closed, -> { includes(:requests).merge(Request.pending_client_order) }
+  scope :pending_client_order, -> { not_closed.includes(:requests).merge(Request.pending_client_order) }
   scope :pending_supplier_order, -> do
     s = not_closed.includes([:supplier_orders, :offers])
 

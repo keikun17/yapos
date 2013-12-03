@@ -29,6 +29,7 @@ class Request < ActiveRecord::Base
 
   scope :with_offers, -> do
     s = includes(:offers).where('offers.id is not null')
+    s
   end
 
   scope :with_client_purchased_offers, -> do
