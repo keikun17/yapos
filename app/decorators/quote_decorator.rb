@@ -24,9 +24,9 @@ class QuoteDecorator < ApplicationDecorator
   end
 
   def offer_spec_colspan
-    merged_columns = [:supplier_name, :supplier, :remarks, :delivery, :warranty, :terms]
+    mergable_columns = [:supplier_name, :supplier, :remarks, :delivery, :warranty, :terms]
     counter = 0
-    @offer_spec_colspan ||= merged_columns.collect do |attr|
+    @offer_spec_colspan ||= mergable_columns.collect do |attr|
       counter +=1 if offer_details_mergable?(attr)
       counter
     end.last
