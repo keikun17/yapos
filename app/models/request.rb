@@ -9,6 +9,7 @@ class Request < ActiveRecord::Base
   belongs_to :supplier
   has_many :offers, dependent: :destroy
 
+  has_many :suppliers, through: :offers
   accepts_nested_attributes_for :offers,
     :allow_destroy => true,
     :reject_if => lambda { |o| o[:specs].blank? &&
