@@ -48,7 +48,7 @@ class Quote < ActiveRecord::Base
   delegate :name, :to => :supplier, :allow_nil => true, :prefix => true
 
   scope :unawarded, -> { where(:order_id => nil) }
-  scope :not_closed, where("quotes.status not in ('Cancelled', 'No Quote', 'Not Awarded')");
+  scope :not_closed, -> { where("quotes.status not in ('Cancelled', 'No Quote', 'Not Awarded')") }
 
   scope :with_pending_requests, -> do
     not_closed.includes(:offers).where(offers: {request_id: nil})
@@ -56,7 +56,7 @@ class Quote < ActiveRecord::Base
 
   default_scope -> { order('quotes.quote_date desc, quotes.id desc') }
 
-  scope :pending_client_order, not_closed.includes(:requests).merge(Request.pending_client_order)
+  scope :pending_client_order, not_closed, -> { includes(:requests).merge(Request.pending_client_order) }
   scope :pending_supplier_order, -> do
     s = not_closed.includes([:supplier_orders, :offers])
 
