@@ -18,18 +18,24 @@ class QuoteDecorator < ApplicationDecorator
 
   # Maybe this belongs here instead of the model because this
   # is leaning more toward behavior than data
-  def offer_details_mergable?(attr)
-    details = self.offers.map(&attr).uniq
+  def offer_details_mergable?(attr, supplier_id = nil)
+    if supplier_id.nil?
+      details = self.offers.map(&attr).uniq
+    else
+      details = self.offers.where(supplier_id: supplier_id).map(&attr).uniq
+    end
     details.count <= 1
   end
 
-  def offer_spec_colspan
+  def offer_spec_colspan(supplier_id = nil)
     mergable_columns = [:supplier_name, :supplier, :remarks, :delivery, :warranty, :terms]
     counter = 0
+
     @offer_spec_colspan ||= mergable_columns.collect do |attr|
-      counter +=1 if offer_details_mergable?(attr)
+      counter +=1 if offer_details_mergable?(attr, supplier_id)
       counter
     end.last
+
     @offer_spec_colspan
   end
 
