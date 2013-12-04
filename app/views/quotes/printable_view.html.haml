@@ -52,62 +52,62 @@
           %th
             - if request.offers.from_supplier(@suppliers).count > 1
               OFFER#:
-          - unless @quote.offer_details_mergable?(:supplier_name) or params[:supplier_id]
+          - unless @quote.offer_details_mergable?(:supplier_name, params[:supplier_id]) or params[:supplier_id]
             %th{width: '80px'} BRAND:
-          %th{colspan: @quote.offer_spec_colspan} OFFERED:
+          %th{colspan: @quote.offer_spec_colspan(params[:supplier_id])} OFFERED:
           %th{width: '80px'} UNIT PRICE
-          - unless @quote.offer_details_mergable?(:remarks) or params[:supplier_id]
+          - unless @quote.offer_details_mergable?(:remarks, params[:supplier_id]) or params[:supplier_id]
             %th{width: '80px'} NOTES
-          - unless @quote.offer_details_mergable?(:delivery) or params[:supplier_id]
+          - unless @quote.offer_details_mergable?(:delivery, params[:supplier_id]) or params[:supplier_id]
             %th{width: '80px'} DELIVERY
-          - unless @quote.offer_details_mergable?(:terms) or params[:supplier_id]
+          - unless @quote.offer_details_mergable?(:terms, params[:supplier_id]) or params[:supplier_id]
             %th{width: '80px'} TERMS
-          - unless @quote.offer_details_mergable?(:warranty) or params[:supplier_id]
+          - unless @quote.offer_details_mergable?(:warranty, params[:supplier_id]) or params[:supplier_id]
             %th WARRANTY
         - offers = OfferDecorator.decorate_collection(request.offers.from_supplier(@suppliers))
         - offers.each do |offer|
           %tr
             %td{style: 'text-align:right'}
               = "##{offers.index(offer) + 1}" if offers.count > 1
-            - unless @quote.offer_details_mergable?(:supplier_name) or params[:supplier_id]
+            - unless @quote.offer_details_mergable?(:supplier_name, params[:supplier_id]) or params[:supplier_id]
               %td= offer.supplier_name
-            %td{colspan: @quote.offer_spec_colspan}= simple_format(offer.specs)
+            %td{colspan: @quote.offer_spec_colspan(params[:supplier_id])}= simple_format(offer.specs)
             %td= offer.display_selling_price
-            - unless @quote.offer_details_mergable?(:remarks) or params[:supplier_id]
+            - unless @quote.offer_details_mergable?(:remarks, params[:supplier_id]) or params[:supplier_id]
               %td= offer.remarks
-            - unless @quote.offer_details_mergable?(:delivery) or params[:supplier_id]
+            - unless @quote.offer_details_mergable?(:delivery, params[:supplier_id]) or params[:supplier_id]
               %td= offer.delivery
-            - unless @quote.offer_details_mergable?(:terms) or params[:supplier_id]
+            - unless @quote.offer_details_mergable?(:terms, params[:supplier_id]) or params[:supplier_id]
               %td= offer.terms
-            - unless @quote.offer_details_mergable?(:warranty) or params[:supplier_id]
+            - unless @quote.offer_details_mergable?(:warranty, params[:supplier_id]) or params[:supplier_id]
               %td= offer.warranty
 
   %table.table-compact
-    - if (@quote.offer_details_mergable?(:remarks) or params[:supplier_id]) and !@quote.solo_offer_remarks.blank?
+    - if (@quote.offer_details_mergable?(:remarks, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_remarks.blank?
       %tr
         %td
           %strong NOTES
         %td : #{@quote.solo_offer_remarks}
 
-    - if (@quote.offer_details_mergable?(:supplier_name) or params[:supplier_id]) and !@quote.solo_offer_supplier_name.blank?
+    - if (@quote.offer_details_mergable?(:supplier_name, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_supplier_name.blank?
       %tr
         %td
           %strong BRAND
         %td : #{@quote.solo_offer_supplier_name}
 
-    - if (@quote.offer_details_mergable?(:delivery) or params[:supplier_id]) and !@quote.solo_offer_delivery.blank?
+    - if (@quote.offer_details_mergable?(:delivery, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_delivery.blank?
       %tr
         %td
           %strong DELIVERY
         %td : #{@quote.solo_offer_delivery}
 
-    - if (@quote.offer_details_mergable?(:terms) or params[:supplier_id]) and !@quote.solo_offer_terms.blank?
+    - if (@quote.offer_details_mergable?(:terms, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_terms.blank?
       %tr
         %td
           %strong TERMS
         %td : #{@quote.solo_offer_terms}
 
-    - if (@quote.offer_details_mergable?(:warranty) or params[:supplier_id]) and !@quote.solo_offer_warranty.blank?
+    - if (@quote.offer_details_mergable?(:warranty, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_warranty.blank?
       %tr
         %td
           %strong WARRANTY
