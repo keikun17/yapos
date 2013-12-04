@@ -30,7 +30,6 @@ class QuoteDecorator < ApplicationDecorator
   def offer_spec_colspan(supplier_id = nil)
     mergable_columns = [:supplier_name, :supplier, :remarks, :delivery, :warranty, :terms]
     counter = 0
-
     @offer_spec_colspan ||= mergable_columns.collect do |attr|
       counter +=1 if offer_details_mergable?(attr, supplier_id)
       counter
@@ -45,32 +44,62 @@ class QuoteDecorator < ApplicationDecorator
     }.join(' ').html_safe
   end
 
-  def solo_offer_supplier_name
-    if @solo_offer ||= self.offers.first
+  def solo_offer_supplier_name(supplier_id = nil)
+    if supplier_id.nil?
+      o = self.offers
+    else
+      o = self.offers.where(supplier_id: supplier_id)
+    end
+
+    if @solo_offer ||= o.first
       return @solo_offer.supplier_name
     end
   end
 
-  def solo_offer_remarks
-    if @solo_offer ||= self.offers.first
+  def solo_offer_remarks(supplier_id = nil)
+    if supplier_id.nil?
+      o = self.offers
+    else
+      o = self.offers.where(supplier_id: supplier_id)
+    end
+
+    if @solo_offer ||= o.first
       return @solo_offer.remarks
     end
   end
 
-  def solo_offer_delivery
-    if @solo_offer ||= self.offers.first
+  def solo_offer_delivery(supplier_id = nil)
+    if supplier_id.nil?
+      o = self.offers
+    else
+      o = self.offers.where(supplier_id: supplier_id)
+    end
+
+    if @solo_offer ||= o.first
       return @solo_offer.delivery
     end
   end
 
-  def solo_offer_warranty
-    if @solo_offer ||= self.offers.first
+  def solo_offer_warranty(supplier_id = nil)
+    if supplier_id.nil?
+      o = self.offers
+    else
+      o = self.offers.where(supplier_id: supplier_id)
+    end
+
+    if @solo_offer ||= o.first
       return @solo_offer.warranty
     end
   end
 
-  def solo_offer_terms
-    if @solo_offer ||= self.offers.first
+  def solo_offer_terms(suppier_id = nil)
+    if supplier_id.nil?
+      o = self.offers
+    else
+      o = self.offers.where(supplier_id: supplier_id)
+    end
+
+    if @solo_offer ||= o.first
       return @solo_offer.terms
     end
   end

@@ -83,35 +83,42 @@
               %td= offer.warranty
 
   %table.table-compact
-    - if (@quote.offer_details_mergable?(:remarks, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_remarks.blank?
+    - if (@quote.offer_details_mergable?(:remarks, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_remarks(params[:supplier_id]).blank?
       %tr
         %td
           %strong NOTES
-        %td : #{@quote.solo_offer_remarks}
+        %td : #{@quote.solo_offer_remarks(params[:supplier_id])}
 
-    - if (@quote.offer_details_mergable?(:supplier_name, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_supplier_name.blank?
+    - if (@quote.offer_details_mergable?(:supplier_name, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_supplier_name(params[:supplier_id]).blank?
       %tr
         %td
           %strong BRAND
-        %td : #{@quote.solo_offer_supplier_name}
+          - if params[:supplier_id]
+            %td
+              \:
+              = Supplier.find(params[:supplier_id]).name
+          -else
+            %td : #{@quote.solo_offer_supplier_name(params[:supplier_id])}
 
-    - if (@quote.offer_details_mergable?(:delivery, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_delivery.blank?
+
+    - if (@quote.offer_details_mergable?(:delivery, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_delivery(params[:supplier_id]).blank?
       %tr
         %td
           %strong DELIVERY
-        %td : #{@quote.solo_offer_delivery}
 
-    - if (@quote.offer_details_mergable?(:terms, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_terms.blank?
+        %td : #{@quote.solo_offer_delivery(params[:supplier_id])}
+
+    - if (@quote.offer_details_mergable?(:terms, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_terms(params[:supplier_id]).blank?
       %tr
         %td
           %strong TERMS
-        %td : #{@quote.solo_offer_terms}
+        %td : #{@quote.solo_offer_terms(params[:supplier_id])}
 
-    - if (@quote.offer_details_mergable?(:warranty, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_warranty.blank?
+    - if (@quote.offer_details_mergable?(:warranty, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_warranty(params[:supplier_id]).blank?
       %tr
         %td
           %strong WARRANTY
-        %td : #{@quote.solo_offer_warranty}
+        %td : #{@quote.solo_offer_warranty(params[:supplier_id])}
 
   - unless @quote.remarks.blank?
     %p.compact
