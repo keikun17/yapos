@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131114022650) do
+ActiveRecord::Schema.define(version: 20131209020750) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20131114022650) do
   end
 
   create_table "stocks", force: true do |t|
-    t.float    "quantity"
+    t.float    "remaining_quantity"
     t.string   "reference"
     t.string   "unit"
     t.integer  "supplier_id"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20131114022650) do
     t.datetime "date_used_up"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "initial_quantity"
   end
 
   create_table "supplier_orders", force: true do |t|
