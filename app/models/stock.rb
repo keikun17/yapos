@@ -1,7 +1,8 @@
 class Stock < ActiveRecord::Base
   attr_accessible :reference,
     :supplier_id,
-    :quantity,
+    :remaining_quantity,
+    :initial_quantity,
     :unit,
     :description,
     :remarks,

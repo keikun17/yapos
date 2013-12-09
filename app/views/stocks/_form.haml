@@ -10,10 +10,14 @@
       = f.select :supplier_id, Supplier.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
 
   .control-group
-    = f.label :quantity, 'Quantity', class: 'control-label'
+    = f.label :initial_quantity, 'Initial Quantity', class: 'control-label'
     .controls
-      = f.text_field :quantity, class: 'text_field'
+      = f.text_field :initial_quantity, class: 'text_field'
 
+  .control-group
+    = f.label :remaining_quantity, 'Remaining Quantity', class: 'control-label'
+    .controls
+      = f.text_field :remaining_quantity, class: 'text_field'
   .control-group
     = f.label :unit, 'Unit', class: 'control-label'
     .controls
