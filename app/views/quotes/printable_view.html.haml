@@ -35,10 +35,10 @@
     - @requests.each do |request|
       %tr
         - if @requests.count > 1
-          %th{width:'40px'} ITEM#:
-        %th{width: '50px'} QTY:
-        %th{width: '80px'} UNIT:
-        %th{colspan:6} REQUESTED:
+          %th.item-line{width:'40px'} ITEM#:
+        %th.item-line{width: '50px'} QTY:
+        %th.item-line{width: '80px'} UNIT:
+        %th.item-line{colspan:6} REQUESTED:
       %tr
         - if @requests.count > 1
           %td ##{@requests.index(request) + 1}
