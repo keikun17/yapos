@@ -4,6 +4,10 @@
   font-weight: bold;
 }
 
+tr.last-offer td {
+  border-bottom: 1px solid black !important;
+}
+
 p.compact{
   line-height: 12px;
 }

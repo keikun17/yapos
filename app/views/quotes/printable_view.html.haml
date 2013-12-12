@@ -68,7 +68,7 @@
               %th WARRANTY
           - offers = OfferDecorator.decorate_collection(request.offers.from_supplier(@suppliers))
           - offers.each do |offer|
-            %tr
+            %tr{class: "#{'last-offer' if offer == offers.last}"}
               %td{style: 'text-align:right'}
                 = "##{offers.index(offer) + 1}" if offers.count > 1
               - unless @quote.offer_details_mergable?(:supplier_name, params[:supplier_id]) or params[:supplier_id]
