@@ -34,6 +34,21 @@
     %br
     = @order.supplier_links
 
+%p
+  %strong Total Buying Price
+  %br
+  = @order.display_total_buy
+
+%p
+  %strong Total Selling Price
+  %br
+  = @order.display_total_sell
+
+%p
+  %strong Total Profit
+  %br
+  = @order.display_total_profit
+
 %h3 Attachments
 - if @order.attachments.empty?
   No Attachments
