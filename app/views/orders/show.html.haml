@@ -87,8 +87,8 @@
             = link_to offer.supplier_name, supplier_path(offer.supplier)
         %td= offer.estimated_delivery_date
         %td= offer.delivered_at
-        %td= offer.display_buying_price
-        %td= offer.display_selling_price
+        %td.text-warning= offer.display_buying_price
+        %td.text-success= offer.display_selling_price
         %td
           = offer.supplier_purchase_link
           = offer.edit_supplier_purchase_link
@@ -102,8 +102,8 @@
               = link_to offer.supplier_name, supplier_path(offer.supplier)
           %td= offer.estimated_delivery_date
           %td= offer.delivered_at
-          %td= offer.display_buying_price
-          %td= offer.display_selling_price
+          %td.text-warning= offer.display_buying_price
+          %td.text-success= offer.display_selling_price
           %td
             = offer.supplier_purchase_link
             = offer.edit_supplier_purchase_link
@@ -114,7 +114,7 @@
 %h4 Notes
 %p
   =simple_format @order.description
-    
+
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), orders_path, :class => 'btn'
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(@order), :class => 'btn'
