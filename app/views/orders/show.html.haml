@@ -79,7 +79,9 @@
       %tr
         %td{rowspan: offer_count}
           %strong= link_to quote.display_reference, quote
-        %td= offer.request_specs
+        %td
+          = offer.quantity_label("label label-inverse")
+          = offer.request_specs
         %td= offer.specs
         %td= offer.actual_specs
         %td
