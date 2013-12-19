@@ -9,11 +9,6 @@
 %h4 Offers :
 .pull-right= will_paginate(@offers)
 
-:javascript
-  window.page = #{params[:page] || 1 };
-  window.client_id = #{params[:client_id]};
-
--# %table.table.table-condensed{'ng-app' => "app" }
 %table.table.table-condensed
   %thead
     %tr
@@ -27,24 +22,7 @@
       %th Estimated Delivery
       %th Actual Delivery Date
 
-  -# %tbody{'ng-controller' => 'OffersController'}
   %tbody
-    -# %tr{'ng-repeat' => 'offer in offers'}
-    -#   %td= link_to "{{ offer.quote_reference }}", "{{ quote_url(offer.quote_id)}}"
-    -#   %td= link_to "{{ offer.order_reference }}",  "{{ order_url(offer.order_id) }}"
-    -#   %td
-    -#     -# %td.editable
-    -#     .edit-value{'ng-click' => 'toggleEditable($event)'}
-    -#       {{ show_or_edit_order_purchase_date(offer) }}
-    -#     .edit-form.hidden
-    -#       %form{'ng-submit' => 'saveOrder()', action: "/orders/{{offer.order_id}}", method: 'patch'}
-    -#         = text_field_tag 'testing'
-    -#   %td {{ offer.complete_quantity }}
-    -#   %td {{ offer.summary }}
-    -#   %td {{ offer.supplier_name }}
-    -#   %td {{ offer.estimated_manufacture_end_date }}
-    -#   %td {{ offer.estimated_delivery_date }}
-    -#   %td {{ offer.delivered_at }}
 
     - @offers.each do |offer|
       %tr
