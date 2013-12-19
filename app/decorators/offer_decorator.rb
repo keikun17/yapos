@@ -164,7 +164,11 @@ class OfferDecorator < ApplicationDecorator
   private
 
     def display_none
-      'No PO'
+      if self.client_ordered?
+        h.content_tag :span, "Please Edit", class: 'muted'
+      else
+        'No PO'
+      end
     end
 
 end

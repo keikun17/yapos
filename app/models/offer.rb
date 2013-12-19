@@ -98,6 +98,10 @@ class Offer < ActiveRecord::Base
 
   delegate :ordered_at, to: :supplier_purchase, allow_nil: true, prefix: true
 
+  def client_ordered?
+    !self.order_reference.blank?
+  end
+
   def client_purchased_status
     if self.order_reference.blank?
       'non_client_purchased'
