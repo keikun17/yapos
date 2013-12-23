@@ -180,6 +180,7 @@ class Quote < ActiveRecord::Base
     end
 
     duplicate_quote.status = "Pending"
+    duplicate_quote.quote_date = Time.now
     duplicate_quote.save
     duplicate_quote
   end
