@@ -58,7 +58,7 @@
               %th{width: '80px'} BRAND:
             %th{colspan: @quote.offer_spec_colspan(params[:supplier_id])} OFFERED:
             %th{width: '80px'} UNIT PRICE
-            - unless @quote.offer_details_mergable?(:remarks, params[:supplier_id]) or params[:supplier_id]
+            - unless @quote.offer_details_mergable?(:remarks, params[:supplier_id])
               %th{width: '80px'} NOTES
             - unless @quote.offer_details_mergable?(:delivery, params[:supplier_id]) or params[:supplier_id]
               %th{width: '80px'} DELIVERY
@@ -75,7 +75,7 @@
                 %td= offer.supplier_name
               %td{colspan: @quote.offer_spec_colspan(params[:supplier_id])}= simple_format(offer.specs)
               %td= offer.display_selling_price
-              - unless @quote.offer_details_mergable?(:remarks, params[:supplier_id]) or params[:supplier_id]
+              - unless @quote.offer_details_mergable?(:remarks, params[:supplier_id])
                 %td= offer.remarks
               - unless @quote.offer_details_mergable?(:delivery, params[:supplier_id]) or params[:supplier_id]
                 %td= offer.delivery
@@ -85,7 +85,7 @@
                 %td= offer.warranty
 
   %table.table-compact
-    - if (@quote.offer_details_mergable?(:remarks, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_remarks(params[:supplier_id]).blank?
+    - if @quote.offer_details_mergable?(:remarks, params[:supplier_id]) and !@quote.solo_offer_remarks(params[:supplier_id]).blank?
       %tr
         %td
           %strong NOTES
