@@ -8,77 +8,86 @@
     - @quote.suppliers.uniq.each do |supplier|
       = link_to "Print only #{supplier.name} offers", printable_view_quote_path(@quote, supplier_id: supplier.id), :class => 'btn'
 
-%p
-  %strong= model_class.human_attribute_name(:quote_date) + ':'
-  %br
-  = @quote.quote_date.to_date
+.row-fluid
 
-%p
-  %strong Recorderd At:
-  %br
-  = @quote.created_at.to_date
-  (last updated at #{@quote.updated_at.to_date})
+  .span3
+    %p
+      %strong= model_class.human_attribute_name(:quote_date) + ':'
+      %br
+      = @quote.quote_date.to_date
 
-%p
-  %strong= model_class.human_attribute_name(:quote_reference) + ':'
-  %br
-  = @quote.quote_reference
-%p
-  %strong= model_class.human_attribute_name(:order_reference) + ':'
-  %br
-  = @quote.order_links
-%p
-  %strong= model_class.human_attribute_name(:client_name) + ':'
-  %br
-  = link_to_client(@quote.client)
+    %p
+      %strong Recorderd At:
+      %br
+      = @quote.created_at.to_date
+      (last updated at #{@quote.updated_at.to_date})
 
-%p
-  %strong= model_class.human_attribute_name(:contact_person) + ':'
-  %br
-  = @quote.contact_person
+    %p
+      %strong= model_class.human_attribute_name(:quote_reference) + ':'
+      %br
+      = @quote.quote_reference
+    %p
+      %strong= model_class.human_attribute_name(:order_reference) + ':'
+      %br
+      = @quote.order_links
 
-%p
-  %strong= model_class.human_attribute_name(:description) + ':'
-  %br
-  = simple_format(@quote.description)
+  .span3
+    %p
+      %strong= model_class.human_attribute_name(:client_name) + ':'
+      %br
+      = link_to_client(@quote.client)
 
-%p
-  %strong= model_class.human_attribute_name(:status) + ':'
-  %br
-  = @quote.display_status
-%p
-  %strong= model_class.human_attribute_name(:supplier_name) + ':'
-  %br
-  = supplier_links(@quote)
+    %p
+      %strong= model_class.human_attribute_name(:contact_person) + ':'
+      %br
+      = @quote.contact_person
 
-%p
-  %strong Internal Notes:
-  %br
-  = simple_format(@quote.internal_notes, class: 'text-info')
+    %p
+      %strong= model_class.human_attribute_name(:description) + ':'
+      %br
+      = simple_format(@quote.description)
 
-%p
-  %strong Remarks
-  %em (Will be shown at the bottom of the printable view):
-  %br
-  = simple_format(@quote.remarks)
+    %p
+      %strong= model_class.human_attribute_name(:status) + ':'
+      %br
+      = @quote.display_status
 
-%p
-  %strong= model_class.human_attribute_name(:signatory) + ':'
-  %br
-  = @quote.signatory
+  .span3
+    %p
+      %strong Suppliers quoted:
+      %br
+      = supplier_links(@quote)
 
-%p
-  %strong= model_class.human_attribute_name(:signatory_position) + ':'
-  %br
-  = @quote.signatory_position
+    %p
+      %strong Internal Notes:
+      %br
+      = simple_format(@quote.internal_notes, class: 'text-info')
 
-%h3 Attachments
-- if @quote.attachments.empty?
-  No Attachments
-- else
-  %ul.attachments
-    - @quote.attachments.each do |attachment|
-      %li= link_to attachment[:document], quote_attachment_path(@quote, :id => attachment.id)
+    %p
+      %strong Remarks
+      %em (Will be shown at the bottom of the printable view):
+      %br
+      = simple_format(@quote.remarks)
+
+    %p
+      %strong= model_class.human_attribute_name(:signatory) + ':'
+      %br
+      = @quote.signatory
+
+    %p
+      %strong= model_class.human_attribute_name(:signatory_position) + ':'
+      %br
+      = @quote.signatory_position
+
+  .span3
+
+    %h4 Attachments
+    - if @quote.attachments.empty?
+      No Attachments
+    - else
+      %ul.attachments
+        - @quote.attachments.each do |attachment|
+          %li= link_to attachment[:document], quote_attachment_path(@quote, :id => attachment.id)
 
 %h3 Requests
 %table.table.table-striped
