@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209020750) do
+ActiveRecord::Schema.define(version: 20140120054414) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(version: 20131209020750) do
     t.string   "contact_person"
     t.text     "remarks"
     t.text     "internal_notes"
+    t.text     "title"
+    t.text     "blurb"
   end
 
   create_table "requests", force: true do |t|

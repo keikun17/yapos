@@ -20,9 +20,20 @@
       = f.date_select :quote_date, :class => 'datetime_select'
 
   .control-group
-    = f.label :description, :class => 'control-label'
+    = f.label "Description(Does not appear in print)", :class => 'control-label'
     .controls
       = f.text_area :description, :class => 'text_area', :class => "span8", :rows => 3
+
+  .control-group
+    = f.label "Print Header Title", :class => 'control-label'
+    .controls
+      = f.text_field :title, :class => 'text_area', :class => "span8", :rows => 3
+
+  .control-group
+    = f.label "Print Header subtitle", :class => 'control-label'
+    .controls
+      = f.text_area :blurb, :class => 'text_area', :class => "span8", :rows => 2
+
 
   .control-group
     = f.label :status, :class => 'control-label'

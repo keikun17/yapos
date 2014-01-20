@@ -48,6 +48,16 @@
       = simple_format(@quote.description)
 
     %p
+      %strong Print header Title
+      %br
+      = simple_format(@quote.title)
+
+    %p
+      %strong Print header subtitle
+      %br
+      = simple_format(@quote.blurb)
+
+    %p
       %strong= model_class.human_attribute_name(:status) + ':'
       %br
       = @quote.display_status

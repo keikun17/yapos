@@ -3,6 +3,8 @@ class Quote < ActiveRecord::Base
   include Tire::Model::Callbacks
 
   attr_accessible :description,
+    :title,
+    :blurb,
     :signatory,
     :signatory_position,
     :contact_person,
@@ -106,6 +108,8 @@ class Quote < ActiveRecord::Base
 
   def to_indexed_json
     {
+      title: self.title,
+      blurb: self.blurb,
       quote_reference: self.quote_reference,
       client_name: self.client_name,
       supplier_names: supplier_names,
@@ -115,7 +119,6 @@ class Quote < ActiveRecord::Base
       offered_specs: offered_specs,
       offer_summaries: offer_summaries,
       quote_date: quote_date
-
     }.to_json
   end
 

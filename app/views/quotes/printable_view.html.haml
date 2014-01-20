@@ -21,7 +21,7 @@
       %td :
       %td{colspan: 6}
         %strong
-          = @quote.quote_reference 
+          = @quote.quote_reference
           - if @supplier_names
             (#{@supplier_names})
 
@@ -30,6 +30,14 @@
 
   %br
   %strong As per your request we are pleased to quote on the following requirements
+
+  - if @quote.title
+    %h5= @quote.title
+
+  - if @quote.blurb
+    = simple_format(@quote.blurb)
+
+    
 
   %table.table.table-bordered.table-compact
     - @requests.each do |request|
