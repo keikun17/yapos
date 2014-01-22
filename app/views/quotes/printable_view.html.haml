@@ -32,7 +32,8 @@
   %strong As per your request we are pleased to quote on the following requirements
 
   - if @quote.title
-    %h5= @quote.title
+    %u
+      %h5= @quote.title
 
   - if @quote.blurb
     = simple_format(@quote.blurb)
