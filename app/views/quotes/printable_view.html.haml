@@ -5,7 +5,7 @@
   Date: #{@quote.quote_date.to_date.to_s(:long)}
 
   %h4= @quote.client_name
-  - unless @quote.client.address.blank?
+  - if @quote.client.present? and @quote.client.address.blank?
     =simple_format(@quote.client.address, class: 'compact')
 
   %table.table-compact
