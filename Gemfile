@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.0' #TODO: rails4
+gem 'rails', '4.0.3'
 gem 'haml-rails'
-gem 'sass-rails', '4.0.0' #TODO: rails4
-gem 'coffee-rails', '4.0.0' #TODO: rails4
+gem 'sass-rails'
+gem 'coffee-rails', '4.0.0'
 gem 'less-rails'
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails', '2.2.8'
