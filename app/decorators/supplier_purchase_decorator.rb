@@ -52,7 +52,7 @@ class SupplierPurchaseDecorator < ApplicationDecorator
 
   # FIXME Ugly!, the 'order' association in particular...
   def first_supplier_link
-    if !supplier_orders.empty? and !order.nil?
+    if !supplier_orders.empty? and !order.nil? and self.order.suppliers.first.present?
       h.link_to first_supplier_name, h.supplier_path(self.order.suppliers.first)
     end
   end
