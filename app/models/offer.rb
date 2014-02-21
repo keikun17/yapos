@@ -114,19 +114,28 @@ class Offer < ActiveRecord::Base
     SupplierPurchase.find_or_create_by(order_id: self.order.id, reference: self.supplier_order.reference)
   end
 
+  def total_currency_buying_price
+    qty = self.request_quantity || 1
+    self.buying_price * qty
+  end
+
+  def total_currency_selling_price
+    qty = self.request_quantity || 1
+    self.selling_price * qty
+  end
+
   def update_total_prices
-    quantity = self.request_quantity.blank? ? 1 : self.request_quantity
     if self.currency == Currency::LOCAL_CURRENCY
-      (self.total_buying_price = self.buying_price * quantity) if self.buying_price
-      (self.total_selling_price = self.selling_price * quantity) if self.selling_price
+      (self.total_buying_price = self.total_currency_buying_price) if self.buying_price
+      (self.total_selling_price = self.total_currency_selling_price) if self.selling_price
     elsif !self.currency.blank?
       conversion_rate = if conversion_rate.blank?
         Currency::CURRENCY_MAPPING[self.currency]
       else
         self.conversion_rate
       end
-      (self.total_buying_price = self.buying_price * quantity * conversion_rate) if self.buying_price
-      (self.total_selling_price = self.selling_price * quantity * conversion_rate) if self.selling_price
+      (self.total_buying_price = (self.total_currency_buying_price) * conversion_rate) if self.buying_price
+      (self.total_selling_price =  (self.total_currency_selling_price) * conversion_rate) if self.selling_price
     else
       0
     end
