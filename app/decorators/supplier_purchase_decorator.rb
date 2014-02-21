@@ -25,6 +25,7 @@ class SupplierPurchaseDecorator < ApplicationDecorator
     @client ||= first_client
   end
 
+  # NOTE: This uses the currency of the first offer
   def display_total_amount
     @display_total_amount ||= if !supplier_orders.empty?
                                 h.number_to_currency(supplier_orders.map(&:offer_total_currency_buying_price).compact.sum || 0, unit: supplier_orders.first.offer.currency) + total_amount_suffix
