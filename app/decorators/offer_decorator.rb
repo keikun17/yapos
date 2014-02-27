@@ -96,7 +96,7 @@ class OfferDecorator < ApplicationDecorator
   end
 
   def display_total_buying_price
-    total_price = self.request_quantity * self.buying_price
+    total_price = (self.request_quantity || 0 ) * (self.buying_price || 0)
     str = h.number_to_currency(total_price || 0, unit: self.currency)
     if !self.price_suffix.blank?
       str = str + " (#{self.price_suffix})"
