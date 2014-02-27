@@ -1,5 +1,5 @@
 module Currency
-  CURRENCY_MAPPING = {'PHP' => 1, 'US$' => 40}
+  CURRENCY_MAPPING = {'PHP' => 1, 'US$' => 40, 'JPY' => '.5'}
   LOCAL_CURRENCY = 'PHP'
 
   def self.all
