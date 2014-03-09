@@ -21,7 +21,7 @@ class Purchase
   end
 
   def self.display_total_profit
-    helper.number_to_currency(total_profit, unit: helper(Currency::LOCAL_CURRENCY))
+    helper.number_to_currency(total_profit, unit: Currency::LOCAL_CURRENCY)
   end
 
   private
