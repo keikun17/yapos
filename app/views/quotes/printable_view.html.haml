@@ -74,7 +74,7 @@
             - unless @quote.offer_details_mergable?(:terms, params[:supplier_id]) or params[:supplier_id]
               %th{width: '80px'} TERMS
             - unless @quote.offer_details_mergable?(:warranty, params[:supplier_id]) or params[:supplier_id]
-              %th WARRANTY
+              %th{width: '80px'} WARRANTY
           - offers = OfferDecorator.decorate_collection(request.offers.from_supplier(@suppliers))
           - offers.each do |offer|
             %tr{class: "#{'last-offer' if offer == offers.last}"}
