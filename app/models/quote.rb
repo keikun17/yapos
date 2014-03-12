@@ -165,6 +165,7 @@ class Quote < ActiveRecord::Base
   # FIXME : Reimplement
   def requote!
     duplicate_quote = self.dup
+    duplicate_quote.quote_reference = self.quote_reference + '-requote'
 
     self.requests.each do |request|
       duplicate_request = request.dup
