@@ -116,12 +116,12 @@ class Offer < ActiveRecord::Base
 
   def total_currency_buying_price
     qty = self.request_quantity || 1
-    self.buying_price * qty
+    (self.buying_price || 0) * qty
   end
 
   def total_currency_selling_price
     qty = self.request_quantity || 1
-    self.selling_price * qty
+    (self.selling_price || 0) * qty
   end
 
   def update_total_prices
