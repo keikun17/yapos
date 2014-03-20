@@ -46,7 +46,11 @@
       %th Our Unit Price
     - @offers.each do |offer|
       %tr
-        %td= link_to offer.quote_reference, offer.quote
+        %td
+          - unless offer.quote_reference.blank?
+            = link_to offer.quote_reference, offer.quote
+          - else
+            = link_to offer.quote.id, offer.quote
         %td= offer.quote_date
         %td
           - if offer.client.present?
