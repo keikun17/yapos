@@ -1,8 +1,9 @@
-.row-fluid
+.row
   .print-header-logo.pull-left{style: 'padding-top:10px'}
     = image_tag(print_header[:logo])
-  .print-header-text
-    %h4= print_header[:company_name]
-    %p= print_header[:address]
-    %p= print_header[:contact_number]
-    %p= print_header[:email_address]
+  %div
+    .print-header-text.pull-left
+      %h4= print_header[:company_name]
+      %p= print_header[:address]
+      %p= print_header[:contact_number]
+      %p= print_header[:email_address]

@@ -1,14 +1,24 @@
 %div{style: "font-size:12px"}
   = render 'shared/print_header', print_header: Yapos::SETTINGS
 
-  %hr
-  Date: #{@quote.quote_date.to_date.to_s(:long)}
-
-  %h4= @quote.client_name
-  - if @quote.client.present? and @quote.client.address.blank?
-    =simple_format(@quote.client.address, class: 'compact')
+  %div
+    %h4= @quote.client_name
+    - if @quote.client.present? and @quote.client.address.blank?
+      =simple_format(@quote.client.address, class: 'compact')
+  -# %div.pull-right.text-center
+  -#   #document-type-label
+  -#     Sales
+  -#     %br
+  -#     Quotation
 
   %table.table-compact
+    %tr
+      %td
+        %strong Date
+      %td :
+      %td
+        %td{colspan: 5}
+          #{@quote.quote_date.to_date.to_s(:long)}
     %tr
       %td
         %strong ATTENTION
@@ -38,7 +48,7 @@
   - if @quote.blurb
     = simple_format(@quote.blurb)
 
-    
+
 
   %table.table.table-bordered.table-compact
     - @requests.each do |request|

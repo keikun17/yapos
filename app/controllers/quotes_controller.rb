@@ -97,6 +97,7 @@ class QuotesController < ApplicationController
   end
 
   def printable_view
+
     @quote = Quote.find(params[:id])
     @quote = QuoteDecorator.new(@quote)
 
@@ -111,6 +112,8 @@ class QuotesController < ApplicationController
 
     @requests = RequestDecorator.decorate_collection(@requests)
     @print_preview = true
+
+    render layout: "printable"
   end
 
   def requote
