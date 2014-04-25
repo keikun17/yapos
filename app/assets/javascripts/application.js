@@ -13,6 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require angular.min.js
-//= require angular-resource.min.js
 //= require_tree .
