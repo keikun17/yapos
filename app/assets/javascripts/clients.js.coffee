@@ -2,8 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-console.log "Shit"
-
 offers = angular.module('app', ['ngResource'])
 
 offers.factory "Offer", [ '$resource', ($resource) ->
