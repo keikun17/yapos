@@ -26,5 +26,6 @@ end
 #  contact_person     :string(255)
 #  remarks            :text
 #  internal_notes     :text
+#  title              :text
+#  blurb              :text
 #
-

@@ -57,5 +57,5 @@ end
 #  unit                       :string(255)
 #  client_purchased_count     :integer          default(0)
 #  non_client_purchased_count :integer          default(0)
+#  position                   :integer
 #
-
