@@ -62,7 +62,7 @@
       %tbody
         %tr
           - if @requests.count > 1
-            %td ##{@requests.index(request) + 1}
+            %td= request.position || @requests.index(request) + 1
           %td= request.quantity
           %td= request.unit
           %td{colspan:6}= simple_format("#{request.specs}")

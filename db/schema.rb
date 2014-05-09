@@ -1,7 +1,3 @@
-
-
-
-
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -15,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140120054414) do
+ActiveRecord::Schema.define(version: 20140509042257) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -102,6 +98,7 @@ ActiveRecord::Schema.define(version: 20140120054414) do
     t.string   "unit"
     t.integer  "client_purchased_count",     default: 0
     t.integer  "non_client_purchased_count", default: 0
+    t.integer  "position"
   end
 
   create_table "stocks", force: true do |t|
