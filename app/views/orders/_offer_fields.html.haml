@@ -1,5 +1,6 @@
 %tr
   %td= f.object.supplier_name
+  %td= f.object.decorate.complete_quantity
   %td
     = f.object.specs
     - if !f.object.summary.blank?
