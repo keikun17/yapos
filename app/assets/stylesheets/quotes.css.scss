@@ -10,3 +10,14 @@
   border-top: none !important
 }
 
+tr.alternating-offer-fields{
+  &:nth-child(odd){
+  background-color: #EEE;
+  }
+
+  .space{
+    background-color: #FFF !important;
+    border: none !important;
+  }
+
+}
