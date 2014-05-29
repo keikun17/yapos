@@ -1,8 +1,9 @@
 .fields
-  .control-group
-    - unless f.object.persisted?
-      = f.label :document, :class => 'control-label'
-    .controls
+  .row-fluid
+    .span2
+      - unless f.object.persisted?
+        = f.label :document
+    .span10
       - if f.object.persisted?
         = f.object[:document]
       - else

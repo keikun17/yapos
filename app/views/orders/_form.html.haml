@@ -1,7 +1,14 @@
 = form_for @order, :html => { :class => 'form-horizontal' } do |f|
-  .control-group
-    = f.label :purchase_date, "Client Ordered at",  :class => 'control-label'
-    .controls
+  .row-fluid
+    .span1
+      %strong Clients :
+    .span11
+      = @order.client_links
+  %hr
+  .row-fluid
+    .span2
+      %strong= f.label :purchase_date, "Client Ordered at"
+    .span10
       = f.date_select :purchase_date,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
 
   - if @order.offers.empty?
@@ -19,8 +26,8 @@
   %h3 Notes
 
   %hr
-  .controls
-    = f.text_area :description, :class => "span8", :rows => 5
+  .row-fluid
+    .span12= f.text_area :description, :class => "span8", :rows => 5
 
   %h3 Offers
 
