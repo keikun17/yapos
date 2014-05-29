@@ -1,11 +1,12 @@
+- offer = f.object.decorate
 %tr
-  %td= f.object.supplier_name
-  %td= f.object.decorate.complete_quantity
+  %td= offer.supplier_name
+  %td= offer.complete_quantity
   %td
-    = f.object.specs
-    - if !f.object.summary.blank?
+    = offer.specs
+    - if !offer..summary.blank?
       %span.label.label-success
-        =f.object.summary
+        =offer.summary
 
 
   - #TODO dynamically building association in view.. YUCK!
