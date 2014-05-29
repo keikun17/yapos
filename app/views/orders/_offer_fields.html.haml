@@ -4,7 +4,7 @@
   %td= offer.complete_quantity
   %td
     = offer.specs
-    - if !offer..summary.blank?
+    - if !offer.summary.blank?
       %span.label.label-success
         =offer.summary
 
