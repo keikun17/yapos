@@ -1,8 +1,9 @@
-= form_for @quote, :html => { :class => 'form-horizontal' } do |f|
+= form_for @quote, :html => { :class => 'form-horizontal' }, validate: true do |f|
   .control-group
     = f.label :quote_reference, 'Client PR#' ,:class => 'control-label'
     .controls
-      = f.text_field :quote_reference, :class => 'text_field'
+      -# = f.text_field :quote_reference, :class => 'text_field', validate: true
+      = f.text_field :quote_reference, validate: { uniqueness: true }
 
   .control-group
     = f.label :client, :class => 'control-label'

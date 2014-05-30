@@ -31,6 +31,7 @@ class Quote < ActiveRecord::Base
 
   validates_associated :attachments
   validates_associated :requests
+  validates :quote_reference, presence: true, uniqueness: true
 
   accepts_nested_attributes_for :attachments,
     :allow_destroy => true,

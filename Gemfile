@@ -1,11 +1,13 @@
 source 'https://rubygems.org'
 
+gem 'rails4_client_side_validations'
 gem 'rails', '4.0.3'
 gem 'haml-rails'
 gem 'sass-rails'
 gem 'coffee-rails', '4.0.0'
 gem 'less-rails'
 gem 'jquery-rails'
+gem 'jquery-ui-sass-rails'
 gem 'twitter-bootstrap-rails', '2.2.8'
 
 gem 'draper'
