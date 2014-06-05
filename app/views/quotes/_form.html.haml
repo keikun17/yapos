@@ -14,9 +14,10 @@
         .controls
           = f.text_field :contact_person, :class => 'text_field'
 
-    .span3
-      Total quoted today :
-      = quotes_today.count
+    .span3.strong.text-info
+      %strong
+        Total quoted today :
+        = quotes_today.count
       %br
       Last 3 quoted today:
       %ul
