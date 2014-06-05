@@ -1,19 +1,29 @@
 = form_for @quote, :html => { :class => 'form-horizontal' }, validate: true do |f|
-  .control-group
-    = f.label :quote_reference, 'Client PR#' ,:class => 'control-label'
-    .controls
-      -# = f.text_field :quote_reference, :class => 'text_field', validate: true
-      = f.text_field :quote_reference, validate: { uniqueness: true }
+  .row-fluid
+    .span5
+      .control-group
+        = f.label :quote_reference, 'Client PR#' ,:class => 'control-label'
+        .controls
+          = f.text_field :quote_reference, validate: { uniqueness: true }
+      .control-group
+        = f.label :client, :class => 'control-label'
+        .controls
+          = f.select :client_id, Client.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
+      .control-group
+        = f.label :contact_person, :class => 'control-label'
+        .controls
+          = f.text_field :contact_person, :class => 'text_field'
 
-  .control-group
-    = f.label :client, :class => 'control-label'
-    .controls
-      = f.select :client_id, Client.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
+    .span3
+      Total quoted today :
+      = quotes_today.count
+      %br
+      Last 3 quoted today:
+      %ul
+        - quotes_today.limit(3).each do |quote|
+          %li= quote.quote_reference
 
-  .control-group
-    = f.label :contact_person, :class => 'control-label'
-    .controls
-      = f.text_field :contact_person, :class => 'text_field'
+
 
   .control-group
     = f.label :quote_date, :class => 'control-label'

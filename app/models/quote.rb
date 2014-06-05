@@ -97,6 +97,10 @@ class Quote < ActiveRecord::Base
     s
   end
 
+  scope :today, -> do
+    s = where(created_at: (Date.today..Date.tomorrow))
+    s
+  end
   # Tire/ElasticSearch Configuration
 
   mapping do
