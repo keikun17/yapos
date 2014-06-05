@@ -39,7 +39,11 @@
           %th Request Qty
           %th Offered Specs
           %th Actual Specs
-          %th Our PO# to Supplier
+          %th
+            Our PO# to Supplier
+            %br
+            %span.text-info
+              (last PO issued was #{SupplierPurchase.last.reference})
           %th Estimated EX-Works
           %th Estimated Delivery Date
           %th Actual Delivery Date
