@@ -58,14 +58,14 @@
             %td.item-line{width:'40px'} ITEM#:
           %td.item-line{width: '50px'} QTY:
           %td.item-line{width: '80px'} UNIT:
-          %td.item-line{colspan:6} REQUESTED:
+          %td.item-line{colspan:7} REQUESTED:
       %tbody
         %tr
           - if @requests.count > 1
             %td= request.position || @requests.index(request) + 1
           %td= request.quantity
           %td= request.unit
-          %td{colspan:6}= simple_format("#{request.specs}")
+          %td{colspan:7}= simple_format("#{request.specs}")
 
 
         - unless request.offers.from_supplier(@suppliers).empty?
@@ -77,6 +77,7 @@
               %th{width: '80px'} BRAND:
             %th{colspan: @quote.offer_spec_colspan(params[:supplier_id])} OFFERED:
             %th{width: '80px'} UNIT PRICE
+            %th{width: '80px'} TOTAL PRICE
             - unless @quote.offer_details_mergable?(:remarks, params[:supplier_id])
               %th{width: '80px'} NOTES
             - unless @quote.offer_details_mergable?(:delivery, params[:supplier_id]) or params[:supplier_id]
@@ -94,6 +95,7 @@
                 %td= offer.supplier_name
               %td{colspan: @quote.offer_spec_colspan(params[:supplier_id])}= simple_format(offer.specs)
               %td= offer.display_selling_price
+              %td= offer.display_total_selling_price
               - unless @quote.offer_details_mergable?(:remarks, params[:supplier_id])
                 %td= offer.remarks
               - unless @quote.offer_details_mergable?(:delivery, params[:supplier_id]) or params[:supplier_id]
