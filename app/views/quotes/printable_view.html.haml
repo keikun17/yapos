@@ -1,8 +1,8 @@
-%div{style: "font-size:11px"}
+%div{style: "font-size:10px;line-height:14px"}
   = render 'shared/print_header', print_header: Yapos::SETTINGS
 
   %div
-    %h4= @quote.client_name
+    %h5= @quote.client_name
     - if @quote.client.present? and @quote.client.address.blank?
       =simple_format(@quote.client.address, class: 'compact')
   -# %div.pull-right.text-center
@@ -38,7 +38,6 @@
     %tr
       %td{colspan:8}
 
-  %br
   %strong As per your request we are pleased to quote on the following requirements
 
   - if @quote.title
