@@ -34,7 +34,7 @@
 
   = render 'supplier_orders', supplier_purchase: @supplier_purchase
 
-  %table
+  %table.table-compact
     - if !@supplier_purchase.delivery.blank?
       %tr
         %td
