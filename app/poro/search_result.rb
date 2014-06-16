@@ -46,4 +46,43 @@ class SearchResult < Decorator
     end
   end
 
+  def quoted_items
+    case _type
+    when "quote"
+      requests = self.load.requests.decorate
+
+      requests.collect do |request|
+        content_tag :span do
+          quantity = content_tag :span do
+            request.to_label('label label-info')
+          end
+          desc = content_tag :span do
+            request.specs
+          end
+          safe_join([quantity, desc])
+        end
+      end.join.html_safe
+
+      # request_html = content_tag :div do
+      #   inner = requests.each do |request|
+      #      content_tag :span do
+      #        request.display_quantity
+      #      end
+      #      content_tag :span do
+      #        request.specs
+      #      end
+      #      content_tag :br
+      #   end
+      #
+      #   inner
+      # end
+      # request_html
+    when "order"
+      "Implement"
+    else
+      "implement"
+    end
+
+  end
+
 end

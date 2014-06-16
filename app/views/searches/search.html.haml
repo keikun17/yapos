@@ -2,6 +2,7 @@
   %thead
     %tr
       %th Link
+      %th Requested Specs
       %th Type
       %th Client
       %th Supplier
@@ -11,6 +12,7 @@
     - @results.each do |result|
       %tr
         %td= link_to result.to_s, result
+        %td= result.quoted_items
         %td= result._type
         %td= result.client
         %td= result.suppliers
