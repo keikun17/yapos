@@ -9,6 +9,17 @@
       = link_to "Print only #{supplier.name} offers", printable_view_quote_path(@quote, supplier_id: supplier.id), :class => 'btn'
 
 .row-fluid
+  - if !@quote.title.blank?
+    %h2
+      = simple_format(@quote.title)
+
+  - if !@quote.blurb.blank?
+    %h4
+      = simple_format(@quote.blurb)
+
+%hr
+
+.row-fluid
 
   .span3
     %p
@@ -47,15 +58,6 @@
       %br
       = simple_format(@quote.description)
 
-    %p
-      %strong Print header Title
-      %br
-      = simple_format(@quote.title)
-
-    %p
-      %strong Print header subtitle
-      %br
-      = simple_format(@quote.blurb)
 
     %p
       %strong= model_class.human_attribute_name(:status) + ':'
