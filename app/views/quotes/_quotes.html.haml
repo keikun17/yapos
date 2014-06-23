@@ -22,8 +22,8 @@
         %td= quote.order_links
         %td
           %p
-            - unless quote.description.blank? and quote.requests.empty?
-              = truncate(quote.description, :length => 40, :omission => "...")
+            - unless quote.title.blank? and quote.requests.empty?
+              = truncate(quote.title, :length => 40, :omission => "...")
             - else
               = link_to "Please fill up description", edit_quote_path(quote)
 

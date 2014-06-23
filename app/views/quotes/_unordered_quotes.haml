@@ -5,7 +5,7 @@
       %th Client PR#
       - unless params[:controller] == 'clients'
         %th Client Name
-      %th{:width => '30%'} description
+      %th{:width => '30%'} Requested Items
       %th Supplier
       %th Status
       %th{:width => '10%'} Client Requested At
@@ -19,8 +19,9 @@
         - unless params[:controller] == 'clients'
           %td= link_to_client(quote.client)
         %td
-          - unless quote.description.blank? and quote.requests.empty?
-            = truncate(quote.description, :length => 40, :omission => "...")
+          - unless quote.title.blank? and quote.requests.empty?
+            %strong
+              = truncate(quote.title, :length => 40, :omission => "...")
           - else
             = link_to "Please fill up description", edit_quote_path(quote)
 
