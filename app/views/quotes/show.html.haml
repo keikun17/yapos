@@ -1,4 +1,12 @@
 - model_class = Quote
+
+- unless @quote.internal_notes.blank?
+  .row-fluid{style: "position: fixed"}
+    .alert.alert-info.pull-right
+      %button{type: 'button', class: 'close', data: {dismiss: "alert"}} Close
+      %h3 Internal Notes :
+      = @quote.internal_notes
+
 .page-header
   %h1
     = t '.title', :default => @quote.quote_reference
