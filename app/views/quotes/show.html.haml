@@ -106,7 +106,7 @@
   %thead
     %tr
       %th Quoted Specs
-      %th Offered Specs
+      %th{width: '240px'} Offered Specs
       %th Supplier
       %th Delivery/Terms/Warranty
       %th Buying Price
@@ -129,7 +129,12 @@
             .text-info
               %strong Internal Notes:
               #{simple_format(req.remarks)}
-        %td= simple_format(offer.specs) if offer
+        %td{width: '240px'}
+          = simple_format(offer.specs) if offer
+          - if !offer.summary.blank?
+            .alert.alert-success
+              Acual :
+              =offer.summary
         %td
           - if offer and offer.supplier
             = link_to offer.supplier_name, offer.supplier
@@ -165,7 +170,12 @@
 
       - offers.each do |offer|
         %tr
-          %td= simple_format(offer.specs)
+          %td{width: '240px'}
+            = simple_format(offer.specs)
+            - if !offer.summary.blank?
+              .alert.alert-success
+                Acual :
+                =offer.summary
           %td
             - if offer.supplier
               = link_to offer.supplier_name, offer.supplier
