@@ -94,7 +94,7 @@
                 %td= offer.supplier_name
               %td{colspan: @quote.offer_spec_colspan(params[:supplier_id])}= simple_format(offer.specs)
               %td= offer.display_selling_price
-              %td= offer.display_total_selling_price
+              %td= offer.display_total_selling_price_by_currency
               - unless @quote.offer_details_mergable?(:remarks, params[:supplier_id])
                 %td= offer.remarks
               - unless @quote.offer_details_mergable?(:delivery, params[:supplier_id]) or params[:supplier_id]

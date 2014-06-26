@@ -120,6 +120,14 @@ class OfferDecorator < ApplicationDecorator
     str
   end
 
+  def display_total_selling_price_by_currency
+    str = h.number_to_currency(self.total_currency_selling_price || 0, unit: self.currency)
+    if !self.price_suffix.blank?
+      str = str + " (#{self.price_suffix})"
+    end
+    str
+  end
+
   def price_suffix
     @suffix ||= [self.price_vat_status,self.price_basis].compact.join(" ")
   end
