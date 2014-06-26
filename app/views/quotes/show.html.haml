@@ -139,7 +139,7 @@
               #{simple_format(req.remarks)}
         %td{width: '240px'}
           = simple_format(offer.specs) if offer
-          - if !offer.summary.blank?
+          - if offer and !offer.summary.blank?
             .alert.alert-success
               Acual :
               =offer.summary
