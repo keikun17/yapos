@@ -27,7 +27,8 @@
     %h4
       = simple_format(@quote.blurb)
 
-%hr
+  - if !@quote.blurb.blank? or !@quote.title.blank?
+    %hr
 
 .row-fluid
 
