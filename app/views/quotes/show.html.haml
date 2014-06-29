@@ -1,13 +1,5 @@
 - model_class = Quote
 
-- unless @quote.internal_notes.blank?
-  .row-fluid.pull-right{style: "position: fixed"}
-    .pull-right
-      .span11.alert.alert-info
-        %button{type: 'button', class: 'close', data: {dismiss: "alert"}} Close
-        %h3 Internal Notes :
-        = @quote.internal_notes
-      .offset1
 
 .page-header
   %h1
@@ -17,6 +9,14 @@
     = link_to 'Print', printable_view_quote_path(@quote), :class => 'btn'
     - @quote.suppliers.uniq.each do |supplier|
       = link_to "Print only #{supplier.name} offers", printable_view_quote_path(@quote, supplier_id: supplier.id), :class => 'btn'
+
+- unless @quote.internal_notes.blank?
+  .row-fluid{style: 'position: fixed'}
+    .span3.pull-right{style: 'margin-right: 30px'}
+      .alert.alert-info
+        %button{type: 'button', class: 'close', data: {dismiss: "alert"}} Close
+        %h3 Internal Notes :
+        = @quote.internal_notes
 
 .row-fluid
   - if !@quote.title.blank?
