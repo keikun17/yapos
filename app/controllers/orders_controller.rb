@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order = OrderDecorator.new(@order)
-    
+
     @quotes = QuoteDecorator.decorate_collection(@order.quotes)
 
     respond_to do |format|

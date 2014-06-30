@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509042257) do
+ActiveRecord::Schema.define(version: 20140630123007) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 20140509042257) do
     t.string   "currency"
     t.float    "currency_conversion"
     t.string   "order_reference"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.text     "remarks"
     t.string   "terms"
     t.string   "delivery"
@@ -50,9 +50,13 @@ ActiveRecord::Schema.define(version: 20140509042257) do
     t.float    "total_selling_price"
     t.string   "price_basis"
     t.string   "summary"
+    t.string   "delivery_receipt_reference"
+    t.string   "sales_invoice_reference"
   end
 
+  add_index "offers", ["delivery_receipt_reference"], name: "index_offers_on_delivery_receipt_reference", using: :btree
   add_index "offers", ["order_reference"], name: "index_offers_on_order_reference", using: :btree
+  add_index "offers", ["sales_invoice_reference"], name: "index_offers_on_sales_invoice_reference", using: :btree
   add_index "offers", ["summary"], name: "index_offers_on_summary", using: :btree
 
   create_table "orders", force: true do |t|
@@ -85,6 +89,8 @@ ActiveRecord::Schema.define(version: 20140509042257) do
     t.text     "title"
     t.text     "blurb"
   end
+
+  add_index "quotes", ["quote_date"], name: "index_quotes_on_quote_date", using: :btree
 
   create_table "requests", force: true do |t|
     t.text     "specs"
