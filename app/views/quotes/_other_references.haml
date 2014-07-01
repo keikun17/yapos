@@ -8,12 +8,12 @@
     %strong Supplier PO#
     = link_to offer.supplier_purchase.reference, offer.supplier_purchase
 
-- if offer.delivery_receipt_reference
+- if !offer.delivery_receipt_reference.blank?
   .alert.alert-success
     %strong DR#
     = offer.delivery_receipt_reference
 
-- if offer.sales_invoice_reference
+- if !offer.sales_invoice_reference.blank?
   .alert.alert-success
     %strong SI#
     = offer.sales_invoice_reference
