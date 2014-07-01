@@ -87,6 +87,22 @@
 
           %button.icon-share.btn-mini{ data: {field_group: 'request_notes'}, title: "Copy to all offers for the same supplier" }
 
-  %td= f.text_field :order_reference, :class => 'text_field span12'
+  %td
+    .control-group
+      %label.span3.control-label Client PO#
+      .control.span9
+        = f.text_field :order_reference, :class => 'text_field span12'
+
+    .control-group
+      %label.span3.control-label DR#
+      .control.span9
+        = f.text_field :delivery_receipt_reference, :class => 'text_field span12'
+
+    .control-group
+      %label.span3.control-label SI#
+      .control.span9
+        = f.text_field :sales_invoice_reference, :class => 'text_field span12'
+
+
   %td= link_to_remove_fields "Offer", f
 

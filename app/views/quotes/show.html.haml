@@ -177,7 +177,7 @@
               %br
               %strong Total:
               = offer.display_total_selling_price
-        %td= link_to offer.order_reference, offer.order if offer and offer.order
+        %td= render 'other_references', offer: offer
 
       - offers.each do |offer|
         %tr
@@ -215,8 +215,8 @@
             %br
             %strong.text-success Total:
             = offer.display_total_selling_price
-          %td= link_to offer.order_reference, offer.order if offer.order
-
+          %td
+            = render 'other_references', offer: offer
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), quotes_path, :class => 'btn'
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_quote_path(@quote), :class => 'btn'
