@@ -19,3 +19,17 @@ tr.alternating-offer-fields{
 .price-column{
   width: 200px;
 }
+
+
+.internal-note{
+  position: fixed;
+
+  .internal-note-content{
+    margin-right: 30px;
+  }
+
+  .alert-internal-note{
+    background-color: rgba(217, 237, 247, .7);
+    color: #3a87ad;
+  }
+}

@@ -11,9 +11,9 @@
       = link_to "Print only #{supplier.name} offers", printable_view_quote_path(@quote, supplier_id: supplier.id), :class => 'btn'
 
 - unless @quote.internal_notes.blank?
-  .row-fluid{style: 'position: fixed'}
-    .span3.pull-right{style: 'margin-right: 30px'}
-      .alert.alert-info
+  .row-fluid.internal-note{style: 'position: fixed'}
+    .internal-note-content.span3.pull-right
+      .alert.alert-internal-note
         %button{type: 'button', class: 'close', data: {dismiss: "alert"}} Close
         %h3 Internal Notes :
         = @quote.internal_notes
