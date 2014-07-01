@@ -163,14 +163,14 @@
             %strong Notes:
             = offer.remarks
             %br
-          %td.text-warning
+          %td.text-warning.price-column
             - if offer
               %strong Unit Price:
               = offer.display_buying_price
               %br
               %strong Total:
               = offer.display_total_buying_price
-          %td.text-success
+          %td.text-success.price-column
             - if offer
               %strong Unit Price:
               = offer.display_selling_price
@@ -203,13 +203,13 @@
             %strong Notes:
             = offer.remarks
             %br
-          %td.text-warning
+          %td.text-warning.price-column
             %strong Unit Price:
             = offer.display_buying_price
             %br
             %strong Total:
             = offer.display_total_buying_price
-          %td.text-success
+          %td.text-success.price-column
             %strong Unit Price:
             = offer.display_selling_price
             %br
