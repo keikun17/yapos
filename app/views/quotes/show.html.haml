@@ -132,52 +132,54 @@
       - offer = offers.shift
       - if offer
         - offer = OfferDecorator.new(offer)
-        %tr
-          %td{rowspan: offer_count}
-            %strong= req.display_quantity
-            = simple_format(req.specs)
-            - if !req.remarks.blank?
-              .text-info
-                %strong Internal Notes:
-                #{simple_format(req.remarks)}
-          %td{width: '240px'}
-            = simple_format(offer.specs) if offer
-            - if offer and !offer.summary.blank?
-              .alert.alert-success
-                Acual :
-                =offer.summary
-          %td
-            - if offer and offer.supplier
-              = link_to offer.supplier_name, offer.supplier
-          %td
+      %tr
+        %td{rowspan: offer_count}
+          %strong= req.display_quantity
+          = simple_format(req.specs)
+          - if !req.remarks.blank?
+            .text-info
+              %strong Internal Notes:
+              #{simple_format(req.remarks)}
+        %td{width: '240px'}
+          = simple_format(offer.specs) if offer
+          - if offer and !offer.summary.blank?
+            .alert.alert-success
+              Acual :
+              =offer.summary
+        %td
+          - if offer and offer.supplier
+            = link_to offer.supplier_name, offer.supplier
+        %td
+          - if offer
+            %strong Terms:
+            = offer.terms
+            %br
+            %strong Delivery:
+            = offer.delivery
+            %br
+            %strong Warranty:
+            = offer.warranty
+            %br
+            %strong Notes:
+            = offer.remarks
+            %br
+          %td.text-warning.price-column
             - if offer
-              %strong Terms:
-              = offer.terms
+              %strong Unit Price:
+              = offer.display_buying_price
               %br
-              %strong Delivery:
-              = offer.delivery
+              %strong Total:
+              = offer.display_total_buying_price
+          %td.text-success.price-column
+            - if offer
+              %strong Unit Price:
+              = offer.display_selling_price
               %br
-              %strong Warranty:
-              = offer.warranty
-              %br
-              %strong Notes:
-              = offer.remarks
-              %br
-            %td.text-warning.price-column
-              - if offer
-                %strong Unit Price:
-                = offer.display_buying_price
-                %br
-                %strong Total:
-                = offer.display_total_buying_price
-            %td.text-success.price-column
-              - if offer
-                %strong Unit Price:
-                = offer.display_selling_price
-                %br
-                %strong Total:
-                = offer.display_total_selling_price
-          %td= render 'other_references', offer: offer
+              %strong Total:
+              = offer.display_total_selling_price
+        %td
+          - if offer
+            = render 'other_references', offer: offer
 
       - offers.each do |offer|
         %tr
