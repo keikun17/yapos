@@ -43,7 +43,11 @@
             Our PO# to Supplier
             %br
             %span.text-info
-              (last PO issued was #{SupplierPurchase.last.reference})
+              last 5 PO issued are
+            %ul
+              - SupplierPurchase.limit(3).order(id: :desc).reverse.each do |sp|
+                %li= sp.reference
+
           %th Estimated EX-Works
           %th Estimated Delivery Date
           %th Actual Delivery Date
