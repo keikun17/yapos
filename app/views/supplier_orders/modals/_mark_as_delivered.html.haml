@@ -15,6 +15,17 @@
         .controls
           = f.date_select :delivered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
 
+      = f.fields_for :offer do |ff|
+        .control-group
+          = ff.label :delivery_receipt_reference, 'DR #', class: 'control-label'
+          .controls
+            = ff.text_field :delivery_receipt_reference,  class: 'text-field'
+
+        .control-group
+          = ff.label :sales_invoice_reference, 'SI #', class: 'control-label'
+          .controls
+            = ff.text_field :sales_invoice_reference,  class: 'text-field'
+
     .modal-footer
       %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
       = f.submit nil, :class => 'btn btn-primary'

@@ -5,13 +5,15 @@ class SupplierOrder < ActiveRecord::Base
     :estimated_manufactured_at,
     :estimated_delivered_at,
     :delivered_at,
-    :actual_specs
+    :actual_specs,
+    :offer_attributes
 
   belongs_to :supplier_purchase,
     foreign_key: :reference,
     primary_key: :reference
 
   belongs_to :offer
+  accepts_nested_attributes_for :offer
 
   delegate :request, to: :offer, allow_nil: true
 
