@@ -86,21 +86,35 @@ class OfferDecorator < ApplicationDecorator
     str
   end
 
-  def display_buying_price
+  # Options
+  # with_suffix: set to true if you want to return with suffix (VAT, Price
+  # basis)
+  def display_buying_price(options = {})
+    with_suffix = options[:with_suffix]
+
     str = h.number_to_currency(self.buying_price || 0, unit: self.currency)
     str = str + "/#{self.request_unit}"
-    if !self.price_suffix.blank?
+
+    if with_suffix == true and !self.price_suffix.blank?
       str = str + " (#{self.price_suffix})"
     end
+
     str
   end
 
-  def display_total_buying_price
+  # Options
+  # with_suffix: set to true if you want to return with suffix (VAT, Price
+  # basis)
+  def display_total_buying_price(options = {})
+    with_suffix = options[:with_suffix]
+
     total_price = (self.request_quantity || 0 ) * (self.buying_price || 0)
     str = h.number_to_currency(total_price || 0, unit: self.currency)
-    if !self.price_suffix.blank?
+
+    if with_suffix == true and !self.price_suffix.blank?
       str = str + " (#{self.price_suffix})"
     end
+
     str
   end
 
