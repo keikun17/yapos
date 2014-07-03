@@ -26,12 +26,18 @@ class SupplierPurchaseDecorator < ApplicationDecorator
   end
 
   # NOTE: This uses the currency of the first offer
-  def display_total_amount
+  def display_total_amount(options = {})
+    with_suffix = options[:with_suffix]
+
     @display_total_amount ||= if !supplier_orders.empty?
-                                h.number_to_currency(supplier_orders.map(&:offer_total_currency_buying_price).compact.sum || 0, unit: supplier_orders.first.offer.currency) + total_amount_suffix
+                                h.number_to_currency(supplier_orders.map(&:offer_total_currency_buying_price).compact.sum || 0, unit: supplier_orders.first.offer.currency)
                               else
-                                h.number_to_currency(0, unit: Currency::LOCAL_CURRENCY) + total_amount_suffix
+                                h.number_to_currency(0, unit: Currency::LOCAL_CURRENCY)
                               end
+    if with_suffix
+      @display_total_amount += total_amount_suffix
+    end
+    @display_total_amount
   end
 
   def client_name
