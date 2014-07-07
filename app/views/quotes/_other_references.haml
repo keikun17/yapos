@@ -6,7 +6,7 @@
 - if offer.supplier_purchase
   .alert.alert-info
     %strong Supplier PO#
-    = link_to offer.supplier_purchase.reference, offer.supplier_purchase
+    = link_to offer.supplier_purchase.reference, print_supplier_purchase_path(offer.supplier_purchase)
 
 - if !offer.delivery_receipt_reference.blank?
   .alert.alert-success
