@@ -64,8 +64,7 @@
     %th Offered Spec
     %th Actual Spec
     %th Supplier
-    %th Estimated Delivery
-    %th Delivered at
+    %th Delivery Date
     %th Supplier's Price
     %th Offered Price
     %th Our PO#
@@ -87,7 +86,7 @@
         %td
           - if offer.supplier.present?
             = link_to offer.supplier_name, supplier_path(offer.supplier)
-        %td= offer.estimated_delivery_date
+        %td=  render 'offers/delivery_date', offer: offer
         %td= offer.delivered_at
         %td.text-warning= offer.display_buying_price
         %td.text-success= offer.display_selling_price
@@ -102,8 +101,8 @@
           %td
             - if offer.supplier.present?
               = link_to offer.supplier_name, supplier_path(offer.supplier)
-          %td= offer.estimated_delivery_date
-          %td= offer.delivered_at
+          %td=  render 'offers/delivery_date', offer: offer
+
           %td.text-warning= offer.display_buying_price
           %td.text-success= offer.display_selling_price
           %td
