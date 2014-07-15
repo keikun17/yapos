@@ -1,0 +1,9 @@
+- if offer.estimated_delivery_date.present? and offer.delivered_at.nil?
+  .alert.alert-info
+    Estimated Delivery
+    = offer.estimated_delivery_date
+
+- elsif offer.delivered_at.present?
+  .alert.alert-success
+    Delivered At
+    = offer.delivered_at
