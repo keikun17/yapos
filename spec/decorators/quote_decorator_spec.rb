@@ -1,7 +1,6 @@
-require 'spec_helper'
-puts "Here"
+require 'rails_helper'
 
-describe QuoteDecorator do
+describe QuoteDecorator, type: :decorator do
 
   before(:example) { |ex| puts ex.quantity}
 
