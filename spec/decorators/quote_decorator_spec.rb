@@ -2,12 +2,11 @@ require 'rails_helper'
 
 describe QuoteDecorator, type: :decorator do
 
-  before(:example) { |ex| puts ex.quantity}
+  subject { Quote.new(quote_reference: 'PR#123-456').decorate }
 
-  let(:example_description) { |ex| ex.status }
 
-  it "accesses the example" do |ex|
-    puts ex
+  describe "#display_reference" do
+    it {}
   end
 
 end
