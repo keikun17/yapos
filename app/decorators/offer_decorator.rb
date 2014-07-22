@@ -6,10 +6,16 @@ class OfferDecorator < ApplicationDecorator
   end
   # End of Decorated Association
 
-  delegate :ordered_from_supplier_at, to: :decorated_supplier_purchase, prefix: false, allow_nil: true
-
   def actual_specs
     @actual_specs ||= (self.supplier_order_actual_specs || self.specs)
+  end
+
+  def ordered_from_supplier_at
+    if self.supplier_purchase.nil?
+      "Item not yer purchased from Supplier"
+    else
+      decorated_supplier_purchase.ordered_from_supplier_at
+    end
   end
 
   def supplier_purchase_link
