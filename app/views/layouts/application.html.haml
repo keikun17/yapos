@@ -27,36 +27,37 @@
               %span.icon-bar
               %span.icon-bar
             %a.brand(href="#") MLANDCORP POS
-            .container.nav-collapse
-              %ul.nav
-                %li= link_to "Graph", kanban_path
-                %li= link_to "Client RFQ", pending_quotes_path
-                %li= link_to "Client PO", pending_orders_path
-                %li= link_to "Supplier PO", supplier_purchases_path
-                %li= link_to "Client Records", clients_path
-                %li= link_to "Supplier Records", suppliers_path
-                -# %li= link_to "Accounting", accounting_path
-                %li.dropdown
-                  %a.dropdown-toggle{data: {toggle: 'dropdown'}}
-                    Others
-                    %b.caret
-                  %ul.dropdown-menu
-                    %li= link_to "Stocks Monitoring", stocks_path
-                    %li.divider
-                    %li.nav-header
-                      Upcoming
-                    %li= link_to "Delivery Monitoring", '#', class: 'disabled'
-                    %li= link_to "Invoice and Receipts", '#', class: 'disabled'
+            - if user_signed_in?
+              .container.nav-collapse
+                %ul.nav
+                  %li= link_to "Graph", kanban_path
+                  %li= link_to "Client RFQ", pending_quotes_path
+                  %li= link_to "Client PO", pending_orders_path
+                  %li= link_to "Supplier PO", supplier_purchases_path
+                  %li= link_to "Client Records", clients_path
+                  %li= link_to "Supplier Records", suppliers_path
+                  -# %li= link_to "Accounting", accounting_path
+                  %li.dropdown
+                    %a.dropdown-toggle{data: {toggle: 'dropdown'}}
+                      Others
+                      %b.caret
+                    %ul.dropdown-menu
+                      %li= link_to "Stocks Monitoring", stocks_path
+                      %li= link_to "Delivery Monitoring", orders_path, class: 'disabled'
+                      %li.divider
+                      %li.nav-header
+                        Upcoming
+                      %li= link_to "Invoice and Receipts", '#', class: 'disabled'
 
-                %li
-                  = form_tag search_path, method: :get, class: 'navbar-form' do
-                    - params[:search] ||= {}
-                    = text_field_tag 'search[string]', params[:search][:string], :class => "navbar-search input-small"
-                    = select_tag 'search[type]', options_for_select(['quote','order'], params[:search][:type ]), class: 'compact navbar-search'
-                    = button_tag "Search", :class => "btn btn-medium"
+                  %li
+                    = form_tag search_path, method: :get, class: 'navbar-form' do
+                      - params[:search] ||= {}
+                      = text_field_tag 'search[string]', params[:search][:string], :class => "navbar-search input-small"
+                      = select_tag 'search[type]', options_for_select(['quote','order'], params[:search][:type ]), class: 'compact navbar-search'
+                      = button_tag "Search", :class => "btn btn-medium"
 
-              .pull-right
-                = link_to "Log out", destroy_user_session_path, :class => "btn btn-warning", :method => :delete
+                .pull-right
+                  = link_to "Log out", destroy_user_session_path, :class => "btn btn-warning", :method => :delete
 
       .container-fluid
 
