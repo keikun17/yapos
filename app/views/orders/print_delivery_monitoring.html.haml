@@ -1,0 +1,62 @@
+%h1 Delivery Monitoring
+
+%table.table.table-bordered.table-compact
+  %thead
+    %tr
+      %th PO#
+      %th Client
+      %th.span4 Item
+      %th Client Purchased at
+      %th Our PO#
+      %th Ordered from Supplier at
+      %th Estimated EX-Works Date
+      %th Estimated Delivery Date
+      %th Delivered at
+  %tbody
+    - @decorated_orders.each do |order|
+      - offer_count = order.offers.count
+      - offers = order.offers
+      - offer = offers.shift
+
+      - if offer
+        %tr
+          %td{rowspan: offer_count}
+            %strong= link_to order.reference, order
+          %td
+            - if offer && offer.client
+              = link_to(offer.client.name, client_path(offer.client))
+          %td
+            = offer.decorate.display_specs(quantity_class: 'label label-inverse')
+            - if !offer.supplier_order_actual_specs.blank?
+              %span.label.label-important Actual:
+              =offer.supplier_order_actual_specs
+          %td= order.display_purchase_date
+          %td= offer.supplier_purchase_reference
+          %td
+            %i= offer.supplier_purchase_ordered_at
+          %td
+            %i= offer.supplier_order_estimated_manufactured_at
+          %td
+            %i= offer.supplier_order_estimated_delivered_at
+          %td
+            %i= offer.supplier_order_delivered_at
+
+          - offers.each do |offer|
+            %tr
+              %td
+                = link_to(offer.client.name, client_path(offer.client))
+              %td
+                = offer.decorate.display_specs(quantity_class: 'label label-inverse').html_safe
+                - if !offer.supplier_order_actual_specs.blank?
+                  %span.label.label-important Actual:
+                  =offer.supplier_order_actual_specs
+              %td= order.display_purchase_date
+              %td= offer.supplier_purchase_reference
+              %td
+                %i= offer.supplier_purchase_ordered_at
+              %td
+                %i= offer.supplier_order_estimated_manufactured_at
+              %td
+                %i= offer.supplier_order_estimated_delivered_at
+              %td
+                %i= offer.supplier_order_delivered_at

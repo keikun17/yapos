@@ -14,6 +14,16 @@ class OrdersController < ApplicationController
     end
   end
 
+  def print_delivery_monitoring
+    @orders = Order.ordered
+    @orders = @orders.order("orders.purchase_date desc")
+    @orders = @orders.paginate(:page => params[:page], :per_page => 10)
+
+    @decorated_orders = OrderDecorator.decorate_collection(@orders.to_a)
+
+    render layout: "printable"
+  end
+
   def pending
     @orders = Order.not_yet_ordered
     @orders = @orders.order("orders.purchase_date desc")

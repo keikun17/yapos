@@ -8,6 +8,7 @@ Yapos::Application.routes.draw do
   resources :orders do
     collection do
       get 'pending'
+      get 'print_delivery_monitoring'
     end
     resources :attachments do
       member do
