@@ -12,7 +12,7 @@ class OfferDecorator < ApplicationDecorator
 
   def ordered_from_supplier_at
     if self.supplier_purchase.nil?
-      "Item not yer purchased from Supplier"
+      "Item not yet purchased from Supplier"
     else
       decorated_supplier_purchase.ordered_from_supplier_at
     end
