@@ -37,6 +37,19 @@ class SupplierOrder < ActiveRecord::Base
   def ordered_from_supplier?
     !self.reference.blank? && !ordered_at.blank?
   end
+
+  def estimated_delivery_date
+    self.estimated_delivered_at.to_date.to_s(:long) if self.estimated_delivered_at
+  end
+
+  def estimated_manufacture_date
+    self.estimated_manufactured_at.to_date.to_s(:long) if self.estimated_manufactured_at
+  end
+
+  def delivery_date
+    self.delivered_at.to_date.to_s(:long) if self.delivered_at
+  end
+
 end
 
 # == Schema Information

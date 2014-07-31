@@ -20,6 +20,10 @@ class SupplierPurchase < ActiveRecord::Base
     primary_key: :reference,
     foreign_key: :reference
 
+  def order_date
+    ordered_at.to_date.to_s(:long) if ordered_at
+  end
+
   #FIXME : UGLY
   def supplier_name
     unless supplier_orders.empty?

@@ -4,15 +4,15 @@
 %table.table.table-bordered.table-compact{style: 'font-size: 8px !important'}
   %thead
     %tr
-      %th PO#
-      %th Client
+      %th{width: '40px'} PO#
+      %th{width: '40px'} Client
+      %th{width: '30px'} Qty
       %th.span4 Item
-      %th Client Purchased at
-      %th Our PO#
-      %th Ordered from Supplier at
-      %th Estimated EX-Works Date
-      %th Estimated Delivery Date
-      %th Delivered at
+      %th{width: '50px'} Our PO#
+      %th{width: '50px'} Client Purchased at
+      %th{width: '50px'} Estimated EX-Works Date
+      %th{width: '50px'} Estimated Delivery Date
+      %th{width: '50px'} Delivered at
   %tbody
     - @decorated_orders.each do |order|
       - offer_count = order.offers.count
@@ -27,20 +27,23 @@
             - if offer && offer.client
               = link_to(offer.client.name, client_path(offer.client))
           %td
-            = offer.decorate.display_specs(quantity_class: 'label label-inverse')
-            - if !offer.supplier_order_actual_specs.blank?
-              %span.label.label-important Actual:
-              =offer.supplier_order_actual_specs
-          %td= order.display_purchase_date
-          %td= offer.supplier_purchase_reference
+            #{offer.request_quantity} #{offer.request_unit}
           %td
-            %i= offer.supplier_purchase_ordered_at
+            = offer.specs
+            .div{style: 'border: 1px solid black'}
+              %strong Actual
+              = offer.summary
           %td
-            %i= offer.supplier_order_estimated_manufactured_at
+            = offer.supplier_purchase_reference
+            = offer.supplier_name
           %td
-            %i= offer.supplier_order_estimated_delivered_at
+            %i= order.display_purchase_date
           %td
-            %i= offer.supplier_order_delivered_at
+            %i= offer.supplier_order_estimated_manufacture_date
+          %td
+            %i= offer.supplier_order_estimated_delivery_date
+          %td
+            %i= offer.supplier_order_delivery_date
 
           - offers.each do |offer|
             %tr
@@ -48,17 +51,20 @@
               %td
                 = link_to(offer.client.name, client_path(offer.client))
               %td
-                = offer.decorate.display_specs(quantity_class: 'label label-inverse').html_safe
-                - if !offer.supplier_order_actual_specs.blank?
-                  %span.label.label-important Actual:
-                  =offer.supplier_order_actual_specs
-              %td= order.display_purchase_date
-              %td= offer.supplier_purchase_reference
+                #{offer.request_quantity} #{offer.request_unit}
               %td
-                %i= offer.supplier_purchase_ordered_at
+                = offer.specs
+                .div{style: 'border: 1px solid black'}
+                  %strong Actual
+                  = offer.summary
               %td
-                %i= offer.supplier_order_estimated_manufactured_at
+                = offer.supplier_purchase_reference
+                = offer.supplier_name
               %td
-                %i= offer.supplier_order_estimated_delivered_at
+                %i= order.display_purchase_date
               %td
-                %i= offer.supplier_order_delivered_at
+                %i= offer.supplier_order_estimated_manufacture_date
+              %td
+                %i= offer.supplier_order_estimated_delivery_date
+              %td
+                %i= offer.supplier_order_delivery_date

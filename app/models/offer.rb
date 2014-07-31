@@ -92,13 +92,16 @@ class Offer < ActiveRecord::Base
   delegate :reference,
     :ordered_at,
     :estimated_manufactured_at,
+    :estimated_manufacture_date,
     :estimated_delivered_at,
+    :estimated_delivery_date,
     :delivered_at,
+    :delivery_date,
     :delivered?,
     :actual_specs,
     :ordered_from_supplier?, to: :supplier_order, prefix: true, allow_nil: true
 
-  delegate :ordered_at, to: :supplier_purchase, allow_nil: true, prefix: true
+  delegate :ordered_at, :order_date, to: :supplier_purchase, allow_nil: true, prefix: true
 
   def client_ordered?
     !self.order_reference.blank?
