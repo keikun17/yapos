@@ -19,6 +19,7 @@ class OrdersController < ApplicationController
     @orders = @orders.order("orders.purchase_date desc")
     # @orders = @orders.paginate(:page => params[:page], :per_page => 10)
 
+    @orders = @orders.limit(20)
     @decorated_orders = @orders.decorate
     # @decorated_orders = OrderDecorator.decorate_collection(@orders.to_a)
 
