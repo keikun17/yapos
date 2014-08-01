@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
-  $("form").on "click", 'button[data-field-group]',(e) ->
+  $("form").on "click", 'a[data-field-group]',(e) ->
 
     # find link's siblings field whose data will be copied
     button =  $(e.target)
