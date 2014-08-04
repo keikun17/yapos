@@ -1,9 +1,10 @@
-- if offer.estimated_delivery_date.present? and offer.delivered_at.nil?
+- if offer.supplier_order_estimated_delivery_date.present? and offer.supplier_order_delivery_date.nil?
   .alert.alert-info
-    Estimated Delivery
-    = offer.estimated_delivery_date
+    %b Estimated Delivery
+    = offer.supplier_order_estimated_delivery_date
 
-- elsif offer.delivered_at.present?
+- elsif offer.supplier_order_delivery_date.present?
+
   .alert.alert-success
-    Delivered At
-    = offer.delivered_at
+    %b Delivered At
+    = offer.supplier_order_delivery_date
