@@ -24,6 +24,10 @@ class OrdersController < ApplicationController
     @orders = @orders.order("orders.purchase_date desc")
     # @orders = @orders.paginate(:page => params[:page], :per_page => 10)
 
+    unless params[:client_id].blank?
+      @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
+    end
+
     @orders = @orders.limit(20)
     @decorated_orders = @orders.decorate
     # @decorated_orders = OrderDecorator.decorate_collection(@orders.to_a)

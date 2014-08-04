@@ -1,7 +1,7 @@
 .page-header
   %h1
     Delivery Monitoring
-    = link_to "Print", print_delivery_monitoring_orders_path, class: 'btn btn-default'
+    = link_to "Print", print_delivery_monitoring_orders_path(client_id: params[:client_id]), class: 'btn btn-default'
 
 .row-fluid
   .span12
