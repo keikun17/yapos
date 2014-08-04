@@ -6,12 +6,12 @@
     = render 'clients/form_with_select_to_filter_clients'
 
 %ul.nav.nav-tabs
+  %li.active
+    = link_to 'All Quoted', quotes_path
   %li
     = link_to_badge("Offer Required", pending_quotes_path, count: Quote.with_pending_requests.count)
   %li
     = link_to_badge('Awaiting PO', pending_client_po_quotes_path, count: Quote.pending_client_order.count)
-  %li.active
-    = link_to 'All Quoted', quotes_path
 
 = link_to t('.new', :default => t("helpers.links.new")), new_quote_path, :class => 'btn btn-primary'
 .pull-right= will_paginate(@quotes)
