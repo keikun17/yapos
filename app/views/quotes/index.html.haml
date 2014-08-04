@@ -1,6 +1,10 @@
 .page-header
   %h1 Requests For Quotation
 
+.row-fluid
+  .span12
+    = render 'clients/form_with_select_to_filter_clients'
+
 %ul.nav.nav-tabs
   %li
     = link_to_badge("Offer Required", pending_quotes_path, count: Quote.with_pending_requests.count)
