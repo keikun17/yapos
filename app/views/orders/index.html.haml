@@ -3,6 +3,12 @@
     Delivery Monitoring
     = link_to "Print", print_delivery_monitoring_orders_path, class: 'btn btn-default'
 
+.row-fluid
+  .span12
+    = form_tag({}, {class: 'form-inline', method: :get})
+    = select_tag 'client_id', options_from_collection_for_select(Client.all, 'id', 'name', params[:client_id]), prompt: 'All'
+    = submit_tag "Filter", class: 'btn btn-default'
+
 %ul.nav.nav-tabs
   %li
     = link_to_badge("Supplier PO required", pending_orders_path, count: Order.not_yet_ordered.count)

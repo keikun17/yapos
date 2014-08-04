@@ -3,6 +3,11 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.ordered
+
+    unless params[:client_id].blank?
+      @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
+    end
+
     @orders = @orders.order("orders.purchase_date desc")
     @orders = @orders.paginate(:page => params[:page], :per_page => 10)
 
@@ -28,6 +33,11 @@ class OrdersController < ApplicationController
 
   def pending
     @orders = Order.not_yet_ordered
+
+    unless params[:client_id].blank?
+      @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
+    end
+
     @orders = @orders.order("orders.purchase_date desc")
     @orders = @orders.paginate(per_page: 20, page: params[:page])
     @decorated_orders = OrderDecorator.decorate_collection(@orders)
