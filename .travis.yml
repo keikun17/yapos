@@ -1,4 +1,6 @@
 language: ruby
 rvm:
   - "1.9.3"
+before_script:
+  - mysql -e 'create database mlandcop_pos_test'
 script: bundle exec rspec spec
