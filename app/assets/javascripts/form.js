@@ -1,3 +1,5 @@
+//= require confirm_changes
+
 function remove_fields(link) {
   $(link).prev("input[type=hidden]").val("1");
   $(link).closest(".fields").hide();
@@ -23,4 +25,7 @@ $(document).ready(function(){
     // method so it is run after the animation is complete.
     element.parent().find('.message').hide('slide', {direction: "left"}, 500, callback);
   }
+
 })
+
+
