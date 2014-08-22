@@ -101,30 +101,19 @@ class Quote < ActiveRecord::Base
     s = where(created_at: (Date.today..Date.tomorrow))
     s
   end
+
   # Tire/ElasticSearch Configuration
 
-  mapping do
-
-    # For more info abou the #includ_in_all key
-    # http://www.elasticsearch.org/guide/reference/mapping/all-field/
-    indexes :quote_date, {type: 'date', include_in_all: false}
-
-  end
-
-  def to_indexed_json
-    {
-      title: self.title,
-      blurb: self.blurb,
-      quote_reference: self.quote_reference,
-      client_name: self.client_name,
-      supplier_names: supplier_names,
-      display_status: self.display_status,
-      description: description,
-      request_specs: request_specs,
-      offered_specs: offered_specs,
-      offer_summaries: offer_summaries,
-      quote_date: quote_date
-    }.to_json
+  def as_indexed_json(options={})
+    self.as_json(
+      methods: [:client_name, :supplier_names, :request_specs, :offered_specs],
+      only: [
+        :title, :blurb, :quote_reference, :client_name, :display_status,
+        :description, :quote_date,
+        # repeat the methods
+        :client_name, :supplier_names, :request_specs, :offered_specs
+      ]
+    )
   end
 
   # /-- Tire/ElasticSearch config

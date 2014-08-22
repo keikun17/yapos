@@ -38,21 +38,17 @@ class Order < ActiveRecord::Base
   scope :ordered, -> { includes(offers: :supplier_order).where( "supplier_orders.reference != '' and supplier_orders.reference is not null" ) }
   # Tire/ElasticSearch Configuration
 
-  mapping do
-    indexes :purchase_date, {type: 'date', include_in_all: false}
-  end
-
-  def to_indexed_json
-    {
-      reference: self.reference,
-      client_names: self.client_names,
-      supplier_names: supplier_names,
-      status: 'implement',
-      purchase_date: self.purchase_date,
-      actual_specs: actual_specs,
-      offer_specs: offer_specs,
-      offer_summaries: offer_summaries
-    }.to_json
+  def as_indexed_json(options={})
+    self.as_json(
+      methods: [
+        :supplier_names, :offer_specs, :actual_specs,
+        :offer_specs, :offer_summaries, :client_names
+      ],
+      only: [
+        :reference, :client_names, :supplier_names, :purchase_date,
+        :actual_specs, :offer_specs, :offer_summaries
+      ]
+    )
   end
 
   # /-- Tire/ElasticSearch config
