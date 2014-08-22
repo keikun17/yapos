@@ -24,7 +24,8 @@ gem 'devise', github:'plataformatec/devise',  branch:'rails4' #TODO: rails4
 gem 'carrierwave'
 
 # Preferred Elasticsearch gem/mapper
-gem 'tire'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 gem 'json', '~> 1.7.7'
 

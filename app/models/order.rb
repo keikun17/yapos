@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
+  include Elasticearch::Model::Search
+  include Elasticearch::Model::Callbacks
 
   attr_accessible :purchase_date,
     :reference,

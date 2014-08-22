@@ -1,6 +1,6 @@
 class Quote < ActiveRecord::Base
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
+  include ElasticSearch::Model::Search
+  include ElasticSearch::Model::Callbacks
 
   attr_accessible :description,
     :title,
