@@ -14,5 +14,5 @@
     %td Quote
     %td= quote.client_name
     %td= quote.supplier_names
-    %td= quote.quote_date.to_date if !quote.quote_date.nil?
+    %td= quote.quote_date.to_date unless quote.quote_date.nil?
     %td= quote.display_status

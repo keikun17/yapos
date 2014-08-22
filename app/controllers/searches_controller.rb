@@ -7,7 +7,7 @@ class SearchesController < ApplicationController
       when 'quote'
         @results = Quote.search(params[:search][:string]).records
       when 'order'
-        @results = Order.search(params[:search][:string])
+        @results = Order.search(params[:search][:string]).records
       else
 
       end

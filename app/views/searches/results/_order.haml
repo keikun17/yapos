@@ -1,0 +1,10 @@
+- @results.each do |order|
+  - order = order.decorate
+  %tr
+    %td= link_to order.reference, order
+    %td --IMPLEMENT--
+    %td Order
+    %td= order.client_names
+    %td= order.supplier_names
+    %td= order.purchase_date.to_date unless order.purchase_date.nil?
+    %td -- IMPLEMENT -- 

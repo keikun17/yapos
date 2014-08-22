@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
-  include Elasticearch::Model::Search
-  include Elasticearch::Model::Callbacks
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
 
   attr_accessible :purchase_date,
     :reference,
