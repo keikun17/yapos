@@ -1,4 +1,5 @@
-class SearchResult < Decorator
+class SearchResult < ApplicationDecorator
+
 
   def to_s
     case _type

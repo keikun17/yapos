@@ -1,6 +1,6 @@
 class Quote < ActiveRecord::Base
-  include ElasticSearch::Model::Search
-  include ElasticSearch::Model::Callbacks
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
 
   attr_accessible :description,
     :title,
