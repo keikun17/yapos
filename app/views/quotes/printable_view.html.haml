@@ -105,7 +105,7 @@
                 %td= offer.warranty
 
   .note
-    %i Our offers are based on the requirement. If there are changes in the requirements' specifications, We reserve the rights to change the price anytime the requirements are modified.
+    %i Our offers are based on the requirement. We reserve the rights to change the price anytime the requirements are modified.
 
   %table.table-compact
     - if @quote.offer_details_mergable?(:remarks, params[:supplier_id]) and !@quote.solo_offer_remarks(params[:supplier_id]).blank?
