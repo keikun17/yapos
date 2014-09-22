@@ -18,10 +18,8 @@
       %strong
         Total quoted today :
         = quotes_today.count
-      %br
-      Last 6 quoted today:
       %ul
-        - quotes_today.limit(6).each do |quote|
+        - quotes_today.each do |quote|
           %li= quote.quote_reference
 
 
