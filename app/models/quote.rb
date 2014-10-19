@@ -106,12 +106,12 @@ class Quote < ActiveRecord::Base
 
   def as_indexed_json(options={})
     self.as_json(
-      methods: [:client_name, :supplier_names, :request_specs, :offered_specs],
+      methods: [:client_name, :supplier_names, :request_specs, :offered_specs, :offered_vendor_item_code],
       only: [
         :title, :blurb, :quote_reference, :client_name, :display_status,
         :description, :quote_date,
         # repeat the methods
-        :client_name, :supplier_names, :request_specs, :offered_specs
+        :client_name, :supplier_names, :request_specs, :offered_specs, :offered_vendor_item_code
       ]
     )
   end
@@ -130,6 +130,12 @@ class Quote < ActiveRecord::Base
 
   def offered_specs
     o = offers.map(&:specs)
+    o = o.uniq.compact
+    o
+  end
+
+  def offered_vendor_item_code
+    o = offers.map(&:vendor_item_code)
     o = o.uniq.compact
     o
   end
