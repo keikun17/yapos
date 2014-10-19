@@ -139,7 +139,7 @@ class Quote < ActiveRecord::Base
         offers: {
           methods: [:supplier_name],
           only: [
-            :specs, :offered_vendor_item_code, :summary,
+            :specs, :vendor_item_code, :summary,
 
             #Repeat the `methods`
             :supplier_name
