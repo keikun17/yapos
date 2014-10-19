@@ -19,7 +19,8 @@ class Offer < ActiveRecord::Base
     :total_selling_price,
     :price_basis,
     :delivery_receipt_reference,
-    :sales_invoice_reference
+    :sales_invoice_reference,
+    :vendor_item_code
 
   belongs_to :request
 

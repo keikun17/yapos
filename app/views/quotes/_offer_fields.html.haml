@@ -12,6 +12,11 @@
     %br
     - #FIXME : Move placeholder to a yaml that stores placeholder texts
     = f.text_area :summary, :class => 'span12 text_area', :rows => 4, :placeholder => "Example: 900mmW,EP200x2P,3x2,HR,ENDLESS"
+    Vendor Item Code
+    %br
+    = f.text_field :vendor_item_code, :class => 'prependedInput span7', :placeholder => 'AR900xEP200x2P'
+
+
   %td
     .row-fluid
       .span12
