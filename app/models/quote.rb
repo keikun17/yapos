@@ -104,15 +104,51 @@ class Quote < ActiveRecord::Base
 
   # Tire/ElasticSearch Configuration
 
+  # def as_indexed_json(options={})
+  #   self.as_json(
+  #     methods: [:client_name, :supplier_names, :request_specs, :offered_specs, :offered_vendor_item_code],
+  #     only: [
+  #       :title, :blurb, :quote_reference, :client_name, :display_status,
+  #       :description, :quote_date,
+  #       # repeat the methods
+  #       :client_name, :supplier_names, :request_specs, :offered_specs, :offered_vendor_item_code
+  #     ]
+  #   )
+  # end
+
   def as_indexed_json(options={})
     self.as_json(
-      methods: [:client_name, :supplier_names, :request_specs, :offered_specs, :offered_vendor_item_code],
+
+      methods: [:client_name ],
       only: [
-        :title, :blurb, :quote_reference, :client_name, :display_status,
+        :title, :blurb, :quote_reference, :display_status,
         :description, :quote_date,
-        # repeat the methods
-        :client_name, :supplier_names, :request_specs, :offered_specs, :offered_vendor_item_code
-      ]
+
+        # Repeat the `methods`
+        :client_name
+      ],
+
+      # Associations
+      include: {
+        requests: {
+          only: [:quantity, :unit, :specs]
+        },
+
+
+        # Offers Association
+        offers: {
+          methods: [:supplier_name],
+          only: [
+            :specs, :offered_vendor_item_code, :summary,
+
+            #Repeat the `methods`
+            :supplier_name
+          ]
+        }
+
+
+      }
+
     )
   end
 
