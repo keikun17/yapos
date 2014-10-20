@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020125434) do
+ActiveRecord::Schema.define(version: 20141020135501) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -71,6 +71,17 @@ ActiveRecord::Schema.define(version: 20141020125434) do
     t.integer  "supplier_id"
     t.integer  "client_id"
   end
+
+  create_table "product_fields", force: true do |t|
+    t.string   "name"
+    t.string   "unit"
+    t.integer  "product_id"
+    t.string   "field_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "product_fields", ["product_id"], name: "index_product_fields_on_product_id", using: :btree
 
   create_table "products", force: true do |t|
     t.string   "name"
