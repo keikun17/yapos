@@ -63,5 +63,13 @@ module Yapos
                                  "fontawesome-webfont.eot",
                                  "fontawesome-webfont.svg",
                                  "fontawesome-webfont.woff"]
+
+    # Do not generate test files automatically
+    config.generators do |g|
+      g.view_specs false
+      g.helper_specs false
+      g.controller_specs false
+      g.decorator_specs false
+    end
   end
 end
