@@ -5,7 +5,9 @@ Yapos::Application.routes.draw do
 
   resources :product_fields
 
-  resources :products
+  resources :products do
+    resources :vendor_items
+  end
 
   devise_for :users
 

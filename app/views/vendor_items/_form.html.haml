@@ -1,4 +1,5 @@
 = form_for @vendor_item do |f|
+  = f.hidden_field :product_id
   - if @vendor_item.errors.any?
     #error_explanation
       %h2= "#{pluralize(@vendor_item.errors.count, "error")} prohibited this vendor_item from being saved:"
@@ -9,8 +10,13 @@
   .field
     = f.label :code, 'Item Code'
     = f.text_field :code
-  .field
-    = f.label :product
-    = f.select :product_id, Product.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
+
+  = f.fields_for :vendor_item_fields do |ff|
+    = ff.hidden_field :product_field_id
+
+    .form-group
+      = ff.label :value, ff.object.product_field.name, class: 'span2'
+      .span10
+        = ff.text_field :value
   .actions
     = f.submit 'Save'

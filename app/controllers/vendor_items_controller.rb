@@ -12,7 +12,8 @@ class VendorItemsController < ApplicationController
 
   # GET /vendor_items/new
   def new
-    @vendor_item = VendorItem.new
+    @product = Product.find(params[:product_id])
+    @vendor_item = VendorItem.initialize_fields(@product)
   end
 
   # GET /vendor_items/1/edit
