@@ -1,10 +1,33 @@
 %p#notice= notice
 
-= link_to "New Vendor Item", new_product_vendor_item_path(@product), class: 'btn btn-primary'
-%p
-  %b Name:
+%h1 
+  Product Name:
   = @product.name
+
 
 = link_to 'Edit', edit_product_path(@product)
 \|
 = link_to 'Back', products_path
+
+%h3 Items
+
+= link_to "New Vendor Item", new_product_vendor_item_path(@product), class: 'btn btn-primary'
+
+%table.table
+  %tr
+    %th Code
+    %th Product
+    %th
+    %th
+    %th
+
+  - @product.vendor_items.each do |vendor_item|
+    %tr
+      %td= vendor_item.code
+      %td= vendor_item.product.name
+      %td= link_to 'Show', [vendor_item.product, vendor_item]
+      %td= link_to 'Edit', edit_product_vendor_item_path(vendor_item.product, vendor_item)
+      %td= link_to 'Destroy', [vendor_item.product, vendor_item], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
