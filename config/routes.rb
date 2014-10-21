@@ -1,4 +1,6 @@
 Yapos::Application.routes.draw do
+  resources :vendor_item_fields
+
   resources :vendor_items
 
   resources :product_fields

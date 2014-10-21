@@ -1,0 +1,23 @@
+%h1 Listing vendor_item_fields
+
+%table
+  %tr
+    %th Vendor item
+    %th Value
+    %th Product field
+    %th
+    %th
+    %th
+
+  - @vendor_item_fields.each do |vendor_item_field|
+    %tr
+      %td= vendor_item_field.vendor_item
+      %td= vendor_item_field.value
+      %td= vendor_item_field.product_field
+      %td= link_to 'Show', vendor_item_field
+      %td= link_to 'Edit', edit_vendor_item_field_path(vendor_item_field)
+      %td= link_to 'Destroy', vendor_item_field, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Vendor item field', new_vendor_item_field_path

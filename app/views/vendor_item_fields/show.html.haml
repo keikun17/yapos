@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Vendor item:
+  = @vendor_item_field.vendor_item
+%p
+  %b Value:
+  = @vendor_item_field.value
+%p
+  %b Product field:
+  = @vendor_item_field.product_field
+
+= link_to 'Edit', edit_vendor_item_field_path(@vendor_item_field)
+\|
+= link_to 'Back', vendor_item_fields_path
