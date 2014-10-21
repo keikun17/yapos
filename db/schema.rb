@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020135501) do
+ActiveRecord::Schema.define(version: 20141021065338) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -196,5 +196,14 @@ ActiveRecord::Schema.define(version: 20141020135501) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "vendor_items", force: true do |t|
+    t.string   "code"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "vendor_items", ["product_id"], name: "index_vendor_items_on_product_id", using: :btree
 
 end

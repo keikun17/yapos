@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Code:
+  = @vendor_item.code
+%p
+  %b Product:
+  = @vendor_item.product
+
+= link_to 'Edit', edit_vendor_item_path(@vendor_item)
+\|
+= link_to 'Back', vendor_items_path

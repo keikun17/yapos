@@ -1,0 +1,16 @@
+= form_for @vendor_item do |f|
+  - if @vendor_item.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@vendor_item.errors.count, "error")} prohibited this vendor_item from being saved:"
+      %ul
+        - @vendor_item.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :code
+    = f.text_field :code
+  .field
+    = f.label :product
+    = f.select :product_id, Product.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
+  .actions
+    = f.submit 'Save'
