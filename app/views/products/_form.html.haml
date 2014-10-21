@@ -9,5 +9,11 @@
   .field
     = f.label :name
     = f.text_field :name
+
+  #product_fields-fields
+    = f.fields_for :product_fields do |builder|
+      = render partial: 'product_field_fields', locals: {f: builder}
+    = link_to_add_fields "Click to add product fields", f, :product_fields
+
   .actions
     = f.submit 'Save'

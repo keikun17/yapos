@@ -1,0 +1,19 @@
+.fields
+  .row-fluid
+    .span2
+      = f.label :name
+    .span10
+      = f.text_field :name
+  .row-fluid
+    .span2
+      = f.label :unit
+    .span10
+      = f.text_field :unit
+  .row-fluid
+    .span2
+      = f.label :field_type
+    .span10
+      = f.text_field :field_type
+  .row-fluid
+    .span12
+      = link_to_remove_fields "remove", f
