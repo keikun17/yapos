@@ -22,10 +22,11 @@ class VendorItemsController < ApplicationController
 
   # POST /vendor_items
   def create
-    @vendor_item = VendorItem.new(vendor_item_params)
+    @product = Product.find(params[:product_id])
+    @vendor_item = @product.vendor_items.new(params[:vendor_item])
 
     if @vendor_item.save
-      redirect_to @vendor_item, notice: 'Vendor item was successfully created.'
+      redirect_to [@product, @vendor_item], notice: 'Vendor item was successfully created.'
     else
       render action: 'new'
     end
@@ -49,11 +50,8 @@ class VendorItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_vendor_item
-      @vendor_item = VendorItem.find(params[:id])
+      @product = Product.find(params[:product_id])
+      @vendor_item = @product.vendor_items.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def vendor_item_params
-      params.require(:vendor_item).permit(:code, :product_id)
-    end
 end
