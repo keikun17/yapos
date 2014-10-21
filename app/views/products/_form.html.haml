@@ -13,7 +13,10 @@
   #product_fields-fields
     = f.fields_for :product_fields do |builder|
       = render partial: 'product_field_fields', locals: {f: builder}
+    %hr
     = link_to_add_fields "Click to add product fields", f, :product_fields
 
-  .actions
-    = f.submit 'Save'
+  .row-fluid
+    .span12
+      .actions
+        = f.submit 'Save', class: 'btn btn-primary'
