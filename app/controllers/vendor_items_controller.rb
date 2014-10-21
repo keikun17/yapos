@@ -44,7 +44,7 @@ class VendorItemsController < ApplicationController
   # DELETE /vendor_items/1
   def destroy
     @vendor_item.destroy
-    redirect_to vendor_items_url, notice: 'Vendor item was successfully destroyed.'
+    redirect_to product_path(@product), notice: 'Vendor item was successfully destroyed.'
   end
 
   private
