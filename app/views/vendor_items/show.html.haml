@@ -7,6 +7,7 @@
   %b Product:
   = @vendor_item.product
 
-= link_to 'Edit', edit_product_vendor_item_path(@product,@vendor_item)
+= link_to 'Edit', edit_product_vendor_item_path(@product,@vendor_item), class: 'btn'
 \|
-= link_to 'Back', product_vendor_items_path
+= link_to 'Back', product_path(@product), class: 'btn'
+
