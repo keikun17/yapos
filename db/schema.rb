@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141021082329) do
+ActiveRecord::Schema.define(version: 20141022135051) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -124,7 +124,10 @@ ActiveRecord::Schema.define(version: 20141021082329) do
     t.integer  "client_purchased_count",     default: 0
     t.integer  "non_client_purchased_count", default: 0
     t.integer  "position"
+    t.string   "item_code"
   end
+
+  add_index "requests", ["item_code"], name: "index_requests_on_item_code", using: :btree
 
   create_table "stocks", force: true do |t|
     t.float    "remaining_quantity"
