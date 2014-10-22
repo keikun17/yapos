@@ -131,7 +131,7 @@ class Quote < ActiveRecord::Base
       # Associations
       include: {
         requests: {
-          only: [:quantity, :unit, :specs]
+          only: [:quantity, :unit, :specs, :item_code]
         },
 
 
