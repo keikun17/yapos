@@ -98,8 +98,7 @@ class QuotesController < ApplicationController
 
     respond_to do |format|
       if @quote.update_attributes(params[:quote])
-        @quote.__elasticsearch__.delete_document
-        @quote.__elasticsearch__.index_document
+        @quote.reindex
         @quote.compute_total_offered_prices
         Purchase.make(@quote.offers.purchased)
         format.html { redirect_to @quote, notice: 'Quote was successfully updated.' }
