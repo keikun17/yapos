@@ -1,5 +1,5 @@
 class Client < ActiveRecord::Base
-  attr_accessible :name, :emails, :contact_numbers, :address
+  attr_accessible :name, :emails, :contact_numbers, :address, :abbrev
 
   has_many :quotes
   has_many :orders, through: :quotes

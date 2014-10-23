@@ -4,6 +4,10 @@
     .controls
       = f.text_field :name, :class => 'text_field'
   .control-group
+    = f.label :abbrev, "Name Abbreviation", :class => 'control-label'
+    .controls
+      = f.text_field :abbrev, :class => 'text_field'
+  .control-group
     = f.label :emails, :class => 'control-label'
     .controls
       = f.text_field :emails, :class => 'text_field'
