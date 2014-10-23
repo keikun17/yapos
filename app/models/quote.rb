@@ -118,18 +118,17 @@ class Quote < ActiveRecord::Base
 
   def as_indexed_json(options={})
     self.as_json(
-
-      methods: [:client_name ],
       only: [
         :title, :blurb, :quote_reference, :display_status,
         :description, :quote_date,
 
-        # Repeat the `methods`
-        :client_name
       ],
 
       # Associations
       include: {
+        client: {
+          only: [:name, :abbrev]
+        },
         requests: {
           only: [:quantity, :unit, :specs, :item_code]
         },
