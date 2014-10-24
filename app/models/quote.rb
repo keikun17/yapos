@@ -49,6 +49,7 @@ class Quote < ActiveRecord::Base
   delegate :reference, :to => :order, :allow_nil => true, :prefix => true
   delegate :name, :to => :client, :allow_nil => true, :prefix => true
   delegate :name, :to => :supplier, :allow_nil => true, :prefix => true
+  delegate :abbrev, to: :client, allow_nil: true, prefix: true
 
   scope :unawarded, -> { where(:order_id => nil) }
   scope :not_closed, -> { where("quotes.status not in ('Cancelled', 'No Quote', 'Not Awarded')") }

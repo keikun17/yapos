@@ -4,7 +4,7 @@
     - offers = quote.offers.pending_supplier_order.decorate
     - next if offers.empty?
     %li.supplier-po-needed
-      %h4= quote.client_name
+      %h4= quote.short_client_name
       %strong= link_to quote.quote_reference, quote_path(quote)
 
       - offers.each do |offer|

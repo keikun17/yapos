@@ -1,6 +1,13 @@
 class QuoteDecorator < ApplicationDecorator
   # Associations
 
+  def short_client_name
+    unless client_abbrev.blank?
+      client_abbrev
+    else
+      client_name
+    end
+  end
   def display_reference
     quote_reference.blank? ? "(NO REFERENCE ##{id})" : quote_reference
   end

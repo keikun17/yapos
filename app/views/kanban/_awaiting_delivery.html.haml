@@ -2,7 +2,7 @@
 %ul.unstyled
   - quotes.each do |quote|
     %li.awaiting-delivery
-      %h4= quote.client_name
+      %h4= quote.short_client_name
       %strong= link_to quote.quote_reference, quote_path(quote)
       - quote.supplier_orders.each do |supplier_order|
         - request = RequestDecorator.new(supplier_order.offer.request)
