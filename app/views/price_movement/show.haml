@@ -1,0 +1,14 @@
+%h1 Price Trend
+
+%table.table
+  %tr
+    %th Vendor Item Code
+    %th Buying Price
+    %th Selling Price
+  - @offer_with_item_codes.each do |offer|
+    %tr
+      %td= offer.vendor_item_code
+      %td= offer.buying_price
+      %td= offer.selling_price
+
+
