@@ -1,0 +1,16 @@
+%h1 Price Trend for #{params[:item_code]}
+
+%table.table
+  %tr
+    %th Offered for Request Code
+    %th Request specs
+    %th Buying Price
+    %th Selling Price
+  - @offers.each do |offer|
+    %tr
+      %td= offer.request.item_code
+      %td= offer.request.specs
+      %td= offer.display_buying_price
+      %td= offer.display_selling_price
+
+
