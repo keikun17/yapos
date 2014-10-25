@@ -1,6 +1,6 @@
 class KanbanController < ApplicationController	
 	
-  def show
+  def index
     @need_supplier_order = Quote.pending_supplier_order.decorate
     @for_scheduling = Quote.for_scheduling.decorate
     @manufacturing = Quote.manufacturing.decorate

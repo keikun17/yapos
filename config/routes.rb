@@ -8,7 +8,7 @@ Yapos::Application.routes.draw do
   devise_for :users
 
   get 'kanban', to: 'kanban#show'
-  get 'price_movement', to: 'price_movement#show'
+  get 'price_movements', to: 'price_movement#index', as: :price_movements
 
   resources :stocks
 
