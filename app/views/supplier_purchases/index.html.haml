@@ -19,7 +19,8 @@
         %td
           - supplier_purchase.quotes.each do |quote|
             = link_to quote.quote_reference, quote_path(quote)
-            (#{quote.client_name})
+            (#{quote.client_abbrev || quote.client_name})
+            %br
         %td= link_to(supplier_purchase.order.reference, order_path(supplier_purchase.order)) if supplier_purchase.order
         %td= supplier_purchase.ordered_from_supplier_at
         %td
