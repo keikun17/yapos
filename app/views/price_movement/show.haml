@@ -3,13 +3,16 @@
 %table.table
   %tr
     %th Offered for Request Code
+    %th Quantity
     %th Request specs
     %th Buying Price
     %th Selling Price
   - @offers.each do |offer|
+    - request = offer.request
     %tr
-      %td= offer.request.item_code
-      %td= offer.request.specs
+      %td= request.item_code
+      %td= request.decorate.display_quantity
+      %td= request.specs
       %td= offer.display_buying_price
       %td= offer.display_selling_price
 
