@@ -10,7 +10,7 @@
   - @offers.each do |offer|
     - request = offer.request
     %tr
-      %td= request.item_code
+      %td= link_to request.item_code, request.quote
       %td= request.decorate.display_quantity
       %td= request.specs
       %td= offer.display_buying_price
