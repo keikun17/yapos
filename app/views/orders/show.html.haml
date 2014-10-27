@@ -87,7 +87,6 @@
           - if offer.supplier.present?
             = link_to offer.supplier_name, supplier_path(offer.supplier)
         %td=  render 'offers/delivery_date', offer: offer
-        %td= offer.delivered_at
         %td.text-warning= offer.display_buying_price
         %td.text-success= offer.display_selling_price
         %td
