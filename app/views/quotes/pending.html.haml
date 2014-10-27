@@ -13,7 +13,7 @@
   %li
     = link_to_badge('Awaiting PO', pending_client_po_quotes_path, count: Quote.pending_client_order.count)
 
-= link_to t('.new', :default => t("helpers.links.new")), new_quote_path, :class => 'btn btn-primary'
+= link_to 'New Quote', new_quote_path, :class => 'btn btn-primary'
 .pull-right= will_paginate(@quotes)
 
 = render :partial => 'unordered_quotes', :locals => {:quotes => @decorated_quotes, :show_actions => true}
