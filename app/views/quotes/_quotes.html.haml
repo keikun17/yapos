@@ -5,11 +5,10 @@
       - unless params[:controller] == 'clients'
         %th Client Name
       %th{:width => '10%'} Client Requested At
-      %th Client PO#
       %th{:width => '30%'} Requested Items
       %th Supplier
       %th Status
-      %th{:width => '10%'} Client Purchased At
+      %th{:width => '10%'} Client PO
       - if defined?(show_actions)
         %th{:width => '10%'}=t '.actions', :default => t("helpers.actions")
   %tbody
@@ -20,7 +19,6 @@
         - unless params[:controller] == 'clients'
           %td= link_to_client(quote.client)
         %td= quote.quote_date.to_date if quote.quote_date
-        %td= quote.order_links
         %td
           - if !quote.title.blank? and !quote.requests.empty?
             %strong= truncate(quote.title, :length => 40, :omission => "...")
@@ -38,7 +36,8 @@
 
         %td= supplier_links(quote)
         %td= quote.display_status
-        %td= quote.order_dates
+        %td
+          = quote.order_links_with_date
 
         - if defined?(show_actions)
           %td

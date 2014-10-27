@@ -23,6 +23,15 @@ class QuoteDecorator < ApplicationDecorator
     dates.join(',').html_safe
   end
 
+
+  def order_links_with_date
+    order_links = []
+    OrderDecorator.decorate_collection(self.orders.uniq).each do |order|
+      order_links << order.link.html_safe + "(#{order.display_purchase_date})"
+    end
+    order_links.join(',').html_safe
+  end
+
   # Maybe this belongs here instead of the model because this
   # is leaning more toward behavior than data
   def offer_details_mergable?(attr, supplier_id = nil)
