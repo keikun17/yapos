@@ -27,7 +27,7 @@ class QuoteDecorator < ApplicationDecorator
   def order_links_with_date
     order_links = []
     OrderDecorator.decorate_collection(self.orders.uniq).each do |order|
-      order_links << order.link.html_safe + "(#{order.display_purchase_date})"
+      order_links << (order.link + "(#{order.display_purchase_date})".html_safe)
     end
     order_links.join(',').html_safe
   end

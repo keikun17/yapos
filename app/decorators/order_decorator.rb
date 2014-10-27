@@ -9,8 +9,9 @@ class OrderDecorator < ApplicationDecorator
   def display_purchase_date
     if purchase_date.nil?
       str = h.content_tag :i do
-        h.link_to "Please Fill Up", h.edit_order_path(self)
+        h.link_to "Please Complete Order Form", h.edit_order_path(self)
       end
+      str = str.html_safe
     else
       str = purchase_date.to_date
     end
@@ -35,7 +36,7 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def link
-    h.link_to reference, h.order_path(self)
+    (h.link_to reference, h.order_path(self)).html_safe
   end
 
   def total_buy
