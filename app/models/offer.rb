@@ -117,7 +117,9 @@ class Offer < ActiveRecord::Base
   end
 
   def purchase_from_supplier
-    SupplierPurchase.find_or_create_by(order_id: self.order.id, reference: self.supplier_order.reference)
+    if !supplier_order.nil? or !supplier_order_reference.blank?
+      SupplierPurchase.find_or_create_by(order_id: self.order.id, reference: self.supplier_order.reference)
+    end
   end
 
   def total_currency_buying_price

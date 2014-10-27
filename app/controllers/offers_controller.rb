@@ -1,19 +1,29 @@
 class OffersController < ApplicationController
-  def purchase
+  def quick_purchase
     @offer = Offer.find(params[:id])
 
-    respond_to do |format|
-      if params[:offer][:order_reference]
-        if @offer.update_attributes(params[:offer]) and Purchase.make([@offer])
-          format.html { redirect_to :back, notice: "Offer's PO number successfully updated" }
-        else
-          format.html { redirect_to :back, action: 'show', error: "Offer record invalid." }
-        end
+    if !params[:offer][:order_reference].blank?
+      if @offer.update_attributes(params[:offer])
+
+        # Create SupplierOrder
+        Purchase.make([@offer])
+
+        # Set Order date to current date
+        @offer.order.update_attributes(purchase_date: Time.now)
+
+        @offer.supplier_order.update_attributes(params['post_save']['supplier_order'])
+
+        # Create SupplierPurchase with
+        @offer.purchase_from_supplier
+
+        redirect_to :back, notice: "Offer's PO number successfully updated"
       else
-        format.html { redirect_to back, error: "Error. Please enter a PO number" }
-        format.json { head :no_content }
+        redirect_to :back, action: 'show', error: "Offer record invalid."
       end
+    else
+      redirect_to :back, alert: "Error. Please enter a PO number"
     end
+
   end
 
   def update

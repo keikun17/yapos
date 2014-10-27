@@ -67,7 +67,7 @@
     %th Delivery Date
     %th Supplier's Price
     %th Offered Price
-    %th Our PO#
+    %th Our PO to Supplier
 
   %tbody
     - @quotes.each do |quote|
@@ -107,7 +107,6 @@
           %td
             = offer.supplier_purchase_link
             = offer.edit_supplier_purchase_link
-
 
 %br
 

@@ -28,7 +28,7 @@ Yapos::Application.routes.draw do
   resources :offers do
     member do
       put 'update'
-      patch 'purchase'
+      patch 'quick_purchase'
     end
   end
 

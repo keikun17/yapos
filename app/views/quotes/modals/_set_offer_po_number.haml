@@ -1,19 +1,42 @@
 .modal.hide.fade{id: modal_id}
-  = form_for offer, as: :offer, url: purchase_offer_path(offer), method: :patch, html: {class: 'form-horizontal'} do |f|
+  = form_for offer, as: :offer, url: quick_purchase_offer_path(offer), method: :patch, html: {class: 'form-horizontal'} do |f|
     .modal-header
       %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
       %h3 Input Client PO Number
     .modal-body
       .control-group
-        %label.control-label Specs
+        %label.control-label Quantity
         .controls
-          = simple_format(offer.decorate.summary)
-          = simple_format(offer.display_actual_specs)
+          = offer.complete_quantity
 
       .control-group
-        = f.label :order_reference, 'PO Number', class: 'control-label'
+        %label.control-label Specs
+        .controls
+          %p
+            %strong What the client requested
+            = simple_format(offer.request.specs)
+            %strong What we offered the client
+            = simple_format(offer.specs)
+            %strong What we will actually offer
+            = simple_format(offer.summary)
+
+
+      .control-group
+        = f.label :order_reference, "Client's PO Number", class: 'control-label'
         .controls
           = f.text_field :order_reference, class: 'text_field'
+
+      -# SupplierOrder
+      .control-group
+        = label '[post_save][supplier_order][actual_specs]', 'Specs to Order from Supplier', class: 'control-label'
+        .controls
+          = text_area_tag '[post_save][supplier_order][actual_specs]',offer.summary, class: 'text_area', rows: 4
+
+      .control-group
+        = label '[post_save][supplier_order][reference]', 'Our PO# for our Supplier', class: 'control-label'
+        .controls
+          = text_field_tag '[post_save][supplier_order][reference]', '', class: 'text_field'
+
 
     .modal-footer
       %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close

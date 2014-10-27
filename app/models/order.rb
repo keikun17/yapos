@@ -56,12 +56,10 @@ class Order < ActiveRecord::Base
   def purchase_selected_offers
     # TODO : impplement 'client_purchased' scope on Offer instead of an iteration
     # and condition checks
-    # 
-    # e.g. : self.offers.client_purchased.map(&:purchase_from_supplier)
+    #
+    # e.g. : self.offers.client_purchascd.map(&:purchase_from_supplier)
     self.offers.each do |offer|
-      unless offer.supplier_order.nil? or offer.supplier_order.reference.blank?
-        offer.purchase_from_supplier
-      end
+      offer.purchase_from_supplier
     end
   end
 
