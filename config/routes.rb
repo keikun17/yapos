@@ -25,7 +25,12 @@ Yapos::Application.routes.draw do
     end
   end
 
-  resources :offers, only: :update
+  resources :offers do
+    member do
+      put 'update'
+      patch 'purchase'
+    end
+  end
 
   resources :supplier_orders, only: :update
 
