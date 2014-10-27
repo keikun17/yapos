@@ -28,7 +28,7 @@ class OfferDecorator < ApplicationDecorator
 
   def edit_supplier_purchase_link
     if self.supplier_purchase
-      link = h.link_to "edit", h.edit_supplier_purchase_path(self.supplier_purchase)
+      link = h.link_to "Edit", h.edit_supplier_purchase_path(self.supplier_purchase)
       "(#{link})".html_safe
     else
       self.supplier_order_reference
