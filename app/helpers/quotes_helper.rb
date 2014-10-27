@@ -20,7 +20,7 @@ module QuotesHelper
       ''
     end
 
-    row_class = 'multi-content' +  status
+    row_class = 'multi-content ' +  status
 
   end
 end
