@@ -23,7 +23,7 @@
         %td= quote.order_links
         %td
           - if !quote.title.blank? and !quote.requests.empty?
-            %p= truncate(quote.title, :length => 40, :omission => "...")
+            %strong= truncate(quote.title, :length => 40, :omission => "...")
           - quote.requests.decorate.each do |request|
             %p
               %span.label.label-inverse= request.display_quantity
