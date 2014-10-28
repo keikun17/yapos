@@ -8,4 +8,8 @@ class PriceMovementController < ApplicationController
     @offers = Offer.where(vendor_item_code: params[:item_code]).decorate
   end
 
+  def uncategorized
+    @offers = Offer.where(vendor_item_code: nil).decorate
+  end
+
 end

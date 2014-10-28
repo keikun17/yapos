@@ -1,0 +1,18 @@
+%h1 Uncategorized Offers
+%h3 Fill the Item code for these offers so they will appear in the Price movements chart
+
+%table.table
+  %tr
+    %th Request Code
+    %th Specs offered to client
+    %th Buying Price
+    %th Selling Price
+  - @offers.each do |offer|
+    %tr
+      %td= link_to offer.quote.quote_reference, offer.request.quote
+      %td= offer.specs
+      %td= offer.summary
+      %td= offer.display_buying_price
+      %td= offer.display_selling_price
+
+

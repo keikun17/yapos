@@ -10,6 +10,7 @@ Yapos::Application.routes.draw do
   get 'kanban', to: 'kanban#show'
   get 'price_movements', to: 'price_movement#index', as: :price_movements
   get 'price_movement/:item_code', to: 'price_movement#show', as: :price_movement
+  get 'price_movements/uncategorized', to: 'price_movement#uncategorized', as: :uncategorized_offers
 
   resources :stocks
 
