@@ -1,15 +1,15 @@
 %h1 Price Trend
 %table.table
   %tr
-    %th PR#
     %th Vendor Item Code
+    %th PR#
     %th Buying Price
     %th Selling Price
     %th Quote Date
   - @offer_with_item_codes.each do |offer|
-    %tr
-      %td= link_to offer.quote.quote_reference, quote
+    %tr{class: quote_row_class(offer.quote)}
       %td= link_to offer.vendor_item_code, price_movement_path(offer.vendor_item_code)
+      %td= link_to offer.quote.quote_reference, offer.quote
       %td= offer.display_buying_price
       %td= offer.display_selling_price
       %td= offer.quote_date.to_date.to_s(:long)
