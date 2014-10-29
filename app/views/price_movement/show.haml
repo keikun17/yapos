@@ -7,6 +7,7 @@
     %th Request specs
     %th Buying Price
     %th Selling Price
+    %th Quoted At
   - @offers.each do |offer|
     - request = offer.request
     %tr
@@ -15,5 +16,6 @@
       %td= request.specs
       %td= offer.display_buying_price
       %td= offer.display_selling_price
+      %td= offer.quote_date.to_date.to_s(:long)
 
 
