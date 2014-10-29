@@ -1,5 +1,21 @@
 %h1 Price Trend for #{params[:item_code]}
 
+- if @vendor_item.present?
+
+  %h3 Specs
+
+  - @vendor_item.vendor_item_fields.each do |vendor_item_field|
+    %p
+      %strong= vendor_item_field.product_field.name
+      \:
+      = vendor_item_field.value
+      = vendor_item_field.product_field.unit
+
+- else
+  This item code has not been registered to the system yet.
+
+%hr
+
 - if @last_sold.present?
   %p
     Last bought for :
