@@ -1,5 +1,16 @@
 %h1 Price Trend for #{params[:item_code]}
 
+- if @last_sold.present?
+  %p
+    Last bought for :
+    = @last_sold.display_buying_price
+  %p
+    Last sold for :
+    = @last_sold.display_selling_price
+
+  %p
+    This item has not never been ordered by our clients
+
 %table.table
   %tr
     %th Offered for Request Code

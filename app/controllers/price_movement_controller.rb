@@ -5,7 +5,9 @@ class PriceMovementController < ApplicationController
   end
 
   def show
-    @offers = Offer.where(vendor_item_code: params[:item_code]).by_quote_date.decorate
+    @offers = Offer.where(vendor_item_code: params[:item_code])
+    @last_sold = @offers.purchased.last.try(:decorate)
+    @offers = @offers.by_quote_date.decorate
   end
 
   def uncategorized
