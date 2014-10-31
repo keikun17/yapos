@@ -17,5 +17,5 @@ end
 #  emails          :string(255)
 #  contact_numbers :string(255)
 #  address         :text
+#  abbrev          :string(255)
 #
-

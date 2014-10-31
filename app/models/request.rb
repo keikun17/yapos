@@ -59,4 +59,5 @@ end
 #  client_purchased_count     :integer          default(0)
 #  non_client_purchased_count :integer          default(0)
 #  position                   :integer
+#  item_code                  :string(255)
 #
