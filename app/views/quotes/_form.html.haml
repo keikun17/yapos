@@ -6,7 +6,7 @@
         .controls
           = f.text_field :quote_reference, validate: { uniqueness: true }
       .control-group
-        = f.label :client, :class => 'control-label'
+        = f.label :client_id, :class => 'control-label'
         .controls
           = f.select :client_id, Client.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
       .control-group
