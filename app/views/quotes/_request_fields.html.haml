@@ -1,33 +1,33 @@
-%tr.fields
+%tr.request-line.fields
   %td.span1
     %p
-      %strong Item#
+      = f.label :position, 'Item#', class: 'bold'
     %p
       = f.text_field :position, :class => 'span12 text_field'
 
   %td
     %p
-      %strong Quantity
+      = f.label :quantity, 'Quantity', class: 'bold'
     %p
       = f.text_field :quantity, :class => 'span12 text_field'
     %p
-      %strong Unit
+      = f.label :unit, 'Unit', class: 'bold'
     %p
       = f.text_field :unit, :class => 'span12 text_field'
 
   %td{colspan: 2}
     %p
-      %strong Request Specs
+      = f.label :specs, 'Request Specs', class: 'bold'
     %p
     = f.text_area :specs, :class => 'span12 text_area', :rows => 4
     %p
-      %strong Item/Material Code
+      = f.label :item_code, 'Item/Material Code', class: 'bold'
     %p
     = f.text_field :item_code, :class => 'span6 text_field'
 
   %td
     %p
-      %strong Internal Notes
+      = f.label :remarks, 'Internal Notes', class: 'bold'
     %p
       =f.text_area :remarks, :class => 'text_area span12', :rows => 2
     %p
