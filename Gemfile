@@ -57,7 +57,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 3.1'
-  gem 'pry'
+  gem 'pry-nav'
 end
 
 group :test do
