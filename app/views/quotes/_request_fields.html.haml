@@ -44,7 +44,7 @@
 = f.fields_for :offers do |builder|
   = render 'offer_fields', :f => builder
 
-%tr{:style => 'border-bottom:2px solid black'}
+%tr.offer-controls
   %td.borderless-left.borderless-top
   %td{:colspan => 4}
     = link_to_add_fields "Offer", f, :offers, '$(this).parent()'
