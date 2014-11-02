@@ -1,7 +1,7 @@
 class Supplier < ActiveRecord::Base
   attr_accessible :name, :emails, :contact_numbers, :address
 
-  has_many :quotes, through: :offers, uniq: true
+  has_many :quotes, -> {uniq}, through: :offers
   has_many :offers
   has_many :supplier_orders, through: :offers
 

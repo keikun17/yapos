@@ -18,12 +18,12 @@ class Order < ActiveRecord::Base
   has_many :offers,
     :foreign_key => 'order_reference',
     :primary_key => 'reference'
-  has_many :quotes, :through => :offers, :uniq => true
 
-  has_many :clients, :through => :quotes, :uniq => true
-  has_many :suppliers, :through => :offers, :uniq => true
-  has_many :supplier_orders, :through => :offers
-  has_many :supplier_purchases, through: :supplier_orders, uniq: true
+  has_many :quotes, -> {uniq}, :through => :offers
+  has_many :clients, -> {uniq}, :through => :quotes
+  has_many :suppliers, -> {uniq}, :through => :offers
+  has_many :supplier_orders, -> {uniq}, :through => :offers
+  has_many :supplier_purchases, -> {uniq}, through: :supplier_orders
 
   validates_presence_of :reference
   validates_associated :attachments
