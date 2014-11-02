@@ -23,7 +23,7 @@ class Request < ActiveRecord::Base
 
   default_scope -> { order('position asc') }
   scope :pending_client_order, -> do
-    where('requests.non_client_purchased_count > 0 and requests.client_purchased_count = 0')
+    where('requests.non_client_purchased_count > 0 and requests.client_purchased_count = 0').references(:requests)
   end
 
   scope :without_offers, -> do
@@ -31,13 +31,14 @@ class Request < ActiveRecord::Base
   end
 
   scope :with_offers, -> do
-    s = includes(:offers).where('offers.id is not null')
+    s = includes(:offers).where('offers.id is not null').references(:offers)
     s
   end
 
   scope :with_client_purchased_offers, -> do
     s.with_offers
-    s = s.where('offers.order_reference is not nul')
+    s = s.where('offers.order_reference is not nul').references(:offers)
+    s
   end
 
 end
