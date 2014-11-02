@@ -82,10 +82,9 @@
   %h3 Requests
   %hr
   %div
-    %table.table.table-bordered
+    %table.table.table-bordered#quotes
       = f.fields_for :requests do |builder|
-        = render 'request_fields', :f => builder
-
+        = render 'request_fields', :f => builder 
       %tr
         %td{:colspan => '7'}
           = link_to_add_fields "Request Item" , f, :requests, '$(this).parent()'
