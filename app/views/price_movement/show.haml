@@ -1,39 +1,36 @@
-%h1 Price Trend for #{params[:item_code]}
-
-- if @vendor_item.present?
-
-  = link_to "Edit", edit_product_vendor_item_path(@vendor_item.product, @vendor_item), class: "btn"
-  %h3 Specs
+%h1 Price Trend for #{@vendor_item.code}
+= link_to "Edit", edit_product_vendor_item_path(@vendor_item.product, @vendor_item), class: "btn"
 
 
-  %p
-    %strong Product Type :
-    = link_to @vendor_item.product.name, @vendor_item.product
+%h3 Specs
 
-  - @vendor_item.vendor_item_fields.each do |vendor_item_field|
-    %p
-      %strong= vendor_item_field.product_field.name
-      \:
-      = vendor_item_field.value
-      = vendor_item_field.product_field.unit
+%p
+  %strong Product Type :
+  = link_to @vendor_item.product.name, @vendor_item.product
+
+.row-fluid
+
+  %table.table.table-bordered.span6
+    - @vendor_item.vendor_item_fields.each do |vendor_item_field|
+      %tr
+        %th.span6= vendor_item_field.product_field.name
+        %td.span6
+          = vendor_item_field.value
+          = vendor_item_field.product_field.unit
 
 
-- else
-  This item code has not been registered to the system yet.
+  .span6
+    - if @last_sold.present?
+      %h4
+        Last bought for :
+        = @last_sold.display_buying_price
+      %h4
+        Last sold for :
+        = @last_sold.display_selling_price
 
-%hr
-
-- if @last_sold.present?
-  %h4
-    Last bought for :
-    = @last_sold.display_buying_price
-  %h4
-    Last sold for :
-    = @last_sold.display_selling_price
-
-- else
-  %p
-    This item has not never been ordered by our clients
+    - else
+      %p
+        This item has not never been ordered by our clients
 
 %table.table
   %tr
