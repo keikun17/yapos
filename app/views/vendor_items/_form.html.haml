@@ -7,9 +7,16 @@
         - @vendor_item.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :code, 'Item Code'
-    = f.text_field :code
+  .row-fluid
+    .field
+      .form-group
+        = f.label :code, 'Item Code', class: 'span2'
+        .span10
+          = f.text_field :code
+
+  %hr
+
+  %h3 Specs
 
   = f.fields_for :vendor_item_fields do |ff|
     = ff.hidden_field :product_field_id
@@ -19,4 +26,4 @@
       .span10
         = ff.text_field :value
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary'
