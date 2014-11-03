@@ -5,6 +5,11 @@
   = link_to "Edit", edit_product_vendor_item_path(@vendor_item.product, @vendor_item), class: "btn"
   %h3 Specs
 
+
+  %p
+    %strong Product Type :
+    = link_to @vendor_item.product.name, @vendor_item.product
+
   - @vendor_item.vendor_item_fields.each do |vendor_item_field|
     %p
       %strong= vendor_item_field.product_field.name
