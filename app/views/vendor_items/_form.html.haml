@@ -25,5 +25,7 @@
       = ff.label :value, ff.object.product_field.name, class: 'span2'
       .span10
         = ff.text_field :value
+        = ff.object.product_field.unit
+
   .actions
     = f.submit 'Save', class: 'btn btn-primary'
