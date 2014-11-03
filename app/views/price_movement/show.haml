@@ -2,6 +2,7 @@
 
 - if @vendor_item.present?
 
+  = link_to "Edit", edit_product_vendor_item_path(@vendor_item.product, @vendor_item), class: "btn"
   %h3 Specs
 
   - @vendor_item.vendor_item_fields.each do |vendor_item_field|
