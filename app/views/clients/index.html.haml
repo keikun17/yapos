@@ -5,6 +5,7 @@
   %thead
     %tr
       %th= model_class.human_attribute_name(:name)
+      %th Abbreviation
       %th= model_class.human_attribute_name(:emails)
       %th= model_class.human_attribute_name(:contact_numbers)
       %th Orders
@@ -14,6 +15,7 @@
     - @clients.each do |client|
       %tr
         %td= link_to client.name, client_path(client)
+        %td= client.abbrev
         %td= client.emails
         %td= client.contact_numbers
         %td= client.orders.count
