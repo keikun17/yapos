@@ -12,7 +12,7 @@ class PriceMovementController < ApplicationController
   end
 
   def uncategorized
-    @offers = Offer.where(vendor_item_code: nil).by_quote_date.decorate
+    @offers = Offer.where(vendor_item_code: nil).by_quote_date.paginate(page: params[:page], per_page: 40).decorate
   end
 
 end

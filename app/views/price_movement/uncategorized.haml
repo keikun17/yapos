@@ -1,6 +1,7 @@
 %h1 Uncategorized Offers
 %h3 Fill the Item code for these offers so they will appear in the Price movements chart
 
+.pull-right= will_paginate(@offers)
 %table.table
   %tr
     %th Request Code
@@ -16,4 +17,4 @@
       %td= offer.display_buying_price
       %td= offer.display_selling_price
 
-
+.pull-right= will_paginate(@offers)
