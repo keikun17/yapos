@@ -12,19 +12,21 @@
       = vendor_item_field.value
       = vendor_item_field.product_field.unit
 
+
 - else
   This item code has not been registered to the system yet.
 
 %hr
 
 - if @last_sold.present?
-  %p
+  %h4
     Last bought for :
     = @last_sold.display_buying_price
-  %p
+  %h4
     Last sold for :
     = @last_sold.display_selling_price
 
+- else
   %p
     This item has not never been ordered by our clients
 
