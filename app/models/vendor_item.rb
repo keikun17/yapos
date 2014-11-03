@@ -9,6 +9,8 @@ class VendorItem < ActiveRecord::Base
 
   accepts_nested_attributes_for :vendor_item_fields, allow_destroy: true, :reject_if => lambda { |r| r[:value].blank? }
 
+  validates :code, presence: true, uniqueness: true
+
   def self.initialize_fields(product)
     vendor_item = new(product: product)
     product.product_fields.each do |product_field|
