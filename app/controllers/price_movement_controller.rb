@@ -5,7 +5,7 @@ class PriceMovementController < ApplicationController
   end
 
   def show
-    @vendor_item = VendorItem.find_by(code: params[:item_code])
+    @vendor_item = VendorItem.find_by(params[:vendor_item_id])
     @offers = @vendor_item.offers
     @last_sold = @offers.purchased.last.try(:decorate)
     @offers = @offers.by_quote_date.decorate

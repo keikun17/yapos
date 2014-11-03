@@ -22,9 +22,9 @@
     %th
     %th
 
-  - @product.vendor_items.each do |vendor_item|
+  - @product.vendor_items.decorate.each do |vendor_item|
     %tr
-      %td= link_to vendor_item.code, price_movement_path(vendor_item.code)
+      %td= link_to vendor_item.code, price_movement_path(vendor_item)
       - @product.product_fields.each do |product_field|
         %td
           = vendor_item.vendor_item_fields.find_by(product_field: product_field).try(:value)
