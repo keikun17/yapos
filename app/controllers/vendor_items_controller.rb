@@ -34,7 +34,7 @@ class VendorItemsController < ApplicationController
 
   # PATCH/PUT /vendor_items/1
   def update
-    if @vendor_item.update(params[:vendor_item])
+    if @vendor_item.update_and_reindex_offers(params[:vendor_item])
       redirect_to [@product, @vendor_item], notice: 'Vendor item was successfully updated.'
     else
       render action: 'edit'

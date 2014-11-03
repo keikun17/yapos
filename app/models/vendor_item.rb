@@ -17,6 +17,25 @@ class VendorItem < ActiveRecord::Base
 
     vendor_item
   end
+
+  # 1. Update the record,
+  # 2. When the `code` is changed, modify the offers' vendor_item_codes
+  # to the new one and also update the Quotes
+  def update_and_reindex_offers(vendor_item_params)
+    affected_offers = self.offers.all
+    affected_quotes = self.quotes.all
+
+    if self.update(vendor_item_params)
+      affected_offers.each do |offer|
+        offer.update({vendor_item_code: self.code })
+      end
+      affected_quotes.uniq.map(&:reindex)
+      true
+    else
+      false
+    end
+  end
+
 end
 
 # == Schema Information
