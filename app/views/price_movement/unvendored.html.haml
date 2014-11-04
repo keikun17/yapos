@@ -1,0 +1,23 @@
+%h1 Offers with Vendor Code but has no matching Vendor Item in the Database
+
+.pull-right= will_paginate(@offers)
+%table.table
+  %tr
+    %th Request Code
+    %th.span7 Specs offered to client
+    %th.span2
+    %th.span3 Actual offer
+    %th Buying Price
+    %th Selling Price
+  - @offers.each do |offer|
+    %tr
+      %td= link_to offer.quote.quote_reference, offer.request.quote
+      %td.span7= offer.specs
+      %td.span2
+        = link_to_modal("Enter Item Code", offer, {class: 'btn btn-small btn-primary'})
+        = render 'offers/modals/vendor_item_code', modal_id: dom_id(offer), offer: offer
+      %td.span3= offer.summary
+      %td= offer.display_buying_price
+      %td= offer.display_selling_price
+
+.pull-right= will_paginate(@offers)

@@ -15,4 +15,8 @@ class PriceMovementController < ApplicationController
     @offers = Offer.where(vendor_item_code: nil).by_quote_date.paginate(page: params[:page], per_page: 40).decorate
   end
 
+  def unvendored
+    @offers = Offer.includes(:vendor_item).where("offers.vendor_item_code <> ''").where(vendor_items: {id: nil}).paginate(page: params[:page], per_page: 40).decorate
+  end
+
 end

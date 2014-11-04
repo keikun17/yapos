@@ -11,6 +11,7 @@ Yapos::Application.routes.draw do
   get 'price_movements', to: 'price_movement#index', as: :price_movements
   get 'price_movement/:vendor_item_id', to: 'price_movement#show', as: :price_movement
   get 'price_movements/uncategorized', to: 'price_movement#uncategorized', as: :uncategorized_offers
+  get 'price_movements/unvendored', to: 'price_movement#unvendored', as: :unvendored_offers
 
   resources :stocks
 
