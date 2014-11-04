@@ -1,0 +1,24 @@
+.modal.hide.fade{id: modal_id}
+  = form_for offer, url: vendor_code_update_path(offer), method: :patch, html: {class: 'form-horizontal'} do |f|
+    .modal-header
+      %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
+      %h3 Input Our Vendor Code For This Offer
+    .modal-body
+      .control-group
+        %label.control-label SPECS:
+        .controls
+          = offer.display_specs
+      .control-group
+        %label.control-label ACTUAL SPECS:
+        .controls
+          = offer.display_specs
+          = simple_format(offer.display_actual_specs)
+
+      .control-group
+        = f.label :vendor_item_code, 'Vendor Item Code', class: 'control-label'
+        .controls
+          = f.text_field :vendor_item_code, class: 'span6 text_field'
+
+    .modal-footer
+      %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
+      = f.submit nil, :class => 'btn btn-primary'
