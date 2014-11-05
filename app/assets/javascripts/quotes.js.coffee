@@ -3,6 +3,10 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
+
+  ######################################################################
+  # Quick copy
+  ######################################################################
   $("form").on "click", 'a[data-field-group]',(e) ->
 
     # find link's siblings field whose data will be copied
