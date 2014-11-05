@@ -5,6 +5,12 @@
       %h3 Input Supplier PO# order for the client's order
     .modal-body
       .control-group
+        = f.label :product_id, 'Product_id', class: 'control-label'
+        .controls
+          = f.select :product_id, Product.all.collect{|p| [p.name , p.id] }
+
+    .modal-body
+      .control-group
         = f.label :code, 'Vendor Item Code', class: 'control-label'
         .controls
           = f.text_field :code, class: 'span6 text_field'
