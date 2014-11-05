@@ -1,5 +1,6 @@
 class VendorItemsController < ApplicationController
   before_action :set_vendor_item, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :js
 
   # GET /vendor_items
   def index

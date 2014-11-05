@@ -13,6 +13,7 @@
 
     = f.label :vendor_item_code, "Vendor Item Code", class: 'offer-cell'
     = f.select :vendor_item_code, options_for_select(VendorItem.all.collect{|s| [s.code, s.code]}, f.object.vendor_item_code), {:include_blank => true}, :class => 'compact'
+    = link_to "New Code", '#vendor_code_form', data: {toggle: 'modal'}
 
   %td
     .row-fluid

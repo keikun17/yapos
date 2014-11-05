@@ -1,0 +1,14 @@
+.modal.hide.fade{id: 'vendor_code_form'}
+  = form_for VendorItem.new, html: {class: 'form-horizontal'}, remote: true do |f|
+    .modal-header
+      %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
+      %h3 Input Supplier PO# order for the client's order
+    .modal-body
+      .control-group
+        = f.label :code, 'Vendor Item Code', class: 'control-label'
+        .controls
+          = f.text_field :code, class: 'span6 text_field'
+
+    .modal-footer
+      %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
+      = f.submit nil, :class => 'btn btn-primary'

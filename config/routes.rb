@@ -1,6 +1,8 @@
 Yapos::Application.routes.draw do
   resources :vendor_item_fields
 
+  resources :vendor_items, only: :create
+
   resources :products do
     resources :vendor_items
   end
