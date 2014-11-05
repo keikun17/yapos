@@ -1,0 +1,12 @@
+var new_options = {
+  <%= @vendor_items.collect{|p| "'#{p.code}': #{p.id}" }.join(',').html_safe %>
+};
+
+var el = $("select[data-vendor-items-from-remote=true]");
+el.empty();
+
+console.log(new_options);
+$.each(new_options, function(key, value){
+  option = $("<option></option").attr("value", key).text(key);
+  el.append(option);
+});
