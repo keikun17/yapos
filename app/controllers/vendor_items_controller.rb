@@ -23,11 +23,10 @@ class VendorItemsController < ApplicationController
 
   # POST /vendor_items
   def create
-    @product = Product.find(params[:product_id])
-    @vendor_item = @product.vendor_items.new(params[:vendor_item])
+    @vendor_item = VendorItem.new(params[:vendor_item])
 
     if @vendor_item.save
-      redirect_to [@product, @vendor_item], notice: 'Vendor item was successfully created.'
+      redirect_to [@vendor_item.product, @vendor_item], notice: 'Vendor item was successfully created.'
     else
       render action: 'new'
     end
