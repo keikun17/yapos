@@ -1,6 +1,5 @@
 class VendorItemsController < ApplicationController
   before_action :set_vendor_item, only: [:show, :edit, :update, :destroy]
-  respond_to :html, :js
 
   # GET /vendor_items
   def index
@@ -25,11 +24,17 @@ class VendorItemsController < ApplicationController
   def create
     @vendor_item = VendorItem.new(params[:vendor_item])
 
-    if @vendor_item.save
-      redirect_to [@vendor_item.product, @vendor_item], notice: 'Vendor item was successfully created.'
-    else
-      render action: 'new'
+    respond_to do |format|
+      if @vendor_item.save
+        @vendor_items = VendorItem.all
+
+        format.html { redirect_to [@vendor_item.product, @vendor_item], notice: 'Vendor item was successfully created.' }
+        format.js
+      else
+        format.html { render :action => "new", :layout => !request.xhr? }
+      end
     end
+
   end
 
   # PATCH/PUT /vendor_items/1
