@@ -43,7 +43,7 @@ feature "Quotes Creation" do
       select "Super Seller", from: 'Brand'
       fill_in "Specs/Description", with: "2014 Heavy Bolter"
       fill_in "Actual Specs", with: "Heavy Bolter 2014 model S1"
-      fill_in "Vendor Item Code", with: "2014-HVB-01"
+      # select "2014-HVB-01", from: "Vendor Item Code"
 
       select "US$", from: 'Currency'
       fill_in "Exchange Rate", with: 43
@@ -79,7 +79,7 @@ feature "Quotes Creation" do
       select "Super Seller", from: 'Brand'
       fill_in "Specs/Description", with: "light chainsaw"
       fill_in "Actual Specs", with: "Billy light chainsaw"
-      fill_in "Vendor Item Code", with: "BLCSW"
+      # select "BLCSW", from: "Vendor Item Code"
 
       select "US$", from: 'Currency'
       fill_in "Exchange Rate", with: 43
@@ -103,7 +103,7 @@ feature "Quotes Creation" do
       select "ACME", from: 'Brand'
       fill_in "Specs/Description", with: "light chainsaw"
       fill_in "Actual Specs", with: "ACME Light chainsaw Variant 9001"
-      fill_in "Vendor Item Code", with: "ACME-LIGHTCHAINSAW-9001"
+      # select  "ACME-LIGHTCHAINSAW-9001", from: "Vendor Item Code"
 
       fill_in "VAT Status", with: "VAT INC"
       fill_in "Supplier Price", with: 4300
