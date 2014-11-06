@@ -1,7 +1,7 @@
 .modal.hide.fade{id: 'vendor_code_form'}
   = form_for VendorItem.new, remote: true, html: {class: 'form-horizontal'} do |f|3
     .modal-header
-      %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
+      %a.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
       %h3 Input Supplier PO# order for the client's order
     .modal-body
       .control-group
