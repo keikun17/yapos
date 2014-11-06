@@ -8,6 +8,10 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: @product.vendor_items }
+    end
   end
 
   # GET /products/new
