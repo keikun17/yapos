@@ -1,12 +1,20 @@
-var new_options = {
-  <%= @vendor_items.collect{|p| "'#{p.code}': #{p.id}" }.join(',').html_safe %>
-};
+var new_option = '<%= @vendor_item.code %>';
 
 var el = $("select[data-vendor-items-from-remote=true]");
-el.empty();
 
-console.log(new_options);
-$.each(new_options, function(key, value){
-  option = $("<option></option").attr("value", key).text(key);
-  el.append(option);
+console.log(new_option);
+
+$.each(el, function(index,select_tag){
+
+
+  var option = $("<option></option").attr("value", new_option).text(new_option);
+
+  console.log("Adding to a select tag");
+  console.log(select_tag);
+  console.log('this option');
+  console.log(option)
+
+  $(select_tag).append(option);
 });
+
+$('.modal').modal('hide');

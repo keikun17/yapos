@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
+  $('#vendor_code_form').on 'shown', ->
+    $('vendor_item_product_id').focus()
 
   ######################################################################
   # Quick copy
