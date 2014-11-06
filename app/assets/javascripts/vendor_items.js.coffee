@@ -14,6 +14,7 @@ $ ->
 
     child_select = $("select[data-dynamic-selected='#{child_select_selector}']:visible")
     child_select.empty()
+    child_select.hide()
 
     product_id = evt.target.value
 
@@ -31,6 +32,7 @@ $ ->
           option = $("<option></option").attr("value", vendor_item.code).text(vendor_item.code)
           $(child_select).append(option)
 
+        child_select.show()
 
         console.log "data is "
         console.log data
