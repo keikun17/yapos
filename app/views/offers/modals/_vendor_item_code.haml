@@ -21,17 +21,34 @@
         .controls
           = select_tag :product_id, options_for_select(Product.all.collect{ |p| [p.name, p.id] }),  class: 'span6 text_field', data: {dynamic_select: "vendor_item_code" }
 
-      .control-group
+
+      %h4= label_tag :vendor_item_code_is, "Enter Vendor Code", class: 'bold'
+
+      .row-fluid
+        .span3.offset1
+          %label.inline.radio
+            = radio_button_tag :vendor_item_code_is, 'new', nil, tb_toggles_visibility: "#{offer.id}-new"
+            New
+
+        .span4
+          %label.inline.radio
+            = radio_button_tag :vendor_item_code_is, 'existing', nil, tb_toggles_visibility: "#{offer.id}-existing"
+            Select from Existing
+
+      %hr
+
+      .control-group.hidden{tb_toggled_visibility: "#{offer.id}-new"}
+        = f.label :vendor_item_code, 'New Vendor Code', class: 'control-label'
+        .controls
+          = f.text_field :vendor_item_code, class: 'span6 text_field'
+
+      .control-group.hidden{tb_toggled_visibility: "#{offer.id}-existing"}
         = f.label :vendor_item_code, 'Select From Existing Vendor Code', class: 'control-label'
         .controls
           = f.select :vendor_item_code, options_for_select( VendorItem.all.collect{|v| [v.code, v.code]} ),  {},class: 'span12 text_field', data: {dynamic_selected: 'vendor_item_code'}
 
-      OR
 
-      .control-group
-        = f.label :vendor_item_code, 'New Vendor Code', class: 'control-label'
-        .controls
-          = f.text_field :vendor_item_code, class: 'span6 text_field'
+
     .modal-footer
       %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
       = f.submit nil, :class => 'btn btn-primary'
