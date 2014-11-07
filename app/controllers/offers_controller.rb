@@ -43,8 +43,17 @@ class OffersController < ApplicationController
   def vendor_code_update
     @offer = Offer.find(params[:id])
 
+    vendor_item_code = case params[:vendor_item_code_is]
+                       when "existing"
+                         params[:existing_vendor_code]
+                       when "new"
+                         params[:new_vendor_code]
+                       else
+                         nil
+                       end
+
     respond_to do |format|
-      if @offer.update_attributes(params[:offer])
+      if !vendor_item_code.nil? && @offer.update({vendor_item_code: vendor_item_code})
         format.html { redirect_to :back, notice: 'Offer was successfully updated.' }
         format.json { head :no_content }
       else

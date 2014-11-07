@@ -38,16 +38,14 @@
       %hr
 
       .control-group.hidden{tb_toggled_visibility: "#{offer.id}-new"}
-        = f.label :vendor_item_code, 'New Vendor Code', class: 'control-label'
+        = label_tag :new_vendor_code, 'New Vendor Code', class: 'control-label'
         .controls
-          = f.text_field :vendor_item_code, class: 'span6 text_field'
+          = text_field_tag :new_vendor_code,nil, class: 'span6 text_field'
 
       .control-group.hidden{tb_toggled_visibility: "#{offer.id}-existing"}
-        = f.label :vendor_item_code, 'Select From Existing Vendor Code', class: 'control-label'
+        = label_tag :existing_vendor_code, 'Select From Existing Vendor Code', class: 'control-label'
         .controls
-          = f.select :vendor_item_code, options_for_select( VendorItem.all.collect{|v| [v.code, v.code]} ),  {},class: 'span12 text_field', data: {dynamic_selected: 'vendor_item_code'}
-
-
+          = select_tag :existing_vendor_code, options_for_select( VendorItem.all.collect{|v| [v.code, v.code]} ), class: 'span12 text_field', data: {dynamic_selected: 'vendor_item_code'}
 
     .modal-footer
       %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
