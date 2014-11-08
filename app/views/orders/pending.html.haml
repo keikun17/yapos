@@ -36,7 +36,11 @@
             = offer.display_specs(quantity_class: 'label label-inverse')
             = offer.display_actual_specs
 
-          %td= link_to_modal("Purchase", offer)
+          %td
+            - if offer.supplier_purchase.nil? || offer.supplier_purchase.reference.blank?
+              = link_to_modal("Purchase", offer)
+            - else
+              %i Purchased
 
           - offers.each do |offer|
             %tr{class: offer_row_class(offer)}
@@ -45,7 +49,11 @@
               %td
                 = offer.display_specs(quantity_class: 'label label-inverse').html_safe
                 = offer.display_actual_specs
-              %td= link_to_modal("Purchase", offer)
+              %td
+                - if offer.supplier_purchase.nil? || offer.supplier_purchase.reference.blank?
+                  = link_to_modal("Purchase", offer)
+                - else
+                  %i Purchased
 
 - @orders.each do |order|
   - order.offers.each do |offer|
