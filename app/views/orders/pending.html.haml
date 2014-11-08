@@ -21,8 +21,8 @@
       %th
   %tbody
     - @decorated_orders.each do |order|
-      - offer_count = order.offers.size
-      - offers = order.decorated_offers
+      - offer_count = order.offers.count
+      - offers = order.offers.decorate
       - offer = offers.shift
 
       - if offer
@@ -40,7 +40,6 @@
 
           - offers.each do |offer|
             %tr{class: offer_row_class(offer)}
-              %td.empty
               %td
                 = link_to_client(offer.client)
               %td
