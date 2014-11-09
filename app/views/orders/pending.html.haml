@@ -15,10 +15,10 @@
 %table.table.table-condensed
   %thead
     %tr
-      %th PO#
-      %th Client
-      %th.span4 Item
-      %th
+      %th.span2 PO#
+      %th.span2 Client
+      %th Item
+      %th.span2
   %tbody
     - @decorated_orders.each do |order|
       - offer_count = order.offers.count
