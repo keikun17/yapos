@@ -22,7 +22,7 @@ class VendorItemsController < ApplicationController
 
   # POST /vendor_items
   def create
-    @vendor_item = VendorItem.new(params[:vendor_item])
+    @vendor_item = VendorItem.find_or_initialize_fields_by(params[:vendor_item])
 
     respond_to do |format|
       if @vendor_item.save
