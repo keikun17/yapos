@@ -21,6 +21,22 @@ class VendorItem < ActiveRecord::Base
     vendor_item
   end
 
+  def self.find_or_initialize_fields_by(attributes, &block)
+    vendor_item = find_or_initialize_by(attributes, &block)
+
+    vendor_item.product.product_fields.each do |product_field|
+      vendor_item.vendor_item_fields.build(product_field: product_field)
+    end
+
+    vendor_item
+  end
+
+  def self.find_or_create_with_initialized_fields_by(attributes, &block)
+    vendor_item = find_or_initialize_fields_by(attributes, &block)
+    vendor_item.save if !vendor_item.persisted?
+    vendor_item
+  end
+
   # 1. Update the record,
   # 2. When the `code` is changed, modify the offers' vendor_item_codes
   # to the new one and also update the Quotes
