@@ -9,7 +9,7 @@ class VendorItem < ActiveRecord::Base
 
   accepts_nested_attributes_for :vendor_item_fields, allow_destroy: true, :reject_if => lambda { |r| r[:value].blank? }
 
-  validates :code, presence: true, uniqueness: true
+  # validates :code, presence: true, uniqueness: true
   validates :product_id, presence: true
 
   def self.initialize_fields(product)
@@ -53,6 +53,18 @@ class VendorItem < ActiveRecord::Base
     else
       false
     end
+  end
+
+  def self.find_with_attributes(args)
+
+    @main_call = VendorItem.includes(:vendor_item_fields).references(:vendor_item_fields)
+
+    args.each do |condition|
+      @main_call = @main_call.where(condition)
+    end
+
+    @main_call
+
   end
 
 end
