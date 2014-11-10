@@ -4,20 +4,22 @@
 .pull-right= will_paginate(@offers)
 %table.table
   %tr
-    %th Request Code
-    %th.span7 Specs offered to client
+    %th.span1 Request Code
+    %th.span4 Specs offered to client
+    %th.span4 Actual offer
     %th.span2
-    %th.span3 Actual offer
-    %th Buying Price
-    %th Selling Price
+    %th.span1 Buying Price
+    %th.span1 Selling Price
   - @offers.each do |offer|
     %tr
       %td= link_to offer.quote.quote_reference, offer.request.quote
-      %td.span7= offer.specs
-      %td.span2
+      %td= offer.specs
+      %td
+        %strong= offer.supplier_name
+        = offer.summary
+      %td
         = link_to_modal("Enter Item Code", offer, {class: 'btn btn-small btn-primary'})
         = render 'offers/modals/vendor_item_code', modal_id: dom_id(offer), offer: offer
-      %td.span3= offer.summary
       %td= offer.display_buying_price
       %td= offer.display_selling_price
 
