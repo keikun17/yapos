@@ -10,13 +10,14 @@
 
 .row-fluid
 
-  %table.table.table-bordered.span6
-    - @vendor_item.vendor_item_fields.each do |vendor_item_field|
-      %tr
-        %th.span6= vendor_item_field.product_field.name
-        %td.span6
-          = vendor_item_field.value
-          = vendor_item_field.product_field.unit
+  - if !@vendor_item.vendor_item_fields.empty?
+    %table.table.table-bordered.span6
+      - @vendor_item.vendor_item_fields.each do |vendor_item_field|
+        %tr
+          %th.span6= vendor_item_field.product_field.name
+          %td.span6
+            = vendor_item_field.value
+            = vendor_item_field.product_field.unit
 
 
   .span6
