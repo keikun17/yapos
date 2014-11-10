@@ -10,6 +10,7 @@
       .control-group
         %label.control-label ACTUAL SPECS:
         .controls
+          %strong= offer.supplier_name
           = offer.display_specs
           = simple_format(offer.display_actual_specs)
 
