@@ -47,7 +47,11 @@ class OffersController < ApplicationController
                        when "existing"
                          VendorItem.find_by(product_id: params[:product_id], code: params[:existing_vendor_code])
                        when "new"
-                         VendorItem.find_or_create_by(product_id: params[:product_id], code: params[:new_vendor_code])
+                         @product = Product.find params[:product_id]
+                         @vendor_item = VendorItem.initialize_fields(@product)
+                         @vendor_item.code = params[:new_vendor_code]
+                         @vendor_item.save
+                         @vendor_item
                        else
                          nil
                        end
