@@ -13,7 +13,7 @@ $ ->
 
     $.ajax "/products/#{product_id}/vendor_items/new",
       type: 'GET',
-      dataType: 'json',
+      dataType: 'script',
       error: (jqXHR, textStatus, errorThrown) ->
         console.log "Error retrieving vendor items"
         console.log "jqXHR is "
