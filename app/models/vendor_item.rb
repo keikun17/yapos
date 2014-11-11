@@ -59,9 +59,7 @@ class VendorItem < ActiveRecord::Base
 
     @main_call = VendorItem.includes(:vendor_item_fields).references(:vendor_item_fields)
 
-    args.each do |condition|
-      @main_call = @main_call.where(condition)
-    end
+    @main_call = @main_call.where(args)
 
     @main_call
 
