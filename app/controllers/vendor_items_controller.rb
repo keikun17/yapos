@@ -14,6 +14,11 @@ class VendorItemsController < ApplicationController
   def new
     @product = Product.find(params[:product_id])
     @vendor_item = VendorItem.initialize_fields(@product)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /vendor_items/1/edit
