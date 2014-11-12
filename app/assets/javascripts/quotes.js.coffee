@@ -40,8 +40,8 @@ $ ->
   ######################################################################
   # Focus on product ID field when modal appears
   ######################################################################
-  $('#vendor_code_form').on 'shown', ->
-    $('vendor_item_product_id').focus()
+  $(".vendor_code_modal").on 'shown', ->
+    $('vendor_item_product_id:visible').focus()
 
   ######################################################################
   # Quick copy
