@@ -32,6 +32,12 @@ $ ->
     console.log("Product ID selected, retrieving form")
 
   ######################################################################
+  # Show nearest modal
+  ######################################################################
+  $(document).on 'click', "a[tb_shows_nearest_modal='true']", (evt) ->
+    $(evt.target).next('.modal').modal('show')
+
+  ######################################################################
   # Focus on product ID field when modal appears
   ######################################################################
   $('#vendor_code_form').on 'shown', ->
