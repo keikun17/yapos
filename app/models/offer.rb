@@ -1,6 +1,7 @@
 class Offer < ActiveRecord::Base
 
   attr_accessible :request,
+    :vendor_item_id,
     :supplier_id,
     :specs,
     :summary,
