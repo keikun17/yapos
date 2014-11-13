@@ -5,6 +5,39 @@
 $ ->
 
   ######################################################################
+  # Submit Parent form
+  ######################################################################
+
+  $(document).on 'click', "a[tb_submit_inner_form]", (evt) ->
+    parent_form = $(evt.target).parents('form')[0]
+    window.parent_form = parent_form
+
+    $.ajax(
+      url: parent_form.action,
+      type: parent_form.method,
+      data: $(parent_form).serialize(),
+      success: (data, textStatus, jqXHR) ->
+        console.log "success yo!"
+        console.log "data is"
+        console.log data
+        console.log "textStatus is"
+        console.log textStatus
+        console.log "jqXHR is"
+        console.log jqXHR
+      error: (jqXHR, textStatus, errorThrown) ->
+        console.log "ERROR YO"
+        console.log "jqXHR is"
+        console.log jqXHR
+        console.log "textStatus is "
+        console.log textStatus
+        console.log "errorThrown is"
+        console.log errorThrown
+    )
+
+
+
+
+  ######################################################################
   # Select Product ID to render Vendor Item Form with Vendor Item Fields
   ######################################################################
   $(document).on 'change', "*[tb_render_form]", (evt) ->
