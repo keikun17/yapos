@@ -55,7 +55,7 @@ class VendorItem < ActiveRecord::Base
     end
   end
 
-  def self.find_with_attributes(args)
+  def self.find_with_fields(args)
 
     @main_call = VendorItem.includes(:vendor_item_fields).references(:vendor_item_fields)
 

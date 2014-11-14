@@ -10,7 +10,7 @@ RSpec.describe VendorItem, :type => :model do
     let(:field_top_cover) { product.product_fields.find_by(name: 'Top Cover') }
     let(:field_bottom_cover) { product.product_fields.find_by(name: 'Bottom Cover ') }
 
-    describe "#find_with_attributes" do
+    describe "#find_with_fields" do
 
       it "Searching for 'EP100, 5 x 3' returns vendor items with the matching field attributes" do
 
@@ -40,7 +40,7 @@ RSpec.describe VendorItem, :type => :model do
         @ep200x6x2.vendor_item_fields.build(product_field_id: field_bottom_cover.id, value: '2' )
         @ep200x6x2.save!
 
-        method_call  = VendorItem.find_with_attributes(
+        method_call  = VendorItem.find_with_fields(
           vendor_item_fields: {product_field_id: field_ep.id        , value: '100' } ,
           vendor_item_fields: {product_field_id: field_top_cover.id    , value: '5'}    ,
           vendor_item_fields: {product_field_id: field_bottom_cover.id , value: '3' }
