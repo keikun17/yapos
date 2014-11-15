@@ -63,7 +63,21 @@ class VendorItem < ActiveRecord::Base
       arels << main_call.where(condition)
     end
 
-    result = arels.reduce { |a, b| a & b }
+    results = arels.reduce { |a, b| a & b }
+    results
+  end
+
+  def self.find_with_exact_fields(args)
+
+    arg_product_field_ids = args.collect do |arg|
+      arg[:vendor_item_fields][:product_field_id]
+    end
+
+    results = find_with_fields(args).select do |x|
+      x.product_field_ids == arg_product_field_ids
+    end
+
+    results
 
   end
 
