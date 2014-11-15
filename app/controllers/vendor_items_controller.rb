@@ -41,7 +41,7 @@ class VendorItemsController < ApplicationController
       end
     end
 
-    @vendor_item = VendorItem.find_with_fields(vendor_item_fields)
+    @vendor_item = VendorItem.find_with_exact_fields(vendor_item_fields).first
 
     if @vendor_item.nil?
       @vendor_item = VendorItem.find_or_initialize_fields_by(params[:vendor_item])
