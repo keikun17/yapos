@@ -27,7 +27,29 @@ class VendorItemsController < ApplicationController
 
   # POST /vendor_items
   def create
-    @vendor_item = VendorItem.find_or_initialize_fields_by(params[:vendor_item])
+
+    ######################################################################
+    # TODO move to a PORO / Service
+    ######################################################################
+    #
+    # If request is coming from ajax form
+    if params[:vendor_item][:vendor_item_fields_attributes]["0"]
+      vendor_item_values = params[:vendor_item][:vendor_item_fields_attributes].values
+      vendor_item_fields = []
+      vendor_item_values.each do |v|
+        vendor_item_fields << {vendor_item_fields: v}
+      end
+    end
+
+    @vendor_item = VendorItem.find_with_fields(vendor_item_fields)
+
+    if @vendor_item.nil?
+      @vendor_item = VendorItem.find_or_initialize_fields_by(params[:vendor_item])
+    end
+
+    ######################################################################
+    # TODO-END (move to a PORO / Service)
+    ######################################################################
 
     respond_to do |format|
       if @vendor_item.save

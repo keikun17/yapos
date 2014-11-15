@@ -40,11 +40,11 @@ RSpec.describe VendorItem, :type => :model do
         @ep200x6x2.vendor_item_fields.build(product_field_id: field_bottom_cover.id, value: '2' )
         @ep200x6x2.save!
 
-        method_call  = VendorItem.find_with_fields(
+        method_call  = VendorItem.find_with_fields([
           {vendor_item_fields: {product_field_id: field_ep.id        , value: '100' }},
           {vendor_item_fields: {product_field_id: field_top_cover.id    , value: '5'}},
           {vendor_item_fields: {product_field_id: field_bottom_cover.id , value: '3' }}
-        )
+        ])
 
         expect(method_call).to include(@ep100x5x3,@ep100x1000mmx5x3)
         expect(method_call).not_to include(@ep200x5x3, @ep100x5x2)
