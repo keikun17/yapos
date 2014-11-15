@@ -55,13 +55,15 @@ class VendorItem < ActiveRecord::Base
     end
   end
 
-  def self.find_with_fields(args)
+  def self.find_with_fields(*args)
+    main_call = VendorItem.joins(:vendor_item_fields).references(:vendor_item_fields)
 
-    @main_call = VendorItem.includes(:vendor_item_fields).references(:vendor_item_fields)
+    arels = []
+    args.each do |condition|
+      arels << main_call.where(condition)
+    end
 
-    @main_call = @main_call.where(args)
-
-    @main_call
+    result = arels.reduce { |a, b| a & b }
 
   end
 
