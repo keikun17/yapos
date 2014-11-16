@@ -41,10 +41,14 @@ class VendorItemsController < ApplicationController
       end
     end
 
-    @vendor_item = VendorItem.find_with_exact_fields(vendor_item_fields).first
+    # find_with_fields returns records that are 'read-only' so we have to do
+    # this:
+    read_only_vendor_item = VendorItem.find_with_fields(vendor_item_fields).first
 
-    if @vendor_item.nil?
+    if read_only_vendor_item.nil?
       @vendor_item = VendorItem.new(params[:vendor_item])
+    else
+      @vendor_item = VendorItem.find(read_only_vendor_item)
     end
 
     ######################################################################
