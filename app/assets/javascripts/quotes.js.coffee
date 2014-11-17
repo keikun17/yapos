@@ -9,21 +9,25 @@ $ ->
   ######################################################################
 
   $(document).on 'click', "a[tb_submit_inner_form]", (evt) ->
+    evt.preventDefault()
+
     parent_form = $(evt.target).parents('form')[0]
-    window.parent_form = parent_form
 
     $.ajax(
       url: parent_form.action,
       type: parent_form.method,
       data: $(parent_form).serialize(),
       success: (data, textStatus, jqXHR) ->
-        console.log "success yo!"
-        console.log "data is"
-        console.log data
-        console.log "textStatus is"
-        console.log textStatus
-        console.log "jqXHR is"
-        console.log jqXHR
+        # console.log "success yo!"
+        # console.log "data is"
+        # console.log data
+        # console.log "textStatus is"
+        # console.log textStatus
+        # console.log "jqXHR is"
+        # console.log jqXHR
+
+        $(evt.target).parents('.offer-line').find('*[tb_vendor_item_id_field]').val(data.id)
+
       error: (jqXHR, textStatus, errorThrown) ->
         console.log "ERROR YO"
         console.log "jqXHR is"
@@ -84,7 +88,6 @@ $ ->
 
     # find link's siblings field whose data will be copied
     button =  $(e.target)
-    window.butt = button
     fieldGroup = button.data('fieldGroup')
     field = button.siblings("input[data-field-group='#{fieldGroup}']")
 
