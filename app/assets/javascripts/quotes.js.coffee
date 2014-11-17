@@ -27,6 +27,7 @@ $ ->
         # console.log jqXHR
 
         $(evt.target).parents('.offer-line').find('*[tb_vendor_item_id_field]').val(data.id)
+        $('.modal:visible').modal('hide')
 
       error: (jqXHR, textStatus, errorThrown) ->
         console.log "ERROR YO"
