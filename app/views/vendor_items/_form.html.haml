@@ -1,4 +1,10 @@
-= form_for [@product, @vendor_item], remote: remote do |f|
+- url = if remote
+  - polymorphic_path([@product, @vendor_item], format: :json)
+- else
+  - polymorphic_path([@product, @vendor_item], format: params[:format])
+
+
+= form_for [@product, @vendor_item], url: url , remote: remote do |f|
   = f.hidden_field :product_id
   - if @vendor_item.errors.any?
     #error_explanation

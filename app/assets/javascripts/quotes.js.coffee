@@ -48,7 +48,7 @@ $ ->
 
     product_id = evt.target.value
 
-    $.ajax "/products/#{product_id}/vendor_items/new",
+    $.ajax "/products/#{product_id}/vendor_items/new.js",
       type: 'GET',
       dataType: 'script',
       error: (jqXHR, textStatus, errorThrown) ->
@@ -65,7 +65,6 @@ $ ->
         success: (data, textStatus, jqXHR) ->
         # NOTE : NO NEED TO DO STUFF HERE BECAUSE THE RESPONSE IS 'application/js'
         # that executes things instead
-
 
     console.log("Product ID selected, retrieving form")
 

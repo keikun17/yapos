@@ -60,7 +60,7 @@ class VendorItemsController < ApplicationController
         @vendor_items = VendorItem.all
 
         format.html { redirect_to [@vendor_item.product, @vendor_item], notice: 'Vendor item was successfully created.' }
-        format.js
+        format.json { render json: @vendor_item.to_json }
       else
         format.html { render :action => "new", :layout => !request.xhr? }
       end
