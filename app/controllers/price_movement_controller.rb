@@ -15,9 +15,4 @@ class PriceMovementController < ApplicationController
     @offers = Offer.where("offers.vendor_item_code ='' OR offers.vendor_item_code is NULL").by_quote_date.paginate(page: params[:page], per_page: 40).decorate
   end
 
-  # Find recoreds with vendor_item_code but vendor_item relation is empty
-  def unvendored
-    @offers = Offer.includes(:vendor_item).where("offers.vendor_item_code <> ''").where(vendor_items: {id: nil}).paginate(page: params[:page], per_page: 40).decorate
-  end
-
 end
