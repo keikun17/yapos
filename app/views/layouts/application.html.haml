@@ -49,8 +49,9 @@
                         %a{tabindex: '-1', href: '#'} Item Codes
                         %ul.dropdown-menu
                           %li= link_to "Products List", products_path
-                          %li= link_to "Need Vendor Code (temp)", uncategorized_offers_path
                           %li= link_to "Price Trend", price_movements_path
+                          %li.divider
+                          %li= link_to "Items w/o Code", uncategorized_offers_path
                       %li.divider
                       %li.nav-header
                         Upcoming
