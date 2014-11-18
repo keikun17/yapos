@@ -33,7 +33,7 @@ class Offer < ActiveRecord::Base
   }
 
   belongs_to :supplier
-  belongs_to :vendor_item, primary_key: :code, foreign_key: :vendor_item_code
+  belongs_to :vendor_item
   belongs_to :order,
     :primary_key => 'reference',
     :foreign_key => 'order_reference'

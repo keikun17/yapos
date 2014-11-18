@@ -5,7 +5,7 @@ class VendorItem < ActiveRecord::Base
   has_many :product_fields, through: :product
   has_many :vendor_item_fields
   has_many :product_fields, through: :vendor_item_fields
-  has_many :offers, foreign_key: :vendor_item_code, primary_key: :code
+  has_many :offers
   has_many :quotes, through: :offers
 
   accepts_nested_attributes_for :vendor_item_fields, allow_destroy: true, :reject_if => lambda { |r| r[:value].blank? }
