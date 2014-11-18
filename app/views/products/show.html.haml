@@ -16,6 +16,7 @@
 %table.table
   %tr
     %th Code
+    %th Offers
     - @product.product_fields.each do |pf|
       %th= pf.name
     %th
@@ -25,6 +26,7 @@
   - @product.vendor_items.decorate.each do |vendor_item|
     %tr
       %td= link_to vendor_item.code, price_movement_path(vendor_item)
+      %td= vendor_item.offers.count
       - @product.product_fields.each do |product_field|
         %td
           = vendor_item.vendor_item_fields.find_by(product_field: product_field).try(:value)
