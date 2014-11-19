@@ -25,7 +25,7 @@
 
   - @product.vendor_items.decorate.each do |vendor_item|
     %tr
-      %td= link_to vendor_item.code, price_movement_path(vendor_item)
+      %td= link_to vendor_item.csv, price_movement_path(vendor_item)
       %td= vendor_item.offers.count
       - @product.product_fields.each do |product_field|
         %td
