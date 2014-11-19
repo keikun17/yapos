@@ -28,7 +28,7 @@
       %strong= f.object.vendor_item_id
 
       = f.label :vendor_item_code, "Vendor Item Code", class: 'offer-cell'
-      %strong= f.object.vendor_item_code
+      %strong= f.object.vendor_item.csv if f.object.vendor_item
 
   %td
     .row-fluid
