@@ -5,7 +5,7 @@ class VendorItem < ActiveRecord::Base
   has_many :product_fields, through: :product
   has_many :vendor_item_fields
   has_many :product_fields, through: :vendor_item_fields
-  has_many :offers
+  has_many :offers, foreign_key: :vendor_item_code, primary_key: :code
   has_many :quotes, through: :offers
 
   accepts_nested_attributes_for :vendor_item_fields, allow_destroy: true, :reject_if => lambda { |r| r[:value].blank? }
@@ -30,6 +30,16 @@ class VendorItem < ActiveRecord::Base
     end
 
     vendor_item
+  end
+
+  def csv
+    values = vendor_item_fields.collect.each do |vendor_item_field|
+      if !vendor_item_field.value.to_s.blank?
+        vendor_item_field.value.to_s + vendor_item_field.product_field.unit.to_s
+      end
+    end
+
+    values.join(',')
   end
 
   def self.find_or_create_with_initialized_fields_by(attributes, &block)

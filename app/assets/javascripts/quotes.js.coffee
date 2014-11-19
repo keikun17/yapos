@@ -27,6 +27,7 @@ $ ->
         # console.log jqXHR
 
         $(evt.target).parents('.offer-line').find('*[tb_vendor_item_id_field]').val(data.id)
+        $(evt.target).parents('.offer-line').find('*[tb_vendor_item_code_field]').val(data.csv)
         $('.modal:visible').modal('hide')
 
       error: (jqXHR, textStatus, errorThrown) ->
