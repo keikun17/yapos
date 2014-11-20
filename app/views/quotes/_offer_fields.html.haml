@@ -19,7 +19,7 @@
       = f.label :vendor_item_code, "Vendor Item Code", class: 'offer-cell'
       = f.text_field :vendor_item_code, readonly: true, tb_vendor_item_code_field: 'true'
 
-      = link_to "New Code", '#vendor_code_form', tb_shows_nearest_modal: 'true', data: {toggle: 'modal'}
+      = link_to "Input Actual Specs", '#vendor_code_form', tb_shows_nearest_modal: 'true', data: {toggle: 'modal'}, class: 'btn'
       = render 'vendor_items/modal/form'
 
     - else
