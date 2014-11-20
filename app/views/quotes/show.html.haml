@@ -191,7 +191,10 @@
             - if !offer.summary.blank?
               .alert.alert-success
                 Actual :
-                =offer.summary
+                = offer.summary
+                - if offer.vendor_item
+                  .row
+                  = link_to "View this item", price_movement_path(offer.vendor_item)
           %td
             - if offer.supplier
               = link_to offer.supplier_name, offer.supplier
