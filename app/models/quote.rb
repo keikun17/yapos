@@ -219,6 +219,8 @@ class Quote < ActiveRecord::Base
         duplicate_offer = offer.dup
         duplicate_offer.order_reference = nil
         duplicate_offer.request_id = nil
+        duplicate_offer.delivery_receipt_reference = nil
+        duplicate_offer.sales_invoice_reference = nil
 
         duplicate_request.offers << duplicate_offer
       end
