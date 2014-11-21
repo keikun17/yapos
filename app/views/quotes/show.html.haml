@@ -179,7 +179,7 @@
               = offer.display_selling_price
               %br
               %strong Total:
-              = offer.display_total_selling_price
+              = offer.display_total_selling_price_by_currency
         %td
           - if offer
             = render 'other_references', offer: offer
@@ -222,7 +222,7 @@
             = offer.display_selling_price
             %br
             %strong.text-success Total:
-            = offer.display_total_selling_price
+            = offer.display_total_selling_price_by_currency
           %td
             = render 'other_references', offer: offer
 .form-actions
