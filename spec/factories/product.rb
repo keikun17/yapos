@@ -5,7 +5,7 @@ FactoryGirl.define do
     name "Abrasive Resistant Belt"
 
     after :create do |ar_belt|
-      create(:product_field, name: 'width', field_type: 'float',  product: ar_belt)
+      create(:product_field, name: 'Width', field_type: 'float',  product: ar_belt)
       create(:product_field, name: 'EP', field_type: 'float',  product: ar_belt)
       create(:product_field, name: 'X or /', field_type: 'string',  product: ar_belt)
       create(:product_field, name: 'ply', field_type: 'float', product: ar_belt)

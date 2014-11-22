@@ -6,6 +6,8 @@ feature "Quotes Creation" do
     create(:supplier, name: "ACME")
     create(:client, name: "Blue Buyers", abbrev: "BBuy")
 
+    create(:ar_belt)
+
     logged_as_default_user
   end
 
@@ -43,7 +45,21 @@ feature "Quotes Creation" do
       select "Super Seller", from: 'Brand'
       fill_in "Specs/Description", with: "2014 Heavy Bolter"
       fill_in "Actual Specs", with: "Heavy Bolter 2014 model S1"
-      # select "2014-HVB-01", from: "Vendor Item Code"
+
+      click_link "Input Actual Specs"
+      select "Abrasive Resistant Belt", from: 'Product'
+
+      sleep(20)
+
+      fill_in "Width", width: '1000'
+      fill_in "EP", width: '200'
+      fill_in "X or /", width: 'X'
+      fill_in "ply", width: '3'
+      fill_in "Top Cover", width: '5'
+      fill_in "Bottom Cover", width: '2'
+      fill_in "Resistance", width: 'GRADE-M'
+
+      click_link "submit"
 
       select "US$", from: 'Currency'
       fill_in "Exchange Rate", with: 43
