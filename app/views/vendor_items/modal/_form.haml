@@ -4,7 +4,7 @@
 
     .modal-body
       .control-group
-        = label_tag :product_id, 'Product_id', class: 'control-label'
+        = label_tag :product_id, 'Product', class: 'control-label'
         .controls
           = select_tag :product_id, options_for_select(Product.all.collect{|p| [p.name , p.id] }), include_blank: true, tb_render_form: '/vendor_items/render_from_product_id', tb_render_form_to: '#vendor_item_form'
 
