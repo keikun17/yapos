@@ -49,15 +49,14 @@ feature "Quotes Creation" do
       click_link "Input Actual Specs"
       select "Abrasive Resistant Belt", from: 'Product'
 
-      sleep(20)
 
-      fill_in "Width", width: '1000'
-      fill_in "EP", width: '200'
-      fill_in "X or /", width: 'X'
-      fill_in "ply", width: '3'
-      fill_in "Top Cover", width: '5'
-      fill_in "Bottom Cover", width: '2'
-      fill_in "Resistance", width: 'GRADE-M'
+      fill_in "Width", with: '1000'
+      fill_in "EP", with: '200'
+      fill_in "X or /", with: 'X'
+      fill_in "ply", with: '3'
+      fill_in "Top Cover", with: '5'
+      fill_in "Bottom Cover", with: '2'
+      fill_in "Resistance", with: 'GRADE-M'
 
       click_link "submit"
 
