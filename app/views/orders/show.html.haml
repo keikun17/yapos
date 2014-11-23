@@ -81,10 +81,18 @@
         %td
           = offer.quantity_label("label label-inverse")
           = offer.request_specs
-        %td= offer.specs
         %td
-          = offer.vendor_item_csv
-          = simple_format(offer.actual_specs, class: 'muted')
+          = simple_format(offer.specs)
+          - if !offer.summary.blank?
+            .alert.alert-success
+              Actual :
+              %strong= offer.vendor_item_csv
+              = simple_format(offer.summary, class: 'muted')
+              - if offer.vendor_item
+                .row
+                = link_to "View this item", price_movement_path(offer.vendor_item)
+        %td
+          = simple_format(offer.actual_specs)
         %td
           - if offer.supplier.present?
             = link_to offer.supplier_name, supplier_path(offer.supplier)
@@ -97,7 +105,16 @@
       - offers.each do |offer|
         %tr
           %td= offer.request_specs
-          %td= offer.specs
+          %td
+            = simple_format(offer.specs)
+            - if !offer.summary.blank?
+              .alert.alert-success
+                Actual :
+                %strong= offer.vendor_item_csv
+                =simple_format(offer.summary, class: 'muted')
+                - if offer.vendor_item
+                  .row
+                  = link_to "View this item", price_movement_path(offer.vendor_item)
           %td= offer.actual_specs
           %td
             - if offer.supplier.present?
