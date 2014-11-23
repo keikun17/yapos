@@ -6,7 +6,9 @@ feature "Quotes Creation" do
     create(:supplier, name: "ACME")
     create(:client, name: "Blue Buyers", abbrev: "BBuy")
 
-    create(:ar_belt)
+    # Products
+    create(:bolter)
+    create(:chainsaw)
 
     logged_as_default_user
   end
@@ -46,19 +48,15 @@ feature "Quotes Creation" do
       fill_in "Specs/Description", with: "2014 Heavy Bolter"
       fill_in "Actual Specs", with: "Heavy Bolter 2014 model S1"
 
-      click_link "Input Actual Specs"
-      select "Abrasive Resistant Belt", from: 'Product'
+      # Vendor Item
+        click_link "Input Actual Specs"
+        select "Bolter", from: 'Product'
 
+        fill_in "Weight", with: '1000'
+        fill_in "Year", with: '1999'
+        fill_in "Model", with: '1000'
 
-      fill_in "Width", with: '1000'
-      fill_in "EP", with: '200'
-      fill_in "X or /", with: 'X'
-      fill_in "ply", with: '3'
-      fill_in "Top Cover", with: '5'
-      fill_in "Bottom Cover", with: '2'
-      fill_in "Resistance", with: 'GRADE-M'
-
-      click_link "submit"
+        click_link "submit"
 
       select "US$", from: 'Currency'
       fill_in "Exchange Rate", with: 43
