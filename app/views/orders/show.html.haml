@@ -82,7 +82,9 @@
           = offer.quantity_label("label label-inverse")
           = offer.request_specs
         %td= offer.specs
-        %td= offer.actual_specs
+        %td
+          = offer.vendor_item_csv
+          = simple_format(offer.actual_specs, class: 'muted')
         %td
           - if offer.supplier.present?
             = link_to offer.supplier_name, supplier_path(offer.supplier)
