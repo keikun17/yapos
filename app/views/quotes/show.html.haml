@@ -191,6 +191,8 @@
             - if !offer.summary.blank?
               .alert.alert-success
                 Actual :
+                - if offer.vendor_item
+                  %strong= offer.vendor_item_csv
                 = offer.summary
                 - if offer.vendor_item
                   .row

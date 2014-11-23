@@ -91,6 +91,9 @@ class Offer < ActiveRecord::Base
   delegate :quote_reference, to: :quote, prefix: false, allow_nil: true
   delegate :quote_date, to: :quote, prefix: false, allow_nil: true
 
+  # Vendor Item Delegation
+  delegate :csv, to: :vendor_item, prefix: true, allow_nil: true
+
   # Supplier Order Delegation
   delegate :reference,
     :ordered_at,
