@@ -92,7 +92,15 @@ feature "Quotes Creation" do
       select "Super Seller", from: 'Brand'
       fill_in "Specs/Description", with: "light chainsaw"
       fill_in "Actual Specs", with: "Billy light chainsaw"
-      # select "BLCSW", from: "Vendor Item Code"
+
+      #vendor item
+        click_link "Input Actual Specs"
+        select "Chainsaw", from: 'Product'
+
+        fill_in "Weight", with: '5'
+        fill_in "Year", with: '2014'
+
+        click_link "submit"
 
       select "US$", from: 'Currency'
       fill_in "Exchange Rate", with: 43
@@ -116,7 +124,15 @@ feature "Quotes Creation" do
       select "ACME", from: 'Brand'
       fill_in "Specs/Description", with: "light chainsaw"
       fill_in "Actual Specs", with: "ACME Light chainsaw Variant 9001"
-      # select  "ACME-LIGHTCHAINSAW-9001", from: "Vendor Item Code"
+
+      #vendor item
+        click_link "Input Actual Specs"
+        select "Chainsaw", from: 'Product'
+
+        fill_in "Weight", with: '5'
+        fill_in "Year", with: '2014'
+
+        click_link "submit"
 
       fill_in "VAT Status", with: "VAT INC"
       fill_in "Supplier Price", with: 4300
@@ -134,5 +150,6 @@ feature "Quotes Creation" do
     expect(Quote.count).to eq(1)
     expect(Request.count).to eq(2)
     expect(Offer.count).to eq(3)
+    expect(VendorItem.count).to eq(2)
   end
 end
