@@ -10,7 +10,7 @@
     %tr
       %td= supplier_purchase.supplier_orders.index(supplier_order) + 1
       %td= supplier_order.offer.request.decorate.display_quantity
-      %td= simple_format(supplier_order.offer.decorate.actual_specs)
+      %td.compact= simple_format(supplier_order.offer.decorate.actual_specs)
       %td= supplier_order.offer.decorate.display_buying_price
       %td= supplier_order.offer.decorate.display_total_buying_price
 
