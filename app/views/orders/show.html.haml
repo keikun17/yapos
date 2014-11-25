@@ -1,5 +1,5 @@
 - model_class = Order
-.page-header
+.client-order-header
   %h1
     =t '.title', :default => model_class.model_name.human
     = link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(@order), :class => 'btn'
