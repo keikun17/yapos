@@ -1,8 +1,6 @@
-.quote-header{
+.pos-header{
   display: block;
   margin: 5px 0 5px 0;
-  background-color: #ff7373;
-  color: #fff;
 
   margin-left: -20px !important;
   margin-right: -20px !important;
@@ -11,4 +9,16 @@
   padding-right: 20px !important;
   padding-top: 3px;
   padding-bottom: 3px;
+}
+
+.quote-header{
+  @extend .pos-header;
+  background-color: #ff7373;
+  color: #fff;
+}
+
+.client-order-header {
+  @extend .pos-header;
+  background-color: #68ca8f;
+  color: #fff;
 }
