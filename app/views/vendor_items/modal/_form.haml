@@ -3,6 +3,16 @@
     %a.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
 
     .modal-body
+
+      - if vendor_item.present?
+        .col
+          .row-fluid
+            %h3  Current Values
+            %p
+              %strong Product : #{vendor_item.product.name}
+            %p
+              %strong Vendor Code : #{vendor_item.csv}
+
       .control-group
         = label_tag :product_id, 'Product', class: 'control-label'
         .controls

@@ -19,7 +19,7 @@
     = f.text_field :vendor_item_code, readonly: true, tb_vendor_item_code_field: 'true'
 
     = link_to "Input Actual Specs", '#vendor_code_form', tb_shows_nearest_modal: 'true', data: {toggle: 'modal'}, class: 'btn'
-    = render 'vendor_items/modal/form'
+    = render 'vendor_items/modal/form', vendor_item: f.object.vendor_item
 
   %td
     .row-fluid
