@@ -144,15 +144,16 @@
               %strong Internal Notes:
               #{simple_format(req.remarks)}
         %td{width: '240px'}
-          = simple_format(offer.specs) if offer
-          - if !offer.summary.blank? || !offer.vendor_item.nil?
-            .alert.alert-success
-              Actual :
-              %strong= offer.vendor_item_csv
-              =simple_format(offer.summary, class: 'muted')
-              - if offer.vendor_item.present?
-                .row-fluid
-                  = link_to "View this item", price_movement_path(offer.vendor_item)
+          - if offer
+            = simple_format(offer.specs)
+            - if !offer.summary.blank? || !offer.vendor_item.nil?
+              .alert.alert-success
+                Actual :
+                %strong= offer.vendor_item_csv
+                =simple_format(offer.summary, class: 'muted')
+                - if offer.vendor_item.present?
+                  .row-fluid
+                    = link_to "View this item", price_movement_path(offer.vendor_item)
         %td
           - if offer and offer.supplier
             = link_to offer.supplier_name, offer.supplier
