@@ -2,32 +2,32 @@
   .modal-header
     %a.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
 
-    .modal-body
+  .modal-body
 
-      - if vendor_item.present?
-        .col
-          .row-fluid
-            %h3  Current Values
-            %p
-              %strong Product : #{vendor_item.product.name}
-            %p
-              %strong Vendor Code : #{vendor_item.csv}
+    - if vendor_item.present?
+      .col
+        .row-fluid
+          %h3  Current Values
+          %p
+            %strong Product : #{vendor_item.product.name}
+          %p
+            %strong Vendor Code : #{vendor_item.csv}
 
-      .control-group
-        = label_tag :product_id, 'Product', class: 'control-label'
-        .controls
-          = select_tag :product_id, options_for_select(Product.all.collect{|p| [p.name , p.id] }), include_blank: true, tb_render_form: '/vendor_items/render_from_product_id', tb_render_form_to: '#vendor_item_form'
+    .control-group
+      = label_tag :product_id, 'Product', class: 'control-label'
+      .controls
+        = select_tag :product_id, options_for_select(Product.all.collect{|p| [p.name , p.id] }), include_blank: true, tb_render_form: '/vendor_items/render_from_product_id', tb_render_form_to: '#vendor_item_form'
 
 
-      .vendor_item_form
-        -# = form_for VendorItem.new.initialize_fields(product), remote: true, html: {class: 'form-horizontal'} do |f|3
-        -#
-        -#   .modal-body
-        -#     .control-group
-        -#       = f.label :code, 'Vendor Item Code', class: 'control-label'
-        -#       .controls
-        -#         = f.text_field :code, class: 'span6 text_field'
-        -#
-        -#   .modal-footer
-        -#     -# %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
-        -#     = f.submit nil, :class => 'btn btn-primary', remote: true
+    .vendor_item_form
+      -# = form_for VendorItem.new.initialize_fields(product), remote: true, html: {class: 'form-horizontal'} do |f|3
+      -#
+      -#   .modal-body
+      -#     .control-group
+      -#       = f.label :code, 'Vendor Item Code', class: 'control-label'
+      -#       .controls
+      -#         = f.text_field :code, class: 'span6 text_field'
+      -#
+      -#   .modal-footer
+      -#     -# %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
+      -#     = f.submit nil, :class => 'btn btn-primary', remote: true
