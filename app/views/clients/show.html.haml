@@ -2,11 +2,11 @@
 
 %ul.nav.nav-tabs
   %li.active
-    = link_to_badge("Purchase Requests", client_path(@client) )
+    = link_to_badge("RFQs", client_path(@client) )
   %li
     = link_to_badge("Offers", client_offers_path(client_id: @client.id) )
 
-%h4 Purchase Requests :
+%h4 RFQs
 - if @client.quotes.present?
   = render :partial => 'quotes/quotes', :locals => {:quotes => @quotes, :model_class => Quote}
 

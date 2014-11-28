@@ -2,7 +2,7 @@
 
 %ul.nav.nav-tabs
   %li
-    = link_to_badge("Purchase Requests", client_path(@client) )
+    = link_to_badge("RFQs", client_path(@client) )
   %li.active
     = link_to_badge("Offers", client_offers_path(client_id: @client.id) )
 
