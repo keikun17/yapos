@@ -16,6 +16,7 @@
   %thead
     %tr
       %th.span2 PO#
+      %th.span2 Client Ordered At
       %th.span2 Client
       %th Item
       %th.span2
@@ -29,6 +30,8 @@
         %tr{class: offer_row_class(offer)}
           %td{rowspan: offer_count}
             %strong= link_to order.reference, order
+          %td{rowspan: offer_count}
+            = order.display_purchase_date
           %td
             - if offer && offer.client
               = link_to_client(offer.client)
