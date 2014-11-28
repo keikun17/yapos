@@ -104,7 +104,9 @@
           = offer.edit_supplier_purchase_link
       - offers.each do |offer|
         %tr
-          %td= offer.request_specs
+          %td
+            = offer.quantity_label("label label-inverse")
+            = offer.request_specs
           %td
             = simple_format(offer.specs)
             - if !offer.summary.blank?
