@@ -69,9 +69,11 @@
 
       #main.container-fluid
 
+        - if !flash.empty?
+          .alert-container
+            = bootstrap_flash
         .row-fluid
           .span12
-            = bootstrap_flash
             = yield
         %footer
           Server time : #{Time.now.to_s}

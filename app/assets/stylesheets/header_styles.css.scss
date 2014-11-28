@@ -17,6 +17,11 @@
   color: #fff;
 }
 
+.alert-container{
+  @extend .row;
+  margin-top: -20px;
+}
+
 .client-order-header {
   @extend .pos-header;
   background-color: #68ca8f;

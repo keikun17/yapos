@@ -52,6 +52,7 @@
               %td
                 = offer.display_specs(quantity_class: 'label label-inverse').html_safe
                 = offer.display_actual_specs
+
               %td
                 - if offer.supplier_purchase.nil? || offer.supplier_purchase.reference.blank?
                   = link_to_modal("Purchase", offer)
