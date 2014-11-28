@@ -25,7 +25,7 @@
   %tbody
 
     - @offers.each do |offer|
-      %tr
+      %tr{class: offer_row_class(offer)}
         %td= link_to offer.quote_reference, offer.quote
         %td= link_to offer.order_reference, offer.order
         %td= offer.display_purchase_date
