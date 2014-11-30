@@ -189,7 +189,14 @@ feature "Quotes Creation" do
       end
 
       click_button "Update Quote"
-      expect(Quote.first.quote_reference).to eq("PR#0001-edited")
+
+      quote = Quote.first
+      vendor_item = quote.offers.first.vendor_item
+      expect(quote.quote_reference).to eq("PR#0001-edited")
+
+      expect(vendor_item.vendor_item_fields.includes(:product_field).find_by(product_fields: {name: 'Weight'}).value).to eq('2000')
+      expect(vendor_item.vendor_item_fields.includes(:product_field).find_by(product_fields: {name: 'Year'}).value).to eq('2014')
+      expect(vendor_item.vendor_item_fields.includes(:product_field).find_by(product_fields: {name: 'Model'}).value).to eq('1001')
     end
 
 
