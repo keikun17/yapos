@@ -39,7 +39,8 @@ class VendorItem < ActiveRecord::Base
       end
     end
 
-    values.join(',')
+    csv =  product.name + ' - ' + values.join(',')
+    csv
   end
 
   def self.find_or_create_with_initialized_fields_by(attributes, &block)
