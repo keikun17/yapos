@@ -19,4 +19,12 @@ class SearchesController < ApplicationController
     @results
   end
 
+  def search_vendor_item
+
+  end
+
+  def vendor_item_search_results
+
+  end
+
 end
