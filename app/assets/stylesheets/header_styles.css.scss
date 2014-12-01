@@ -17,6 +17,12 @@
   color: #fff;
 }
 
+.supplier-purchases-header{
+  @extend .pos-header;
+  background-color: #34495e;
+  color: #fff;
+}
+
 .alert-container{
   @extend .row;
   margin-top: -20px;
