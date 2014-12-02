@@ -10,7 +10,7 @@ RSpec.shared_context "AR Belt Product with 3 Vendor Items", :a => :b do
   #   'this is the shared subject'
   # end
 
-  let!(:product){ create(:ar_belt, name: "Abrasive Reistant Conveyor Belt")}
+  let!(:product){ create(:ar_belt, name: "Abrasive Resistant Conveyor Belt")}
   let!(:field_width) { product.product_fields.find_by(name: 'width') }
   let!(:field_ep) { product.product_fields.find_by(name: 'EP') }
   let!(:field_top_cover) { product.product_fields.find_by(name: 'Top Cover') }
