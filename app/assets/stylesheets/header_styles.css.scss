@@ -17,6 +17,12 @@
   color: #fff;
 }
 
+.print-header-label{
+  @extend .span12;
+  border: 2px solid black;
+  text-align: center;
+}
+
 .supplier-purchases-header{
   @extend .pos-header;
   background-color: #34495e;
