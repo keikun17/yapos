@@ -27,4 +27,14 @@ class SearchesController < ApplicationController
 
   end
 
+  def product_select_for_search
+    @product = Product.find(params[:product_id])
+    @vendor_item = VendorItem.initialize_fields(@product)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
 end
