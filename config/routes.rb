@@ -73,7 +73,8 @@ Yapos::Application.routes.draw do
 
   get 'search' => 'searches#search', :as => 'search'
   get 'search_vendor_item' => 'searches#search_vendor_item', :as => 'search_vendor_item'
-  get 'search_vendor_item' => 'searches#vendor_item_search_results', :as => 'vendor_item_search_results'
+  get 'search/vendor_item_results' => 'searches#vendor_item_search_results', :as => 'vendor_item_search_results'
+  get 'search/product_select_for_search' => 'searches#product_select_for_search', :as => 'product_select_for_search'
 
 
   get 'accounting' => 'accounting#index', :as => 'accounting'
