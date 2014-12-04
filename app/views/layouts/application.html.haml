@@ -69,6 +69,10 @@
 
       #main.container-fluid
 
+        - if Rails.env.development?
+          .dev-environment-alert-header
+            %strong THIS IS THE DEVELOPMENT ENVIRONMENT
+
         - if !flash.empty?
           .alert-container
             = bootstrap_flash

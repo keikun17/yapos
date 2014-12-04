@@ -11,6 +11,13 @@
   padding-bottom: 3px;
 }
 
+.dev-environment-alert-header{
+  @extend .pos-header;
+  margin-bottom: 20px;
+  background-color: red;
+  color: #fff;
+}
+
 .quote-header{
   @extend .pos-header;
   background-color: #ff7373;
