@@ -16,7 +16,7 @@ feature "Search vendor items containing given property" do
     fill_in "EP", with: '100'
     # fill_in "Top Cover", with: '5'
     # fill_in "Bottom Cover", with: '3'
-    click_link "Submit"
+    click_button "Search Items"
 
     expect(page).to have_content('ep100x5x3')
     expect(page).to have_content('ep100x1000mmx5x3')
