@@ -17,10 +17,10 @@ feature "Search vendor items containing given property" do
     # fill_in "Bottom Cover", with: '3'
     click_button "Search Items"
 
-    expect(page).to have_content('ep100x5x3')
-    expect(page).to have_content('ep100x1000mmx5x3')
-    expect(page).to have_content('ep100x5x2)')
-    expect(page).not_to have_content('ep200x6x2')
+    expect(page).to have_content('Abrasive Resistant Conveyor Belt - 100,5,3')
+    expect(page).to have_content('Abrasive Resistant Conveyor Belt - 1000,100,5,3')
+    expect(page).to have_content('Abrasive Resistant Conveyor Belt - 100,5,2')
+    expect(page).not_to have_content('Abrasive Resistant Conveyor Belt - 200,6,2')
   end
 
 end
