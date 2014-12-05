@@ -24,12 +24,14 @@ class SearchesController < ApplicationController
   end
 
   def vendor_item_search_results
+    @product = Product.find(params[:vendor_item][:product_id])
+
     fields = params[:vendor_item][:vendor_item_fields_attributes].values
     fields = fields.collect do |v|
       {vendor_item_fields: v}
     end
 
-    @vendor_items = VendorItem.find_with_fields(fields)
+    @vendor_items = VendorItem.find_with_fields(fields).decorate
   end
 
   def product_select_for_search

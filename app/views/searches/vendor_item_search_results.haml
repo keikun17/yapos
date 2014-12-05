@@ -1,3 +1,24 @@
-= pp params
-%hr
-= pp @vendor_items.to_a
+%h1 
+  Product Name:
+  = @product.name
+
+%table.table
+  %tr
+    %th Code
+    %th Offers
+    - @product.product_fields.each do |pf|
+      %th= pf.name
+    %th
+    %th
+    %th
+
+  - @vendor_items.each do |vendor_item|
+    %tr
+      %td= link_to vendor_item.csv, price_movement_path(vendor_item)
+      %td= vendor_item.offers.count
+      - @product.product_fields.each do |product_field|
+        %td
+          = vendor_item.vendor_item_fields.find_by(product_field: product_field).try(:value)
+          = product_field.unit
+      %td= link_to 'Edit', edit_product_vendor_item_path(vendor_item.product, vendor_item)
+      %td= link_to 'Destroy', [vendor_item.product, vendor_item], :method => :delete, :data => { :confirm => 'Are you sure?' }
