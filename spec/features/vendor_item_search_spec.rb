@@ -9,7 +9,6 @@ feature "Search vendor items containing given property" do
 
   it "returns all vendor items matching the given spec", js: true do
     visit search_vendor_item_path
-    binding.pry
 
     select "Abrasive Resistant Conveyor Belt", from: 'Product'
 

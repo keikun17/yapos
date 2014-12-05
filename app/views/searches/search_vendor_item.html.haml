@@ -3,7 +3,7 @@
 
 = form_tag vendor_item_search_results_path, method: :get, class: 'form-horizontal' do
   .control-group
-    = label_tag :product_id, 'Product', class: 'control-label'
+    = label_tag :product_select_for_search, 'Product', class: 'control-label'
     .controls
       = select_tag :product_select_for_search, options_for_select(Product.all.collect{|p| [p.name , p.id] }), include_blank: true, tb_render_form_to: '#vendor_item_form'
 
