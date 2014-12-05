@@ -2,6 +2,18 @@
   Product Name:
   = @product.name
 
+.row-fluid
+  .span12
+    You have searched for :
+.row-fluid
+  .span12
+    - @search_fields.each do |index, search_field|
+      -if !search_field[:value].blank?
+        %strong= ProductField.find(search_field[:product_field_id]).name
+        \:
+        = search_field[:value]
+        %br
+
 %table.table
   %tr
     %th Code
