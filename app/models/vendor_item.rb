@@ -33,10 +33,8 @@ class VendorItem < ActiveRecord::Base
   end
 
   def csv
-    values = vendor_item_fields.collect.each do |vendor_item_field|
-      if !vendor_item_field.value.to_s.blank?
-        vendor_item_field.value.to_s + vendor_item_field.product_field.unit.to_s
-      end
+    values = vendor_item_fields.where.not(value: '').collect.each do |vendor_item_field|
+      vendor_item_field.value.to_s + vendor_item_field.product_field.unit.to_s
     end
 
     csv =  product.name + ' - ' + values.join(',')
