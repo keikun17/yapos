@@ -7,7 +7,7 @@ feature "Search vendor items containing given property" do
     logged_as_default_user
   end
 
-  it "returns all vendor items matching the given spec", js: true do
+  it "returns all vendor items that contains values in the search query", js: true do
     visit search_vendor_item_path
 
     select "Abrasive Resistant Conveyor Belt", from: 'Product'
@@ -24,7 +24,7 @@ feature "Search vendor items containing given property" do
     expect(page).not_to have_content('Abrasive Resistant Conveyor Belt - 200,6,2')
   end
 
-  it "returns all vendor items matching the given spec", js: true do
+  it "returns all vendor items that exactly match the search query", js: true do
     visit search_vendor_item_path
 
     select "Abrasive Resistant Conveyor Belt", from: 'Product'
