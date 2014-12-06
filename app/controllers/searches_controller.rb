@@ -32,7 +32,13 @@ class SearchesController < ApplicationController
       {vendor_item_fields: v}
     end
 
-    @vendor_items = VendorItem.find_with_fields(fields).decorate
+    case params[:filter]
+    when "Contains"
+      @vendor_items = VendorItem.find_with_fields(fields).decorate
+    when "Eact"
+      @vendor_items = VendorItem.find_with_exact_fields(fields).decorate
+    end
+  end
   end
 
   def product_select_for_search
