@@ -12,13 +12,6 @@
     .controls
       = select_tag :filter, options_for_select(["Contains", "Exact"])
 
-  .row-fluid
-    .field
-      .form-grou
-        = f.label :code, 'Item Code', class: 'span2'
-        .span10
-          = f.text_field :code, disabled: true
-
   %hr
 
   %h3 Actual Specs
