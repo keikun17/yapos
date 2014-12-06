@@ -6,10 +6,6 @@
     = label_tag :product_select_for_search, 'Product', class: 'control-label'
     .controls
       = select_tag :product_select_for_search, options_for_select(Product.all.collect{|p| [p.name , p.id] }), include_blank: true, tb_render_form_to: '#vendor_item_form'
-  .control-group
-    = label_tag :filter, 'Filter', class: 'control-label'
-    .controls
-      = select_tag :filter, options_for_select(["Contains", "Exact"])
 
   .vendor_item_form
 

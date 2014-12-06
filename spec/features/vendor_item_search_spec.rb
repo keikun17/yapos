@@ -10,8 +10,8 @@ feature "Search vendor items containing given property" do
   it "returns all vendor items matching the given spec", js: true do
     visit search_vendor_item_path
 
-    select "Contains", from: 'Filter'
     select "Abrasive Resistant Conveyor Belt", from: 'Product'
+    select "Contains", from: 'Filter'
 
     fill_in "EP", with: '100'
     # fill_in "Top Cover", with: '5'
@@ -27,8 +27,8 @@ feature "Search vendor items containing given property" do
   it "returns all vendor items matching the given spec", js: true do
     visit search_vendor_item_path
 
-    select "Exact", from: 'Filter'
     select "Abrasive Resistant Conveyor Belt", from: 'Product'
+    select "Exact", from: 'Filter'
 
     fill_in "EP", with: '100'
     fill_in "Top Cover", with: '5'
