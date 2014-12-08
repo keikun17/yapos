@@ -105,6 +105,7 @@ RSpec.shared_context "Quote with 2 request and 3 offers", :a => :b do
 
       fill_in "Weight", with: '5'
       fill_in "Year", with: '2014'
+      fill_in "Model", with: 'Ultra'
 
       click_link "submit"
 
