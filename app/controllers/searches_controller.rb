@@ -38,7 +38,6 @@ class SearchesController < ApplicationController
     when "Exact"
       @vendor_items = VendorItem.find_with_exact_fields(fields)
     end
-    @vendor_items.decorate if !@vendor_items.empty?
   end
 
   def product_select_for_search
