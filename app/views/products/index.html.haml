@@ -5,12 +5,14 @@
 %table.table
   %tr
     %th Product Name/Type
+    %th Vendor Items
     %th
     %th
 
   - @products.each do |product|
     %tr
       %td= link_to product.name, product
+      %td= product.vendor_items.count
       %td= link_to 'Edit', edit_product_path(product)
       %td= link_to 'Destroy', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
