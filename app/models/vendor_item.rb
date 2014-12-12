@@ -97,7 +97,7 @@ class VendorItem < ActiveRecord::Base
     args = args.reject{ |arg| arg[:vendor_item_fields][:value].blank? }
 
     arg_product_field_ids = args.collect do |arg|
-      arg[:vendor_item_fields][:product_field_id]
+      arg[:vendor_item_fields][:product_field_id].to_i
     end
 
     results = find_with_fields(args).select do |x|
