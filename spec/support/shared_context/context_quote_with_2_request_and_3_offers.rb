@@ -153,6 +153,8 @@ RSpec.shared_context "Quote with 2 request and 3 offers", :a => :b do
     end
 
     click_button "Create Quote"
+
+    expect(VendorItem.count).to eq(3)
   end
 
 end

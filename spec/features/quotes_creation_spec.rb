@@ -7,7 +7,7 @@ feature "Quotes Creation" do
     expect(Quote.count).to eq(1)
     expect(Request.count).to eq(2)
     expect(Offer.count).to eq(3)
-    expect(VendorItem.count).to eq(2)
+    expect(VendorItem.count).to eq(3)
   end
 
   scenario "Editing", js: true do
