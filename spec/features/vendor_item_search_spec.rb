@@ -21,9 +21,8 @@ feature "Search vendor items containing given property" do
 
   it "returns all vendor items that exactly match the search query", js: true do
     visit search_vendor_item_path
-
     select "Chainsaw", from: 'Product'
-    select "Contains", from: 'Filter'
+    select "Exact", from: 'Filter'
 
     fill_in "Weight", with: '5'
     fill_in "Year", with: '2014'
