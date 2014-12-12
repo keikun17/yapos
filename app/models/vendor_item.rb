@@ -65,6 +65,12 @@ class VendorItem < ActiveRecord::Base
     end
   end
 
+  # args is of this format :
+  # [
+  #   {:vendor_item_fields => { "product_field_id" => "4", "value" => "5"}},
+  #   {:vendor_item_fields => { "product_field_id" => "5", "value" => "2014"}},
+  #   {:vendor_item_fields => { "product_field_id" => "6", "value" => ""}}
+  # ]
   def self.find_with_fields(args)
     main_call = VendorItem.joins(:vendor_item_fields).references(:vendor_item_fields)
 
@@ -80,7 +86,15 @@ class VendorItem < ActiveRecord::Base
     results
   end
 
+  # args is of this format :
+  # [
+  #   {:vendor_item_fields => { "product_field_id" => "4", "value" => "5"}},
+  #   {:vendor_item_fields => { "product_field_id" => "5", "value" => "2014"}},
+  #   {:vendor_item_fields => { "product_field_id" => "6", "value" => ""}}
+  # ]
   def self.find_with_exact_fields(args)
+    # Ignore blank search fields
+    args = args.reject{ |arg| arg[:vendor_item_fields][:value].blank? }
 
     arg_product_field_ids = args.collect do |arg|
       arg[:vendor_item_fields][:product_field_id]
