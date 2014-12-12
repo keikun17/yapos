@@ -78,11 +78,8 @@ class VendorItem < ActiveRecord::Base
     main_call = VendorItem.joins(:vendor_item_fields).references(:vendor_item_fields)
 
     arels = []
-
     args.each do |condition|
-      if !condition[:vendor_item_fields][:value].blank?
-        arels << main_call.where(condition)
-      end
+      arels << main_call.where(condition)
     end
 
     results = arels.reduce { |a, b| a & b }
