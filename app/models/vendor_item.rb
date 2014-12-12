@@ -72,6 +72,9 @@ class VendorItem < ActiveRecord::Base
   #   {:vendor_item_fields => { "product_field_id" => "6", "value" => ""}}
   # ]
   def self.find_with_fields(args)
+    # Ignore blank search fields
+    args = args.reject{ |arg| arg[:vendor_item_fields][:value].blank? }
+
     main_call = VendorItem.joins(:vendor_item_fields).references(:vendor_item_fields)
 
     arels = []
