@@ -184,4 +184,5 @@ end
 #  delivery_receipt_reference :string(255)
 #  sales_invoice_reference    :string(255)
 #  vendor_item_code           :string(255)
+#  vendor_item_id             :string(255)
 #
