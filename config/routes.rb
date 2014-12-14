@@ -3,6 +3,8 @@ Yapos::Application.routes.draw do
 
   resources :vendor_items, only: :create
 
+  resources :client_items, only: [:index, :show]
+
   resources :products do
     resources :vendor_items
   end
