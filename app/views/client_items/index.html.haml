@@ -1,6 +1,7 @@
 .quote-header
   %h1 Client Item Codes
 
+.pull-right= will_paginate(@client_item_codes_arel)
 %table.table
   %tr
     %th Client Item Code
@@ -9,3 +10,4 @@
     %tr
       %td= link_to client_item_code, '#'
       %td= Request.where(item_code: client_item_code).count
+.pull-right= will_paginate(@client_item_codes_arel)
