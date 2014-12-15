@@ -1,4 +1,11 @@
 .quote-header
-  %h1 Request
-- @requests.each do |request|
-  = request.item_code
+  %h1 Client Item Codes
+
+%table.table
+  %tr
+    %th Client Item Code
+    %th Request Count
+  - @client_item_codes.each do |client_item_code|
+    %tr
+      %td= link_to client_item_code, '#'
+      %td= Request.where(item_code: client_item_code).count
