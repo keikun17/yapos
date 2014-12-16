@@ -3,7 +3,6 @@ Yapos::Application.routes.draw do
 
   resources :vendor_items, only: :create
 
-  resources :client_items, only: [:index, :show]
 
   resources :products do
     resources :vendor_items
@@ -50,9 +49,9 @@ Yapos::Application.routes.draw do
 
   resources :suppliers
 
-
   resources :clients  do
     resources :offers, module: 'clients'
+    resources :client_items, only: [:index, :show]
   end
 
   resources :quotes do

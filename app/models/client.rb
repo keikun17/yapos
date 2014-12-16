@@ -3,6 +3,7 @@ class Client < ActiveRecord::Base
 
   has_many :quotes
   has_many :orders, through: :quotes
+  has_many :requests, through: :quotes
   has_many :offers, through: :quotes
 
   default_scope -> { order('name asc') }
