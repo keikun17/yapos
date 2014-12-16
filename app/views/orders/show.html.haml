@@ -3,7 +3,7 @@
   %h1
     =t '.title', :default => model_class.model_name.human
     = link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(@order), :class => 'btn'
-    - @order.supplier_purchases.each do |supplier_purchase|
+    - @order.supplier_purchases.where.not(reference: '').each do |supplier_purchase|
       = link_to "Print #{supplier_purchase.reference}", print_supplier_purchase_path(supplier_purchase),  class: 'btn'
 
 
