@@ -10,7 +10,8 @@ class SupplierPurchase < ActiveRecord::Base
     :warranty,
     :ordered_at,
     :signatory,
-    :signatory_position
+    :signatory_position,
+    :hide_client_in_print
 
   belongs_to :order
   has_many :offers, through: :supplier_orders

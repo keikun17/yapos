@@ -29,6 +29,8 @@
     = label_tag 'subject', 'Subject', :class => 'control-label'
     .controls
       = text_field_tag :subject, @supplier_purchase.client_name, :class => 'text_field disabledInput', disabled: 'true'
+      = f.check_box :hide_client_in_print, class: 'check_box'
+      Hide Client in Print
 
   = render 'supplier_orders', supplier_purchase: @supplier_purchase
 
