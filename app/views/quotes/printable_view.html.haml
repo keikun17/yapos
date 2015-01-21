@@ -5,11 +5,6 @@
     %h5= @quote.client_name
     - if @quote.client.present? and @quote.client.address.blank?
       =simple_format(@quote.client.address, class: 'compact')
-  -# %div.pull-right.text-center
-  -#   #document-type-label
-  -#     Sales
-  -#     %br
-  -#     Quotation
 
   %table.table-compact
     %tr
@@ -32,8 +27,6 @@
       %td{colspan: 6}
         %strong
           = @quote.quote_reference
-          - if @supplier_names
-            (#{@supplier_names})
 
     %tr
       %td{colspan:8}
@@ -75,7 +68,7 @@
             %th
               - if request.offers.from_supplier(@suppliers).count > 1
                 OFFER#:
-            - unless @quote.offer_details_mergable?(:supplier_name, params[:supplier_id]) or params[:supplier_id]
+            - unless (@quote.offer_details_mergable?(:supplier_name, params[:supplier_id]) and @quote.offers.supplier_hidden_in_print.empty?) or params[:supplier_id] or @quote.offers.all?{|o| o.hide_supplier_in_print? }
               %th{width: '80px'} BRAND:
             %th{colspan: @quote.offer_spec_colspan(params[:supplier_id])} OFFERED:
             %th{width: '80px'} UNIT PRICE
@@ -93,8 +86,8 @@
             %tr{class: "#{'last-offer' if offer == offers.last}"}
               %td{style: 'text-align:right'}
                 = "##{offers.index(offer) + 1}" if offers.count > 1
-              - unless @quote.offer_details_mergable?(:supplier_name, params[:supplier_id]) or params[:supplier_id]
-                %td= offer.supplier_name
+              - unless (@quote.offer_details_mergable?(:supplier_name, params[:supplier_id]) and @quote.offers.supplier_hidden_in_print.empty?) or params[:supplier_id]
+                %td= offer.supplier_name unless offer.hide_supplier_in_print?
               %td{colspan: @quote.offer_spec_colspan(params[:supplier_id])}= simple_format(offer.specs)
               %td= offer.display_selling_price
               %td= offer.display_total_selling_price_by_currency
@@ -117,7 +110,7 @@
           %strong NOTES
         %td : #{@quote.solo_offer_remarks(params[:supplier_id])}
 
-    - if (@quote.offer_details_mergable?(:supplier_name, params[:supplier_id]) or params[:supplier_id]) and !@quote.solo_offer_supplier_name(params[:supplier_id]).blank?
+    - if ((@quote.offer_details_mergable?(:supplier_name, params[:supplier_id]) and @quote.offers.supplier_hidden_in_print.empty?) or params[:supplier_id]) and !@quote.solo_offer_supplier_name(params[:supplier_id]).blank? and !@quote.offers.all?{|o| o.hide_supplier_in_print? }
       %tr
         %td
           %strong BRAND

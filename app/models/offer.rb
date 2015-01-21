@@ -21,7 +21,8 @@ class Offer < ActiveRecord::Base
     :price_basis,
     :delivery_receipt_reference,
     :sales_invoice_reference,
-    :vendor_item_code
+    :vendor_item_code,
+    :hide_supplier_in_print
 
   belongs_to :request
 
@@ -46,6 +47,7 @@ class Offer < ActiveRecord::Base
   accepts_nested_attributes_for :supplier_order
 
   scope :purchased, -> { where("order_reference <> '' ") }
+  scope :supplier_hidden_in_print, -> { where(hide_supplier_in_print: true) }
 
   scope :from_supplier, ->(suppliers = 'all') do
     if suppliers.eql?('all')

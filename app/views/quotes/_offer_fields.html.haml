@@ -3,6 +3,11 @@
   %td
     = f.label :supplier_id, "Brand", class: 'offer-cell'
     = f.select :supplier_id, options_for_select(Supplier.all.collect{|s| [s.name, s.id]}, f.object.supplier_id), {:include_blank => true}, :class => 'compact'
+    .checkbox
+      = f.check_box :hide_supplier_in_print, class: 'check_box'
+      Hide Brand in Print
+
+    %br
 
     = f.label :specs, "Specs/Description", class: 'offer-cell'
     = f.text_area :specs, :class => 'span12 text_area', :rows => 4, :placeholder => "Specs"
@@ -52,6 +57,7 @@
           = f.label :buying_price, "Supplier Price", class: 'span4 control-label'
           .controls.span8
             = f.text_field :buying_price, :class => 'text_field span12'
+
 
     .row-fluid
       .span12
