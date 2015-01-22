@@ -53,14 +53,22 @@
             %td.item-line{width:'40px'} ITEM#:
           %td.item-line{width: '50px'} QTY:
           %td.item-line{width: '80px'} UNIT:
-          %td.item-line{colspan:7} REQUESTED:
+          - if @requests.count > 1
+            %td.item-line{colspan:7} REQUESTED:
+          - else
+            %td.item-line{colspan:8} REQUESTED:
+            
       %tbody
         %tr
           - if @requests.count > 1
             %td= request.position || @requests.index(request) + 1
           %td= request.quantity
           %td= request.unit
-          %td{colspan:7}= simple_format("#{request.specs}")
+
+          - if @requests.count > 1
+            %td{colspan:7}= simple_format("#{request.specs}")
+          - else
+            %td{colspan:8}= simple_format("#{request.specs}")
 
 
         - unless request.offers.from_supplier(@suppliers).empty?
