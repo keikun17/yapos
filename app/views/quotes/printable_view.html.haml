@@ -95,7 +95,7 @@
             %tr{class: "#{'last-offer' if offer == offers.last}"}
               %td{style: 'text-align:right'}
                 = "##{offers.index(offer) + 1}" if offers.count > 1
-              - if (!@quote.offer_details_mergable?(:supplier_name, params[:supplier_id]) and !offer.supplier_hidden_in_print?) or !params[:supplier_id]
+              - if (!@quote.offer_details_mergable?(:supplier_name, params[:supplier_id]) and !offer.hide_supplier_in_print?) or !params[:supplier_id]
                 %td= offer.supplier_name unless offer.hide_supplier_in_print?
               %td{colspan: @quote.offer_spec_colspan(params[:supplier_id])}= simple_format(offer.specs)
               %td= offer.display_selling_price
