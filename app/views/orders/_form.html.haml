@@ -45,7 +45,7 @@
             %span.text-info
               last 5 PO issued are
             %ul
-              - SupplierPurchase.limit(3).order(id: :desc).reverse.each do |sp|
+              - SupplierPurchase.where.not(reference: '').limit(5).order(id: :desc).reverse.each do |sp|
                 %li= sp.reference
 
           %th Estimated EX-Works
