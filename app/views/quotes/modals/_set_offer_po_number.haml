@@ -39,6 +39,12 @@
         .controls
           = text_field_tag '[post_save][supplier_order][reference]', '', class: 'text_field'
 
+          %br
+          %i last 5 PO issued are:
+          %ul
+            - SupplierPurchase.where.not(reference: '').limit(5).order(id: :desc).reverse.each do |sp|
+              %li= sp.reference
+
 
     .modal-footer
       %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
