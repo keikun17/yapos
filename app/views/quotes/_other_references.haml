@@ -7,7 +7,7 @@
   = render 'quotes/modals/set_offer_po_number', modal_id: dom_id(offer), offer: OfferDecorator.decorate(offer)
 
 
-- if offer.supplier_purchase
+- if !offer.supplier_purchase_reference.blank?
   .alert.alert-info
     %strong Supplier PO#
     = link_to offer.supplier_purchase.reference, print_supplier_purchase_path(offer.supplier_purchase)
