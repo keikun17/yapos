@@ -35,12 +35,21 @@ class QuoteDecorator < ApplicationDecorator
   # Maybe this belongs here instead of the model because this
   # is leaning more toward behavior than data
   def offer_details_mergable?(attr, supplier_id = nil)
-    if supplier_id.nil?
-      details = self.offers.map(&attr).uniq
+    if supplier_id.blank?
+      self.offers.map(&attr).uniq.count <= 1
     else
-      details = self.offers.where(supplier_id: supplier_id).map(&attr).uniq
+      supplier_offers = self.offers.where(supplier_id: supplier_id)
+      supplier_offers.map(&attr).uniq.count <= 1
     end
-    details.count <= 1
+  end
+
+  def offer_supplier_name_mergable?(supplier_id = nil)
+    if supplier_id.blank?
+      self.offers.map(&:supplier_name).uniq.count <= 1 and self.offers.supplier_hidden_in_print.empty?
+    else
+      supplier_offers = self.offers.where(supplier_id: supplier_id)
+      supplier_offers.map(&:supplier_name).uniq.count <= 1 and supplier_offers.supplier_hidden_in_print.empty?
+    end
   end
 
   def offer_spec_colspan(supplier_id = nil)
@@ -67,8 +76,10 @@ class QuoteDecorator < ApplicationDecorator
       o = self.offers.where(supplier_id: supplier_id)
     end
 
-    if @solo_offer ||= o.first
-      return @solo_offer.supplier_name
+    if o.supplier_hidden_in_print.empty?
+      if @solo_offer ||= o.first
+        return @solo_offer.supplier_name
+      end
     end
   end
 
