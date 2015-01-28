@@ -115,7 +115,7 @@ class QuotesController < ApplicationController
     @quote = Quote.find(params[:id])
     @quote = QuoteDecorator.new(@quote)
 
-    if params[:supplier_id].nil?
+    if params[:supplier_id].blank?
       @suppliers = 'all'
       @requests = @quote.requests
     else
