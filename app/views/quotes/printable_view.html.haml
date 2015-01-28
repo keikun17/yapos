@@ -27,6 +27,8 @@
       %td{colspan: 6}
         %strong
           = @quote.quote_reference
+          - if !params[:supplier_id].blank? and @quote.solo_offer_supplier_name(params[:supplier_id])
+            = "(#{@quote.solo_offer_supplier_name(params[:supplier_id])})"
 
     %tr
       %td{colspan:8}
