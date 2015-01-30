@@ -82,11 +82,12 @@
       = supplier_links(@quote)
 
     %p
-      %strong Internal Notes:
-      %br
-      = simple_format(@quote.internal_notes, class: 'text-info')
+      .alert.alert-internal-note
+        %strong Internal Notes:
+        %br
+          = simple_format(@quote.internal_notes, class: 'text-info')
 
-    %p
+      %p
       %strong Remarks
 
       - unless @quote.remarks.blank?
@@ -140,7 +141,7 @@
           %strong= req.display_quantity
           = simple_format(req.specs)
           - if !req.remarks.blank?
-            .text-info
+            .alert.alert-internal-note.text-info
               %strong Internal Notes:
               #{simple_format(req.remarks)}
         %td{width: '240px'}
@@ -170,7 +171,9 @@
             %br
             %strong Notes:
             = offer.remarks
-            %br
+            .alert.alert-internal-note
+              %strong.text-info Internal Notes:
+              #{simple_format(offer.internal_notes, class: 'text-info')}
           %td.text-warning.price-column
             - if offer
               %strong Unit Price:
@@ -204,6 +207,7 @@
           %td
             - if offer.supplier
               = link_to offer.supplier_name, offer.supplier
+
           %td
             %strong Terms:
             = offer.terms
@@ -216,7 +220,10 @@
             %br
             %strong Notes:
             = offer.remarks
-            %br
+            .alert.alert-internal-note
+              %strong.text-info Internal Notes:
+              #{simple_format(offer.internal_notes, class: 'text-info')}
+
           %td.text-warning.price-column
             %strong Unit Price:
             = offer.display_buying_price

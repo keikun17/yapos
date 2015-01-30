@@ -22,7 +22,8 @@ class Offer < ActiveRecord::Base
     :delivery_receipt_reference,
     :sales_invoice_reference,
     :vendor_item_code,
-    :hide_supplier_in_print
+    :hide_supplier_in_print,
+    :internal_notes
 
   belongs_to :request
 

@@ -101,6 +101,15 @@
 
           %a.icon-share.btn.btn-mini{ data: {field_group: 'request_notes'}, title: "Copy to all offers for the same supplier" }
 
+    %p
+      .control-group
+        = f.label :internal_notes, "Interal Notes", class: 'span2 control-label'
+        .controls.span10
+          = f.text_area :internal_notes, :class => 'text_area span10', data: { field_group: 'request_notes'}
+          %br
+          (Will not appear in print)
+
+
   %td
     .control-group
       = f.label :order_reference, "Client PO#", class: 'span3 control-label'
