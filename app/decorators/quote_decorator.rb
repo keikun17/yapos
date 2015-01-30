@@ -43,6 +43,10 @@ class QuoteDecorator < ApplicationDecorator
     end
   end
 
+  def count_offers_with_internal_notes
+    self.offers.where("offers.internal_notes <> ''").count
+  end
+
   def offer_supplier_name_mergable?(supplier_id = nil)
     if supplier_id.blank?
       self.offers.map(&:supplier_name).uniq.count <= 1 and self.offers.supplier_hidden_in_print.empty?

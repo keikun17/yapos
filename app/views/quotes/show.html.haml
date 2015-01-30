@@ -17,6 +17,9 @@
         %button{type: 'button', class: 'close', data: {dismiss: "alert"}} Close
         %h3 Internal Notes :
         = @quote.internal_notes
+        %br
+        - if @quote.count_offers_with_internal_notes > 0
+          %span.offer-internal-note-count There are #{@quote.count_offers_with_internal_notes} offers with internal notes.
 
 .row-fluid
   - if !@quote.title.blank?
