@@ -103,7 +103,7 @@ class OfferDecorator < ApplicationDecorator
   def display_buying_price(options = {})
     with_suffix = options[:with_suffix]
 
-    str = h.number_to_currency(self.buying_price || 0, unit: self.currency)
+    str = h.number_to_currency(self.buying_price || 0, unit: self.buying_currency)
     str = str + "/#{self.request_unit}"
 
     if with_suffix == true and !self.price_suffix.blank?
@@ -120,7 +120,7 @@ class OfferDecorator < ApplicationDecorator
     with_suffix = options[:with_suffix]
 
     total_price = (self.request_quantity || 0 ) * (self.buying_price || 0)
-    str = h.number_to_currency(total_price || 0, unit: self.currency)
+    str = h.number_to_currency(total_price || 0, unit: self.buying_currency)
 
     if with_suffix == true and !self.price_suffix.blank?
       str = str + " (#{self.price_suffix})"

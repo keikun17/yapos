@@ -27,10 +27,13 @@ class SupplierPurchaseDecorator < ApplicationDecorator
 
   # NOTE: This uses the currency of the first offer
   def display_total_amount(options = {})
+    # FIXME / TODO : modify this method in a way where if the offer's currency
+    # are different display a message saying "Cannot display due to difference
+    # in currency among offers"
     with_suffix = options[:with_suffix]
 
     @display_total_amount ||= if !supplier_orders.empty?
-                                h.number_to_currency(supplier_orders.map(&:offer_total_currency_buying_price).compact.sum || 0, unit: supplier_orders.first.offer.currency)
+                                h.number_to_currency(supplier_orders.map(&:offer_total_currency_buying_price).compact.sum || 0, unit: supplier_orders.first.offer.buying_currency)
                               else
                                 h.number_to_currency(0, unit: Currency::LOCAL_CURRENCY)
                               end

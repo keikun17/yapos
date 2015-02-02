@@ -7,6 +7,7 @@ class Offer < ActiveRecord::Base
     :summary,
     :buying_price,
     :selling_price,
+    :buying_currency,
     :currency,
     :currency_conversion,
     :price_vat_status,
