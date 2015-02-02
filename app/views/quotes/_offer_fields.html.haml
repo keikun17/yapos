@@ -26,22 +26,6 @@
     = render 'vendor_items/modal/form', vendor_item: f.object.vendor_item
 
   %td
-    .row-fluid
-      .span12
-        .control-group
-          = f.label :currency, "Currency", class: 'span4 control-label'
-          .controls.span8
-            = f.select(:currency, Currency.all, {}, class: 'span12')
-
-    .row-fluid
-      .span12
-        .control-group
-          = f.label :currency_conversion, "Exchange Rate", class: 'span4 control-label'
-          .controls.span8
-            .input-append.span12
-              = f.text_field :currency_conversion, :class => 'prependedInput span7', :placeholder => '1.00'
-              .add-on
-                PHP
 
     .row-fluid
       .span12
@@ -55,7 +39,8 @@
         .control-group
           = f.label :buying_price, "Supplier Price", class: 'span4 control-label'
           .controls.span8
-            = f.text_field :buying_price, :class => 'text_field span12'
+            = f.select(:buying_currency, Currency.all, {}, class: 'span3')
+            = f.text_field :buying_price, :class => 'text_field span9'
 
 
     .row-fluid
@@ -63,7 +48,8 @@
         .control-group
           = f.label :selling_price, "Our Price", class: 'span4 control-label'
           .controls.span8
-            = f.text_field :selling_price, :class => 'text_field span12'
+            = f.select(:currency, Currency.all, {}, class: 'span3')
+            = f.text_field :selling_price, :class => 'text_field span9'
 
     .row-fluid
       .span12

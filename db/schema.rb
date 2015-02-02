@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130032905) do
+ActiveRecord::Schema.define(version: 20150202120506) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20150130032905) do
     t.string   "vendor_item_id"
     t.boolean  "hide_supplier_in_print"
     t.text     "internal_notes"
+    t.string   "buying_currency"
   end
 
   add_index "offers", ["delivery_receipt_reference"], name: "index_offers_on_delivery_receipt_reference", using: :btree
