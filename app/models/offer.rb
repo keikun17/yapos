@@ -193,4 +193,5 @@ end
 #  vendor_item_id             :string(255)
 #  hide_supplier_in_print     :boolean
 #  internal_notes             :text
+#  buying_currency            :string(255)
 #
