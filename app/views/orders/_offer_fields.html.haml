@@ -6,8 +6,8 @@
     = offer.specs
     - if !offer.summary.blank?
       %span.label.label-success
-        Actual : 
-        =offer.summary
+        Actual :
+        = simple_format offer.summary
 
 
   - #TODO dynamically building association in view.. YUCK!
