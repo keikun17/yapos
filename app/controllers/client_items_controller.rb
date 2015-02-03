@@ -6,4 +6,11 @@ class ClientItemsController < ApplicationController
     # @client_item_codes = Request.uniq.pluck(:item_code).paginate(page: params[:per_page])
     @client_item_codes =  @client_item_codes_arel.collect(&:item_code)
   end
+
+  def show
+    @client = Client.find(params[:client_id])
+    @item_code = params[:id]
+    @requests = Request.where(item_code: @item_code)
+
+  end
 end

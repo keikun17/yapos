@@ -1,0 +1,14 @@
+%h1
+  = @client.name
+%h2
+  Item Code :
+  = @item_code
+
+%table.table
+  %tr
+    %th Quote Reference
+    %th
+  - @requests.each do |request|
+    %tr
+      %td= link_to request.quote.quote_reference, request.quote
+      %td

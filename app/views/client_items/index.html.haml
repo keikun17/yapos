@@ -8,6 +8,6 @@
     %th Request Count
   - @client_item_codes.each do |client_item_code|
     %tr
-      %td= link_to client_item_code, '#'
+      %td= link_to client_item_code, client_client_item_path(id: client_item_code)
       %td= Request.where(item_code: client_item_code).count
 .pull-right= will_paginate(@client_item_codes_arel)
