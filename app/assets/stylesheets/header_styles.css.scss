@@ -13,6 +13,7 @@
 
 .dev-environment-alert-header{
   @extend .pos-header;
+  position: relative;
   margin-bottom: 20px;
   background-color: red;
   color: #fff;
