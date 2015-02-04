@@ -9,9 +9,9 @@
 
 %ul.nav.nav-tabs
   %li
-    = link_to_badge("Supplier PO required", pending_orders_path, count: Order.not_yet_ordered.count)
+    = link_to_badge("Supplier PO required", pending_orders_path(client_id: params[:client_id]), count: @po_required_count)
   %li.active
-    = link_to "Manufacturing/In Transit/For Delivery", orders_path
+    = link_to "Manufacturing/In Transit/For Delivery", orders_path(client_id: params[:client_id])
 
 .pull-right=will_paginate(@orders)
 -# = link_to t('.new', :default => t("helpers.links.new")), new_order_path, :class => 'btn btn-primary'
