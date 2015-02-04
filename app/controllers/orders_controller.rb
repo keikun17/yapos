@@ -1,11 +1,14 @@
 class OrdersController < ApplicationController
+
+  before_filter :set_po_required_count, only: [:index, :pending]
   # GET /orders
   # GET /orders.json
   def index
     @orders = Order.ordered
 
-    unless params[:client_id].blank?
+    if !params[:client_id].blank?
       @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
+    else
     end
 
     @orders = @orders.order("orders.purchase_date desc")
@@ -22,14 +25,14 @@ class OrdersController < ApplicationController
   def print_delivery_monitoring
     @orders = Order.ordered
     @orders = @orders.order("orders.purchase_date desc")
-    # @orders = @orders.paginate(:page => params[:page], :per_page => 10)
-
+    # @orders = @orders.paginate(:page => params[:page], :per_page => 10) 
     unless params[:client_id].blank?
       @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
     end
 
     @orders = @orders.limit(20)
     @decorated_orders = @orders.decorate
+
     # @decorated_orders = OrderDecorator.decorate_collection(@orders.to_a)
 
     render layout: "printable"
@@ -123,5 +126,14 @@ class OrdersController < ApplicationController
     end
   end
 
+  private
+
+  def set_po_required_count
+    if !params[:client_id].blank?
+      @po_required_count = Order.not_yet_ordered.includes(:quotes).where(quotes: {client_id: params[:client_id]} ).count
+    else
+      @po_required_count = Order.not_yet_ordered.count
+    end
+  end
 
 end
