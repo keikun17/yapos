@@ -21,6 +21,25 @@ tr.alternating-offer-fields{
   }
 }
 
+table.quotes-table{
+  .reference,
+  .status,
+  .client-name,
+  .supplier-name,
+  .request-date,
+  .actions{
+    width: 100px;
+  }
+
+  .requested-item{
+    min-width: 30%;
+  }
+
+  .po-reference{
+    width: 120px;
+  }
+}
+
 .price-column{
   width: 200px;
 }
