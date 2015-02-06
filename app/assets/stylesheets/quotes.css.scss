@@ -22,20 +22,20 @@ tr.alternating-offer-fields{
 }
 
 table.quotes-table{
-  .reference,
-  .status,
-  .client-name,
-  .supplier-name,
-  .request-date,
-  .actions{
+  th.reference,
+  th.status,
+  th.client-name,
+  th.supplier-name,
+  th.request-date,
+  th.actions{
     width: 100px;
   }
 
-  .requested-item{
+  th.requested-item{
     min-width: 30%;
   }
 
-  .po-reference{
+  th.po-reference{
     width: 120px;
   }
 }
