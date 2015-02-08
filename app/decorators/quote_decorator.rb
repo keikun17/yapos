@@ -8,6 +8,7 @@ class QuoteDecorator < ApplicationDecorator
       client_name
     end
   end
+
   def display_reference
     quote_reference.blank? ? "(NO REFERENCE ##{id})" : quote_reference
   end

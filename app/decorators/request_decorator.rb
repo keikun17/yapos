@@ -29,5 +29,12 @@ class RequestDecorator < ApplicationDecorator
     end
   end
 
+  def item_code_link
+    if !self.item_code.blank?
+      h.content_tag :span, class: 'client-item-code' do
+        "Item Code : #{self.item_code}"
+      end
+    end
+  end
 
 end

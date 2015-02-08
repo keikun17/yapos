@@ -25,10 +25,7 @@
           - quote.requests.decorate.each do |request|
             %p
               %span.request-quantity= request.display_quantity
-              - if !request.item_code.blank?
-                %span.client-item-code
-                  Item Code :
-                  = request.item_code
+              = request.item_code_link
               = truncate(request.specs, length: 200)
               - delivery_dates = request.offers.map{|offer| offer.supplier_order_delivered_at }.compact 
               - if quote.awarded?
