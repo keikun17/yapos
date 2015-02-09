@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.ordered
+    @orders = Order.all
 
     if !params[:client_id].blank?
       @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
