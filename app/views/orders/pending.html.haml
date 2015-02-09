@@ -6,10 +6,13 @@
     = render 'clients/form_with_select_to_filter_clients'
 
 %ul.nav.nav-tabs
+  %li
+    - if params[:client_id].blank?
+      = link_to "All", orders_path(client_id: params[:client_id])
+    - else
+      = link_to "All #{@client.name}", orders_path(client_id: params[:client_id])
   %li.active
     = link_to_badge("Supplier PO required", pending_orders_path(client_id: params[:client_id]), count: @po_required_count)
-  %li
-    = link_to "Manufacturing/In Transit/For Delivery", orders_path(client_id: params[:client_id])
 
 .pull-right=will_paginate(@orders)
 %table.table.table-condensed

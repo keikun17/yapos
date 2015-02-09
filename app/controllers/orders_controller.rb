@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
     @orders = Order.all
 
     if !params[:client_id].blank?
+      @client = Client.find(params[:client_id])
       @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
     else
     end
@@ -20,6 +21,19 @@ class OrdersController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @orders }
     end
+  end
+
+  def pending
+    @orders = Order.not_yet_ordered
+
+    if !params[:client_id].blank?
+      @client = Client.find(params[:client_id])
+      @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
+    end
+
+    @orders = @orders.order("orders.purchase_date desc")
+    @orders = @orders.paginate(per_page: 20, page: params[:page])
+    @decorated_orders = OrderDecorator.decorate_collection(@orders)
   end
 
   def print_delivery_monitoring
@@ -36,18 +50,6 @@ class OrdersController < ApplicationController
     # @decorated_orders = OrderDecorator.decorate_collection(@orders.to_a)
 
     render layout: "printable"
-  end
-
-  def pending
-    @orders = Order.not_yet_ordered
-
-    unless params[:client_id].blank?
-      @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
-    end
-
-    @orders = @orders.order("orders.purchase_date desc")
-    @orders = @orders.paginate(per_page: 20, page: params[:page])
-    @decorated_orders = OrderDecorator.decorate_collection(@orders)
   end
 
   # GET /orders/1
