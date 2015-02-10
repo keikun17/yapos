@@ -44,7 +44,7 @@
 
           %td
             - if offer.supplier_purchase.nil? || offer.supplier_purchase.reference.blank?
-              = link_to_modal("Purchase", offer)
+              = link_to_modal("Purchase", offer, {class: 'btn btn-mini'})
             - else
               %i Purchased
 
@@ -58,7 +58,7 @@
 
               %td
                 - if offer.supplier_purchase.nil? || offer.supplier_purchase.reference.blank?
-                  = link_to_modal("Purchase", offer)
+                  = link_to_modal("Purchase", offer, {class: 'btn btn-mini'})
                 - else
                   %i Purchased
 
