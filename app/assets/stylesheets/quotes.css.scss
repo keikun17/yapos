@@ -27,16 +27,13 @@ table.quotes-table{
   th.client-name,
   th.supplier-name,
   th.request-date,
-  th.actions{
+  th.actions,
+  th.po-reference{
     width: 100px;
   }
 
   th.requested-item{
     min-width: 30%;
-  }
-
-  th.po-reference{
-    width: 120px;
   }
 }
 
