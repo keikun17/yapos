@@ -21,7 +21,8 @@
       %th.reference PO#
       %th.order-date Client Ordered At
       %th.client-name Client
-      %th Item
+      %th.quantity Qty
+      %th Offer
       %th.span2
   %tbody
     - @decorated_orders.each do |order|
@@ -39,7 +40,9 @@
             - if offer && offer.client
               = link_to_client(offer.client)
           %td
-            = offer.display_specs(quantity_class: 'label label-inverse')
+            %span.request-quantity= offer.complete_quantity
+          %td
+            %p= offer.specs
             = offer.display_actual_specs
 
           %td
@@ -53,7 +56,9 @@
               %td
                 = link_to_client(offer.client)
               %td
-                = offer.display_specs(quantity_class: 'label label-inverse').html_safe
+                %span.request-quantity= offer.complete_quantity
+              %td
+                %p= offer.specs
                 = offer.display_actual_specs
 
               %td

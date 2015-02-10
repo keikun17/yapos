@@ -6,8 +6,17 @@
 table.orders-table{
   th.reference,
   th.order-date,
+  th.client-po-date,
+  th.supplier-po-reference,
+  th.supplier-po-date,
   th.client-name{
     width: 100px;
+  }
+
+  th.estimated-ex-works,
+  th.estimated-delivery,
+  th.delivered-at{
+    width: 80px;
   }
 
   th.quantity{
