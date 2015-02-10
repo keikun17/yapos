@@ -38,7 +38,17 @@ class OrdersController < ApplicationController
 
   def print_delivery_monitoring
     @orders = Order.ordered
-    @orders = @orders.order("orders.purchase_date desc")
+    @from_date = Time.zone.local(params[:print]['from_date(1i)'],
+      params[:print]['from_date(2i)'],
+      params[:print]['from_date(3i)']
+                                ).beginning_of_day
+
+    @to_date = Time.zone.local(params[:print]['to_date(1i)'],
+      params[:print]['to_date(2i)'],
+      params[:print]['to_date(3i)']
+                         ).end_of_day
+
+    @orders = @orders.order("orders.purchase_date desc").where(purchase_date: @from_date..@to_date)
     # @orders = @orders.paginate(:page => params[:page], :per_page => 10) 
     unless params[:client_id].blank?
       @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
