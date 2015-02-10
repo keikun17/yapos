@@ -23,3 +23,12 @@ table.orders-table{
     width: 30px;
   }
 }
+
+select#print_from_date_1i,
+select#print_from_date_2i,
+select#print_from_date_3i,
+select#print_to_date_1i,
+select#print_to_date_2i,
+select#print_to_date_3i {
+  width: 100px;
+}
