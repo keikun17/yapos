@@ -7,8 +7,11 @@
       %th{width: '40px'} PO#
       %th{width: '40px'} Client
       %th{width: '30px'} Qty
-      %th.span4 Item
+      %th.span4 Offer
+      %th.span4 Actual
       %th{width: '50px'} Our PO#
+      %th{width: '50px'} Supplier Price
+      %th{width: '50px'} Supplier
       %th{width: '50px'} Client Purchased at
       %th{width: '50px'} Estimated EX-Works Date
       %th{width: '50px'} Estimated Delivery Date
@@ -16,7 +19,7 @@
   %tbody
     - @decorated_orders.each do |order|
       - offer_count = order.offers.count
-      - offers = order.offers
+      - offers = order.offers.decorate
       - offer = offers.shift
 
       - if offer
@@ -24,17 +27,21 @@
           %td
             %strong= link_to order.reference, order
           %td
-            - if offer && offer.client
-              = link_to(offer.client.name, client_path(offer.client))
+            - if !offer.client.abbrev.blank?
+              = offer.client.abbrev
+            - else
+              = offer.client.name
           %td
             #{offer.request_quantity} #{offer.request_unit}
           %td
             = offer.specs
-            .div{style: 'border: 1px solid black'}
-              %strong Actual
-              = offer.summary
+          %td
+            = offer.summary
           %td
             = offer.supplier_purchase_reference
+          %td
+            = offer.display_buying_price
+          %td
             = offer.supplier_name
           %td
             %i= order.display_purchase_date
@@ -49,16 +56,21 @@
             %tr
               %td{style: 'border-top: none'}
               %td
-                = link_to(offer.client.name, client_path(offer.client))
+                - if !offer.client.abbrev.blank?
+                  = offer.client.abbrev
+                - else
+                  = offer.client.name
               %td
                 #{offer.request_quantity} #{offer.request_unit}
               %td
                 = offer.specs
-                .div{style: 'border: 1px solid black'}
-                  %strong Actual
-                  = offer.summary
+              %td
+                = offer.summary
               %td
                 = offer.supplier_purchase_reference
+              %td
+                = offer.display_buying_price
+              %td
                 = offer.supplier_name
               %td
                 %i= order.display_purchase_date
