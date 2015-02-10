@@ -23,13 +23,17 @@ tr.alternating-offer-fields{
 
 table.quotes-table{
   th.reference,
-  th.status,
   th.client-name,
   th.supplier-name,
   th.request-date,
   th.actions,
   th.po-reference{
     width: 100px;
+  }
+
+  th.quantity,
+  th.status{
+    width:80px;
   }
 
   th.requested-item{
