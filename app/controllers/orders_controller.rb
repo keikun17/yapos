@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
     end
 
     @orders = @orders.order("orders.purchase_date desc")
-    @orders = @orders.paginate(:page => params[:page], :per_page => 10)
+    @orders = @orders.paginate(:page => params[:page], :per_page => 40)
 
     @decorated_orders = OrderDecorator.decorate_collection(@orders.to_a)
 
@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
     end
 
     @orders = @orders.order("orders.purchase_date desc")
-    @orders = @orders.paginate(per_page: 20, page: params[:page])
+    @orders = @orders.paginate(per_page: 40, page: params[:page])
     @decorated_orders = OrderDecorator.decorate_collection(@orders)
   end
 
