@@ -54,7 +54,7 @@ class OrdersController < ApplicationController
       @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
     end
 
-    @orders = @orders.limit(20)
+    @orders = @orders
     @decorated_orders = @orders.decorate
 
     # @decorated_orders = OrderDecorator.decorate_collection(@orders.to_a)
