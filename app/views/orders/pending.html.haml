@@ -15,12 +15,12 @@
     = link_to_badge("Supplier PO required", pending_orders_path(client_id: params[:client_id]), count: @po_required_count)
 
 .pull-right=will_paginate(@orders)
-%table.table.table-condensed
+%table.table.table-condensed.orders-table
   %thead
     %tr
-      %th.span2 PO#
-      %th.span2 Client Ordered At
-      %th.span2 Client
+      %th.reference PO#
+      %th.order-date Client Ordered At
+      %th.client-name Client
       %th Item
       %th.span2
   %tbody
