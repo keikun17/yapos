@@ -16,6 +16,8 @@
       %th{width: '50px'} Estimated EX-Works Date
       %th{width: '50px'} Estimated Delivery Date
       %th{width: '50px'} Delivered at
+      %th{width: '50px'} DR#
+      %th{width: '50px'} SI#
   %tbody
     - @decorated_orders.each do |order|
       - offer_count = order.offers.count
@@ -51,6 +53,10 @@
             %i= offer.supplier_order_estimated_delivery_date
           %td
             %i= offer.supplier_order_delivery_date
+          %td
+            = offer.delivery_receipt_reference
+          %td
+            = offer.sales_invoice_reference
 
           - offers.each do |offer|
             %tr
@@ -80,3 +86,7 @@
                 %i= offer.supplier_order_estimated_delivery_date
               %td
                 %i= offer.supplier_order_delivery_date
+              %td
+                = offer.delivery_receipt_reference
+              %td
+                = offer.sales_invoice_reference
