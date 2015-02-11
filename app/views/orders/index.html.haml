@@ -44,7 +44,9 @@
       %th.supplier-po-date Ordered from Supplier at
       %th.estimated-ex-works Estimated EX-Works Date
       %th.estimated-delivery Estimated Delivery Date
-      %th.delivered_at Delivered at
+      %th.delivered-at Delivered at
+
+
   %tbody
     - @decorated_orders.each do |order|
       - offer_count = order.offers.count
