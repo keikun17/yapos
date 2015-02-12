@@ -7,9 +7,11 @@
 
 %table.table
   %tr
-    %th Quote Reference
-    %th
+    %th.span4 Quote Reference
+    %th.span1 Date Quoted
+    %th.span7
   - @requests.each do |request|
     %tr
       %td= link_to request.quote.quote_reference, request.quote
+      %td= request.quote.quote_date.to_date if request.quote.quote_date
       %td
