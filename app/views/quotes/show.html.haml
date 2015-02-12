@@ -120,17 +120,16 @@
           %li= link_to attachment[:document], quote_attachment_path(@quote, :id => attachment.id)
 
 %h3 Requests
-%table.table.table-striped
+%table.table.table-striped.quote-details
   %thead
     %tr
-      %th Requested Specs
-      %th{width: '240px'} Offered Specs
-      %th Supplier
-      %th Delivery/Terms/Warranty
-      %th Buying Price
-      %th Selling Price
-      %th Order Reference
-      %th
+      %th.span3 Requested Specs
+      %th.span3 {width: '240px'} Offered Specs
+      %th.span1 Supplier
+      %th.span2 Delivery/Terms/Warranty
+      %th.span1 Buying Price
+      %th.span1 Selling Price
+      %th.span1 Order Reference
   %tbody
     - @requests.each do |req|
       - offer_count = req.offers.size
@@ -177,19 +176,23 @@
             .alert.alert-internal-note
               %strong.text-info Internal Notes:
               #{simple_format(offer.internal_notes, class: 'text-info')}
-          %td.text-warning.price-column
+          %td.text-warning
             - if offer
               %strong Unit Price:
+              %br
               = offer.display_buying_price
               %br
               %strong Total:
+              %br
               = offer.display_total_buying_price
-          %td.text-success.price-column
+          %td.text-success
             - if offer
               %strong Unit Price:
+              %br
               = offer.display_selling_price
               %br
               %strong Total:
+              %br
               = offer.display_total_selling_price_by_currency
         %td
           - if offer
@@ -227,17 +230,21 @@
               %strong.text-info Internal Notes:
               #{simple_format(offer.internal_notes, class: 'text-info')}
 
-          %td.text-warning.price-column
+          %td.text-warning
             %strong Unit Price:
+            %br
             = offer.display_buying_price
             %br
             %strong Total:
+            %br
             = offer.display_total_buying_price
-          %td.text-success.price-column
+          %td.text-success
             %strong Unit Price:
+            %br
             = offer.display_selling_price
             %br
             %strong.text-success Total:
+            %br
             = offer.display_total_selling_price_by_currency
           %td
             = render 'other_references', offer: offer
