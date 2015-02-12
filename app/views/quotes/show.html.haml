@@ -141,6 +141,8 @@
       %tr
         %td{rowspan: offer_count}
           %span.request-quantity= req.display_quantity
+          %br
+          = req.item_code_link
           = simple_format(req.specs)
           - if !req.remarks.blank?
             .alert.alert-internal-note.text-info
