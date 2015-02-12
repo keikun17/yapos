@@ -10,7 +10,7 @@ class ClientItemsController < ApplicationController
   def show
     @client = Client.find(params[:client_id])
     @item_code = params[:id]
-    @requests = Request.where(item_code: @item_code)
+    @requests = Request.where(item_code: @item_code).decorate
 
   end
 end

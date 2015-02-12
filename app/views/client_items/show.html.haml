@@ -5,13 +5,15 @@
     Item Code :
     = @item_code
 
-%table.table
-  %tr
-    %th.span4 Quote Reference
-    %th.span1 Date Quoted
-    %th.span7
-  - @requests.each do |request|
+%table.table.table-striped.quote-details
+  %thead
     %tr
-      %td= link_to request.quote.quote_reference, request.quote
-      %td= request.quote.quote_date.to_date if request.quote.quote_date
-      %td
+      %th.span3 Requested Specs
+      %th.span3 Offered Specs
+      %th.span1 Supplier
+      %th.span2 Delivery/Terms/Warranty
+      %th.span1 Buying Price
+      %th.span1 Selling Price
+      %th.span1 Order Reference
+  %tbody
+    = render 'quotes/requests', requests: @requests
