@@ -1,6 +1,8 @@
 %h1 Delivery Monitoring
 
-%h3 As of #{Date.today.to_s(:long)} (Last 20)
+%h3 From #{@from_date.to_date.to_s(:long)} to #{@to_date.to_date.to_s(:long)}.
+%h4 As of #{Date.today.to_s(:long)}.
+
 %table.table.table-bordered.table-compact{style: 'font-size: 8px !important'}
   %thead
     %tr
