@@ -9,7 +9,6 @@
       %th{width: '40px'} PO#
       %th{width: '40px'} Client
       %th{width: '30px'} Qty
-      %th.span4 Offer
       %th.span4 Actual
       %th{width: '50px'} Our PO#
       %th{width: '50px'} Supplier Price
@@ -37,8 +36,6 @@
               = offer.client.name
           %td
             #{offer.request_quantity} #{offer.request_unit}
-          %td
-            = offer.specs
           %td
             = offer.summary
           %td
@@ -70,8 +67,6 @@
                   = offer.client.name
               %td
                 #{offer.request_quantity} #{offer.request_unit}
-              %td
-                = offer.specs
               %td
                 = offer.summary
               %td
