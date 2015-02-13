@@ -47,11 +47,11 @@
           %td
             %i= order.display_purchase_date
           %td
-            %i= offer.supplier_order_estimated_manufacture_date
+            %i= offer.supplier_order_estimated_manufacture_date.try(:to_date)
           %td
-            %i= offer.supplier_order_estimated_delivery_date
+            %i= offer.supplier_order_estimated_delivery_date.try(:to_date)
           %td
-            %i= offer.supplier_order_delivery_date
+            %i= offer.supplier_order_delivery_date.try(:to_date)
           %td
             = offer.delivery_receipt_reference
           %td
