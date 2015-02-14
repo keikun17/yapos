@@ -5,7 +5,8 @@ class Request < ActiveRecord::Base
     :remarks,
     :offers_attributes,
     :position,
-    :item_code
+    :item_code,
+    :service
 
   belongs_to :quote
   belongs_to :supplier

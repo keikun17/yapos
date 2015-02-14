@@ -19,11 +19,14 @@
     %p
       = f.label :specs, 'Request Specs', class: 'bold'
     %p
-    = f.text_area :specs, :class => 'span12 text_area', :rows => 4
+      = f.text_area :specs, :class => 'span12 text_area', :rows => 4
     %p
       = f.label :item_code, 'Item/Material Code', class: 'bold'
+      = f.text_field :item_code, :class => 'span6 text_field'
     %p
-    = f.text_field :item_code, :class => 'span6 text_field'
+      .checkbox
+        = f.check_box :service, class: 'check_box'
+        Service
 
   %td
     %p
