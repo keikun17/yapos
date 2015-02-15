@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150214150056) do
+ActiveRecord::Schema.define(version: 20150215084646) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -58,11 +58,13 @@ ActiveRecord::Schema.define(version: 20150214150056) do
     t.boolean  "hide_supplier_in_print"
     t.text     "internal_notes"
     t.string   "buying_currency"
+    t.boolean  "service"
   end
 
   add_index "offers", ["delivery_receipt_reference"], name: "index_offers_on_delivery_receipt_reference", using: :btree
   add_index "offers", ["order_reference"], name: "index_offers_on_order_reference", using: :btree
   add_index "offers", ["sales_invoice_reference"], name: "index_offers_on_sales_invoice_reference", using: :btree
+  add_index "offers", ["service"], name: "index_offers_on_service", using: :btree
   add_index "offers", ["summary"], name: "index_offers_on_summary", using: :btree
   add_index "offers", ["vendor_item_code"], name: "index_offers_on_vendor_item_code", using: :btree
   add_index "offers", ["vendor_item_id"], name: "index_offers_on_vendor_item_id", using: :btree
@@ -131,11 +133,9 @@ ActiveRecord::Schema.define(version: 20150214150056) do
     t.integer  "non_client_purchased_count", default: 0
     t.integer  "position"
     t.string   "item_code"
-    t.boolean  "service"
   end
 
   add_index "requests", ["item_code"], name: "index_requests_on_item_code", using: :btree
-  add_index "requests", ["service"], name: "index_requests_on_service", using: :btree
 
   create_table "stocks", force: true do |t|
     t.float    "remaining_quantity"
