@@ -13,6 +13,8 @@
       = link_to "All #{@client.name}", orders_path(client_id: params[:client_id])
   %li.active
     = link_to_badge("Supplier PO required", pending_orders_path(client_id: params[:client_id]), count: @po_required_count)
+  %li
+    = link_to "Services", services_orders_path
 
 .pull-right=will_paginate(@orders)
 %table.table.table-condensed.orders-table

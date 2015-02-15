@@ -23,6 +23,26 @@ class OrdersController < ApplicationController
     end
   end
 
+  def services
+    @orders = Order.includes(:quotes, {quotes: :offers}).where(offers: {service: true})
+
+    if !params[:client_id].blank?
+      @client = Client.find(params[:client_id])
+      @orders = @orders.where(quotes: {client_id: params[:client_id]})
+    else
+    end
+
+    @orders = @orders.order("orders.purchase_date desc")
+    @orders = @orders.paginate(:page => params[:page], :per_page => 40)
+
+    @decorated_orders = OrderDecorator.decorate_collection(@orders.to_a)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @orders }
+    end
+  end
+
   def pending
     @orders = Order.not_yet_ordered
 

@@ -24,6 +24,7 @@ Yapos::Application.routes.draw do
     collection do
       get 'pending'
       get 'print_delivery_monitoring'
+      get 'services'
     end
     resources :attachments do
       member do
