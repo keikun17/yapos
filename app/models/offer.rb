@@ -24,7 +24,8 @@ class Offer < ActiveRecord::Base
     :sales_invoice_reference,
     :vendor_item_code,
     :hide_supplier_in_print,
-    :internal_notes
+    :internal_notes,
+    :service
 
   belongs_to :request
 
