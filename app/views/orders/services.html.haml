@@ -40,8 +40,8 @@
       %th.client-name Client
       %th.quantity Qty
       %th Offer
-      %th.client-po-date Client Purchased at
       %th.supplier-po-reference Our PO#
+      %th.client-po-date PO Issued at
       %th.supplier-po-date Ordered from Supplier at
       %th.estimated-ex-works Estimated Work Start
       %th.delivered-at Completed At
@@ -67,8 +67,8 @@
             - if !offer.supplier_order_actual_specs.blank?
               %span.label.label-important Actual:
               =offer.supplier_order_actual_specs
-          %td= order.display_purchase_date
           %td= offer.supplier_purchase_link
+          %td= order.display_purchase_date
           %td
           %td
           %td
@@ -84,8 +84,8 @@
                 - if !offer.supplier_order_actual_specs.blank?
                   %span.label.label-important Actual:
                   =offer.supplier_order_actual_specs
-              %td= order.display_purchase_date
               %td= offer.supplier_purchase_link
+              %td= order.display_purchase_date
               %td
               %td
               %td
