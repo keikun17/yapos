@@ -1,0 +1,92 @@
+.client-order-header
+  %h1
+    Delivery Monitoring
+
+.row-fluid
+  .span12
+    -# %h3 Print Delivery Monitoring Sheet
+    -# = form_tag print_delivery_monitoring_orders_path, method: 'get' do
+    -#   = hidden_field_tag :client_id, params[:client_id]
+    -#   %p
+    -#     From
+    -#     = date_select 'print', 'from_date', default: Date.today.beginning_of_month
+    -#   %p
+    -#     To
+    -#     = date_select 'print', 'to_date', default: Date.today.end_of_month
+    -#   %p
+    -#     = submit_tag "Print", class: 'btn'
+
+.row-fluid
+  .span12
+    = render 'clients/form_with_select_to_filter_clients'
+
+%ul.nav.nav-tabs
+  %li
+    - if params[:client_id].blank?
+      = link_to "All", orders_path(client_id: params[:client_id])
+    - else
+      = link_to "All #{@client.name}", orders_path(client_id: params[:client_id])
+  %li
+    = link_to_badge("Supplier PO required", pending_orders_path(client_id: params[:client_id]), count: @po_required_count)
+  %li.active
+    = link_to "Services", services_orders_path
+
+.pull-right=will_paginate(@orders)
+-# = link_to t('.new', :default => t("helpers.links.new")), new_order_path, :class => 'btn btn-primary'
+%table.table.table-condensed.orders-table
+  %thead
+    %tr
+      %th.reference PO#
+      %th.client-name Client
+      %th.quantity Qty
+      %th Offer
+      %th.client-po-date Client Purchased at
+      %th.supplier-po-reference Our PO#
+      %th.supplier-po-date Ordered from Supplier at
+      %th.estimated-ex-works Estimated Work Start
+      %th.delivered-at Completed At
+
+
+  %tbody
+    - @decorated_orders.each do |order|
+      - offer_count = order.offers.count
+      - offers = order.decorated_offers
+      - offer = offers.shift
+
+      - if offer
+        %tr{class: offer_row_class(offer)}
+          %td{rowspan: offer_count}
+            %strong= link_to order.reference, order
+          %td
+            - if offer && offer.client
+              = link_to_client(offer.client)
+          %td
+            %span.request-quantity= offer.complete_quantity
+          %td
+            %p= offer.specs
+            - if !offer.supplier_order_actual_specs.blank?
+              %span.label.label-important Actual:
+              =offer.supplier_order_actual_specs
+          %td= order.display_purchase_date
+          %td= offer.supplier_purchase_link
+          %td
+          %td
+          %td
+
+          - offers.each do |offer|
+            %tr{class: offer_row_class(offer)}
+              %td
+                = link_to_client(offer.client)
+              %td
+                %span.request-quantity= offer.complete_quantity
+              %td
+                %p= offer.specs
+                - if !offer.supplier_order_actual_specs.blank?
+                  %span.label.label-important Actual:
+                  =offer.supplier_order_actual_specs
+              %td= order.display_purchase_date
+              %td= offer.supplier_purchase_link
+              %td
+              %td
+              %td
+.pull-right=will_paginate(@orders)
