@@ -115,6 +115,10 @@ class Offer < ActiveRecord::Base
 
   delegate :ordered_at, :order_date, to: :supplier_purchase, allow_nil: true, prefix: true
 
+  def supply?
+    !self.service?
+  end
+
   def client_ordered?
     !self.order_reference.blank?
   end
