@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'rails4_client_side_validations'
-gem 'rails', '4.0.3'
+gem 'rails', '~> 4.1.8'
 gem 'haml-rails'
-gem 'sass-rails'
+gem 'sass-rails', '~> 5.0.1'
 gem 'coffee-rails', '4.0.0'
 gem 'less-rails'
 gem 'jquery-rails'
@@ -15,7 +15,7 @@ gem 'draper'
 gem 'active_model_serializers'
 
 # attr_protected and attr_accessible has been extracted to a gem
-gem 'protected_attributes'
+gem 'protected_attributes', '~> 1.0.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -43,7 +43,8 @@ group :production do
   gem 'mysql2'
 end
 
-gem 'compass-rails', git: 'git://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
+# gem 'compass-rails', git: 'git://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
+gem 'compass-rails', '2.0.4'
 gem 'counter_culture'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
