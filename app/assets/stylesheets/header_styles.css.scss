@@ -26,7 +26,7 @@
 }
 
 .print-header-label{
-  @extend .span12;
+  @extend .span12 !optional;
   border: 2px solid black;
   text-align: center;
 }
@@ -38,7 +38,7 @@
 }
 
 .alert-container{
-  @extend .row;
+  @extend .row !optional;
   margin-top: -20px;
   margin-left: -20px;
   margin-right: -20px;
