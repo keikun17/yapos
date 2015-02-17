@@ -44,7 +44,10 @@
           %td
             %span.request-quantity= offer.complete_quantity
           %td
-            %p= offer.specs
+            %p
+              - if offer.service?
+                %span.label.label-service Service:
+              = offer.specs
             = offer.display_actual_specs
 
           %td
@@ -60,7 +63,10 @@
               %td
                 %span.request-quantity= offer.complete_quantity
               %td
-                %p= offer.specs
+                %p
+                  - if offer.service?
+                    %span.label.label-service Service:
+                  = offer.specs
                 = offer.display_actual_specs
 
               %td

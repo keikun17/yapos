@@ -63,9 +63,11 @@
           %td
             %span.request-quantity= offer.complete_quantity
           %td
-            %p= offer.specs
-            - if !offer.supplier_order_actual_specs.blank?
+            %p
               %span.label.label-service Service:
+              = offer.specs
+            - if !offer.supplier_order_actual_specs.blank?
+              %span.label.label-important Actual:
               =offer.supplier_order_actual_specs
           %td= offer.supplier_purchase_link
           %td= order.display_purchase_date
@@ -80,9 +82,11 @@
               %td
                 %span.request-quantity= offer.complete_quantity
               %td
-                %p= offer.specs
-                - if !offer.supplier_order_actual_specs.blank?
+                %p
                   %span.label.label-service Service:
+                  = offer.specs
+                - if !offer.supplier_order_actual_specs.blank?
+                  %span.label.label-important Actual:
 
                   =offer.supplier_order_actual_specs
               %td= offer.supplier_purchase_link
