@@ -2,7 +2,7 @@ class SupplierPurchasesController < ApplicationController
 
   def index
     @supplier_purchases = SupplierPurchase.where("supplier_purchases.reference <> ''")
-    @supplier_purchases = @supplier_purchases.includes(:supplier_orders).where('supplier_orders.id is not null')
+    @supplier_purchases = @supplier_purchases.includes(:supplier_orders).where.not(supplier_orders: {id: nil})
     @supplier_purchases = @supplier_purchases.order('supplier_purchases.id desc')
     # @supplier_purchases = @supplier_purchases.order('supplier_purchases.ordered_at desc')
     # @supplier_purchases = @supplier_purchases.order('supplier_purchases.ordered_at is null desc')
