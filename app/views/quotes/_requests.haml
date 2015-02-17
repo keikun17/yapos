@@ -18,7 +18,7 @@
     %td{width: '240px'}
       - if offer
         - if offer.service?
-          %span.label.label-service Service
+          %span.badge.badge-service Service
         = simple_format(offer.specs)
         - if !offer.summary.blank? || !offer.vendor_item.nil?
           .alert.alert-success
@@ -73,7 +73,7 @@
     %tr
       %td{width: '240px'}
         - if offer.service?
-          %span.label.label-service Service
+          %span.badge.badge-service Service
         = simple_format(offer.specs)
         - if !offer.summary.blank? || !offer.vendor_item.nil?
           .alert.alert-success
