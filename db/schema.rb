@@ -35,20 +35,20 @@ ActiveRecord::Schema.define(version: 20150215084646) do
     t.integer  "request_id"
     t.integer  "supplier_id"
     t.text     "specs"
-    t.float    "buying_price"
-    t.float    "selling_price"
+    t.float    "buying_price",               limit: 24
+    t.float    "selling_price",              limit: 24
     t.string   "currency"
-    t.float    "currency_conversion"
+    t.float    "currency_conversion",        limit: 24
     t.string   "order_reference"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.text     "remarks"
     t.string   "terms"
     t.string   "delivery"
     t.string   "warranty"
     t.string   "price_vat_status"
-    t.float    "total_buying_price"
-    t.float    "total_selling_price"
+    t.float    "total_buying_price",         limit: 24
+    t.float    "total_selling_price",        limit: 24
     t.string   "price_basis"
     t.string   "summary"
     t.string   "delivery_receipt_reference"
@@ -100,11 +100,11 @@ ActiveRecord::Schema.define(version: 20150215084646) do
   create_table "quotes", force: true do |t|
     t.datetime "quote_date"
     t.string   "quote_reference"
-    t.float    "quantity"
+    t.float    "quantity",           limit: 24
     t.text     "description"
     t.string   "status"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "client_id"
     t.integer  "supplier_id"
     t.integer  "order_id"
@@ -125,12 +125,12 @@ ActiveRecord::Schema.define(version: 20150215084646) do
     t.integer  "supplier_id"
     t.text     "quoted_specifications"
     t.text     "remarks"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.float    "quantity"
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.float    "quantity",                   limit: 24
     t.string   "unit"
-    t.integer  "client_purchased_count",     default: 0
-    t.integer  "non_client_purchased_count", default: 0
+    t.integer  "client_purchased_count",                default: 0
+    t.integer  "non_client_purchased_count",            default: 0
     t.integer  "position"
     t.string   "item_code"
   end
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 20150215084646) do
   add_index "requests", ["item_code"], name: "index_requests_on_item_code", using: :btree
 
   create_table "stocks", force: true do |t|
-    t.float    "remaining_quantity"
+    t.float    "remaining_quantity", limit: 24
     t.string   "reference"
     t.string   "unit"
     t.integer  "supplier_id"
@@ -148,7 +148,7 @@ ActiveRecord::Schema.define(version: 20150215084646) do
     t.datetime "date_used_up"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "initial_quantity"
+    t.float    "initial_quantity",   limit: 24
   end
 
   create_table "supplier_orders", force: true do |t|
