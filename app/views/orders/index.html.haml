@@ -67,7 +67,10 @@
           %td
             %p= offer.specs
             - if !offer.supplier_order_actual_specs.blank?
-              %span.label.label-important Actual:
+              - if offer.service?
+                %span.label.label-service Service:
+              -else
+                %span.label.label-important Actual:
               =offer.supplier_order_actual_specs
           %td= order.display_purchase_date
           %td= offer.supplier_purchase_link
@@ -88,7 +91,10 @@
               %td
                 %p= offer.specs
                 - if !offer.supplier_order_actual_specs.blank?
-                  %span.label.label-important Actual:
+                  - if offer.service?
+                    %span.label.label-service Service:
+                  -else
+                    %span.label.label-important Actual:
                   =offer.supplier_order_actual_specs
               %td= order.display_purchase_date
               %td= offer.supplier_purchase_link
