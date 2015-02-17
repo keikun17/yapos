@@ -17,6 +17,8 @@
           #{simple_format(req.remarks)}
     %td{width: '240px'}
       - if offer
+        - if offer.service?
+          %span.label.label-service Service
         = simple_format(offer.specs)
         - if !offer.summary.blank? || !offer.vendor_item.nil?
           .alert.alert-success
@@ -70,6 +72,8 @@
   - offers.each do |offer|
     %tr
       %td{width: '240px'}
+        - if offer.service?
+          %span.label.label-service Service
         = simple_format(offer.specs)
         - if !offer.summary.blank? || !offer.vendor_item.nil?
           .alert.alert-success
