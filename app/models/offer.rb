@@ -68,16 +68,16 @@ class Offer < ActiveRecord::Base
   scope :pending_client_order, -> { where("offers.order_reference = '' or offers.order_reference is null") }
 
   scope :pending_supplier_order, -> do
-    s = purchased.includes(:supplier_order)
+    s = purchased.includes(:supplier_order).references(:supplier_orders)
     s = s.where('supplier_orders.reference is null')
     s
   end
 
   scope :by_quote_date, -> do
-    includes(:quote).order("quotes.quote_date desc")
+    includes(:quote).references(:quotes).order("quotes.quote_date desc")
   end
   scope :by_supplier_order_date, -> do
-    includes(supplier_order: :supplier_purchase).order("supplier_purchases.ordered_at is null desc").order("supplier_purchases.ordered_at desc")
+    includes(supplier_order: :supplier_purchase).references(:supplier_orders, :supplier_purchases).order("supplier_purchases.ordered_at is null desc").order("supplier_purchases.ordered_at desc")
   end
 
   # Client Delegation
