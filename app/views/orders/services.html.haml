@@ -64,7 +64,7 @@
             %span.request-quantity= offer.complete_quantity
           %td
             %p
-              %span.badge.badge-service Service:
+              %span.badge.badge-service Service
               = offer.specs
             - if !offer.supplier_order_actual_specs.blank?
               %span.label.label-important Actual:
@@ -83,7 +83,7 @@
                 %span.request-quantity= offer.complete_quantity
               %td
                 %p
-                  %span.badge.badge-service Service:
+                  %span.badge.badge-service Service
                   = offer.specs
                 - if !offer.supplier_order_actual_specs.blank?
                   %span.label.label-important Actual:
