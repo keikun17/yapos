@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150215084646) do
+ActiveRecord::Schema.define(version: 20150218123826) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20150215084646) do
     t.string   "currency"
     t.float    "currency_conversion",        limit: 24
     t.string   "order_reference"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
     t.text     "remarks"
     t.string   "terms"
     t.string   "delivery"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20150215084646) do
     t.boolean  "hide_supplier_in_print"
     t.text     "internal_notes"
     t.string   "buying_currency"
-    t.boolean  "service"
+    t.boolean  "service",                               default: false
   end
 
   add_index "offers", ["delivery_receipt_reference"], name: "index_offers_on_delivery_receipt_reference", using: :btree
