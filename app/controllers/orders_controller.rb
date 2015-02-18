@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  before_filter :set_po_required_count, only: [:index, :pending]
+  before_filter :set_po_required_count, only: [:index, :services]
   # GET /orders
   # GET /orders.json
   def index
@@ -161,10 +161,11 @@ class OrdersController < ApplicationController
   private
 
   def set_po_required_count
+    po_required = Order.joins(:offers).references(:offers).where.not(offers: {service: true}).where.not(offers: {id: nil}).not_yet_ordered
     if !params[:client_id].blank?
-      @po_required_count = Order.not_yet_ordered.includes(:quotes).where(quotes: {client_id: params[:client_id]} ).count
+      @po_required_count = po_required.includes(:quotes).where(quotes: {client_id: params[:client_id]} ).count
     else
-      @po_required_count = Order.not_yet_ordered.count
+      @po_required_count = po_required.count
     end
   end
 
