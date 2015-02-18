@@ -30,7 +30,7 @@
   %li
     = link_to_badge("Supplier PO required", pending_orders_path(client_id: params[:client_id]), count: @po_required_count)
   %li
-    = link_to "Services", services_orders_path
+    = link_to "Services", services_orders_path(client_id: params[:client_id])
 
 .pull-right=will_paginate(@orders)
 -# = link_to t('.new', :default => t("helpers.links.new")), new_order_path, :class => 'btn btn-primary'
