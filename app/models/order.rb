@@ -19,6 +19,11 @@ class Order < ActiveRecord::Base
     :foreign_key => 'order_reference',
     :primary_key => 'reference'
 
+  # has_many :supply_offers, -> { where.not(service: true) },
+  #   class_name: 'Offer',
+  #   foreign_key: 'order_reference',
+  #   primary_key: 'reference'
+
   has_many :quotes, -> {uniq}, :through => :offers
   has_many :clients, -> {uniq}, :through => :quotes
   has_many :suppliers, -> {uniq}, :through => :offers
@@ -34,7 +39,7 @@ class Order < ActiveRecord::Base
     :allow_destroy => true,
     :reject_if => lambda { |a| a[:document].nil? }
 
-  scope :not_yet_ordered, -> { includes( offers: :supplier_order ).where( "supplier_orders.reference = '' or supplier_orders.reference is null" ).where.not(offers: {id: :null}) }
+  scope :not_yet_ordered, -> { includes( :supplier_orders ).references(:supplier_orders).where( "supplier_orders.reference = '' or supplier_orders.reference is null" )}
   scope :ordered, -> { includes(offers: :supplier_order).where( "supplier_orders.reference != '' and supplier_orders.reference is not null" ) }
   # Tire/ElasticSearch Configuration
 

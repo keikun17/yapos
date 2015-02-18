@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
   end
 
   def pending
-    @orders = Order.not_yet_ordered
+    @orders = Order.includes(:offers).references(:offers).where.not(offers: {service: true}).where.not(offers: {id: nil}).not_yet_ordered
 
     if !params[:client_id].blank?
       @client = Client.find(params[:client_id])
