@@ -19,15 +19,15 @@ class Order < ActiveRecord::Base
     :foreign_key => 'order_reference',
     :primary_key => 'reference'
 
-  # has_many :supply_offers, -> { where.not(service: true) },
-  #   class_name: 'Offer',
-  #   foreign_key: 'order_reference',
-  #   primary_key: 'reference'
+  has_many :supply_offers, -> { where.not(service: true) },
+    class_name: 'Offer',
+    foreign_key: 'order_reference',
+    primary_key: 'reference'
 
   has_many :quotes, -> {uniq}, :through => :offers
   has_many :clients, -> {uniq}, :through => :quotes
   has_many :suppliers, -> {uniq}, :through => :offers
-  has_many :supplier_orders, -> {uniq}, :through => :offers
+  has_many :supplier_orders, -> {uniq}, :through => :supply_offers
   has_many :supplier_purchases, -> {uniq}, through: :supplier_orders
 
   validates_presence_of :reference
