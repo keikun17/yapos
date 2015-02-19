@@ -1,4 +1,7 @@
 class QuotesController < ApplicationController
+
+  before_filter :set_badge_count, only: [:index, :pending_client_po, :pending]
+
   # GET /quotes
   # GET /quotes.json
   def index
@@ -154,6 +157,19 @@ class QuotesController < ApplicationController
       format.html { redirect_to quotes_url }
       format.json { head :no_content }
     end
+  end
+
+  def set_badge_count
+    offers_required = Quote.with_pending_requests
+    awaiting_order = Quote.pending_client_order
+
+    if params[:client_id].present?
+      offers_required = offers_required.where(client_id: params[:client_id])
+      awaiting_order = awaiting_order.where(client_id: params[:client_id])
+    end
+
+    @offers_required_count = offers_required.count
+    @awaiting_order_count = awaiting_order.count
   end
 
 end
