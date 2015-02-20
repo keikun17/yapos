@@ -33,7 +33,7 @@
           = simple_format(req.specs)
           - if !req.remarks.blank?
             .alert.alert-internal-note.text-info
-              %strong Internal Notes:
+              %strong Request Internal Notes:
               #{simple_format(req.remarks)}
         %td{width: '240px'}
           - if offer
@@ -65,7 +65,7 @@
             %strong Notes:
             = offer.remarks
             .alert.alert-internal-note
-              %strong.text-info Internal Notes:
+              %strong.text-info Offer Internal Notes:
               #{simple_format(offer.internal_notes, class: 'text-info')}
           %td.text-warning
             - if offer
@@ -120,7 +120,7 @@
             %strong Notes:
             = offer.remarks
             .alert.alert-internal-note
-              %strong.text-info Internal Notes:
+              %strong.text-info Offer Internal Notes:
               #{simple_format(offer.internal_notes, class: 'text-info')}
 
           %td.text-warning
