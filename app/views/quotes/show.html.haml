@@ -10,7 +10,7 @@
     - @quote.suppliers.uniq.each do |supplier|
       = link_to "Print only #{supplier.name} offers", printable_view_quote_path(@quote, supplier_id: supplier.id), :class => 'btn'
 
-- unless @quote.internal_notes.blank?
+- if @quote.internal_notes.present?
   .row-fluid.internal-note{style: 'position: fixed'}
     .internal-note-content.span3.pull-right
       .alert.alert-internal-note
@@ -56,6 +56,11 @@
       %br
       = @quote.order_links
 
+    %p
+      .alert.alert-internal-note
+        %strong Internal Notes:
+        %br
+          = simple_format(@quote.internal_notes, class: 'text-info')
   .span3
     %p
       %strong= model_class.human_attribute_name(:client_name) + ':'
@@ -84,11 +89,6 @@
       %br
       = supplier_links(@quote)
 
-    %p
-      .alert.alert-internal-note
-        %strong Internal Notes:
-        %br
-          = simple_format(@quote.internal_notes, class: 'text-info')
 
       %p
       %strong Remarks
