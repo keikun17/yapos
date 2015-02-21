@@ -1,8 +1,9 @@
 class Supplier < ActiveRecord::Base
   attr_accessible :name, :emails, :contact_numbers, :address
 
-  has_many :quotes, -> {uniq}, through: :offers
   has_many :offers
+  has_many :quotes, -> {uniq}, through: :offers
+  has_many :orders, -> {uniq},  through: :offers
   has_many :supplier_orders, through: :offers
 
   default_scope -> { order('name asc') }
