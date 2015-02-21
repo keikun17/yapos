@@ -1,3 +1,5 @@
+@import 'theme.css.scss';
+
 .pos-header{
   display: block;
   margin: -20px 0 5px 0;
@@ -19,22 +21,11 @@
   color: #fff;
 }
 
-.quote-header{
-  @extend .pos-header;
-  background-color: #ff7373;
-  color: #fff;
-}
 
 .print-header-label{
   @extend .span12 !optional;
   border: 2px solid black;
   text-align: center;
-}
-
-.supplier-purchases-header{
-  @extend .pos-header;
-  background-color: #34495e;
-  color: #fff;
 }
 
 .alert-container{
@@ -44,8 +35,17 @@
   margin-right: -20px;
 }
 
+.quote-header{
+  @extend .pos-header;
+  @extend .theme-quote
+}
+
 .client-order-header {
   @extend .pos-header;
-  background-color: #68ca8f;
-  color: #fff;
+  @extend .theme-order;
+}
+
+.supplier-purchases-header{
+  @extend .pos-header;
+  @extend .theme-supplier-order;
 }
