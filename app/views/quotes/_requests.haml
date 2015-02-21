@@ -31,6 +31,8 @@
     %td
       - if offer and offer.supplier
         = link_to offer.supplier_name, offer.supplier
+        - if offer.hide_supplier_in_print?
+          %i Hidden
     %td
       - if offer
         %strong Terms:
@@ -86,6 +88,8 @@
       %td
         - if offer.supplier
           = link_to offer.supplier_name, offer.supplier
+          - if offer.hide_supplier_in_print?
+            %i Hidden
 
       %td
         %strong Terms:
