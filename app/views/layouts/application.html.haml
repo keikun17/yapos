@@ -30,9 +30,9 @@
             - if user_signed_in?
               .container.nav-collapse
                 %ul.nav
-                  %li= link_to "Client RFQ", quotes_path
-                  %li= link_to "Client PO", orders_path
-                  %li= link_to "Supplier PO", supplier_purchases_path
+                  %li#quotes-nav= link_to "Price Quotes", quotes_path
+                  %li#order-nav= link_to "Client Orders", orders_path
+                  %li#supplier-order-nav= link_to "Supplier Orders", supplier_purchases_path
                   %li= link_to "Client Records", clients_path
                   %li= link_to "Supplier Records", suppliers_path
                   %li= link_to "Graph", kanban_path

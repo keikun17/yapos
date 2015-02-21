@@ -1,3 +1,17 @@
+@import 'theme.css.scss';
+
+li#quotes-nav a{
+  @extend .theme-quote
+}
+
+li#order-nav a{
+  @extend .theme-order
+}
+
+li#supplier-order-nav a{
+  @extend .theme-supplier-order
+}
+
 #nav-search{
   width: 245px;
 }
