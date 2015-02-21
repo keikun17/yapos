@@ -26,7 +26,7 @@ RSpec.shared_context "Quote with 2 request and 3 offers", :a => :b do
 
     visit root_path
 
-    click_link "Client RFQ"
+    click_link "Price Quotes"
     click_link "New Quote"
 
     fill_in "Client PR#", with: "PR#0001"

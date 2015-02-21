@@ -12,7 +12,7 @@ feature "Quotes Creation" do
 
   scenario "Editing", js: true do
     visit root_path
-    click_link "Client RFQ"
+    click_link "Price Quotes"
     click_link "PR#0001"
     click_link "Edit", match: :first
 
