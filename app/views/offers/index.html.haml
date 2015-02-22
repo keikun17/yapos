@@ -15,17 +15,21 @@
   %li.active
     = link_to "Offers", offers_path
 
+= link_to 'New Quote', new_quote_path, :class => 'btn btn-primary'
+.pull-right= will_paginate(@quotes)
+
 %table.table
-  %tr
-    %th.span1 RFQ
-    %th.span1 Client
-    %th.span1 Qty
-    %th.span3 Offered Specs
-    %th.span1 Supplier
-    %th.span2 Delivery/Terms/Warranty
-    %th.span1 Buying Price
-    %th.span1 Selling Price
-    -# %th.span1 Order Reference
+  %thead
+    %tr
+      %th.span1 RFQ
+      %th.span1 Client
+      %th.span1 Qty
+      %th.span3 Offered Specs
+      %th.span1 Supplier
+      %th.span2 Delivery/Terms/Warranty
+      %th.span1 Buying Price
+      %th.span1 Selling Price
+      -# %th.span1 Order Reference
   - @offers.each do |offer|
     %tr
       %td= link_to offer.request.quote.quote_reference, offer.request.quote
