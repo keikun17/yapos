@@ -1,7 +1,15 @@
 class OffersController < ApplicationController
 
   def index
-    @offers = Offer.all.order(created_at: :desc).paginate(page: params[:page], per_page: 40).decorate
+
+    if params[:client_id].present?
+      @client = Client.find(params[:client_id])
+      @offers = @client.offers
+    else
+      @offers = Offer.all
+    end
+
+    @offers = @offers.order(created_at: :desc).paginate(page: params[:page], per_page: 40).decorate
   end
 
   def quick_purchase
