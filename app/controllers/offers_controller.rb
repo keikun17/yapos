@@ -1,4 +1,9 @@
 class OffersController < ApplicationController
+
+  def index
+    @offers = Offer.all.order(updated_at: :desc).paginate(page: params[:page], per_page: 40).decorate
+  end
+
   def quick_purchase
     @offer = Offer.find(params[:id])
 
