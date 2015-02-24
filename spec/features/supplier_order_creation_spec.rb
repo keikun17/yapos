@@ -46,6 +46,41 @@ feature "Supplier Order Creation" do
       end
 
       click_button "Update Order"
+
+      click_link "Supplier Orders"
+
+      expect(page).to have_link("SUPPLIER PO#1")
+
+
+      handle_window = window_opened_by { click_link "SUPPLIER PO#1" }
+
+      within_window(handle_window) do
+
+        # This should be a pop up
+        page.driver.browser.window_handles.length.should == 2
+
+        #header
+        expect(page).to have_text("SUPPLIER PO#1")
+        expect(page).to have_text("Blue Buyers")
+        expect(page).to have_text("")
+
+        # Request 1 Offer 1
+        expect(page).to have_text("100.0 meter")
+        expect(page).to have_text("HVY BLTR 2014S1")
+        expect(page).to have_text("PHP90.00/meter")
+        expect(page).to have_text("PHP9,000.00")
+
+        # Request 2 Offer2
+        expect(page).to have_text("200.0 meter")
+        expect(page).to have_text("LIGHT CSAW v9001")
+        expect(page).to have_text("PHP4,300.00/meter")
+        expect(page).to have_text("PHP860,000.00")
+
+        # Total Price
+        expect(page).to have_text("PHP869,000.00")
+      end
+
+
     end
 
 
