@@ -73,7 +73,11 @@
               %span.label.label-important Actual:
               =offer.supplier_order_actual_specs
           %td= order.display_purchase_date
-          %td= offer.supplier_purchase_link
+          %td
+            - if offer.service?
+              %i N/A
+            - else
+              = offer.supplier_purchase_link
           %td
             %i= offer.ordered_from_supplier_at
           %td
@@ -97,7 +101,11 @@
                   %span.label.label-important Actual:
                   =offer.supplier_order_actual_specs
               %td= order.display_purchase_date
-              %td= offer.supplier_purchase_link
+              %td
+                - if offer.service?
+                  %i N/A
+                - else
+                  = offer.supplier_purchase_link
               %td
                 %i= offer.ordered_from_supplier_at
               %td
