@@ -10,14 +10,9 @@ RSpec.shared_context "Quote with 2 request and 3 offers", :a => :b do
   #   'this is the shared subject'
   # end
 
-  before do
-    create(:supplier, name: "Super Seller")
-    create(:supplier, name: "ACME")
-    create(:client, name: "Blue Buyers", abbrev: "BBuy")
+  include_context "Hardware suppliers and clients exist"
 
-    # Products
-    create(:bolter)
-    create(:chainsaw)
+  before do
 
     logged_as_default_user
 
