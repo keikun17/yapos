@@ -16,6 +16,7 @@ feature "Supplier Order Creation" do
         fill_in "Client PO#", with: "PO#1"
       end
 
+      # Offer #2 for Request #2
       within(page.all(".offer-line")[2]) do
         fill_in "Client PO#", with: "PO#1"
       end
@@ -62,7 +63,6 @@ feature "Supplier Order Creation" do
         #header
         expect(page).to have_text("SUPPLIER PO#1")
         expect(page).to have_text("Blue Buyers")
-        expect(page).to have_text("")
 
         # Request 1 Offer 1
         expect(page).to have_text("100.0 meter")
