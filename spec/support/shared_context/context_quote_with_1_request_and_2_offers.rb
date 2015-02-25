@@ -32,7 +32,7 @@ RSpec.shared_context "Quote with 1 request and 2 offers", :a => :b do
     within(page.all(".request-line")[0]) do
       fill_in 'Item#', with: '1'
       fill_in 'Quantity', with: '2'
-      fill_in 'Unit', with: 'meter'
+      fill_in 'Unit', with: 'piece'
       fill_in 'Request Specs', with: 'lighth chainsaw'
       fill_in 'Item/Material Code', with: 'LCS-001'
     end
