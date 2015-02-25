@@ -67,8 +67,8 @@ feature "Supplier Order Creation" do
         # Request 1 Offer 1
         expect(page).to have_text("100.0 meter")
         expect(page).to have_text("HVY BLTR 2014S1")
-        expect(page).to have_text("PHP90.00/meter")
-        expect(page).to have_text("PHP9,000.00")
+        expect(page).to have_text("US$90.00/meter")
+        expect(page).to have_text("US$9,000.00")
 
         # Request 2 Offer2
         expect(page).to have_text("200.0 meter")
@@ -77,7 +77,7 @@ feature "Supplier Order Creation" do
         expect(page).to have_text("PHP860,000.00")
 
         # Total Price
-        expect(page).to have_text("PHP869,000.00")
+        expect(page).to have_text("US$869,000.00")
       end
 
 
@@ -144,8 +144,8 @@ feature "Supplier Order Creation" do
         # Request 1 Offer 1
         expect(page).to have_text("100.0 meter")
         expect(page).to have_text("HVY BLTR 2014S1")
-        expect(page).to have_text("PHP90.00/meter")
-        expect(page).to have_text("PHP9,000.00")
+        expect(page).to have_text("US$90.00/meter")
+        expect(page).to have_text("US$9,000.00")
 
 
       end
