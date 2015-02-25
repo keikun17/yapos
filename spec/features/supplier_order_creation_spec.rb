@@ -84,7 +84,84 @@ feature "Supplier Order Creation" do
     end
 
 
-    scenario "[Quote 1 Offer 1] and [Quote 2 Offer 2] in one PO and [Quote 2 Offer 2] in another"
+    scenario "[Quote 1 Offer 1] and [Quote 2 Offer 2] in one PO and [Quote 2 Offer 2] in another" do
+      visit root_path
+      click_link "PR#0001"
+      click_link "Edit", match: :first
+
+
+      # Offer #1 for Request #1
+      within(page.all(".offer-line")[0]) do
+        fill_in "Client PO#", with: "PO#1"
+      end
+
+      # Offer #2 for Request #2
+      within(page.all(".offer-line")[2]) do
+        fill_in "Client PO#", with: "PO#1"
+      end
+
+      click_button "Update Quote"
+
+      expect(Order.count).to eq(1)
+      expect(Order.where(reference: 'PO#1')).not_to be_nil
+
+      click_link "Client Orders"
+
+      expect(page).to have_link("PO#1")
+
+      click_link "Supplier PO required"
+      expect(page).to have_link("PO#1")
+
+      click_link "PO#1"
+      click_link "Edit", match: :first
+
+      within(page.all(".offer-line")[0]) do
+        find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("HVY BLTR 2014S1")
+        find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#1")
+      end
+
+      within(page.all(".offer-line")[1]) do
+        find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("LIGHT CSAW v9001")
+        find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#2")
+      end
+
+      click_button "Update Order"
+
+      click_link "Supplier Orders"
+
+      expect(page).to have_link("SUPPLIER PO#1")
+      expect(page).to have_link("SUPPLIER PO#2")
+
+
+      supplier_po_1_window = window_opened_by { click_link "SUPPLIER PO#1" }
+      supplier_po_2_window = window_opened_by { click_link "SUPPLIER PO#2" }
+
+      within_window(supplier_po_1_window) do
+        #header
+        expect(page).to have_text("SUPPLIER PO#1")
+        expect(page).to have_text("Blue Buyers")
+
+        # Request 1 Offer 1
+        expect(page).to have_text("100.0 meter")
+        expect(page).to have_text("HVY BLTR 2014S1")
+        expect(page).to have_text("PHP90.00/meter")
+        expect(page).to have_text("PHP9,000.00")
+
+
+      end
+
+      within_window(supplier_po_2_window) do
+        #header
+        expect(page).to have_text("SUPPLIER PO#2")
+        expect(page).to have_text("Blue Buyers")
+
+        # Request 2 Offer2
+        expect(page).to have_text("200.0 meter")
+        expect(page).to have_text("LIGHT CSAW v9001")
+        expect(page).to have_text("PHP4,300.00/meter")
+        expect(page).to have_text("PHP860,000.00")
+      end
+    end
   end
 
   context "Different RFQ" do
