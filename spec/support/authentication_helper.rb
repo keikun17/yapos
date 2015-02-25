@@ -4,6 +4,6 @@ include Warden::Test::Helpers
 Warden.test_mode!
 
 def logged_as_default_user
-  user = create(:user)
+  user = User.where(email: "testuser@email.com").first || create(:user)
   login_as(user, scope: :user)
 end
