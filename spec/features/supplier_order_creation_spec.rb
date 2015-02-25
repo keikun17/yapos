@@ -164,8 +164,100 @@ feature "Supplier Order Creation" do
     end
   end
 
-  context "Different RFQ" do
+  context "Different RFQ", js: true do
+    include_context "Quote with 1 request and 2 offers"
+    include_context "Quote with 1 request and 1 offer"
+
     scenario "Same Supplier PO, different Client PO and RFQ" do
+      visit root_path
+
+      ###########################
+      #  SETTING CLIENT ORDERS
+      ###########################
+
+      # RFQ 1
+      click_link "Price Quotes"
+      click_link "PR# Q1-O2"
+      click_link "Edit", match: :first
+
+      within(page.all(".offer-line")[0]) do
+        fill_in "Client PO#", with: "PO#1"
+      end
+
+      click_button "Update Quote"
+
+      # RFQ 2
+      click_link "Price Quotes"
+      click_link "PR# Q1-O1"
+      click_link "Edit", match: :first
+
+      # Offer #1 for Request #1
+      within(page.all(".offer-line")[0]) do
+        fill_in "Client PO#", with: "PO#2"
+      end
+
+      click_button "Update Quote"
+
+      ###########################
+      #  SETTING SUPPLIER ORDERS
+      ###########################
+
+      # First Client PO for Q1-O2
+      click_link "Client Orders"
+      click_link "Supplier PO required"
+      click_link "PO#1"
+      click_link "Edit", match: :first
+
+      within(page.all(".offer-line")[0]) do
+        find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("Billy light chainsaw")
+        find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#1")
+      end
+      click_button "Update Order"
+
+      # Second Client PO for Q1-O1
+      click_link "Client Orders"
+      click_link "Supplier PO required"
+      click_link "PO#2"
+      click_link "Edit", match: :first
+
+      within(page.all(".offer-line")[0]) do
+        find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("Personal Chainsaw")
+        find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#1")
+      end
+      click_button "Update Order"
+
+
+      ###########################
+      # PRINTABLE SUPPLIER ORDER
+      ###########################
+
+      click_link "Supplier Orders"
+      expect(page).to have_link("SUPPLIER PO#1")
+
+      handle_window = window_opened_by { click_link "SUPPLIER PO#1", match: :first }
+
+      within_window(handle_window) do
+
+        #header
+        expect(page).to have_text("SUPPLIER PO#1")
+        expect(page).to have_text("Sybil")
+
+        # Line1
+        expect(page).to have_text("2.0 piece")
+        expect(page).to have_text("Billy light chainsaw")
+        expect(page).to have_text("US$50.00/piece")
+        expect(page).to have_text("US$100.00")
+
+        # Line2
+        expect(page).to have_text("5.0 piece")
+        expect(page).to have_text("Personal Chainsaw")
+        expect(page).to have_text("US$39.00/piece")
+        expect(page).to have_text("US$295.00")
+
+        # Total Price
+        expect(page).to have_text("US$295.00")
+      end
+
     end
   end
 
