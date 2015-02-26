@@ -48,6 +48,12 @@ feature "Supplier Order Creation" do
 
       click_button "Update Order"
 
+      # Make sure that the PO is removed from the 'Supplier PO required' page
+      click_link "Client Orders"
+      click_link "Supplier PO required"
+      expect(page).to_not have_link("PO#1")
+
+      # Check Printable view
       click_link "Supplier Orders"
 
       expect(page).to have_link("SUPPLIER PO#1")
