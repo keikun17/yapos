@@ -259,8 +259,51 @@ feature "Supplier Order Creation" do
       end
 
     end
+
+    scenario "Service PO should not require supplier PO" do
+      visit root_path
+
+      ###########################
+      #  SETTING CLIENT ORDERS
+      ###########################
+
+      # RFQ 1 (SERVICE)
+      click_link "Price Quotes"
+      click_link "PR# Q1-O2"
+      click_link "Edit", match: :first
+
+      within(page.all(".offer-line")[0]) do
+        check "Service"
+        fill_in "Client PO#", with: "SERVICE PO#1"
+      end
+
+      click_button "Update Quote"
+
+      # RFQ 2
+      click_link "Price Quotes"
+      click_link "PR# Q1-O1"
+      click_link "Edit", match: :first
+
+      # Offer #1 for Request #1
+      within(page.all(".offer-line")[0]) do
+        fill_in "Client PO#", with: "Supply PO#2"
+      end
+
+      click_button "Update Quote"
+
+      ###########################
+      # Assertions
+      ###########################
+      click_link "Client Orders"
+      click_link "Supplier PO required"
+
+      expect(page).not_to have_text("Service PO#1")
+      expect(page).to have_text("Supply PO#2")
+
+    end
+
+
   end
 
 
-  scenario "Service PO should not require supplier PO"
 end
