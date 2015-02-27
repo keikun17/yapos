@@ -95,7 +95,7 @@
                 .row
                 = link_to "View this item", price_movement_path(offer.vendor_item)
         %td
-          = simple_format(offer.actual_specs)
+          = simple_format(offer.supplier_order_actual_specs)
         %td
           - if offer.supplier.present?
             = link_to offer.supplier_name, supplier_path(offer.supplier)
@@ -133,7 +133,7 @@
                 - if offer.vendor_item
                   .row
                   = link_to "View this item", price_movement_path(offer.vendor_item)
-          %td= offer.actual_specs
+          %td= offer.supplier_order_actual_specs
           %td
             - if offer.supplier.present?
               = link_to offer.supplier_name, supplier_path(offer.supplier)
