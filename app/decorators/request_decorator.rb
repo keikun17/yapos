@@ -1,5 +1,4 @@
 class RequestDecorator < ApplicationDecorator
-  decorates_association :offers
 
   delegate_all
 

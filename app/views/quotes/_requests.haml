@@ -1,6 +1,6 @@
 - requests.each do |req|
   - offer_count = req.offers.size
-  - offers = req.offers
+  - offers = req.offers.decorate
   - offer = offers.shift
   %tr
     %td{rowspan: offer_count}
