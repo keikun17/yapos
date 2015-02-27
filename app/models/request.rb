@@ -41,6 +41,9 @@ class Request < ActiveRecord::Base
     s
   end
 
+  def service_offer_count
+    offers.services.count
+  end
 end
 
 # == Schema Information
