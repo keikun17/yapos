@@ -83,6 +83,8 @@
           = offer.quantity_label("label label-inverse")
           = offer.request_specs
         %td
+          - if offer.service?
+            %span.badge.badge-service Service
           = simple_format(offer.specs)
           - if !offer.summary.blank?
             .alert.alert-success
@@ -120,6 +122,8 @@
             = offer.quantity_label("label label-inverse")
             = offer.request_specs
           %td
+            - if offer.service?
+              %span.badge.badge-service Service
             = simple_format(offer.specs)
             - if !offer.summary.blank?
               .alert.alert-success
