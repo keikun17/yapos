@@ -18,6 +18,6 @@
 = link_to 'New Quote', new_quote_path, :class => 'btn btn-primary'
 .pull-right= will_paginate(@quotes)
 
-= render :partial => 'unordered_quotes', :locals => {:quotes => @decorated_quotes, :show_actions => true}
+= render :partial => 'unordered_quotes', :locals => {:quotes => @quotes, :show_actions => true}
 .pull-right= will_paginate(@quotes)
 

@@ -31,8 +31,7 @@ class QuotesController < ApplicationController
     unless params[:client_id].blank?
       @quotes = @quotes.where(client_id: params[:client_id])
     end
-    @quotes = @quotes.paginate(page: params[:page], per_page: 20)
-    @decorated_quotes = QuoteDecorator.decorate_collection(@quotes)
+    @quotes = @quotes.paginate(page: params[:page], per_page: 20).decorate
   end
 
   # GET /quotes/1
