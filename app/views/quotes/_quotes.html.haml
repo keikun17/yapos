@@ -22,7 +22,7 @@
         %td
           - if !quote.title.blank? and !quote.requests.empty?
             %strong= truncate(quote.title, :length => 40, :omission => "...")
-          - quote.requests.decorate.each do |request|
+          - quote.requests.each do |request|
             %p
               %span.request-quantity= request.display_quantity
               = request.item_code_link

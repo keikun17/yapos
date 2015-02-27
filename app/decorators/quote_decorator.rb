@@ -1,5 +1,5 @@
 class QuoteDecorator < ApplicationDecorator
-  # Associations
+  decorates_association :requests
 
   def short_client_name
     unless client_abbrev.blank?
