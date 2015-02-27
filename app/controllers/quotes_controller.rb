@@ -109,8 +109,7 @@ class QuotesController < ApplicationController
 
   def printable_view
 
-    @quote = Quote.find(params[:id])
-    @quote = QuoteDecorator.new(@quote)
+    @quote = Quote.find(params[:id]).decorate
 
     if params[:supplier_id].blank?
       @suppliers = 'all'
@@ -121,7 +120,6 @@ class QuotesController < ApplicationController
       @requests = @quote.requests.includes(:suppliers).where(suppliers: {id: @suppliers.map(&:id)})
     end
 
-    @requests = RequestDecorator.decorate_collection(@requests)
     @print_preview = true
 
     render layout: "printable"

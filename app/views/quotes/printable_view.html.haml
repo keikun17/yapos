@@ -48,26 +48,26 @@
 
 
   %table.table.table-bordered.table-compact
-    - @requests.each do |request|
+    - @quote.requests.each do |request|
       %thead
         %tr
-          - if @requests.count > 1
+          - if @quote.requests.count > 1
             %td.item-line{width:'40px'} ITEM#:
           %td.item-line{width: '50px'} QTY:
           %td.item-line{width: '80px'} UNIT:
-          - if @requests.count > 1
+          - if @quote.requests.count > 1
             %td.item-line{colspan:7} REQUESTED:
           - else
             %td.item-line{colspan:8} REQUESTED:
 
       %tbody
         %tr
-          - if @requests.count > 1
-            %td= request.position || @requests.index(request) + 1
+          - if @quote.requests.count > 1
+            %td= request.position || @quote.requests.index(request) + 1
           %td= request.quantity
           %td= request.unit
 
-          - if @requests.count > 1
+          - if @quote.requests.count > 1
             %td{colspan:7}= simple_format("#{request.specs}")
           - else
             %td{colspan:8}= simple_format("#{request.specs}")
