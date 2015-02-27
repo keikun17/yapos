@@ -15,7 +15,6 @@ class RequestDecorator < ApplicationDecorator
   end
 
   def display_quantity
-    ActiveSupport::Deprecation.warn "Deprecate this use deprecate_quantity view helper instead", caller
     if (str = "#{quantity} #{unit}").blank?
       str = "1.00 Unit"
     end
@@ -23,7 +22,6 @@ class RequestDecorator < ApplicationDecorator
   end
 
   def to_label(label_class)
-    ActiveSupport::Deprecation.warn "Deprecate this use deprecate_quantity view helper instead", caller
     h.content_tag(:span,  class: label_class) do
       display_quantity
     end
