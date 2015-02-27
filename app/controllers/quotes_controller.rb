@@ -37,9 +37,7 @@ class QuotesController < ApplicationController
   # GET /quotes/1
   # GET /quotes/1.json
   def show
-    @quote = Quote.find(params[:id])
-    @quote = QuoteDecorator.new(@quote)
-    @requests = RequestDecorator.decorate_collection @quote.requests
+    @quote = Quote.find(params[:id]).decorate
 
     respond_to do |format|
       format.html # show.html.erb

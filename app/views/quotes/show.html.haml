@@ -131,7 +131,7 @@
       %th.span1 Selling Price
       %th.span1 Order Reference
   %tbody
-    = render 'quotes/requests', requests: @requests
+    = render 'quotes/requests', requests: @quote.requests
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), quotes_path, :class => 'btn'
   = link_to t('.edit', :default => t("helpers.links.edit")), edit_quote_path(@quote), :class => 'btn'
