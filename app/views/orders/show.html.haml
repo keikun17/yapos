@@ -114,8 +114,9 @@
         %td.text-warning= offer.display_buying_price
         %td.text-success= offer.display_selling_price
         %td
-          = offer.supplier_purchase_link
-          = offer.edit_supplier_purchase_link
+          - unless offer.service?
+            = offer.supplier_purchase_link
+            = offer.edit_supplier_purchase_link
       - offers.each do |offer|
         %tr
           %td
@@ -152,8 +153,9 @@
           %td.text-warning= offer.display_buying_price
           %td.text-success= offer.display_selling_price
           %td
-            = offer.supplier_purchase_link
-            = offer.edit_supplier_purchase_link
+            - unless offer.service?
+              = offer.supplier_purchase_link
+              = offer.edit_supplier_purchase_link
 
 %br
 
