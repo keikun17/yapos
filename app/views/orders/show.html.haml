@@ -80,7 +80,7 @@
         %td{rowspan: offer_count}
           %strong= link_to quote.display_reference, quote
         %td
-          = offer.quantity_label("label label-inverse")
+          %span.request-quantity= offer.request.display_quantity
           = offer.request_specs
         %td
           - if offer.service?
@@ -120,7 +120,7 @@
       - offers.each do |offer|
         %tr
           %td
-            = offer.quantity_label("label label-inverse")
+            %span.request-quantity= offer.request.display_quantity
             = offer.request_specs
           %td
             - if offer.service?

@@ -1,4 +1,5 @@
 class OfferDecorator < ApplicationDecorator
+  decorates_association :request
 
   # Decorated Associations
   def decorated_supplier_purchase
