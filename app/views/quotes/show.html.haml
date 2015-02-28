@@ -8,7 +8,7 @@
     = link_to "Requote", requote_quote_path(@quote), :class => 'btn btn-success'
     = link_to 'Print', printable_view_quote_path(@quote), :class => 'btn', target: '_blank'
     - @quote.suppliers.uniq.each do |supplier|
-      = link_to "Print only #{supplier.name} offers", printable_view_quote_path(@quote, supplier_id: supplier.id), :class => 'btn'
+      = link_to "Print only #{supplier.name} offers", printable_view_quote_path(@quote, supplier_id: supplier.id), :class => 'btn', target: '_blank'
 
 - if @quote.internal_notes.present?
   .row-fluid.internal-note{style: 'position: fixed'}
