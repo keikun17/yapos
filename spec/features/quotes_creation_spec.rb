@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "Quotes Creation" do
+feature "Quotes Creation", js: true do
   include_context "Quote with 2 request and 3 offers"
 
   it "updates the records", js: true do
@@ -10,6 +10,83 @@ feature "Quotes Creation" do
     expect(VendorItem.count).to eq(3)
   end
 
+end
+
+feature "Print quotes", js: true do
+
+  context "2 different suppliers in the quote" do
+    include_context "Quote with 2 request and 3 offers"
+
+    scenario "Print all offers" do
+      visit root_path
+      click_link "Price Quotes"
+      click_link "PR#0001"
+
+      handle_window = window_opened_by { click_link "Print" }
+
+      within_window(handle_window) do
+        expect(page).to have_text("Blue Buyers")
+        expect(page).to have_text("Jack")
+        expect(page).to have_text("Sparrow")
+
+        # request 1
+        expect(page).to have_text("100.0")
+        expect(page).to have_text("meter")
+        expect(page).to have_text("heavy bolter")
+
+        # binding.pry
+        # request 1 offer 1
+        expect(page).to have_text("Super Seller")
+        expect(page).to have_text("2014 Heavy Bolter")
+        expect(page).not_to have_text("Heavy Bolter 2014 model S1")
+        expect(page).to have_text("US$100.00/meter (VAT EX FOB JAPAN")
+        expect(page).to have_text("US$10,000.00 (VAT EX FOB JAPAN)")
+
+        # request 2
+        expect(page).to have_text("200.0")
+        expect(page).to have_text("meter")
+        expect(page).to have_text("lighth chainsaw")
+
+        # request 2 offer 1
+        expect(page).to have_text("Super Seller")
+        expect(page).to have_text("light chainsaw")
+        expect(page).not_to have_text("Billy light chainsaw")
+        expect(page).to have_text("US$60.00/meter (VAT EX FOB JAPAN")
+        expect(page).to have_text("US$12,000.00 (VAT EX FOB JAPAN)")
+
+        # request 2 offer 1
+        expect(page).to have_text("ACME")
+        expect(page).to have_text("light chainsaw")
+        expect(page).not_to have_text("ACME Light chainsaw Variant 9001")
+        expect(page).to have_text("PHP5,000.00/meter (VAT INC FOB PIER)")
+        expect(page).to have_text("PHP1,000,000.00 (VAT INC FOB PIER)")
+
+
+
+      end
+
+    end
+  end
+
+
+  context "2 different suppliers in the quote, one supplier is hidden" do
+    include_context "Quote with 2 request and 3 offers"
+
+    before do
+    end
+
+    scenario "Print all offers"
+
+    scenario "Print supplier specific"
+
+  end
+
+
+end
+
+
+feature "Editing Quotes"  do
+  include_context "Quote with 2 request and 3 offers"
   scenario "Editing", js: true do
     visit root_path
     click_link "Price Quotes"
@@ -52,8 +129,6 @@ feature "Quotes Creation" do
     expect(vendor_item.vendor_item_fields.includes(:product_field).find_by(product_fields: {name: 'Year'}).value).to eq('2014')
     expect(vendor_item.vendor_item_fields.includes(:product_field).find_by(product_fields: {name: 'Model'}).value).to eq('1001')
   end
-
-
 
 
 end
