@@ -62,10 +62,6 @@ feature "Supplier Order Creation" do
       handle_window = window_opened_by { click_link "SUPPLIER PO#1" }
 
       within_window(handle_window) do
-
-        # This should be a pop up
-        page.driver.browser.window_handles.length.should == 2
-
         #header
         expect(page).to have_text("SUPPLIER PO#1")
         expect(page).to have_text("Blue Buyers")
