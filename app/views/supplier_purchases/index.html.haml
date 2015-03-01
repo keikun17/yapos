@@ -21,10 +21,15 @@
             = link_to quote.quote_reference, quote_path(quote)
             (#{quote.client_abbrev || quote.client_name})
             %br
-        %td= link_to(supplier_purchase.order.reference, order_path(supplier_purchase.order)) if supplier_purchase.order
+        %td
+          - supplier_purchase.orders.each do |order|
+            = link_to order.reference, order
+            %br
         %td= supplier_purchase.ordered_from_supplier_at
         %td
-          = supplier_purchase.link_to_supplier
+          - supplier_purchase.suppliers.each do |supplier|
+            = link_to supplier.name, supplier
+            %br
         %td
           = link_to 'Edit', edit_supplier_purchase_path(supplier_purchase),:class => 'btn btn-mini'
           = link_to 'Print', print_supplier_purchase_path(supplier_purchase),:class => 'btn btn-mini', target: '_blank'
