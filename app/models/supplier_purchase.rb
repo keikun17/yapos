@@ -68,4 +68,6 @@ end
 #  signatory            :string(255)
 #  signatory_position   :string(255)
 #  hide_client_in_print :boolean
+#  created_at           :datetime
+#  updated_at           :datetime
 #

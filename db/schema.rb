@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218123826) do
+ActiveRecord::Schema.define(version: 20150301152844) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -177,6 +177,8 @@ ActiveRecord::Schema.define(version: 20150218123826) do
     t.string   "signatory"
     t.string   "signatory_position"
     t.boolean  "hide_client_in_print"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "supplier_purchases", ["order_id"], name: "index_supplier_purchases_on_order_id", using: :btree
