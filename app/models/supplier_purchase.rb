@@ -30,6 +30,7 @@ class SupplierPurchase < ActiveRecord::Base
 
   #FIXME : UGLY
   def supplier_name
+    ActiveSupport::Deprecation.warn("Yapos : Deprecate this in favor of `supplier_names` decorator")
     unless supplier_orders.empty?
       supplier_orders.first.supplier_name
     end
@@ -37,6 +38,7 @@ class SupplierPurchase < ActiveRecord::Base
 
   #FIXME : UGLY
   def supplier_address
+    ActiveSupport::Deprecation.warn("Yapos : Deprecate this and only show the address when the printable PO has a supplier filter specified")
     unless supplier_orders.empty?
       supplier_orders.first.supplier_address
     end
@@ -44,6 +46,7 @@ class SupplierPurchase < ActiveRecord::Base
 
   #FIXME : UGLY
   def client
+    ActiveSupport::Deprecation.warn("Yapos : Deprecate this. There should be no more use cases that uses this")
     supplier_orders.first.offer.client
   end
 

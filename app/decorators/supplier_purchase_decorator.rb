@@ -44,6 +44,11 @@ class SupplierPurchaseDecorator < ApplicationDecorator
   end
 
   def client_name
+    ActiveSupport::Deprecation.warn("Yapos : Deprecate this in favor of `client_names`")
+    clients.map(&:name).join(',')
+  end
+
+  def client_names
     clients.map(&:name).join(',')
   end
 
@@ -54,6 +59,7 @@ class SupplierPurchaseDecorator < ApplicationDecorator
   private
 
   def first_supplier_name
+    ActiveSupport::Deprecation.warn("Yapos : Deprecate this in favor of `supplier_names` decorator")
     if !supplier_orders.empty?
       supplier_orders.first.supplier_name
     end
@@ -61,12 +67,14 @@ class SupplierPurchaseDecorator < ApplicationDecorator
 
   # FIXME Ugly!, the 'order' association in particular...
   def first_supplier_link
+    ActiveSupport::Depracation.warn("Yapos : Deprecate this in favor of `supplier_links`")
     if !supplier_orders.empty? and !order.nil? and self.order.suppliers.first.present?
       h.link_to first_supplier_name, h.supplier_path(self.order.suppliers.first)
     end
   end
 
   def first_client
+    ActiveSupport::Deprecation.warn("Yapos : Deprecate this. There should be no more use cases that uses this")
     if !supplier_orders.empty?
       supplier_orders.first.offer.client
     end
