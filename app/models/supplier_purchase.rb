@@ -1,6 +1,8 @@
 class SupplierPurchase < ActiveRecord::Base
-  attr_accessible :order_id,
-    :reference,
+  attr_accessible :reference,
+    #order_id, #TODO : Create a migration that removes the order_id column, we
+    #                  we don't need this anymore because we are getting orders 
+    #                  thru the :offers association
     :recipient,
     :address,
     :delivery,
