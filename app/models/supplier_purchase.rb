@@ -14,6 +14,7 @@ class SupplierPurchase < ActiveRecord::Base
     :hide_client_in_print
 
   belongs_to :order
+  has_many :clients, through: :offers
   has_many :offers, through: :supplier_orders
   has_many :quotes, through: :offers
 
@@ -44,9 +45,6 @@ class SupplierPurchase < ActiveRecord::Base
     supplier_orders.first.offer.client
   end
 
-  def client_name
-    client.name
-  end
 end
 
 # == Schema Information

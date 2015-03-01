@@ -44,7 +44,7 @@ class SupplierPurchaseDecorator < ApplicationDecorator
   end
 
   def client_name
-    client.name if client
+    clients.map(&:name).join(',')
   end
 
   def offer
