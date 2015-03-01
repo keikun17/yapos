@@ -8,7 +8,7 @@ before_script:
 script:
   - bundle exec rake db:schema:load
   - bundle exec rake db:test:prepare
-  - bundle exec rspec spec
+  - bundle exec rspec spec/features
 
 after_failure:
   - "mysql -e 'show databases;'"
