@@ -15,14 +15,17 @@ class SupplierPurchase < ActiveRecord::Base
     :signatory_position,
     :hide_client_in_print
 
-  belongs_to :order
-  has_many :clients, through: :offers
-  has_many :offers, through: :supplier_orders
-  has_many :quotes, through: :offers
-
+  # belongs_to :order
   has_many :supplier_orders,
     primary_key: :reference,
     foreign_key: :reference
+
+  has_many :offers, through: :supplier_orders
+
+  has_many :clients, -> {uniq},  through: :offers
+  has_many :suppliers, -> {uniq},  through: :offers
+  has_many :quotes, -> {uniq},   through: :offers
+  has_many :orders, -> {uniq}, through: :offers
 
   validate :reference, uniqueness: true
 
