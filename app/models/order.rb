@@ -40,7 +40,7 @@ class Order < ActiveRecord::Base
     :reject_if => lambda { |a| a[:document].nil? }
 
   scope :not_yet_ordered, -> { includes( :supplier_orders ).references(:supplier_orders).where( "supplier_orders.reference = '' or supplier_orders.reference is null" )}
-  scope :ordered, -> { includes(offers: :supplier_order).where( "supplier_orders.reference != '' and supplier_orders.reference is not null" ) }
+  scope :ordered, -> { includes( :supplier_orders).references(:supplier_orders).where( "supplier_orders.reference != '' and supplier_orders.reference is not null" ) }
   # Tire/ElasticSearch Configuration
 
   def as_indexed_json(options={})
