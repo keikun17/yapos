@@ -58,7 +58,7 @@ end
 #  remarks                    :text
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
-#  quantity                   :float
+#  quantity                   :float(24)
 #  unit                       :string(255)
 #  client_purchased_count     :integer          default(0)
 #  non_client_purchased_count :integer          default(0)

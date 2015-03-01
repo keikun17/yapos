@@ -16,7 +16,7 @@ end
 # Table name: stocks
 #
 #  id                 :integer          not null, primary key
-#  remaining_quantity :float
+#  remaining_quantity :float(24)
 #  reference          :string(255)
 #  unit               :string(255)
 #  supplier_id        :integer
@@ -26,6 +26,5 @@ end
 #  date_used_up       :datetime
 #  created_at         :datetime
 #  updated_at         :datetime
-#  initial_quantity   :float
+#  initial_quantity   :float(24)
 #
-

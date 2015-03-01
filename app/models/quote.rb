@@ -249,7 +249,7 @@ end
 #  id                 :integer          not null, primary key
 #  quote_date         :datetime
 #  quote_reference    :string(255)
-#  quantity           :float
+#  quantity           :float(24)
 #  description        :text
 #  status             :string(255)
 #  created_at         :datetime         not null
