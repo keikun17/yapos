@@ -22,7 +22,7 @@ class SupplierPurchase < ActiveRecord::Base
     primary_key: :reference,
     foreign_key: :reference
 
-  validate :reference, uniq: true
+  validate :reference, uniqueness: true
 
   def order_date
     ordered_at.to_date.to_s(:long) if ordered_at
