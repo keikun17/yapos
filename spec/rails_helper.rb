@@ -21,19 +21,7 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 RSpec.configure do |config|
 
   config.before(:each, js: true) do
-    Capybara.current_session.driver.browser.manage.window.maximize
-    puts "-------------------"
-    puts "When Maximized, screen size is : #{Capybara.page.driver.browser.manage.window.size}"
-    puts "-------------------"
-
-    sleep(3)
-
-    Capybara.current_session.driver.browser.manage.window.resize_to(2000, 2000)
-    puts "-------------------"
-    puts "Force resized, Window size is now #{Capybara.page.driver.browser.manage.window.size}"
-    puts "-------------------"
-
-    sleep(3)
+    Capybara.current_session.driver.browser.manage.window.resize_to(1280, 1024)
   end
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
