@@ -20,8 +20,6 @@ RSpec.shared_context "Quote with 2 request and 3 offers", :a => :b do
     expect(Quote.count).to eq(0)
 
     visit root_path
-    puts "PAGE IS"
-    puts page.body
 
     click_link "Price Quotes"
     click_link "New Quote"
