@@ -1,5 +1,6 @@
 language: ruby
 cache: bundler
+sudo: false # user container based travis builds
 
 before_install:
   - "export DISPLAY=:99.0"
