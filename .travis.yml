@@ -15,7 +15,8 @@ before_script:
 script:
   - bundle exec rake db:schema:load
   - bundle exec rake db:test:prepare
-  - bundle exec rspec spec/features
+  # - bundle exec rspec spec/features
+  - xvfb-run --server-args="-screen 0 1280x1024x24" bundle exec rspec spec/features
 
 after_failure:
   - "mysql -e 'show databases;'"
