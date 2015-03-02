@@ -19,7 +19,7 @@ script:
   - bundle exec rake db:schema:load
   - bundle exec rake db:test:prepare
   # - bundle exec rspec spec/features
-  - xvfb -e /dev/stdout bundle exec rspec spec/features
+  - xvfb-run -e /dev/stdout bundle exec rspec spec/features
   # - xvfb-run -e /dev/stdout --server-args="-screen 0 1280x1024x16" bundle exec rspec spec/features
 
 after_failure:
