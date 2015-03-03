@@ -2,8 +2,9 @@ class Quote < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  attr_accessible :description,
-    :title,
+  attr_accessible :title,
+    # :description, #TODO : Remove 'description' column. it has no valid use
+    # case anymore
     :blurb,
     :signatory,
     :signatory_position,
