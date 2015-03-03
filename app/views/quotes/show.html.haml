@@ -73,12 +73,6 @@
       = @quote.contact_person
 
     %p
-      %strong= model_class.human_attribute_name(:description) + ':'
-      %br
-      = simple_format(@quote.description)
-
-
-    %p
       %strong= model_class.human_attribute_name(:status) + ':'
       %br
       = @quote.display_status
