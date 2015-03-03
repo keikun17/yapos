@@ -13,7 +13,8 @@ class Quote < ActiveRecord::Base
     :quote_date,
     :quote_reference,
     :supplier_id,
-    :status,
+    # :status, # TODO : Remove 'status' column. we have no use for this anymore.
+    #                   the 'cancelled' status should just be a check box
     :client_id,
     :requests_attributes,
     :attachments_attributes,
