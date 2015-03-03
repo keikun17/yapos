@@ -164,6 +164,8 @@ feature "Supplier Order Creation" do
         expect(page).to have_text("PHP860,000.00")
       end
     end
+
+    scenario "Client is hidden from printable view"
   end
 
   context "Different RFQ", js: true do
