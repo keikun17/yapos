@@ -10,14 +10,14 @@ feature "Supplier Management" do
     create(:user, email: username, password: password, password_confirmation: password)
     visit root_path
 
-    expect(page).to have_text("Sign in")
+    expect(page).to have_text("Log in")
 
     fill_in "Email", with: "test@email.com"
     fill_in "Password", with: "testpass123"
 
-    click_button "Sign in"
+    click_button "Log in"
 
-    expect(page).not_to have_text("Sign in")
+    expect(page).not_to have_text("Log in")
   end
 
   scenario "New Supplier" do
