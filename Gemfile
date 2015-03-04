@@ -4,7 +4,7 @@ gem 'rails4_client_side_validations'
 gem 'rails', '~> 4.1.8'
 gem 'haml-rails'
 gem 'sass-rails', '~> 5.0.1'
-gem 'coffee-rails', '4.0.0'
+gem 'coffee-rails', '4.1.0'
 gem 'less-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-sass-rails'
@@ -12,7 +12,7 @@ gem 'twitter-bootstrap-rails', '2.2.8'
 
 gem 'draper'
 
-gem 'active_model_serializers'
+gem 'active_model_serializers', '0.9.0'
 
 # attr_protected and attr_accessible has been extracted to a gem
 gem 'protected_attributes', '~> 1.0.8'
@@ -20,14 +20,14 @@ gem 'protected_attributes', '~> 1.0.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'devise', github:'plataformatec/devise',  branch:'rails4' #TODO: rails4
+gem 'devise', '~> 3.4'
 gem 'carrierwave'
 
 # Preferred Elasticsearch gem/mapper
 gem 'elasticsearch-model', '0.1.6'
 gem 'elasticsearch-rails', '~> 0.1.6'
 
-gem 'json', '~> 1.7.7'
+gem 'json', '~> 1.8.2'
 
 group :development do
   gem "rails_best_practices"
@@ -39,9 +39,7 @@ end
 gem 'thin'
 gem 'will_paginate', '~> 3.0.4'
 
-group :production do
-  gem 'mysql2'
-end
+gem 'mysql2'
 
 # gem 'compass-rails', git: 'git://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
 gem 'compass-rails', '2.0.4'
@@ -50,13 +48,12 @@ gem 'counter_culture'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', :platforms => :ruby
 
-gem 'libv8', '3.11.8.12'
-gem 'therubyracer', '0.11.4'
+gem 'libv8', '~> 3.16'
+gem 'therubyracer', '0.12.1'
 gem 'uglifier', '>= 1.3.0'
 
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'rspec-rails', '~> 3.1'
   gem 'pry-nav'
 end
