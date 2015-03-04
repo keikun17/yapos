@@ -6,12 +6,13 @@
 -# = link_to t('.new', :default => t("helpers.links.new")), new_order_path, :class => 'btn btn-primary'
 %table.table.table-condensed
   %thead
-    %th SUPPLIER PO#
-    %th RFQs
-    %th ClientPOs
-    %th Ordered from Supplier at
-    %th Supplier
-    %th
+    %th.span1 SUPPLIER PO#
+    %th.span1 RFQs
+    %th.span1 ClientPOs
+    %th.span6 Specs
+    %th.span1 Ordered from Supplier at
+    %th.span1 Supplier
+    %th.span1
   %tbody
     - @supplier_purchases.each do |supplier_purchase|
       %tr{class: "multi-content #{'error' if supplier_purchase.ordered_at.blank?}"}
@@ -25,6 +26,11 @@
           - supplier_purchase.orders.each do |order|
             = link_to order.reference, order
             %br
+        %td
+          - supplier_purchase.supplier_orders.each do |supplier_order|
+            %p
+              %span.request-quantity= supplier_order.offer.request.decorate.display_quantity
+              = supplier_order.actual_specs
         %td= supplier_purchase.ordered_from_supplier_at
         %td
           - supplier_purchase.suppliers.each do |supplier|
