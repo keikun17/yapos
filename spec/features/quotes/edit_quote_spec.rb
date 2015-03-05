@@ -18,8 +18,8 @@ feature "Editing Quotes", js: true  do
     # Offer #1 for Request #1
     within(page.all(".offer-line")[0]) do
       select "Super Seller", from: 'Brand'
-      fill_in "Specs/Description", with: "2014 Heavy Bolter"
-      fill_in "Actual Specs", with: "Heavy Bolter 2014 model S2"
+      fill_in "Specs/Description", with: "2014 Very Heavy Bolter"
+      fill_in "Actual Specs", with: "Heavy UBER Bolter 2014 model S2"
 
       # Vendor Item
       click_link "Input Actual Specs"
@@ -48,6 +48,17 @@ feature "Editing Quotes", js: true  do
     expect(vendor_item.vendor_item_fields.includes(:product_field).find_by(product_fields: {name: 'Model'}).value).to eq('1001')
   end
 
-  it "is searchable"
+  it "should be searchable" do
+    visit root_path
+
+    search_terms = ['Very', '*UBE*', 'PR#0001-edited', '*edited']
+
+    search_terms.each do |search_term|
+      fill_in 'search_string', with: search_term
+      select 'quote', from: 'search_type'
+      click_button 'Search'
+      expect(page).to have_link('PR#0001-edited')
+    end
+  end
 
 end
