@@ -8,7 +8,6 @@
       %th.request-date Client Requested At
       %th.requested-item Requested Items
       %th.supplier-name Supplier
-      %th.status Status
       - if defined?(show_actions)
         %th.actions Actions
   %tbody
@@ -35,7 +34,6 @@
                 - else
                   %span.label.label-warning Not yet delivered
         %td= supplier_links(quote)
-        %td= quote.display_status
 
         - if defined?(show_actions)
           %td
