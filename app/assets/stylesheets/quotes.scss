@@ -25,7 +25,8 @@ table.quotes-table{
 
   tr {
     &.success a.quote-link{
-      color: #468847
+      // text-decoration: underline;
+      color: #468847;
     }
 
   }
