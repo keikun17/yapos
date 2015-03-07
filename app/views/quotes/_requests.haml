@@ -43,9 +43,10 @@
         %br
         %strong Notes:
         = offer.remarks
-        .alert.alert-internal-note
-          %strong.text-info Offer Internal Notes:
-          #{simple_format(offer.internal_notes, class: 'text-info')}
+        - if offer.internal_notes.present?
+          .alert.alert-internal-note
+            %strong.text-info Offer Internal Notes:
+            #{simple_format(offer.internal_notes, class: 'text-info')}
       %td.text-warning
         - if offer
           %strong Unit Price:
@@ -99,9 +100,10 @@
         %br
         %strong Notes:
         = offer.remarks
-        .alert.alert-internal-note
-          %strong.text-info Offer Internal Notes:
-          #{simple_format(offer.internal_notes, class: 'text-info')}
+        - if offer.internal_notes.present?
+          .alert.alert-internal-note
+            %strong.text-info Offer Internal Notes:
+            #{simple_format(offer.internal_notes, class: 'text-info')}
 
       %td.text-warning
         %strong Unit Price:

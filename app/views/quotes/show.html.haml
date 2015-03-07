@@ -56,11 +56,12 @@
       %br
       = @quote.order_links
 
-    %p
-      .alert.alert-internal-note
-        %strong Overall Internal Notes:
-        %br
-          = simple_format(@quote.internal_notes, class: 'text-info')
+    - if @quote.internal_notes.present?
+      %p
+        .alert.alert-internal-note
+          %strong Overall Internal Notes:
+          %br
+            = simple_format(@quote.internal_notes, class: 'text-info')
   .span3
     %p
       %strong= model_class.human_attribute_name(:client_name) + ':'
