@@ -14,7 +14,12 @@ table{
 
   font-family: 'Source Sans Pro', 'Helvetica', 'Arial', 'sans-serif' ;
 
+  a {
+    text-decoration: underline !important;
+  }
+
   a.btn{
+    text-decoration: none !important;
     font-family: 'Helvetica', 'Arial', 'sans-serif' ;
   }
 
