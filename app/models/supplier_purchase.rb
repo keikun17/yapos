@@ -37,6 +37,7 @@ class SupplierPurchase < ActiveRecord::Base
       include: {
         clients: {only: :name},
         suppliers: {only: :name},
+        supplier_orders: {only: :actual_specs}
       },
 
 
