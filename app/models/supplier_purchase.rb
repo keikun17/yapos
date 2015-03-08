@@ -1,7 +1,10 @@
 class SupplierPurchase < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   attr_accessible :reference,
     #order_id, #TODO : Create a migration that removes the order_id column, we
-    #                  we don't need this anymore because we are getting orders 
+    #                  we don't need this anymore because we are getting orders
     #                  thru the :offers association
     :recipient,
     :address,
@@ -29,6 +32,31 @@ class SupplierPurchase < ActiveRecord::Base
 
   validate :reference, uniqueness: true
 
+  def as_indexed_json(options={})
+    self.as_json(
+      include: {
+        clients: {only: :name},
+        suppliers: {only: :name},
+      },
+
+
+      only: [
+        :reference, :supplier_specs
+      ]
+    )
+  end
+
+  def supplier_specs
+    as = supplier_orders.map(&:actual_specs)
+    as = as.uniq.compact
+    as
+  end
+
+  def actual_specs
+    as = supplier_orders.map(&:actual_specs)
+    as = as.uniq.compact
+    as
+  end
   def order_date
     ordered_at.to_date.to_s(:long) if ordered_at
   end

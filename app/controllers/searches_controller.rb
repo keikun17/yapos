@@ -8,6 +8,8 @@ class SearchesController < ApplicationController
         @results = Quote.search(params[:search][:string]).records
       when 'order'
         @results = Order.search(params[:search][:string]).records
+      when 'supplier_order'
+        @results = SupplierPurchase.search(params[:search][:string]).records.decorate
       else
 
       end

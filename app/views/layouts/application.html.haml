@@ -62,7 +62,7 @@
                     = form_tag search_path, method: :get, class: 'navbar-form' do
                       - params[:search] ||= {}
                       = text_field_tag 'search[string]', params[:search][:string], :class => "navbar-search input-small"
-                      = select_tag 'search[type]', options_for_select(['quote','order'], params[:search][:type ]), class: 'compact navbar-search'
+                      = select_tag 'search[type]', options_for_select(['quote','order', ['supplier order', 'supplier_order']], params[:search][:type ]), class: 'compact navbar-search'
                       = button_tag "Search", :class => "btn btn-medium"
 
                 .pull-right

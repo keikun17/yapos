@@ -1,0 +1,20 @@
+- results.each do |supplier_purchase|
+  %tr
+    %td= link_to supplier_purchase.reference, print_supplier_purchase_path(supplier_purchase), target: '_blank'
+    -# %td= link_to quote.load.to_s, quote.url #FIXME : make this work without calling .load
+    %td
+      -# - requests = quote.requests
+      -# - requests.each do |r|
+      -#   %span
+      -#     = r.to_label('label label-info')
+      -#   %span
+      -#     = r.specs
+
+    %td Quote
+    %td=# supplier_purchase.client_name
+    %td
+      - supplier_purchase.suppliers.each do |supplier|
+        = link_to supplier.name, supplier
+        %br
+    %td= supplier_purchase.ordered_from_supplier_at
+    %td=# quote.display_status

@@ -3,84 +3,99 @@ require 'rails_helper'
 feature "Supplier Order Creation" do
 
 
-  feature "Search" do
-    it "should be searchable"
-  end
 
   context "Order within Same RFQ", js: true do
     include_context "Quote with 2 request and 3 offers"
 
-    scenario "Same Supplier PO number" do
-      visit root_path
-      click_link "PR#0001"
-      click_link "Edit", match: :first
+    context "Same Supplier PO number" do
+      before do
+        visit root_path
+        click_link "PR#0001"
+        click_link "Edit", match: :first
 
 
-      # Offer #1 for Request #1
-      within(page.all(".offer-line")[0]) do
-        fill_in "Client PO#", with: "PO#1"
+        # Offer #1 for Request #1
+        within(page.all(".offer-line")[0]) do
+          fill_in "Client PO#", with: "PO#1"
+        end
+
+        # Offer #2 for Request #2
+        within(page.all(".offer-line")[2]) do
+          fill_in "Client PO#", with: "PO#1"
+        end
+
+        click_button "Update Quote"
+
+        expect(Order.count).to eq(1)
+        expect(Order.where(reference: 'PO#1')).not_to be_nil
+
+        click_link "Client Orders"
+
+        expect(page).to have_link("PO#1")
+
+        click_link "Supplier PO required"
+        expect(page).to have_link("PO#1")
+
+        click_link "PO#1"
+        click_link "Edit", match: :first
+
+        within(page.all(".offer-line")[0]) do
+          find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("HVY BLTR 2014S1")
+          find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#1")
+        end
+
+        within(page.all(".offer-line")[1]) do
+          find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("LIGHT CSAW v9001")
+          find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#1")
+        end
+
+        click_button "Update Order"
+
+        # Make sure that the PO is removed from the 'Supplier PO required' page
       end
 
-      # Offer #2 for Request #2
-      within(page.all(".offer-line")[2]) do
-        fill_in "Client PO#", with: "PO#1"
+      it "should be printable" do
+        click_link "Client Orders"
+        click_link "Supplier PO required"
+        expect(page).to_not have_link("PO#1")
+        click_link "Supplier Orders"
+
+        expect(page).to have_link("SUPPLIER PO#1")
+        handle_window = window_opened_by { click_link "SUPPLIER PO#1" }
+
+        within_window(handle_window) do
+          #header
+          expect(page).to have_text("SUPPLIER PO#1")
+          expect(page).to have_text("Blue Buyers")
+
+          # Request 1 Offer 1
+          expect(page).to have_text("100.0 meter")
+          expect(page).to have_text("HVY BLTR 2014S1")
+          expect(page).to have_text("US$90.00/meter")
+          expect(page).to have_text("US$9,000.00")
+
+          # Request 2 Offer2
+          expect(page).to have_text("200.0 meter")
+          expect(page).to have_text("LIGHT CSAW v9001")
+          expect(page).to have_text("PHP4,300.00/meter")
+          expect(page).to have_text("PHP860,000.00")
+
+          # Total Price
+          expect(page).to have_text("US$869,000.00")
+        end
       end
 
-      click_button "Update Quote"
+      it "is searchable" do
+        visit root_path
 
-      expect(Order.count).to eq(1)
-      expect(Order.where(reference: 'PO#1')).not_to be_nil
+        search_terms = ['HVB-001', 'Super Seller', 'heavy bolter', 'heavy', 'bolt*']
 
-      click_link "Client Orders"
-
-      expect(page).to have_link("PO#1")
-
-      click_link "Supplier PO required"
-      expect(page).to have_link("PO#1")
-
-      click_link "PO#1"
-      click_link "Edit", match: :first
-
-      within(page.all(".offer-line")[0]) do
-        find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("HVY BLTR 2014S1")
-        find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#1")
-      end
-
-      within(page.all(".offer-line")[1]) do
-        find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("LIGHT CSAW v9001")
-        find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#1")
-      end
-
-      click_button "Update Order"
-
-      # Make sure that the PO is removed from the 'Supplier PO required' page
-      click_link "Client Orders"
-      click_link "Supplier PO required"
-      expect(page).to_not have_link("PO#1")
-      click_link "Supplier Orders"
-
-      expect(page).to have_link("SUPPLIER PO#1")
-      handle_window = window_opened_by { click_link "SUPPLIER PO#1" }
-
-      within_window(handle_window) do
-        #header
-        expect(page).to have_text("SUPPLIER PO#1")
-        expect(page).to have_text("Blue Buyers")
-
-        # Request 1 Offer 1
-        expect(page).to have_text("100.0 meter")
-        expect(page).to have_text("HVY BLTR 2014S1")
-        expect(page).to have_text("US$90.00/meter")
-        expect(page).to have_text("US$9,000.00")
-
-        # Request 2 Offer2
-        expect(page).to have_text("200.0 meter")
-        expect(page).to have_text("LIGHT CSAW v9001")
-        expect(page).to have_text("PHP4,300.00/meter")
-        expect(page).to have_text("PHP860,000.00")
-
-        # Total Price
-        expect(page).to have_text("US$869,000.00")
+        search_terms.each do |search_term|
+          fill_in 'search_string', with: search_term
+          select 'supplier order', from: 'search_type'
+          click_button 'Search'
+          expect(page).to have_link('SUPPLIER PO#1')
+        end
       end
     end
 
