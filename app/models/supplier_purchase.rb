@@ -46,6 +46,15 @@ class SupplierPurchase < ActiveRecord::Base
     )
   end
 
+  def reindex
+    begin
+      __elasticsearch__.delete_document
+    rescue
+      # Do nothing, carry on
+    end
+    __elasticsearch__.index_document
+  end
+
   def supplier_specs
     as = supplier_orders.map(&:actual_specs)
     as = as.uniq.compact
