@@ -66,6 +66,8 @@ class Order < ActiveRecord::Base
     self.offers.each do |offer|
       offer.purchase_from_supplier
     end
+
+    self.supplier_purchases.each(&:reindex)
   end
 
   # TODO : Rename to 'supplier_specs'
