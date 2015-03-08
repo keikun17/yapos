@@ -68,6 +68,7 @@ class Order < ActiveRecord::Base
     end
   end
 
+  # TODO : Rename to 'supplier_specs'
   def actual_specs
     as = supplier_orders.map(&:actual_specs)
     as = as.uniq.compact

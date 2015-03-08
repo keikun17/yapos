@@ -2,8 +2,9 @@ class Purchase
   include ActionView::Helpers::NumberHelper
 
   # FIXME: Violates Single responsibility?
-  # 1. Finds or Creates order record that every 'purchased' offer should have
-  # 2. Finds or Creates the supplier_order that every 'purchased' offer record should have
+  # For every 'client purchased offer' :
+  #   1. Create an Order record
+  #   2. Create Supplier Order record
   def self.make(purchased_offers)
     purchased_offers.each do |offer|
       # 1
