@@ -81,5 +81,19 @@ feature "Updating Supplier", js: true do
 
     end
 
+    it "Should be searchable" do
+      visit root_path
+
+      search_terms = ["SUPPLIER PO#1", 'Personal', 'Super*', '*', 'Sybil']
+
+      search_terms.each do |search_term|
+        fill_in 'search_string', with: search_term
+        select 'supplier order', from: 'search_type'
+        click_button 'Search'
+        expect(page).to have_link('SUPPLIER PO#1-revised')
+      end
+    end
+
+
   end
 end
