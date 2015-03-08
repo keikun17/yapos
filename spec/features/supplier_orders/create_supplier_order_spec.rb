@@ -88,7 +88,7 @@ feature "Supplier Order Creation" do
       it "is searchable" do
         visit root_path
 
-        search_terms = ['HVB-001', 'Super Seller', 'heavy bolter', 'heavy', 'bolt*']
+        search_terms = ["SUPPLIER PO#1", 'HVY*', 'LIGHT', '*', 'Blue Buyers']
 
         search_terms.each do |search_term|
           fill_in 'search_string', with: search_term
