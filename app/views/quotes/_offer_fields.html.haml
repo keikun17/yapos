@@ -2,7 +2,7 @@
   %td.empty
   %td
     = f.label :supplier_id, "Brand", class: 'offer-cell'
-    = f.select :supplier_id, options_for_select(Supplier.all.collect{|s| [s.name, s.id]}, f.object.supplier_id), {:include_blank => true}, :class => 'compact'
+    = f.select :supplier_id, options_for_select(Supplier.all.collect{|s| [s.name, s.id]}, f.object.supplier_id), {:include_blank => true}, :class => 'compact span6'
     .checkbox.inline
       = f.check_box :hide_supplier_in_print, class: 'check_box'
       Hide Brand in Print
@@ -10,11 +10,11 @@
     %br
 
     = f.label :specs, "Specs/Description", class: 'offer-cell'
-    = f.text_area :specs, :class => 'span12 text_area', :rows => 4, :placeholder => "Specs"
+    = f.text_area :specs, :class => 'span10 text_area', :rows => 4, :placeholder => "Specs"
 
     = f.label :summary, "Actual Specs", class: 'offer-cell'
     - #FIXME : Move placeholder to a yaml that stores placeholder texts
-    = f.text_area :summary, :class => 'span12 text_area', :rows => 4, :placeholder => "Example: 900mmW,EP200x2P,3x2,HR,ENDLESS"
+    = f.text_area :summary, :class => 'span10 text_area', :rows => 4, :placeholder => "Example: 900mmW,EP200x2P,3x2,HR,ENDLESS"
 
     = f.label :service, class: 'checkbox' do
       Service
@@ -29,7 +29,7 @@
     = link_to "Input Actual Specs", '#vendor_code_form', tb_shows_nearest_modal: 'true', data: {toggle: 'modal'}, class: 'btn'
     = render 'vendor_items/modal/form', vendor_item: f.object.vendor_item
 
-  %td
+  %td.span4
 
     .row-fluid
       .span12
@@ -100,7 +100,7 @@
           (Will not appear in print)
 
 
-  %td
+  %td.span3
     .control-group
       = f.label :order_reference, "Client PO#", class: 'span3 control-label'
       .control.span9

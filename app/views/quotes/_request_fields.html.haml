@@ -4,33 +4,35 @@
       = f.label :position, 'Item#', class: 'bold'
     %p
       = f.text_field :position, :class => 'span12 text_field'
+  %td{colspan: 4}
 
-  %td
-    %p
-      = f.label :quantity, 'Quantity', class: 'bold'
-    %p
-      = f.text_field :quantity, :class => 'span12 text_field'
-    %p
-      = f.label :unit, 'Unit', class: 'bold'
-    %p
-      = f.text_field :unit, :class => 'span12 text_field'
+    .span1
+      %p
+        = f.label :quantity, 'Quantity', class: 'bold'
+      %p
+        = f.text_field :quantity, :class => 'span12 text_field'
+    .span1
+      %p
+        = f.label :unit, 'Unit', class: 'bold'
+      %p
+        = f.text_field :unit, :class => 'span12 text_field'
 
-  %td{colspan: 2}
-    %p
-      = f.label :specs, 'Request Specs', class: 'bold'
-    %p
-      = f.text_area :specs, :class => 'span12 text_area', :rows => 4
-    %p
-      = f.label :item_code, 'Item/Material Code', class: 'bold'
-      = f.text_field :item_code, :class => 'span6 text_field'
+    .span7
+      %p
+        = f.label :specs, 'Request Specs', class: 'bold'
+      %p
+        = f.text_area :specs, :class => 'span12 text_area', :rows => 4
+      %p
+        = f.label :item_code, 'Item/Material Code', class: 'bold'
+        = f.text_field :item_code, :class => 'span6 text_field'
 
-  %td
-    %p
-      = f.label :remarks, 'Internal Notes', class: 'bold'
-    %p
-      =f.text_area :remarks, :class => 'text_area span12', :rows => 2
-    %p
-      (Will not appear in print)
+    .span3
+      %p
+        = f.label :remarks, 'Internal Notes', class: 'bold'
+      %p
+        =f.text_area :remarks, :class => 'text_area span12', :rows => 2
+      %p
+        (Will not appear in print)
   %td.span1= link_to_remove_fields "Request", f
 
 %tr
