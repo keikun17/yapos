@@ -43,8 +43,8 @@
         .control-group
           = f.label :buying_price, "Supplier Price", class: 'span4 control-label'
           .controls.span8
-            = f.select(:buying_currency, Currency.all, {}, class: 'span3')
-            = f.text_field :buying_price, :class => 'text_field span9'
+            = f.select(:buying_currency, Currency.all, {}, class: 'span5')
+            = f.text_field :buying_price, :class => 'text_field span7'
 
 
     .row-fluid
@@ -52,8 +52,8 @@
         .control-group
           = f.label :selling_price, "Our Price", class: 'span4 control-label'
           .controls.span8
-            = f.select(:currency, Currency.all, {}, class: 'span3')
-            = f.text_field :selling_price, :class => 'text_field span9'
+            = f.select(:currency, Currency.all, {}, class: 'span5')
+            = f.text_field :selling_price, :class => 'text_field span7'
 
     .row-fluid
       .span12
