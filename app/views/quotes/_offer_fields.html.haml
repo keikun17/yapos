@@ -10,11 +10,11 @@
     %br
 
     = f.label :specs, "Specs/Description", class: 'offer-cell'
-    = f.text_area :specs, :class => 'span10 text_area', :rows => 4, :placeholder => "Specs"
+    = f.text_area :specs, :class => 'span12 text_area', :rows => 4, :placeholder => "Specs"
 
     = f.label :summary, "Actual Specs", class: 'offer-cell'
     - #FIXME : Move placeholder to a yaml that stores placeholder texts
-    = f.text_area :summary, :class => 'span10 text_area', :rows => 4, :placeholder => "Example: 900mmW,EP200x2P,3x2,HR,ENDLESS"
+    = f.text_area :summary, :class => 'span12 text_area', :rows => 4, :placeholder => "Example: 900mmW,EP200x2P,3x2,HR,ENDLESS"
 
     = f.label :service, class: 'checkbox' do
       Service
@@ -29,75 +29,62 @@
     = link_to "Input Actual Specs", '#vendor_code_form', tb_shows_nearest_modal: 'true', data: {toggle: 'modal'}, class: 'btn'
     = render 'vendor_items/modal/form', vendor_item: f.object.vendor_item
 
-  %td.span4
+  %td.span5
 
-    .row-fluid
-      .span12
-        .control-group
-          = f.label :price_vat_status, "VAT Status", class: 'span4 control-label'
-          .controls.span8
-            = f.text_field :price_vat_status, :class => 'text_field span12', :placeholder => "VAT EX or VAT INC"
+    .control-group
+      = f.label :price_vat_status, "VAT Status", class: 'span3 control-label'
+      .controls.span8
+        = f.text_field :price_vat_status, :class => 'text_field span12', :placeholder => "VAT EX or VAT INC"
 
-    .row-fluid
-      .span12
-        .control-group
-          = f.label :buying_price, "Supplier Price", class: 'span4 control-label'
-          .controls.span8
-            = f.select(:buying_currency, Currency.all, {}, class: 'span5')
-            = f.text_field :buying_price, :class => 'text_field span7'
+    .control-group
+      = f.label :buying_price, "Supplier Price", class: 'span3 control-label'
+      .controls.span8
+        = f.select(:buying_currency, Currency.all, {}, class: 'span5')
+        = f.text_field :buying_price, :class => 'text_field span7'
 
 
-    .row-fluid
-      .span12
-        .control-group
-          = f.label :selling_price, "Our Price", class: 'span4 control-label'
-          .controls.span8
-            = f.select(:currency, Currency.all, {}, class: 'span5')
-            = f.text_field :selling_price, :class => 'text_field span7'
+    .control-group
+      = f.label :selling_price, "Our Price", class: 'span3 control-label'
+      .controls.span8
+        = f.select(:currency, Currency.all, {}, class: 'span5')
+        = f.text_field :selling_price, :class => 'text_field span7'
 
-    .row-fluid
-      .span12
-        .control-group
-          = f.label :price_basis, "Price Basis", class: "span4 control-label"
-          .controls.span8
-            = f.text_field :price_basis, :class => 'text_field span12', :placeholder => "FOB LOCATION"
+    .control-group
+      = f.label :price_basis, "Price Basis", class: "span3 control-label"
+      .controls.span8
+        = f.text_field :price_basis, :class => 'text_field span12', :placeholder => "FOB LOCATION"
 
   %td
-    %p
-      .control-group
-        = f.label :terms, "Terms", class: 'span2 control-label'
-        .controls.span10
-          = f.text_field :terms, :class => 'text_field span10', data: { field_group: 'terms' }
-          %a.icon-share.btn.btn-mini{ data: { field_group: 'terms' }, title: "Copy to all offers for the same supplier" }
-    %p
-      .control-group
-        = f.label :delivery, "Delivery", class: 'span2 control-label'
-        .controls.span10
-          = f.text_field :delivery, :class => 'text_field span10', data: { field_group: 'delivery'}
-          %a.icon-share.btn.btn-mini{ data: {field_group: 'delivery'}, title: "Copy to all offers for the same supplier" }
+    .control-group
+      = f.label :terms, "Terms", class: 'span2 control-label'
+      .controls.span10
+        = f.text_field :terms, :class => 'text_field span10', data: { field_group: 'terms' }
+        %a.icon-share.btn.btn-mini{ data: { field_group: 'terms' }, title: "Copy to all offers for the same supplier" }
+    .control-group
+      = f.label :delivery, "Delivery", class: 'span2 control-label'
+      .controls.span10
+        = f.text_field :delivery, :class => 'text_field span10', data: { field_group: 'delivery'}
+        %a.icon-share.btn.btn-mini{ data: {field_group: 'delivery'}, title: "Copy to all offers for the same supplier" }
 
-    %p
-      .control-group
-        = f.label :warranty, "Warranty", class: 'span2 control-label'
-        .controls.span10
-          = f.text_field :warranty, :class => 'text_field span10', data: { field_group: 'warranty'}
-          %a.icon-share.btn.btn-mini{ data: {field_group: 'warranty'}, title: "Copy to all offers for the same supplier" }
+    .control-group
+      = f.label :warranty, "Warranty", class: 'span2 control-label'
+      .controls.span10
+        = f.text_field :warranty, :class => 'text_field span10', data: { field_group: 'warranty'}
+        %a.icon-share.btn.btn-mini{ data: {field_group: 'warranty'}, title: "Copy to all offers for the same supplier" }
 
-    %p
-      .control-group
-        = f.label :remarks, "Notes", class: 'span2 control-label'
-        .controls.span10
-          = f.text_field :remarks, :class => 'text_area span10', data: { field_group: 'request_notes'}
+    .control-group
+      = f.label :remarks, "Notes", class: 'span2 control-label'
+      .controls.span10
+        = f.text_field :remarks, :class => 'text_area span10', data: { field_group: 'request_notes'}
 
-          %a.icon-share.btn.btn-mini{ data: {field_group: 'request_notes'}, title: "Copy to all offers for the same supplier" }
+        %a.icon-share.btn.btn-mini{ data: {field_group: 'request_notes'}, title: "Copy to all offers for the same supplier" }
 
-    %p
-      .control-group
-        = f.label :internal_notes, "Interal Notes", class: 'span2 control-label'
-        .controls.span10
-          = f.text_area :internal_notes, :class => 'text_area span10', data: { field_group: 'request_notes'}
-          %br
-          (Will not appear in print)
+    .control-group
+      = f.label :internal_notes, "Interal Notes", class: 'span2 control-label'
+      .controls.span10
+        = f.text_area :internal_notes, :class => 'text_area span10', data: { field_group: 'request_notes'}
+        %br
+        (Will not appear in print)
 
 
   %td.span3
