@@ -37,11 +37,17 @@
 
 %tr
   %th.borderless-left
-  %th Offered Specs
-  %th Price Details
-  %th Misc Details
-  %th Order references
-  %th
+  %th{colspan: 5}
+    .span4 Offered Specs
+    .span3 Price Details
+    .span3 Misc Details
+    .span2 Order References
+    -# %th Offered Specs
+    -# %th Price Details
+    -# %th Misc Details
+    -# %th Order references
+    -# %th
+  %th Delete
 = f.fields_for :offers do |builder|
   = render 'offer_fields', :f => builder
 

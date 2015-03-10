@@ -1,108 +1,109 @@
 %tr.offer-line.fields.alternating-offer-fields
   %td.empty
-  %td
-    = f.label :supplier_id, "Brand", class: 'offer-cell'
-    = f.select :supplier_id, options_for_select(Supplier.all.collect{|s| [s.name, s.id]}, f.object.supplier_id), {:include_blank => true}, :class => 'compact span6'
-    .checkbox.inline
-      = f.check_box :hide_supplier_in_print, class: 'check_box'
-      Hide Brand in Print
+    %td{colspan: 5}
+      .span4
+        = f.label :supplier_id, "Brand", class: 'offer-cell'
+        = f.select :supplier_id, options_for_select(Supplier.all.collect{|s| [s.name, s.id]}, f.object.supplier_id), {:include_blank => true}, :class => 'compact span6'
+        .checkbox.inline
+          = f.check_box :hide_supplier_in_print, class: 'check_box'
+          Hide Brand in Print
 
-    %br
-
-    = f.label :specs, "Specs/Description", class: 'offer-cell'
-    = f.text_area :specs, :class => 'span12 text_area', :rows => 4, :placeholder => "Specs"
-
-    = f.label :summary, "Actual Specs", class: 'offer-cell'
-    - #FIXME : Move placeholder to a yaml that stores placeholder texts
-    = f.text_area :summary, :class => 'span12 text_area', :rows => 4, :placeholder => "Example: 900mmW,EP200x2P,3x2,HR,ENDLESS"
-
-    = f.label :service, class: 'checkbox' do
-      Service
-      = f.check_box :service
-
-    = f.label :vendor_item_id, "Vendor Item ID", class: 'offer-cell'
-    = f.text_field :vendor_item_id, readonly: true, tb_vendor_item_id_field: 'true'
-
-    = f.label :vendor_item_code, "Vendor Item Code", class: 'offer-cell'
-    = f.text_field :vendor_item_code, readonly: true, tb_vendor_item_code_field: 'true'
-
-    = link_to "Input Actual Specs", '#vendor_code_form', tb_shows_nearest_modal: 'true', data: {toggle: 'modal'}, class: 'btn'
-    = render 'vendor_items/modal/form', vendor_item: f.object.vendor_item
-
-  %td.span5
-
-    .control-group
-      = f.label :price_vat_status, "VAT Status", class: 'span3 control-label'
-      .controls.span8
-        = f.text_field :price_vat_status, :class => 'text_field span12', :placeholder => "VAT EX or VAT INC"
-
-    .control-group
-      = f.label :buying_price, "Supplier Price", class: 'span3 control-label'
-      .controls.span8
-        = f.select(:buying_currency, Currency.all, {}, class: 'span5')
-        = f.text_field :buying_price, :class => 'text_field span7'
-
-
-    .control-group
-      = f.label :selling_price, "Our Price", class: 'span3 control-label'
-      .controls.span8
-        = f.select(:currency, Currency.all, {}, class: 'span5')
-        = f.text_field :selling_price, :class => 'text_field span7'
-
-    .control-group
-      = f.label :price_basis, "Price Basis", class: "span3 control-label"
-      .controls.span8
-        = f.text_field :price_basis, :class => 'text_field span12', :placeholder => "FOB LOCATION"
-
-  %td
-    .control-group
-      = f.label :terms, "Terms", class: 'span2 control-label'
-      .controls.span10
-        = f.text_field :terms, :class => 'text_field span10', data: { field_group: 'terms' }
-        %a.icon-share.btn.btn-mini{ data: { field_group: 'terms' }, title: "Copy to all offers for the same supplier" }
-    .control-group
-      = f.label :delivery, "Delivery", class: 'span2 control-label'
-      .controls.span10
-        = f.text_field :delivery, :class => 'text_field span10', data: { field_group: 'delivery'}
-        %a.icon-share.btn.btn-mini{ data: {field_group: 'delivery'}, title: "Copy to all offers for the same supplier" }
-
-    .control-group
-      = f.label :warranty, "Warranty", class: 'span2 control-label'
-      .controls.span10
-        = f.text_field :warranty, :class => 'text_field span10', data: { field_group: 'warranty'}
-        %a.icon-share.btn.btn-mini{ data: {field_group: 'warranty'}, title: "Copy to all offers for the same supplier" }
-
-    .control-group
-      = f.label :remarks, "Notes", class: 'span2 control-label'
-      .controls.span10
-        = f.text_field :remarks, :class => 'text_area span10', data: { field_group: 'request_notes'}
-
-        %a.icon-share.btn.btn-mini{ data: {field_group: 'request_notes'}, title: "Copy to all offers for the same supplier" }
-
-    .control-group
-      = f.label :internal_notes, "Interal Notes", class: 'span2 control-label'
-      .controls.span10
-        = f.text_area :internal_notes, :class => 'text_area span10', data: { field_group: 'request_notes'}
         %br
-        (Will not appear in print)
+
+        = f.label :specs, "Specs/Description", class: 'offer-cell'
+        = f.text_area :specs, :class => 'span12 text_area', :rows => 4, :placeholder => "Specs"
+
+        = f.label :summary, "Actual Specs", class: 'offer-cell'
+        - #FIXME : Move placeholder to a yaml that stores placeholder texts
+        = f.text_area :summary, :class => 'span12 text_area', :rows => 4, :placeholder => "Example: 900mmW,EP200x2P,3x2,HR,ENDLESS"
+
+        = f.label :service, class: 'checkbox' do
+          Service
+          = f.check_box :service
+
+        = f.label :vendor_item_id, "Vendor Item ID", class: 'offer-cell'
+        = f.text_field :vendor_item_id, readonly: true, tb_vendor_item_id_field: 'true'
+
+        = f.label :vendor_item_code, "Vendor Item Code", class: 'offer-cell'
+        = f.text_field :vendor_item_code, readonly: true, tb_vendor_item_code_field: 'true'
+
+        = link_to "Input Actual Specs", '#vendor_code_form', tb_shows_nearest_modal: 'true', data: {toggle: 'modal'}, class: 'btn'
+        = render 'vendor_items/modal/form', vendor_item: f.object.vendor_item
+
+      .span3
+
+        .control-group
+          = f.label :price_vat_status, "VAT Status", class: 'span3 control-label'
+          .controls.span8
+            = f.text_field :price_vat_status, :class => 'text_field span12', :placeholder => "VAT EX or VAT INC"
+
+        .control-group
+          = f.label :buying_price, "Supplier Price", class: 'span3 control-label'
+          .controls.span8
+            = f.select(:buying_currency, Currency.all, {}, class: 'span5')
+            = f.text_field :buying_price, :class => 'text_field span7'
 
 
-  %td.span3
-    .control-group
-      = f.label :order_reference, "Client PO#", class: 'span3 control-label'
-      .control.span9
-        = f.text_field :order_reference, :class => 'text_field span12'
+        .control-group
+          = f.label :selling_price, "Our Price", class: 'span3 control-label'
+          .controls.span8
+            = f.select(:currency, Currency.all, {}, class: 'span5')
+            = f.text_field :selling_price, :class => 'text_field span7'
 
-    .control-group
-      = f.label :delivery_receipt_reference, "DR#", class: 'span3 control-label'
-      .control.span9
-        = f.text_field :delivery_receipt_reference, :class => 'text_field span12'
+        .control-group
+          = f.label :price_basis, "Price Basis", class: "span3 control-label"
+          .controls.span8
+            = f.text_field :price_basis, :class => 'text_field span12', :placeholder => "FOB LOCATION"
 
-    .control-group
-      = f.label :sales_invoice_reference, "SI#", class: 'span3 control-label'
-      .control.span9
-        = f.text_field :sales_invoice_reference, :class => 'text_field span12'
+      .span3
+        .control-group
+          = f.label :terms, "Terms", class: 'span2 control-label'
+          .controls.span10
+            = f.text_field :terms, :class => 'text_field span10', data: { field_group: 'terms' }
+            %a.icon-share.btn.btn-mini{ data: { field_group: 'terms' }, title: "Copy to all offers for the same supplier" }
+        .control-group
+          = f.label :delivery, "Delivery", class: 'span2 control-label'
+          .controls.span10
+            = f.text_field :delivery, :class => 'text_field span10', data: { field_group: 'delivery'}
+            %a.icon-share.btn.btn-mini{ data: {field_group: 'delivery'}, title: "Copy to all offers for the same supplier" }
+
+        .control-group
+          = f.label :warranty, "Warranty", class: 'span2 control-label'
+          .controls.span10
+            = f.text_field :warranty, :class => 'text_field span10', data: { field_group: 'warranty'}
+            %a.icon-share.btn.btn-mini{ data: {field_group: 'warranty'}, title: "Copy to all offers for the same supplier" }
+
+        .control-group
+          = f.label :remarks, "Notes", class: 'span2 control-label'
+          .controls.span10
+            = f.text_field :remarks, :class => 'text_area span10', data: { field_group: 'request_notes'}
+
+            %a.icon-share.btn.btn-mini{ data: {field_group: 'request_notes'}, title: "Copy to all offers for the same supplier" }
+
+        .control-group
+          = f.label :internal_notes, "Interal Notes", class: 'span2 control-label'
+          .controls.span10
+            = f.text_area :internal_notes, :class => 'text_area span10', data: { field_group: 'request_notes'}
+            %br
+            (Will not appear in print)
 
 
-  %td= link_to_remove_fields "Offer", f
+      .span2
+        .control-group
+          = f.label :order_reference, "Client PO#", class: 'span3 control-label'
+          .control.span9
+            = f.text_field :order_reference, :class => 'text_field span12'
+
+        .control-group
+          = f.label :delivery_receipt_reference, "DR#", class: 'span3 control-label'
+          .control.span9
+            = f.text_field :delivery_receipt_reference, :class => 'text_field span12'
+
+        .control-group
+          = f.label :sales_invoice_reference, "SI#", class: 'span3 control-label'
+          .control.span9
+            = f.text_field :sales_invoice_reference, :class => 'text_field span12'
+
+
+    %td= link_to_remove_fields "Offer", f
 
