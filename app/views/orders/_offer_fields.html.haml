@@ -15,10 +15,14 @@
   - # be inserted with a blank one?
   - f.object.build_supplier_order if f.object.supplier_order.nil?
   = f.fields_for :supplier_order do |ff|
-    %td= ff.text_area :actual_specs
-    %td= ff.text_field :reference
-    %td= ff.date_select :estimated_manufactured_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
-    %td= ff.date_select :estimated_delivered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
+    %td= ff.text_area :actual_specs unless f.object.service?
+    %td= ff.text_field :reference unless f.object.service?
+    %td
+      - unless f.object.service?
+        = ff.date_select :estimated_manufactured_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
+    %td
+      - unless f.object.service?
+        = ff.date_select :estimated_delivered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
 
     %td
       = ff.date_select :delivered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
