@@ -5,11 +5,13 @@ class QuotesController < ApplicationController
   # GET /quotes
   # GET /quotes.json
   def index
-    @quotes = Quote.paginate(:page => params[:page], :per_page => 20).decorate
+    @quotes = Quote.paginate(:page => params[:page], :per_page => 20)
 
     unless params[:client_id].blank?
       @quotes = @quotes.where(client_id: params[:client_id])
     end
+
+    @quotes = @quotes.decorate
 
     respond_to do |format|
       format.html # index.html.erb
