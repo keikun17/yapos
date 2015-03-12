@@ -24,6 +24,8 @@ class SupplierPurchase < ActiveRecord::Base
     foreign_key: :reference
 
   has_many :offers, through: :supplier_orders
+  has_many :quotes, through: :offers
+  has_many :requests, through: :offers
 
   has_many :clients, -> {uniq},  through: :offers
   has_many :suppliers, -> {uniq},  through: :offers
