@@ -9,7 +9,6 @@
       %th Client
       %th Supplier
       %th Date
-      %th Status
   %tbody
     - results.each do |supplier_purchase|
       %tr
@@ -39,4 +38,3 @@
             = link_to supplier.name, supplier
             %br
         %td= supplier_purchase.ordered_from_supplier_at
-        %td=# quote.display_status
