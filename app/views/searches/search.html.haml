@@ -1,21 +1,2 @@
-%table.table.table-striped
-  %thead
-    %tr
-      %th Link
-      %th Requested Specs
-      %th Type
-      %th Client
-      %th Supplier
-      %th Date
-      %th Status
-  %tbody
-    = render "searches/results/#{@type}", results: @results
-    -# - @results.each do |result|
-    -#   %tr
-    -#     %td= link_to result.to_s, result.url #FIXME : make this work without calling .load
-    -#     %td= result.quoted_items
-    -#     %td= result._type
-    -#     %td= result.client
-    -#     %td= result.suppliers
-    -#     %td= result.date
-    -#     %td= result.display_status
+%h1 Search Results
+= render "searches/results/#{@type}", results: @results
