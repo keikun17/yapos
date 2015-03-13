@@ -1,31 +1,31 @@
 = form_for @supplier_purchase, :html => { :class => 'form-horizontal' } do |f|
 
-  .control-group
+  .form-group
     = label_tag 'company', 'To', :class => 'control-label'
     .controls
       = text_field_tag :company, @supplier_purchase.supplier_name, :class => 'text_field disabledInput', disabled: 'true'
 
-  .control-group
+  .form-group
     = f.label :address, 'Address' ,:class => 'control-label'
     .controls
       = f.text_area :address, :class => 'text_field'
 
-  .control-group
+  .form-group
     = f.label :recipient, 'Attention' ,:class => 'control-label'
     .controls
       = f.text_field :recipient, :class => 'text_field'
 
-  .control-group.pull-right
+  .form-group.pull-right
     = f.label :supplier_order_reference, 'Supplier PO#', :class => 'control-label'
     .controls
       = f.text_field :reference, :class => 'text_field disabledInput', disabled: 'true'
 
-  .control-group
+  .form-group
     = f.label :ordered_at, 'Date', :class => 'control-label'
     .controls
       = f.date_select :ordered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
 
-  .control-group
+  .form-group
     = label_tag 'subject', 'Subject', :class => 'control-label'
     .controls
       = text_field_tag :subject, @supplier_purchase.client_name, :class => 'text_field disabledInput', disabled: 'true'
@@ -35,39 +35,39 @@
   = render 'supplier_orders', supplier_purchase: @supplier_purchase
 
 
-  .control-group
+  .form-group
     = f.label :delivery, 'Delivery' ,:class => 'control-label'
     .controls
       = f.text_field :delivery, :class => 'text_field'
 
-  .control-group
+  .form-group
     = f.label :price_basis, 'Price Basis' ,:class => 'control-label'
     .controls
       = f.text_field :price_basis, :class => 'text_field'
 
-  .control-group
+  .form-group
     = f.label :terms, 'Terms' ,:class => 'control-label'
     .controls
       = f.text_field :terms, :class => 'text_field'
 
-  .control-group
+  .form-group
     = f.label :warranty, 'Warranty' ,:class => 'control-label'
     .controls
       = f.text_field :warranty, :class => 'text_field'
 
-  .control-group
+  .form-group
     = f.label :remarks, 'Remarks' ,:class => 'control-label'
     .controls
       = f.text_area :remarks, :class => 'text_area'
       %i
         (Example: Please note that helpers and drivers need PPE when delivering to Plant sites (Hard hat, reflective vest, goggles, safety shoes) and proper attire e.g. pants)
 
-  .control-group
+  .form-group
     = f.label :signatory, 'Signatory' ,:class => 'control-label'
     .controls
       = f.text_field :signatory, :class => 'text_field'
 
-  .control-group
+  .form-group
     = f.label :signatory_position, 'Signatory Position' ,:class => 'control-label'
     .controls
       = f.text_field :signatory_position, :class => 'text_field'

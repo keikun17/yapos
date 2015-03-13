@@ -4,12 +4,12 @@
       %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
       %h3 Input Client PO Number
     .modal-body
-      .control-group
+      .form-group
         %label.control-label Quantity
         .controls
           = offer.complete_quantity
 
-      .control-group
+      .form-group
         %label.control-label Specs
         .controls
           %p
@@ -23,18 +23,18 @@
               = simple_format(offer.summary, class: 'muted')
 
 
-      .control-group
+      .form-group
         = f.label :order_reference, "Client's PO Number", class: 'control-label'
         .controls
           = f.text_field :order_reference, class: 'text_field'
 
       -# SupplierOrder
-      .control-group
+      .form-group
         = label '[post_save][supplier_order][actual_specs]', 'Specs to Order from Supplier', class: 'control-label'
         .controls
           = text_area_tag '[post_save][supplier_order][actual_specs]',offer.summary, class: 'text_area', rows: 4
 
-      .control-group
+      .form-group
         = label '[post_save][supplier_order][reference]', 'Our PO# for our Supplier', class: 'control-label'
         .controls
           = text_field_tag '[post_save][supplier_order][reference]', '', class: 'text_field'

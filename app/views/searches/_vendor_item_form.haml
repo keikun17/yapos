@@ -7,7 +7,7 @@
         - @vendor_item.errors.full_messages.each do |msg|
           %li= msg
 
-  .control-group
+  .form-group
     = label_tag :filter, 'Filter', class: 'control-label'
     .controls
       = select_tag :filter, options_for_select(["Contains", "Exact"])

@@ -2,17 +2,17 @@
   %h3 Custom Quotes
   #custom-fields
     %legend Fill these up if Order has no Quote
-    .control-group
+    .form-group
       = f.label :custom_quote_reference, "Custom Quote Reference" , :class => 'control-label'
       .controls
         = f.text_field :custom_quote_reference, :class => "text_field"
     
-    .control-group
+    .form-group
       = f.label :supplier_id, "Supplier", :class => "control-label"
       .controls
         = f.select :supplier_id, Supplier.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
 
-  .control-group
+  .form-group
     = f.label :client_id, :class => 'control-label'
     .controls
       = f.select :client_id, Client.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'

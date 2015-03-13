@@ -3,11 +3,11 @@
     .modal-header
       %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
     .modal-body
-      .control-group
+      .form-group
         %label.control-label SPECS:
         .controls
           = offer.display_specs
-      .control-group
+      .form-group
         %label.control-label ACTUAL SPECS:
         .controls
           %strong= offer.supplier_name
@@ -17,7 +17,7 @@
 
       %h3 Edit Offer's Vendor Code
 
-      .control-group
+      .form-group
         = label_tag :product_id, 'Product', class: 'control-label'
         .controls
           = select_tag :product_id, options_for_select(Product.all.collect{ |p| [p.name, p.id] }),  class: 'col-sm-6 text_field', data: {dynamic_select: "vendor_item_code" }
@@ -38,12 +38,12 @@
 
       %hr
 
-      .control-group.hidden{tb_toggled_visibility: "#{offer.id}-new"}
+      .form-group.hidden{tb_toggled_visibility: "#{offer.id}-new"}
         = label_tag :new_vendor_code, 'New Vendor Code', class: 'control-label'
         .controls
           = text_field_tag :new_vendor_code,nil, class: 'col-sm-6 text_field'
 
-      .control-group.hidden{tb_toggled_visibility: "#{offer.id}-existing"}
+      .form-group.hidden{tb_toggled_visibility: "#{offer.id}-existing"}
         = label_tag :existing_vendor_code, 'Select From Existing Vendor Code', class: 'control-label'
         .controls
           = select_tag :existing_vendor_code, options_for_select( VendorItem.all.collect{|v| [v.code, v.code]} ), class: 'col-sm-12 text_field', data: {dynamic_selected: 'vendor_item_code'}

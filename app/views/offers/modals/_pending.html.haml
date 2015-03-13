@@ -4,7 +4,7 @@
       %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
       %h3 Input Supplier PO# order for the client's order
     .modal-body
-      .control-group
+      .form-group
         %label.control-label SPECS:
         .controls
           = offer.display_specs
@@ -14,7 +14,7 @@
       - offer.build_supplier_order if offer.supplier_order.nil?
 
       = f.fields_for :supplier_order do |ff|
-        .control-group
+        .form-group
           = ff.label :reference_po, 'Supplier PO Number', class: 'control-label'
           .controls
             = ff.text_field :reference, class: 'col-sm-6 text_field'

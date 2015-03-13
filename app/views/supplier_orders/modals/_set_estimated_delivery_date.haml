@@ -4,13 +4,13 @@
       %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
       %h3 Estimated delivery date
     .modal-body
-      .control-group
+      .form-group
         %label.control-label Specs
         .controls
           = simple_format(supplier_order.offer.decorate.summary)
           = simple_format(supplier_order.offer.decorate.display_actual_specs)
 
-      .control-group
+      .form-group
         = f.label :estimated_delivered_at, 'Estimated Delivery Date', class: 'control-label'
         .controls
           = f.date_select :estimated_delivered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'

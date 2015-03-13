@@ -1,17 +1,17 @@
 = form_for @supplier, :html => { :class => 'form-horizontal' } do |f|
-  .control-group
+  .form-group
     = f.label :name, :class => 'control-label'
     .controls
       = f.text_field :name, :class => 'text_field'
-  .control-group
+  .form-group
     = f.label :emails, :class => 'control-label'
     .controls
       = f.text_field :emails, :class => 'text_field'
-  .control-group
+  .form-group
     = f.label :contact_numbers, :class => 'control-label'
     .controls
       = f.text_field :contact_numbers, :class => 'text_field'
-  .control-group
+  .form-group
     = f.label :address, :class => 'control-label'
     .controls
       = f.text_area :address, :class => 'text_area'

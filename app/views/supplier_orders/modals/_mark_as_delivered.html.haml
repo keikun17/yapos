@@ -5,24 +5,24 @@
       %h3 Input Actual Delivery Date
       %i Only edit this if this item has actually been delivered
     .modal-body
-      .control-group
+      .form-group
         %label.control-label Specs
         .controls
           = simple_format(supplier_order.offer.decorate.summary)
           = simple_format(supplier_order.offer.decorate.display_actual_specs)
 
-      .control-group
+      .form-group
         = f.label :delivered_at, 'Delivered at', class: 'control-label'
         .controls
           = f.date_select :delivered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
 
       = f.fields_for :offer do |ff|
-        .control-group
+        .form-group
           = ff.label :delivery_receipt_reference, 'DR #', class: 'control-label'
           .controls
             = ff.text_field :delivery_receipt_reference,  class: 'text-field'
 
-        .control-group
+        .form-group
           = ff.label :sales_invoice_reference, 'SI #', class: 'control-label'
           .controls
             = ff.text_field :sales_invoice_reference,  class: 'text-field'

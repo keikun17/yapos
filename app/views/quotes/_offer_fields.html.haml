@@ -32,55 +32,55 @@
 
       .col-sm-3
 
-        .control-group
+        .form-group
           = f.label :price_vat_status, "VAT Status", class: 'col-sm-3 control-label'
           .controls.col-sm-8
             = f.text_field :price_vat_status, :class => 'text_field col-sm-12', :placeholder => "VAT EX or VAT INC"
 
-        .control-group
+        .form-group
           = f.label :buying_price, "Supplier Price", class: 'col-sm-3 control-label'
           .controls.col-sm-8
             = f.select(:buying_currency, Currency.all, {}, class: 'col-sm-5')
             = f.text_field :buying_price, :class => 'text_field col-sm-7'
 
 
-        .control-group
+        .form-group
           = f.label :selling_price, "Our Price", class: 'col-sm-3 control-label'
           .controls.col-sm-8
             = f.select(:currency, Currency.all, {}, class: 'col-sm-5')
             = f.text_field :selling_price, :class => 'text_field col-sm-7'
 
-        .control-group
+        .form-group
           = f.label :price_basis, "Price Basis", class: "col-sm-3 control-label"
           .controls.col-sm-8
             = f.text_field :price_basis, :class => 'text_field col-sm-12', :placeholder => "FOB LOCATION"
 
       .col-sm-3
-        .control-group
+        .form-group
           = f.label :terms, "Terms", class: 'col-sm-2 control-label'
           .controls.col-sm-10
             = f.text_field :terms, :class => 'text_field col-sm-10', data: { field_group: 'terms' }
             %a.icon-share.btn.btn-mini{ data: { field_group: 'terms' }, title: "Copy to all offers for the same supplier" }
-        .control-group
+        .form-group
           = f.label :delivery, "Delivery", class: 'col-sm-2 control-label'
           .controls.col-sm-10
             = f.text_field :delivery, :class => 'text_field col-sm-10', data: { field_group: 'delivery'}
             %a.icon-share.btn.btn-mini{ data: {field_group: 'delivery'}, title: "Copy to all offers for the same supplier" }
 
-        .control-group
+        .form-group
           = f.label :warranty, "Warranty", class: 'col-sm-2 control-label'
           .controls.col-sm-10
             = f.text_field :warranty, :class => 'text_field col-sm-10', data: { field_group: 'warranty'}
             %a.icon-share.btn.btn-mini{ data: {field_group: 'warranty'}, title: "Copy to all offers for the same supplier" }
 
-        .control-group
+        .form-group
           = f.label :remarks, "Notes", class: 'col-sm-2 control-label'
           .controls.col-sm-10
             = f.text_field :remarks, :class => 'text_area col-sm-10', data: { field_group: 'request_notes'}
 
             %a.icon-share.btn.btn-mini{ data: {field_group: 'request_notes'}, title: "Copy to all offers for the same supplier" }
 
-        .control-group
+        .form-group
           = f.label :internal_notes, "Interal Notes", class: 'col-sm-2 control-label'
           .controls.col-sm-10
             = f.text_area :internal_notes, :class => 'text_area col-sm-10', data: { field_group: 'request_notes'}
@@ -89,17 +89,17 @@
 
 
       .col-sm-2
-        .control-group
+        .form-group
           = f.label :order_reference, "Client PO#", class: 'col-sm-3 control-label'
           .control.col-sm-9
             = f.text_field :order_reference, :class => 'text_field col-sm-12'
 
-        .control-group
+        .form-group
           = f.label :delivery_receipt_reference, "DR#", class: 'col-sm-3 control-label'
           .control.col-sm-9
             = f.text_field :delivery_receipt_reference, :class => 'text_field col-sm-12'
 
-        .control-group
+        .form-group
           = f.label :sales_invoice_reference, "SI#", class: 'col-sm-3 control-label'
           .control.col-sm-9
             = f.text_field :sales_invoice_reference, :class => 'text_field col-sm-12'
