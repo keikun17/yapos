@@ -4,12 +4,12 @@
 .pull-right= will_paginate(@offers)
 %table.table
   %tr
-    %th.span1 Request Code
-    %th.span4 Specs offered to client
-    %th.span4 Actual offer
-    %th.span2
-    %th.span1 Buying Price
-    %th.span1 Selling Price
+    %th.col-sm-1 Request Code
+    %th.col-sm-4 Specs offered to client
+    %th.col-sm-4 Actual offer
+    %th.col-sm-2
+    %th.col-sm-1 Buying Price
+    %th.col-sm-1 Selling Price
   - @offers.each do |offer|
     %tr
       %td= link_to offer.quote.quote_reference, offer.request.quote

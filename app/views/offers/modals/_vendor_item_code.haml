@@ -20,18 +20,18 @@
       .control-group
         = label_tag :product_id, 'Product', class: 'control-label'
         .controls
-          = select_tag :product_id, options_for_select(Product.all.collect{ |p| [p.name, p.id] }),  class: 'span6 text_field', data: {dynamic_select: "vendor_item_code" }
+          = select_tag :product_id, options_for_select(Product.all.collect{ |p| [p.name, p.id] }),  class: 'col-sm-6 text_field', data: {dynamic_select: "vendor_item_code" }
 
 
       %h4= label_tag :vendor_item_code_is, "Enter Vendor Code", class: 'bold'
 
       .row-fluid
-        .span3.offset1
+        .col-sm-3.offset1
           %label.inline.radio
             = radio_button_tag :vendor_item_code_is, 'new', nil, tb_toggles_visibility: "#{offer.id}-new"
             New
 
-        .span4
+        .col-sm-4
           %label.inline.radio
             = radio_button_tag :vendor_item_code_is, 'existing', nil, tb_toggles_visibility: "#{offer.id}-existing"
             Select from Existing
@@ -41,12 +41,12 @@
       .control-group.hidden{tb_toggled_visibility: "#{offer.id}-new"}
         = label_tag :new_vendor_code, 'New Vendor Code', class: 'control-label'
         .controls
-          = text_field_tag :new_vendor_code,nil, class: 'span6 text_field'
+          = text_field_tag :new_vendor_code,nil, class: 'col-sm-6 text_field'
 
       .control-group.hidden{tb_toggled_visibility: "#{offer.id}-existing"}
         = label_tag :existing_vendor_code, 'Select From Existing Vendor Code', class: 'control-label'
         .controls
-          = select_tag :existing_vendor_code, options_for_select( VendorItem.all.collect{|v| [v.code, v.code]} ), class: 'span12 text_field', data: {dynamic_selected: 'vendor_item_code'}
+          = select_tag :existing_vendor_code, options_for_select( VendorItem.all.collect{|v| [v.code, v.code]} ), class: 'col-sm-12 text_field', data: {dynamic_selected: 'vendor_item_code'}
 
     .modal-footer
       %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close

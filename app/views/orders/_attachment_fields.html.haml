@@ -1,9 +1,9 @@
 .fields
   .row-fluid
-    .span2
+    .col-sm-2
       - unless f.object.persisted?
         = f.label :document
-    .span10
+    .col-sm-10
       - if f.object.persisted?
         = f.object[:document]
       - else

@@ -4,7 +4,7 @@
     -# = link_to "Print", print_delivery_monitoring_orders_path(client_id: params[:client_id]), class: 'btn btn-default'
 
 .row-fluid
-  .span12
+  .col-sm-12
     %h3 Print Delivery Monitoring Sheet
     = form_tag print_delivery_monitoring_orders_path, method: 'get' do
       = hidden_field_tag :client_id, params[:client_id]
@@ -18,7 +18,7 @@
         = submit_tag "Print", class: 'btn'
 
 .row-fluid
-  .span12
+  .col-sm-12
     = render 'clients/form_with_select_to_filter_clients'
 
 %ul.nav.nav-tabs

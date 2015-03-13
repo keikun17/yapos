@@ -1,6 +1,6 @@
 = form_for @quote, :html => { :class => 'form-horizontal changes-confirmed' }, validate: true do |f|
   .row-fluid
-    .span5
+    .col-sm-5
       .control-group
         = f.label :quote_reference, 'Client PR#' ,:class => 'control-label'
         .controls
@@ -14,7 +14,7 @@
         .controls
           = f.text_field :contact_person, :class => 'text_field'
 
-    .span3.strong.text-info
+    .col-sm-3.strong.text-info
       %strong
         Total quoted today :
         = quotes_today.count
@@ -32,17 +32,17 @@
   .control-group
     = f.label "Print Header Title", :class => 'control-label'
     .controls
-      = f.text_field :title, :class => 'text_area', :class => "span8", :rows => 3
+      = f.text_field :title, :class => 'text_area', :class => "col-sm-8", :rows => 3
 
   .control-group
     = f.label "Print Header subtitle", :class => 'control-label'
     .controls
-      = f.text_area :blurb, :class => 'text_area', :class => "span8", :rows => 2
+      = f.text_area :blurb, :class => 'text_area', :class => "col-sm-8", :rows => 2
 
   .control-group
     = f.label :remarks, :class => 'control-label'
     .controls
-      = f.text_area :remarks, :class => 'text_area', :class => "span8", :rows => 3
+      = f.text_area :remarks, :class => 'text_area', :class => "col-sm-8", :rows => 3
       %br
       %em (Will be shown at the bottom of the printable view)
 
@@ -59,7 +59,7 @@
   .control-group
     = f.label "Internal Notes (Not appearing in print)", :class => 'control-label'
     .controls
-      = f.text_area :internal_notes, :class => 'text_area', :class => "span8", :rows => 3
+      = f.text_area :internal_notes, :class => 'text_area', :class => "col-sm-8", :rows => 3
 
   %h3 Attachments
   %hr

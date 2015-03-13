@@ -16,8 +16,8 @@
   .row-fluid
     .field
       .form-group
-        = f.label :code, 'Item Code', class: 'span2'
-        .span10
+        = f.label :code, 'Item Code', class: 'col-sm-2'
+        .col-sm-10
           = f.text_field :code, disabled: true
 
   = f.hidden_field :product_id
@@ -29,8 +29,8 @@
   = f.fields_for :vendor_item_fields do |ff|
     .row-fluid
       .form-group
-        = ff.label :value, ff.object.product_field.name, class: 'span2'
-        .span10
+        = ff.label :value, ff.object.product_field.name, class: 'col-sm-2'
+        .col-sm-10
           = ff.hidden_field :product_field_id
           = ff.text_field :value
           = ff.object.product_field.unit

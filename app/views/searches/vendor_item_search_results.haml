@@ -3,10 +3,10 @@
   = @product.name
 
 .row-fluid
-  .span12
+  .col-sm-12
     You have searched for :
 .row-fluid
-  .span12
+  .col-sm-12
     - @search_fields.each do |index, search_field|
       -if !search_field[:value].blank?
         %strong= ProductField.find(search_field[:product_field_id]).name

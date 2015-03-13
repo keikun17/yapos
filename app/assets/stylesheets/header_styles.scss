@@ -23,7 +23,7 @@
 
 
 .print-header-label{
-  @extend .span12 !optional;
+  @extend .col-sm-12 !optional;
   border: 2px solid black;
   text-align: center;
 }

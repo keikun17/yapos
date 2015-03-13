@@ -11,16 +11,16 @@
 .row-fluid
 
   - if !@vendor_item.vendor_item_fields.empty?
-    %table.table.table-bordered.span6
+    %table.table.table-bordered.col-sm-6
       - @vendor_item.vendor_item_fields.each do |vendor_item_field|
         %tr
-          %th.span6= vendor_item_field.product_field.name
-          %td.span6
+          %th.col-sm-6= vendor_item_field.product_field.name
+          %td.col-sm-6
             = vendor_item_field.value
             = vendor_item_field.product_field.unit
 
 
-  .span6
+  .col-sm-6
     - if @last_sold.present?
       %h4
         Last bought for :

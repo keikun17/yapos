@@ -1,47 +1,47 @@
 %tr.request-line.fields
-  %td.span1
+  %td.col-sm-1
     %p
       = f.label :position, 'Item#', class: 'bold'
     %p
-      = f.text_field :position, :class => 'span12 text_field'
+      = f.text_field :position, :class => 'col-sm-12 text_field'
   %td{colspan: 5}
 
-    .span1
+    .col-sm-1
       %p
         = f.label :quantity, 'Quantity', class: 'bold'
       %p
-        = f.text_field :quantity, :class => 'span12 text_field'
-    .span1
+        = f.text_field :quantity, :class => 'col-sm-12 text_field'
+    .col-sm-1
       %p
         = f.label :unit, 'Unit', class: 'bold'
       %p
-        = f.text_field :unit, :class => 'span12 text_field'
+        = f.text_field :unit, :class => 'col-sm-12 text_field'
 
-    .span7
+    .col-sm-7
       %p
         = f.label :specs, 'Request Specs', class: 'bold'
       %p
-        = f.text_area :specs, :class => 'span12 text_area', :rows => 4
+        = f.text_area :specs, :class => 'col-sm-12 text_area', :rows => 4
       %p
         = f.label :item_code, 'Item/Material Code', class: 'bold'
-        = f.text_field :item_code, :class => 'span6 text_field'
+        = f.text_field :item_code, :class => 'col-sm-6 text_field'
 
-    .span3
+    .col-sm-3
       %p
         = f.label :remarks, 'Internal Notes', class: 'bold'
       %p
-        =f.text_area :remarks, :class => 'text_area span12', :rows => 2
+        =f.text_area :remarks, :class => 'text_area col-sm-12', :rows => 2
       %p
         (Will not appear in print)
-  %td.span1= link_to_remove_fields "Request", f
+  %td.col-sm-1= link_to_remove_fields "Request", f
 
 %tr
   %th.borderless-left
   %th{colspan: 5}
-    .span4 Offered Specs
-    .span3 Price Details
-    .span3 Misc Details
-    .span2 Order References
+    .col-sm-4 Offered Specs
+    .col-sm-3 Price Details
+    .col-sm-3 Misc Details
+    .col-sm-2 Order References
     -# %th Offered Specs
     -# %th Price Details
     -# %th Misc Details

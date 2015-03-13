@@ -12,7 +12,7 @@
 
 - if @quote.internal_notes.present?
   .row-fluid.internal-note{style: 'position: fixed'}
-    .internal-note-content.span3.pull-right
+    .internal-note-content.col-sm-3.pull-right
       .alert.alert-internal-note
         %button{type: 'button', class: 'close', data: {dismiss: "alert"}} Close
         %h3 Internal Notes :
@@ -35,7 +35,7 @@
 
 .row-fluid
 
-  .span3
+  .col-sm-3
     %p
       %strong= model_class.human_attribute_name(:quote_date) + ':'
       %br
@@ -62,7 +62,7 @@
           %strong Overall Internal Notes:
           %br
             = simple_format(@quote.internal_notes, class: 'text-info')
-  .span3
+  .col-sm-3
     %p
       %strong= model_class.human_attribute_name(:client_name) + ':'
       %br
@@ -78,7 +78,7 @@
       %br
       = @quote.display_status
 
-  .span3
+  .col-sm-3
     %p
       %strong Suppliers quoted:
       %br
@@ -104,7 +104,7 @@
       %br
       = @quote.signatory_position
 
-  .span3
+  .col-sm-3
 
     %h4 Attachments
     - if @quote.attachments.empty?
@@ -118,13 +118,13 @@
 %table.table.table-striped.quote-details
   %thead
     %tr
-      %th.span3 Requested Specs
-      %th.span3 Offered Specs
-      %th.span1 Supplier
-      %th.span2 Delivery/Terms/Warranty
-      %th.span1 Buying Price
-      %th.span1 Selling Price
-      %th.span1 Order Reference
+      %th.col-sm-3 Requested Specs
+      %th.col-sm-3 Offered Specs
+      %th.col-sm-1 Supplier
+      %th.col-sm-2 Delivery/Terms/Warranty
+      %th.col-sm-1 Buying Price
+      %th.col-sm-1 Selling Price
+      %th.col-sm-1 Order Reference
   %tbody
     = render 'quotes/requests', requests: @quote.requests
 .form-actions

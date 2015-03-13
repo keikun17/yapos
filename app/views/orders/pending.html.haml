@@ -2,7 +2,7 @@
   %h1 Pending Client POs that needs to be ordered from Suppliers
 
 .row-fluid
-  .span12
+  .col-sm-12
     = render 'clients/form_with_select_to_filter_clients'
 
 %ul.nav.nav-tabs
@@ -24,7 +24,7 @@
       %th.client-name Client
       %th.quantity Qty
       %th Offer
-      %th.span2
+      %th.col-sm-2
   %tbody
     - @decorated_orders.each do |order|
       - offer_count = order.offers.count

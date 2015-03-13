@@ -1,13 +1,13 @@
 .row-fluid
 
-  .span3
+  .col-sm-3
     = render 'awaiting_client_po', quotes: @need_supplier_order
 
-  .span3
+  .col-sm-3
     = render 'awaiting_schedule', quotes: @for_scheduling
 
-  .span3
+  .col-sm-3
     = render 'under_construction', quotes: @manufacturing
 
-  .span3
+  .col-sm-3
     = render 'awaiting_delivery', quotes: @for_delivery
