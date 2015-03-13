@@ -8,7 +8,8 @@ gem 'coffee-rails', '4.1.0'
 gem 'less-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-sass-rails'
-gem 'twitter-bootstrap-rails', '2.2.8'
+# gem 'twitter-bootstrap-rails', '2.2.8'
+gem 'bootstrap-sass', '~> 3.3.3'
 
 gem 'draper'
 
