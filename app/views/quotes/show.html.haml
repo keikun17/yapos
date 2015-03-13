@@ -11,7 +11,7 @@
       = link_to "Print only #{supplier.name} offers", printable_view_quote_path(@quote, supplier_id: supplier.id), :class => 'btn', target: '_blank'
 
 - if @quote.internal_notes.present?
-  .row-fluid.internal-note{style: 'position: fixed'}
+  .row.internal-note{style: 'position: fixed'}
     .internal-note-content.col-sm-3.pull-right
       .alert.alert-internal-note
         %button{type: 'button', class: 'close', data: {dismiss: "alert"}} Close
@@ -21,7 +21,7 @@
         - if @quote.count_offers_with_internal_notes > 0
           %span.offer-internal-note-count There are #{@quote.count_offers_with_internal_notes} offers with internal notes.
 
-.row-fluid
+.row
   - if !@quote.title.blank?
     %h2
       = simple_format(@quote.title)
@@ -33,7 +33,7 @@
   - if !@quote.blurb.blank? or !@quote.title.blank?
     %hr
 
-.row-fluid
+.row
 
   .col-sm-3
     %p

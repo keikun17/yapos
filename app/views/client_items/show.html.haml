@@ -46,7 +46,7 @@
                 %strong= offer.vendor_item_csv
                 =simple_format(offer.summary, class: 'muted')
                 - if offer.vendor_item.present?
-                  .row-fluid
+                  .row
                     = link_to "View this item", price_movement_path(offer.vendor_item)
         %td
           - if offer and offer.supplier
@@ -101,7 +101,7 @@
                 %strong= offer.vendor_item_csv
                 =simple_format(offer.summary, class: 'muted')
                 - if offer.vendor_item.present?
-                  .row-fluid
+                  .row
                     = link_to "View this item", price_movement_path(offer.vendor_item)
           %td
             - if offer.supplier

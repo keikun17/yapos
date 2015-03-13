@@ -1,11 +1,11 @@
 = form_for @order, :html => { :class => 'form-horizontal' } do |f|
-  .row-fluid
+  .row
     .col-sm-1
       %strong Clients :
     .col-sm-11
       = @order.client_links
   %hr
-  .row-fluid
+  .row
     .col-sm-2
       %strong= f.label :purchase_date, "Client Ordered at"
     .col-sm-10
@@ -26,12 +26,12 @@
   %h3 Notes
 
   %hr
-  .row-fluid
+  .row
     .col-sm-12= f.text_area :description, :class => "col-sm-8", :rows => 5
 
   %h3 Offers
 
-  .row-fluid
+  .row
     .col-sm-12
       %table.table.table-bordered
         %tr

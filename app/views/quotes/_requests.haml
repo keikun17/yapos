@@ -22,7 +22,7 @@
             Actual :
             = offer.summary
             - if offer.vendor_item.present?
-              .row-fluid
+              .row
                 = link_to "View this item", price_movement_path(offer.vendor_item)
 
     %td
@@ -80,7 +80,7 @@
             Actual :
             = offer.summary
             - if offer.vendor_item.present?
-              .row-fluid
+              .row
                 = link_to "View this item", price_movement_path(offer.vendor_item)
       %td
         - if offer.supplier

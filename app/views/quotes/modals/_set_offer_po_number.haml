@@ -18,7 +18,7 @@
             %strong What we offered the client
             = simple_format(offer.specs)
             %strong What we will actually offer
-            .row-fluid
+            .row
               = offer.vendor_item_csv
               = simple_format(offer.summary, class: 'muted')
 

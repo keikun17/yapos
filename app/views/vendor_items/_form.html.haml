@@ -13,7 +13,7 @@
         - @vendor_item.errors.full_messages.each do |msg|
           %li= msg
 
-  .row-fluid
+  .row
     .field
       .form-group
         = f.label :code, 'Item Code', class: 'col-sm-2'
@@ -27,7 +27,7 @@
   %h3 Actual Specs
 
   = f.fields_for :vendor_item_fields do |ff|
-    .row-fluid
+    .row
       .form-group
         = ff.label :value, ff.object.product_field.name, class: 'col-sm-2'
         .col-sm-10
