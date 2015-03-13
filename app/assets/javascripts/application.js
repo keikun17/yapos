@@ -11,8 +11,10 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require bootstrap-sprockets
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require rails.validations
-//= require twitter/bootstrap
 //= require_tree .
+
+
