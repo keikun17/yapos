@@ -9,10 +9,7 @@
     .col-sm-2
       %strong= f.label :purchase_date, "Client Ordered at"
     .col-sm-10
-      = f.date_select :purchase_date,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
-
-  - if @order.offers.empty?
-    = render 'custom_fields', :f => f
+      = f.date_select :purchase_date,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}
 
   %h3 Attachments
   %hr
@@ -27,7 +24,7 @@
 
   %hr
   .row
-    .col-sm-12= f.text_area :description, :class => "col-sm-8", :rows => 5
+    .col-sm-12= f.text_area :description, :class => "form-control col-sm-8", :rows => 5
 
   %h3 Offers
 

@@ -6,10 +6,13 @@
     - if offer.service?
       %span.badge.badge-service Service
     = offer.specs
-    - if !offer.summary.blank?
-      %span.label.label-success
+    - if !offer.summary.blank? || !offer.vendor_item.nil?
+      %p.actual-offer
         Actual :
-        = simple_format offer.summary
+        = offer.summary
+        - if offer.vendor_item.present?
+          .row
+            = link_to "View this item", price_movement_path(offer.vendor_item), target: '_blank'
 
 
   - #TODO dynamically building association in view.. YUCK!
@@ -17,23 +20,23 @@
   - # be inserted with a blank one?
   - f.object.build_supplier_order if f.object.supplier_order.nil?
   = f.fields_for :supplier_order do |ff|
-    %td= ff.text_area :actual_specs unless f.object.service?
-    %td= ff.text_field :reference unless f.object.service?
+    %td= ff.text_area :actual_specs, class: 'form-control' unless f.object.service?
+    %td= ff.text_field :reference, class: 'form-control' unless f.object.service?
     %td
       - unless f.object.service?
-        = ff.date_select :estimated_manufactured_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
+        = ff.date_select :estimated_manufactured_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'form-control'
     %td
       - unless f.object.service?
-        = ff.date_select :estimated_delivered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
+        = ff.date_select :estimated_delivered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'form-control'
 
     %td
-      = ff.date_select :delivered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
+      = ff.date_select :delivered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'form-control'
 
       = f.label :delivery_receipt_reference, "DR#"
-      = f.text_field :delivery_receipt_reference
+      = f.text_field :delivery_receipt_reference, class: 'form-control'
 
       = f.label :sales_invoice_reference, "SI#"
-      = f.text_field :sales_invoice_reference
+      = f.text_field :sales_invoice_reference, class: 'form-control'
 
 
 
