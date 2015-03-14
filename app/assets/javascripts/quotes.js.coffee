@@ -46,6 +46,8 @@ $ ->
   ######################################################################
   # Select Product ID to render Vendor Item Form with Vendor Item Fields
   ######################################################################
+
+  # checking for #[tb_render_form] is ugly.
   $(document).on 'change', "*[tb_render_form]", (evt) ->
 
     product_id = evt.target.value
