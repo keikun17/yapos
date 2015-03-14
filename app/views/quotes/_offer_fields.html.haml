@@ -49,9 +49,9 @@
 
         .form-group
           = f.label :buying_price, "Supplier Price", class: 'col-sm-3 control-label'
-          .form-inline.col-sm-4
-            = f.select(:buying_currency, Currency.all, {}, class: 'form-control col-sm-5')
-            = f.text_field :buying_price, :class => 'form-control col-sm-7'
+          .controls.col-sm-8
+            = f.select(:buying_currency, Currency.all, {}, class: 'form-control')
+            = f.text_field :buying_price, :class => 'form-control'
 
 
         .form-group
