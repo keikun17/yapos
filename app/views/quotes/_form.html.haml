@@ -1,79 +1,97 @@
 = form_for @quote, :html => { :class => 'form-horizontal changes-confirmed' }, validate: true do |f|
   .row
-    .col-sm-5
-      .form-group
-        = f.label :quote_reference, 'Client PR#' ,:class => 'control-label'
-        .controls
-          = f.text_field :quote_reference, validate: { uniqueness: true }
-      .form-group
-        = f.label :client_id, :class => 'control-label'
-        .controls
-          = f.select :client_id, Client.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'select'
-      .form-group
-        = f.label :contact_person, :class => 'control-label'
-        .controls
-          = f.text_field :contact_person, :class => 'text_field'
+    .form-group
+      = f.label :quote_reference, 'Client PR#' ,:class => 'control-label col-sm-2'
+      .col-sm-3
+        = f.text_field :quote_reference, validate: { uniqueness: true }, class: 'form-control'
 
-    .col-sm-3.strong.text-info
-      %strong
-        Total quoted today :
-        = quotes_today.count
-      %ul
-        - quotes_today.each do |quote|
-          %li= quote.quote_reference
+  .row
+    .form-group
+      = f.label :client_id, :class => 'control-label col-sm-2'
+      .col-sm-3
+        = f.select :client_id, Client.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'form-control'
 
+  .row
+    .form-group
+      = f.label :contact_person, :class => 'control-label col-sm-2'
+      .col-sm-3
+        = f.text_field :contact_person, :class => 'form-control'
 
+    -# TODO : RE ENABLE THE PREVIOUS QUOTES DISPLAY
+    -# .col-sm-3.strong.text-info
+    -#   %strong
+    -#     Total quoted today :
+    -#     = quotes_today.count
+    -#   %ul
+    -#     - quotes_today.each do |quote|
+    -#       %li= quote.quote_reference
 
-  .form-group
-    = f.label :quote_date, :class => 'control-label'
-    .controls
-      = f.date_select :quote_date, :class => 'datetime_select'
+  .row
+    .form-group
+      = f.label :quote_date, :class => 'control-label col-sm-2'
+      .col-sm-8
+        = f.date_select :quote_date, :class => 'form-control col-sm-6'
 
-  .form-group
-    = f.label "Print Header Title", :class => 'control-label'
-    .controls
-      = f.text_field :title, :class => 'text_area', :class => "col-sm-8", :rows => 3
+  .row
+    .form-group
+      = f.label "Print Header Title", :class => 'control-label col-sm-2'
+      .col-sm-8
+        = f.text_field :title, :class => 'text_area', :class => "form-control col-sm-8", :rows => 3
 
-  .form-group
-    = f.label "Print Header subtitle", :class => 'control-label'
-    .controls
-      = f.text_area :blurb, :class => 'text_area', :class => "col-sm-8", :rows => 2
+  .row
+    .form-group
+      = f.label "Print Header subtitle", :class => 'control-label col-sm-2'
+      .col-sm-8
+        = f.text_area :blurb, :class => 'text_area', :class => "form-control col-sm-8", :rows => 2
 
-  .form-group
-    = f.label :remarks, :class => 'control-label'
-    .controls
-      = f.text_area :remarks, :class => 'text_area', :class => "col-sm-8", :rows => 3
-      %br
-      %em (Will be shown at the bottom of the printable view)
+  .row
+    .form-group
+      = f.label :remarks, :class => 'control-label col-sm-2'
+      .col-sm-8
+        = f.text_area :remarks, :class => 'form-control col-sm-8', :rows => 3
+        %br
+        %em (Will be shown at the bottom of the printable view)
 
-  .form-group
-    = f.label :signatory, :class => 'control-label'
-    .controls
-      = f.text_field :signatory, :class => 'text_field'
+  .row
+    .form-group
+      = f.label :signatory, :class => 'control-label col-sm-2'
+      .col-sm-3
+        = f.text_field :signatory, :class => 'form-control'
 
-  .form-group
-    = f.label :signatory_position, :class => 'control-label'
-    .controls
-      = f.text_field :signatory_position, :class => 'text_field'
+  .row
+    .form-group
+      = f.label :signatory_position, :class => 'control-label col-sm-2'
+      .col-sm-3
+        = f.text_field :signatory_position, :class => 'form-control'
 
-  .form-group
-    = f.label "Internal Notes (Not appearing in print)", :class => 'control-label'
-    .controls
-      = f.text_area :internal_notes, :class => 'text_area', :class => "col-sm-8", :rows => 3
+  .row
+    .form-group
+      = f.label "Internal Notes (Not appearing in print)", :class => 'control-label col-sm-2'
+      .col-sm-8
+        = f.text_area :internal_notes, :class => " form-control", :rows => 3
 
-  %h3 Attachments
+  .row
+    %h3 Attachments
+
   %hr
-  #attachments-fields
-    = f.fields_for :attachments do |builder|
-      = render :partial => "attachment_fields", :locals => {:f => builder}
-    = link_to_add_fields "Click to add attachments" , f, :attachments
 
-  %h3 Requests
+  -# FIXME : Remove button is on a 2nd line, form looks ugly. line all attachment components into 1 line
+  .row
+    .col-sm-12
+      #attachments-fields
+        = f.fields_for :attachments do |builder|
+          = render :partial => "attachment_fields", :locals => {:f => builder}
+        = link_to_add_fields "Click to add attachments" , f, :attachments
+
+  .row
+    %h3 Requests
+
   %hr
+
   %div
     %table.table.table-bordered#quotes
       = f.fields_for :requests do |builder|
-        = render 'request_fields', :f => builder 
+        = render 'request_fields', :f => builder
       %tr
         %td{:colspan => '7'}
           = link_to_add_fields "Request Item" , f, :requests, '$(this).parent()'
