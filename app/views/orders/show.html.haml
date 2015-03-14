@@ -87,10 +87,9 @@
             %span.badge.badge-service Service
           = simple_format(offer.specs)
           - if !offer.summary.blank?
-            .alert.alert-success
+            %p.actual-offer
               Actual :
-              %strong= offer.vendor_item_csv
-              = simple_format(offer.summary, class: 'muted')
+              = offer.summary
               - if offer.vendor_item
                 .row
                   .col-sm-12
@@ -128,14 +127,14 @@
               %span.badge.badge-service Service
             = simple_format(offer.specs)
             - if !offer.summary.blank?
-              .alert.alert-success
+              %p.actual-offer
                 Actual :
-                %strong= offer.vendor_item_csv
-                =simple_format(offer.summary, class: 'muted')
+                = offer.summary
                 - if offer.vendor_item
                   .row
                     .col-sm-12
                       = link_to "View this item", price_movement_path(offer.vendor_item)
+
           %td= offer.supplier_order_actual_specs
           %td
             - if offer.supplier.present?
