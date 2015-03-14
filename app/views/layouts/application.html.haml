@@ -19,7 +19,7 @@
 
   %body
     -unless defined? @print_preview
-      .navbar.navbar-inverse.navbar-fluid-top
+      .navbar.navbar-inverse.navbar-static-top
         .container
           %btn.navbar-toggle.collapsed(data-target="#navbar" data-toggle="collapse" aria-expanded="false" aria-controls="navbar")
             %span.icon-bar
@@ -70,9 +70,9 @@
 
       #main.container
 
-        - if Rails.env.development?
-          .dev-environment-alert-header
-            %strong THIS IS THE DEVELOPMENT ENVIRONMENT
+        -# - if Rails.env.development?
+        -#   .dev-environment-alert-header
+        -#     %strong THIS IS THE DEVELOPMENT ENVIRONMENT
 
         - if !flash.empty?
           .alert-container
