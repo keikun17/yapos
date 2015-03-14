@@ -1,51 +1,53 @@
-.modal.hide.fade{id: modal_id}
-  = form_for offer, as: :offer, url: quick_purchase_offer_path(offer), method: :patch, html: {class: 'form-horizontal'} do |f|
-    .modal-header
-      %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
-      %h3 Input Client PO Number
-    .modal-body
-      .form-group
-        %label.control-label Quantity
-        .controls
-          = offer.complete_quantity
+.modal.fade{id: modal_id}
+  .modal-dialog
+    .modal-content
+      = form_for offer, as: :offer, url: quick_purchase_offer_path(offer), method: :patch, html: {class: 'form-horizontal'} do |f|
+        .modal-header
+          %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
+          %h3 Input Client PO Number
+        .modal-body
+          .form-group
+            %label.control-label Quantity
+            .controls
+              = offer.complete_quantity
 
-      .form-group
-        %label.control-label Specs
-        .controls
-          %p
-            %strong What the client requested
-            = simple_format(offer.request.specs)
-            %strong What we offered the client
-            = simple_format(offer.specs)
-            %strong What we will actually offer
-            .row
-              = offer.vendor_item_csv
-              = simple_format(offer.summary, class: 'muted')
-
-
-      .form-group
-        = f.label :order_reference, "Client's PO Number", class: 'control-label'
-        .controls
-          = f.text_field :order_reference, class: 'text_field'
-
-      -# SupplierOrder
-      .form-group
-        = label '[post_save][supplier_order][actual_specs]', 'Specs to Order from Supplier', class: 'control-label'
-        .controls
-          = text_area_tag '[post_save][supplier_order][actual_specs]',offer.summary, class: 'text_area', rows: 4
-
-      .form-group
-        = label '[post_save][supplier_order][reference]', 'Our PO# for our Supplier', class: 'control-label'
-        .controls
-          = text_field_tag '[post_save][supplier_order][reference]', '', class: 'text_field'
-
-          %br
-          %i last 5 PO issued are:
-          %ul
-            - SupplierPurchase.where.not(reference: '').limit(5).order(id: :desc).reverse.each do |sp|
-              %li= sp.reference
+          .form-group
+            %label.control-label Specs
+            .controls
+              %p
+                %strong What the client requested
+                = simple_format(offer.request.specs)
+                %strong What we offered the client
+                = simple_format(offer.specs)
+                %strong What we will actually offer
+                .row
+                  = offer.vendor_item_csv
+                  = simple_format(offer.summary, class: 'muted')
 
 
-    .modal-footer
-      %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
-      = f.submit nil, :class => 'btn btn-primary'
+          .form-group
+            = f.label :order_reference, "Client's PO Number", class: 'control-label'
+            .controls
+              = f.text_field :order_reference, class: 'text_field'
+
+          -# SupplierOrder
+          .form-group
+            = label '[post_save][supplier_order][actual_specs]', 'Specs to Order from Supplier', class: 'control-label'
+            .controls
+              = text_area_tag '[post_save][supplier_order][actual_specs]',offer.summary, class: 'text_area', rows: 4
+
+          .form-group
+            = label '[post_save][supplier_order][reference]', 'Our PO# for our Supplier', class: 'control-label'
+            .controls
+              = text_field_tag '[post_save][supplier_order][reference]', '', class: 'text_field'
+
+              %br
+              %i last 5 PO issued are:
+              %ul
+                - SupplierPurchase.where.not(reference: '').limit(5).order(id: :desc).reverse.each do |sp|
+                  %li= sp.reference
+
+
+        .modal-footer
+          %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
+          = f.submit nil, :class => 'btn btn-primary'

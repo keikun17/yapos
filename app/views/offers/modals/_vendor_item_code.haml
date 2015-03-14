@@ -1,53 +1,55 @@
-.modal.hide.fade{id: modal_id}
-  = form_for offer, url: vendor_code_update_path(offer), method: :patch, html: {class: 'form-horizontal'} do |f|
-    .modal-header
-      %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
-    .modal-body
-      .form-group
-        %label.control-label SPECS:
-        .controls
-          = offer.display_specs
-      .form-group
-        %label.control-label ACTUAL SPECS:
-        .controls
-          %strong= offer.supplier_name
-          = offer.display_specs
-          = simple_format(offer.display_actual_specs)
+.modal.fade{id: modal_id}
+  .modal-dialog
+    .modal-content
+      = form_for offer, url: vendor_code_update_path(offer), method: :patch, html: {class: 'form-horizontal'} do |f|
+        .modal-header
+          %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
+        .modal-body
+          .form-group
+            %label.control-label SPECS:
+            .controls
+              = offer.display_specs
+          .form-group
+            %label.control-label ACTUAL SPECS:
+            .controls
+              %strong= offer.supplier_name
+              = offer.display_specs
+              = simple_format(offer.display_actual_specs)
 
 
-      %h3 Edit Offer's Vendor Code
+          %h3 Edit Offer's Vendor Code
 
-      .form-group
-        = label_tag :product_id, 'Product', class: 'control-label'
-        .controls
-          = select_tag :product_id, options_for_select(Product.all.collect{ |p| [p.name, p.id] }),  class: 'col-sm-6 text_field', data: {dynamic_select: "vendor_item_code" }
+          .form-group
+            = label_tag :product_id, 'Product', class: 'control-label'
+            .controls
+              = select_tag :product_id, options_for_select(Product.all.collect{ |p| [p.name, p.id] }),  class: 'col-sm-6 text_field', data: {dynamic_select: "vendor_item_code" }
 
 
-      %h4= label_tag :vendor_item_code_is, "Enter Vendor Code", class: 'bold'
+          %h4= label_tag :vendor_item_code_is, "Enter Vendor Code", class: 'bold'
 
-      .row
-        .col-sm-3.offset1
-          %label.inline.radio
-            = radio_button_tag :vendor_item_code_is, 'new', nil, tb_toggles_visibility: "#{offer.id}-new"
-            New
+          .row
+            .col-sm-3.offset1
+              %label.inline.radio
+                = radio_button_tag :vendor_item_code_is, 'new', nil, tb_toggles_visibility: "#{offer.id}-new"
+                New
 
-        .col-sm-4
-          %label.inline.radio
-            = radio_button_tag :vendor_item_code_is, 'existing', nil, tb_toggles_visibility: "#{offer.id}-existing"
-            Select from Existing
+            .col-sm-4
+              %label.inline.radio
+                = radio_button_tag :vendor_item_code_is, 'existing', nil, tb_toggles_visibility: "#{offer.id}-existing"
+                Select from Existing
 
-      %hr
+          %hr
 
-      .form-group.hidden{tb_toggled_visibility: "#{offer.id}-new"}
-        = label_tag :new_vendor_code, 'New Vendor Code', class: 'control-label'
-        .controls
-          = text_field_tag :new_vendor_code,nil, class: 'col-sm-6 text_field'
+          .form-group.hidden{tb_toggled_visibility: "#{offer.id}-new"}
+            = label_tag :new_vendor_code, 'New Vendor Code', class: 'control-label'
+            .controls
+              = text_field_tag :new_vendor_code,nil, class: 'col-sm-6 text_field'
 
-      .form-group.hidden{tb_toggled_visibility: "#{offer.id}-existing"}
-        = label_tag :existing_vendor_code, 'Select From Existing Vendor Code', class: 'control-label'
-        .controls
-          = select_tag :existing_vendor_code, options_for_select( VendorItem.all.collect{|v| [v.code, v.code]} ), class: 'col-sm-12 text_field', data: {dynamic_selected: 'vendor_item_code'}
+          .form-group.hidden{tb_toggled_visibility: "#{offer.id}-existing"}
+            = label_tag :existing_vendor_code, 'Select From Existing Vendor Code', class: 'control-label'
+            .controls
+              = select_tag :existing_vendor_code, options_for_select( VendorItem.all.collect{|v| [v.code, v.code]} ), class: 'col-sm-12 text_field', data: {dynamic_selected: 'vendor_item_code'}
 
-    .modal-footer
-      %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
-      = f.submit nil, :class => 'btn btn-primary'
+        .modal-footer
+          %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
+          = f.submit nil, :class => 'btn btn-primary'
