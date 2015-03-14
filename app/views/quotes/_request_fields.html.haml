@@ -3,37 +3,37 @@
     %p
       = f.label :position, 'Item#', class: 'bold'
     %p
-      = f.text_field :position, :class => 'col-sm-12 text_field'
+      = f.text_field :position, :class => 'col-sm-12 form-control'
   %td{colspan: 5}
 
     .col-sm-1
       %p
         = f.label :quantity, 'Quantity', class: 'bold'
       %p
-        = f.text_field :quantity, :class => 'col-sm-12 text_field'
+        = f.text_field :quantity, :class => 'col-sm-12 form-control'
     .col-sm-1
       %p
         = f.label :unit, 'Unit', class: 'bold'
       %p
-        = f.text_field :unit, :class => 'col-sm-12 text_field'
+        = f.text_field :unit, :class => 'col-sm-12 form-control'
 
     .col-sm-7
       %p
         = f.label :specs, 'Request Specs', class: 'bold'
       %p
-        = f.text_area :specs, :class => 'col-sm-12 text_area', :rows => 4
+        = f.text_area :specs, :class => 'col-sm-12 form-control', :rows => 4
       %p
         = f.label :item_code, 'Item/Material Code', class: 'bold'
-        = f.text_field :item_code, :class => 'col-sm-6 text_field'
+        = f.text_field :item_code, :class => 'col-sm-6 form-control'
 
     .col-sm-3
       %p
         = f.label :remarks, 'Internal Notes', class: 'bold'
       %p
-        =f.text_area :remarks, :class => 'text_area col-sm-12', :rows => 2
+        =f.text_area :remarks, :class => 'form-control col-sm-12', :rows => 2
       %p
         (Will not appear in print)
-  %td.col-sm-1= link_to_remove_fields "Request", f
+  %td.col-sm-1= link_to_remove_fields "Remove", f
 
 %tr
   %th.borderless-left
