@@ -12,7 +12,8 @@
         = offer.summary
         - if offer.vendor_item.present?
           .row
-            = link_to "View this item", price_movement_path(offer.vendor_item), target: '_blank'
+            .col-sm-12
+              = link_to "View this item", price_movement_path(offer.vendor_item), target: '_blank'
 
 
   - #TODO dynamically building association in view.. YUCK!

@@ -23,7 +23,8 @@
             = offer.summary
             - if offer.vendor_item.present?
               .row
-                = link_to "View this item", price_movement_path(offer.vendor_item)
+                .col-sm-12
+                  = link_to "View this item", price_movement_path(offer.vendor_item)
 
     %td
       - if offer and offer.supplier
@@ -81,7 +82,8 @@
             = offer.summary
             - if offer.vendor_item.present?
               .row
-                = link_to "View this item", price_movement_path(offer.vendor_item)
+                .col-sm-12
+                  = link_to "View this item", price_movement_path(offer.vendor_item)
       %td
         - if offer.supplier
           = link_to offer.supplier_name, offer.supplier
