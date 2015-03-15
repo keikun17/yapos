@@ -20,7 +20,7 @@
   %body
     -unless defined? @print_preview
       .navbar.navbar-inverse.navbar-static-top
-        .container
+        .container-fluid
           %btn.navbar-toggle.collapsed(data-target="#navbar" data-toggle="collapse" aria-expanded="false" aria-controls="navbar")
             %span.icon-bar
             %span.icon-bar
@@ -68,7 +68,7 @@
               .navbar-right
                 = link_to "Log out", destroy_user_session_path, :class => "btn btn-warning", :method => :delete
 
-      #main.container
+      #main.container-fluid
 
         -# - if Rails.env.development?
         -#   .dev-environment-alert-header
@@ -84,7 +84,7 @@
           Server time : #{Time.now.to_s}
 
     - else
-      .container
+      .container-fluid
         = yield
 
     /
