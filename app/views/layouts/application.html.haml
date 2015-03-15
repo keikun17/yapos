@@ -58,15 +58,15 @@
                       Upcoming
                     %li= link_to "Invoice and Receipts", '#', class: 'disabled'
 
-                %li#nav-search
+                %li
                   = form_tag search_path, method: :get, class: 'navbar-form' do
                     - params[:search] ||= {}
-                    = text_field_tag 'search[string]', params[:search][:string], :class => "navbar-form input-small"
-                    = select_tag 'search[type]', options_for_select(['quote','order', ['supplier order', 'supplier_order']], params[:search][:type ]), class: 'compact navbar-form'
+                    = text_field_tag 'search[string]', params[:search][:string], :class => "form-control input-small"
+                    = select_tag 'search[type]', options_for_select(['quote','order', ['supplier order', 'supplier_order']], params[:search][:type ]), class: 'compact form-control'
                     = button_tag "Search", :class => "btn btn-medium"
 
-              .navbar-right
-                = link_to "Log out", destroy_user_session_path, :class => "btn btn-warning", :method => :delete
+              %ul.navbar-nav.nav.navbar-right
+                %li= link_to "Log out", destroy_user_session_path, :class => "btn btn-warning", :method => :delete
 
       #main.container-fluid
 
