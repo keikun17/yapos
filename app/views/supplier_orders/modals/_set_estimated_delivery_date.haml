@@ -1,20 +1,22 @@
-.modal.hide.fade{id: modal_id}
-  = form_for supplier_order, html: {class: 'form-horizontal'} do |f|
-    .modal-header
-      %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
-      %h3 Estimated delivery date
-    .modal-body
-      .form-group
-        %label.control-label Specs
-        .controls
-          = simple_format(supplier_order.offer.decorate.summary)
-          = simple_format(supplier_order.offer.decorate.display_actual_specs)
+.modal.fade{id: modal_id}
+  .modal-dialog
+    .modal-content
+      = form_for supplier_order, html: {class: 'form-horizontal'} do |f|
+        .modal-header
+          %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
+          %h3 Estimated delivery date
+        .modal-body
+          .form-group
+            %label.control-label Specs
+            .controls
+              = simple_format(supplier_order.offer.decorate.summary)
+              = simple_format(supplier_order.offer.decorate.display_actual_specs)
 
-      .form-group
-        = f.label :estimated_delivered_at, 'Estimated Delivery Date', class: 'control-label'
-        .controls
-          = f.date_select :estimated_delivered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
+          .form-group
+            = f.label :estimated_delivered_at, 'Estimated Delivery Date', class: 'control-label'
+            .controls
+              = f.date_select :estimated_delivered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'date-select'
 
-    .modal-footer
-      %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
-      = f.submit nil, :class => 'btn btn-primary'
+        .modal-footer
+          %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
+          = f.submit nil, :class => 'btn btn-primary'
