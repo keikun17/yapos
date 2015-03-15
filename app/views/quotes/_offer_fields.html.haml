@@ -51,14 +51,14 @@
           = f.label :buying_price, "Supplier Price", class: 'col-sm-3 control-label'
           .controls.col-sm-8
             = f.select(:buying_currency, Currency.all, {}, class: 'form-control')
-            = f.text_field :buying_price, :class => 'form-control'
+            = f.text_field :buying_price, :class => 'form-control', placeholder: 0.00
 
 
         .form-group
           = f.label :selling_price, "Our Price", class: 'col-sm-3 control-label'
           .controls.col-sm-8
             = f.select(:currency, Currency.all, {}, class: 'form-control col-sm-5')
-            = f.text_field :selling_price, :class => 'form-control col-sm-7'
+            = f.text_field :selling_price, :class => 'form-control col-sm-7', placeholder: 0.00
 
         .form-group
           = f.label :price_basis, "Price Basis", class: "col-sm-3 control-label"
