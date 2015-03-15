@@ -23,7 +23,7 @@
               = select_tag :product_id, options_for_select(Product.all.collect{|p| [p.name , p.id] }), include_blank: true, tb_render_form: true , tb_render_form_to: '#vendor_item_form', class: 'form-control'
 
 
-        .vendor_item_form
+        .vendor_item_form.container
           -# = form_for VendorItem.new.initialize_fields(product), remote: true, html: {class: 'form-horizontal'} do |f|3
           -#
           -#   .modal-body
