@@ -137,7 +137,7 @@ RSpec.shared_context "Quote with 2 request and 3 offers", :a => :b do
       click_link "submit"
 
       fill_in "VAT Status", with: "VAT INC"
-      fill_in "Supplier Price", with: 4300
+      fill_in "Supplier Price", with: 12345678999.88
       fill_in "Our Price", with: 5000
       fill_in "Price Basis", with: "FOB PIER"
 

@@ -77,11 +77,12 @@ feature "Supplier Order Creation" do
           # Request 2 Offer2
           expect(page).to have_text("200.0 meter")
           expect(page).to have_text("LIGHT CSAW v9001")
-          expect(page).to have_text("PHP4,300.00/meter")
+          expect(page).to have_text("PHP12,345,678,999.88/meter")
           expect(page).to have_text("PHP860,000.00")
 
           # Total Price
-          expect(page).to have_text("US$869,000.00")
+          # TODO , FIXME : Assert that US$ total and PHP total are separate
+          expect(page).to have_text("2,469,135,799,976.00")
         end
       end
 
@@ -268,11 +269,11 @@ feature "Supplier Order Creation" do
         # Line2
         expect(page).to have_text("5.0 piece")
         expect(page).to have_text("Personal Chainsaw")
-        expect(page).to have_text("US$39.00/piece")
-        expect(page).to have_text("US$295.00")
+        expect(page).to have_text("US$1,234,567,899.88/piece")
+        expect(page).to have_text("US$6,172,839,499.40")
 
         # Total Price
-        expect(page).to have_text("US$295.00")
+        expect(page).to have_text("US$6,172,839,599.40")
       end
 
     end

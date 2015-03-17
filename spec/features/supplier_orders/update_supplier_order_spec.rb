@@ -72,11 +72,11 @@ feature "Updating Supplier", js: true do
 
         expect(page).to have_text("5.0 piece")
         expect(page).to have_text("Super Personal Chainsaw")
-        expect(page).to have_text("US$39.00/piece")
-        expect(page).to have_text("US$195.00")
+        expect(page).to have_text("US$1,234,567,899.88/piece")
+        expect(page).to have_text("US$6,172,839,499.40")
 
         # Total Price
-        expect(page).to have_text("US$195.00")
+        expect(page).to have_text("US$6,172,839,499.40")
       end
 
     end
