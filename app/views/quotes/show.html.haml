@@ -4,11 +4,11 @@
 .quote-header
   %h1
     = t '.title', :default => @quote.quote_reference
-    = link_to t('.edit', :default => t("helpers.links.edit")), edit_quote_path(@quote), :class => 'btn'
+    = link_to t('.edit', :default => t("helpers.links.edit")), edit_quote_path(@quote), :class => 'btn btn-primary'
     = link_to "Requote", requote_quote_path(@quote), :class => 'btn btn-success'
-    = link_to 'Print', printable_view_quote_path(@quote), :class => 'btn', target: '_blank'
+    = link_to 'Print', printable_view_quote_path(@quote), :class => 'btn btn-default', target: '_blank'
     - @quote.suppliers.uniq.each do |supplier|
-      = link_to "Print only #{supplier.name} offers", printable_view_quote_path(@quote, supplier_id: supplier.id), :class => 'btn', target: '_blank'
+      = link_to "Print only #{supplier.name} offers", printable_view_quote_path(@quote, supplier_id: supplier.id), :class => 'btn btn-default', target: '_blank'
 
 - if @quote.internal_notes.present?
   .row.internal-note{style: 'position: fixed'}
