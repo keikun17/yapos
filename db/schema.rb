@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301152844) do
+ActiveRecord::Schema.define(version: 20150317040925) do
 
   create_table "attachments", force: true do |t|
     t.integer  "attachable_id"
@@ -35,20 +35,20 @@ ActiveRecord::Schema.define(version: 20150301152844) do
     t.integer  "request_id"
     t.integer  "supplier_id"
     t.text     "specs"
-    t.float    "buying_price",               limit: 24
-    t.float    "selling_price",              limit: 24
+    t.decimal  "buying_price",                          precision: 15, scale: 2
+    t.decimal  "selling_price",                         precision: 15, scale: 2
     t.string   "currency"
     t.float    "currency_conversion",        limit: 24
     t.string   "order_reference"
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
+    t.datetime "created_at",                                                                     null: false
+    t.datetime "updated_at",                                                                     null: false
     t.text     "remarks"
     t.string   "terms"
     t.string   "delivery"
     t.string   "warranty"
     t.string   "price_vat_status"
-    t.float    "total_buying_price",         limit: 24
-    t.float    "total_selling_price",        limit: 24
+    t.decimal  "total_buying_price",                    precision: 15, scale: 2
+    t.decimal  "total_selling_price",                   precision: 15, scale: 2
     t.string   "price_basis"
     t.string   "summary"
     t.string   "delivery_receipt_reference"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20150301152844) do
     t.boolean  "hide_supplier_in_print"
     t.text     "internal_notes"
     t.string   "buying_currency"
-    t.boolean  "service",                               default: false
+    t.boolean  "service",                                                        default: false
   end
 
   add_index "offers", ["delivery_receipt_reference"], name: "index_offers_on_delivery_receipt_reference", using: :btree
