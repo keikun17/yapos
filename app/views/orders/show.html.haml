@@ -51,6 +51,14 @@
   %br
   = @order.display_total_profit
 
+- if @order.description.present?
+  .row
+    %div.alert.alert-info
+      %h3 Internal Notes :
+      %p
+        -# TODO : rename order.description to internal notes
+        =simple_format @order.description
+
 %h3 Attachments
 - if @order.attachments.empty?
   No Attachments
@@ -159,11 +167,6 @@
               = offer.supplier_purchase_link
               = offer.edit_supplier_purchase_link
 
-%br
-
-%h4 Notes
-%p
-  =simple_format @order.description
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), orders_path, :class => 'btn'
