@@ -1,0 +1,37 @@
+// Tables
+
+table{
+  tr td{
+    color: #666666;
+  }
+
+  font-family: 'Source Sans Pro', 'Helvetica', 'Arial', 'sans-serif' ;
+
+  a {
+    text-decoration: underline !important;
+  }
+
+  a.btn{
+    text-decoration: none !important;
+    font-family: 'Helvetica', 'Arial', 'sans-serif' ;
+  }
+
+ tr td.compact p{
+    margin-bottom: 0px
+  }
+}
+
+td.empty{
+  background-color: #FFF !important;
+  border: none !important;
+}
+
+tr.multi-content{
+  border-top: 1px solid #939393;
+  border-bottom: 1px solid #939393;
+}
+
+tr.offer-controls{
+  border-bottom: 2px solid black;
+}
+

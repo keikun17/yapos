@@ -10,54 +10,6 @@ select.compact{
   width: auto;
 }
 
-table{
-  tr td{
-    color: #666666;
-  }
-
-  font-family: 'Source Sans Pro', 'Helvetica', 'Arial', 'sans-serif' ;
-
-  a {
-    text-decoration: underline !important;
-  }
-
-  a.btn{
-    text-decoration: none !important;
-    font-family: 'Helvetica', 'Arial', 'sans-serif' ;
-  }
-
- tr td.compact p{
-    margin-bottom: 0px
-  }
-}
-
-td.empty{
-  background-color: #FFF !important;
-  border: none !important;
-}
-
-.message {
-  display: inline !important;
-  background-color: red;
-  border-bottom-right-radius: 5px 5px;
-  border-top-right-radius: 5px 5px;
-  padding: 2px 5px;
-  color: white;
-}
-
-div.field_with_errors div.ui-effects-wrapper {
-  display: inline-block !important;
-}
-
-tr.multi-content{
-  border-top: 1px solid #939393;
-  border-bottom: 1px solid #939393;
-}
-
-tr.offer-controls{
-  border-bottom: 2px solid black;
-}
-
 .bold{
   font-weight: bold;
 }
@@ -66,9 +18,6 @@ label.offer-cell{
   display: table-cell;
 }
 
-.modal.vendor_code_modal{
-  height: 85%;
-  .modal-body{
-    max-height: 550px;
-  }
+.actions{
+  padding: 5px 0 5px 0;
 }
