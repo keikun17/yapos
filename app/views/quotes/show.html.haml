@@ -51,17 +51,18 @@
       %strong= model_class.human_attribute_name(:quote_reference) + ':'
       %br
       = @quote.quote_reference
+
     %p
       %strong= model_class.human_attribute_name(:order_reference) + ':'
       %br
       = @quote.order_links
 
+
     - if @quote.internal_notes.present?
-      %p
-        .alert.alert-internal-note
-          %strong Overall Internal Notes:
-          %br
-            = simple_format(@quote.internal_notes, class: 'text-info')
+      %div.alert.alert-internal-note
+        %strong.text-info Overall Internal Notes:
+        = simple_format(@quote.internal_notes, class: 'text-info')
+
   .col-sm-3
     %p
       %strong= model_class.human_attribute_name(:client_name) + ':'
