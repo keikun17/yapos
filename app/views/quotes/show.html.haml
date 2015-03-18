@@ -10,17 +10,6 @@
     - @quote.suppliers.uniq.each do |supplier|
       = link_to "Print only #{supplier.name} offers", printable_view_quote_path(@quote, supplier_id: supplier.id), :class => 'btn btn-default', target: '_blank'
 
-- if @quote.internal_notes.present?
-  .row.internal-note{style: 'position: fixed'}
-    .internal-note-content.col-sm-3.pull-right
-      .alert.alert-internal-note
-        %button{type: 'button', class: 'close', data: {dismiss: "alert"}} Close
-        %h3 Internal Notes :
-        = @quote.internal_notes
-        %br
-        - if @quote.count_offers_with_internal_notes > 0
-          %span.offer-internal-note-count There are #{@quote.count_offers_with_internal_notes} offers with internal notes.
-
 .row
   - if !@quote.title.blank?
     %h2
@@ -56,12 +45,6 @@
       %strong= model_class.human_attribute_name(:order_reference) + ':'
       %br
       = @quote.order_links
-
-
-    - if @quote.internal_notes.present?
-      %div.alert.alert-internal-note
-        %strong.text-info Overall Internal Notes:
-        = simple_format(@quote.internal_notes, class: 'text-info')
 
   .col-sm-3
     %p
@@ -106,6 +89,16 @@
       = @quote.signatory_position
 
   .col-sm-3
+
+
+
+.row
+  %div.alert.alert-info
+    %h3 Internal Notes :
+    = @quote.internal_notes
+    %br
+    - if @quote.count_offers_with_internal_notes > 0
+      %span.offer-internal-note-count There are #{@quote.count_offers_with_internal_notes} offers with internal notes.
 
 .row
   .col-sm-12
