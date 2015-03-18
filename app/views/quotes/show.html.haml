@@ -92,13 +92,14 @@
 
 
 
-.row
-  %div.alert.alert-info
-    %h3 Internal Notes :
-    = @quote.internal_notes
-    %br
-    - if @quote.count_offers_with_internal_notes > 0
-      %span.offer-internal-note-count There are #{@quote.count_offers_with_internal_notes} offers with internal notes.
+- if @quote.internal_notes.present? or @quote.count_offers_with_internal_notes > 0
+  .row
+    %div.alert.alert-info
+      %h3 Internal Notes :
+      = @quote.internal_notes
+      %br
+      - if @quote.count_offers_with_internal_notes > 0
+        %span.offer-internal-note-count There are #{@quote.count_offers_with_internal_notes} offers with internal notes.
 
 .row
   .col-sm-12
