@@ -107,13 +107,17 @@
 
   .col-sm-3
 
-    %h4 Attachments
-    - if @quote.attachments.empty?
-      No Attachments
-    - else
-      %ul.attachments
-        - @quote.attachments.each do |attachment|
-          %li= link_to attachment[:document], quote_attachment_path(@quote, :id => attachment.id)
+.row
+  .col-sm-12
+    %p
+      %h4 Attachments
+      - if @quote.attachments.empty?
+        No Attachments
+      - else
+        %ul.attachments
+          - @quote.attachments.each do |attachment|
+            %li= link_to attachment[:document], quote_attachment_path(@quote, :id => attachment.id)
+
 
 %h3 Requests
 %table.table.table-striped.quote-details
