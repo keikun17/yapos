@@ -1,4 +1,6 @@
 # Code Climate stuff
+require 'dotenv'
+Dotenv.load
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 

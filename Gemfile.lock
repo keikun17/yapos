@@ -120,6 +120,9 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    dotenv (2.0.0)
+    dotenv-rails (2.0.0)
+      dotenv (= 2.0.0)
     draper (1.4.0)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
@@ -364,6 +367,7 @@ DEPENDENCIES
   counter_culture
   database_cleaner
   devise (~> 3.4)
+  dotenv-rails
   draper
   elasticsearch-model (= 0.1.6)
   elasticsearch-rails (~> 0.1.6)
