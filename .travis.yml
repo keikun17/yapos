@@ -2,6 +2,10 @@ language: ruby
 cache: bundler
 sudo: false # user container based travis builds
 
+addons:
+  code_climate:
+    repo_token: 8ae605ea9f3a04838cd596763390f675591732d23e919395f13d9b45a114eacb
+
 services:
   - elasticsearch
 
@@ -9,9 +13,11 @@ before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16"
+
 rvm:
   - "1.9.3"
   - "2.2.1"
+
 before_script:
   - "mysql -e 'create database travis_testdb'"
   - "cp ./config/database_travis.yml ./config/database.yml"
@@ -21,8 +27,6 @@ script:
   - bundle exec rake db:schema:load
   - bundle exec rake db:test:prepare
   - bundle exec rspec spec/features
-  # - xvfb-run -e /dev/stdout bundle exec rspec spec/features
-  # - xvfb-run -e /dev/stdout --server-args="-screen 0 1280x1024x16" bundle exec rspec spec/features
 
 after_failure:
   - "mysql -e 'show databases;'"
