@@ -78,31 +78,27 @@ class Quote < ActiveRecord::Base
 
   # Quotes that needs to be have the ex-works date set
   scope :for_scheduling, -> do
-    s = not_closed.includes(:supplier_orders).references(:supplier_orders)
-    s = s.where("supplier_orders.reference != '' or supplier_orders.reference is not null")
-    s = s.where("supplier_orders.estimated_manufactured_at is null")
-    s = s.where("supplier_orders.delivered_at is null")
-    s
+    not_closed.includes(:supplier_orders).references(:supplier_orders)
+      .where("supplier_orders.reference != '' or supplier_orders.reference is not null")
+      .where("supplier_orders.estimated_manufactured_at is null")
+      .where("supplier_orders.delivered_at is null")
   end
 
   scope :manufacturing, -> do
-    s = not_closed.includes(:supplier_orders).references(:supplier_orders)
-    s = s.where("supplier_orders.reference != '' or supplier_orders.reference is not null")
-    s = s.where("'#{Time.now.to_s(:db)}' < supplier_orders.estimated_manufactured_at")
-    s = s.where("supplier_orders.delivered_at is null")
-    s
+    not_closed.includes(:supplier_orders).references(:supplier_orders)
+      .where("supplier_orders.reference != '' or supplier_orders.reference is not null")
+      .where("'#{Time.now.to_s(:db)}' < supplier_orders.estimated_manufactured_at")
+      .where("supplier_orders.delivered_at is null")
   end
 
   scope :for_delivery, -> do
-    s = not_closed.includes(:supplier_orders).references(:supplier_orders)
-    s = s.where("'#{Time.now.to_s(:db)}' >= supplier_orders.estimated_manufactured_at")
-    s = s.where("supplier_orders.delivered_at is null")
-    s
+    not_closed.includes(:supplier_orders).references(:supplier_orders)
+    .where("'#{Time.now.to_s(:db)}' >= supplier_orders.estimated_manufactured_at")
+    .where("supplier_orders.delivered_at is null")
   end
 
   scope :today, -> do
-    s = where(created_at: (Date.today..Date.tomorrow))
-    s
+    where(created_at: (Date.today..Date.tomorrow))
   end
 
   # Tire/ElasticSearch Configuration
@@ -163,25 +159,20 @@ class Quote < ActiveRecord::Base
   end
 
   def offered_specs
-    o = offers.map(&:specs)
-    o = o.uniq.compact
-    o
+    offers.uniq.pluck(:specs)
   end
 
   def offered_vendor_item_code
-    o = offers.map(&:vendor_item_code)
-    o = o.uniq.compact
-    o
+    # offers.map(&:vendor_item_code).uniq.compact
+    offers.uniq.pluck.(:vendor_item_code)
   end
 
   def offer_summaries
-    osum = offers.map(&:summary)
-    osum = osum.uniq.compact
-    osum
+    offers.uniq.pluck(:summary)
   end
 
   def supplier_names
-    self.suppliers.uniq.map(&:name)
+    self.suppliers.uniq.pluck(:name)
   end
 
   def display_status
