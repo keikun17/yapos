@@ -58,7 +58,7 @@ group :test do
   gem 'dotenv-rails'
   gem 'codeclimate-test-reporter', require: nil
   gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '2.43.0' # because 2.45.0 is SUPER SLOW
   gem 'factory_girl_rails', '~> 4.0'
   gem 'database_cleaner'
   gem 'spring-commands-rspec'
