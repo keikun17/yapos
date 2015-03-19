@@ -8,8 +8,8 @@ gem 'coffee-rails', '4.1.0'
 gem 'less-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-sass-rails'
-# gem 'twitter-bootstrap-rails', '2.2.8'
 gem 'bootstrap-sass', '~> 3.3.3'
+gem 'web-console', '~> 2.0'
 
 gem 'draper'
 
@@ -17,9 +17,6 @@ gem 'active_model_serializers', '0.9.0'
 
 # attr_protected and attr_accessible has been extracted to a gem
 gem 'protected_attributes', '~> 1.0.8'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'devise', '~> 3.4'
 gem 'carrierwave'
@@ -47,8 +44,6 @@ gem 'compass-rails', '2.0.4'
 gem 'counter_culture'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', :platforms => :ruby
-
 gem 'libv8', '~> 3.16'
 gem 'therubyracer', '0.12.1'
 gem 'uglifier', '>= 1.3.0'
