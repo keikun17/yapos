@@ -1,0 +1,74 @@
+.client-order-header
+  %h1
+    Supplier Purchase Order
+    = "# #{@supplier_purchase.reference}"
+    = link_to t('.edit', :default => t("helpers.links.edit")), edit_supplier_purchase_path(@supplier_purchase), :class => 'btn btn-primary'
+
+    = link_to "Print #{@supplier_purchase.reference}", print_supplier_purchase_path(@supplier_purchase),  class: 'btn btn-default', target: '_blank'
+
+
+%p
+  %strong Client PO#
+  %br
+  = @supplier_purchase.reference
+%p
+  %strong Ordered from supplier at
+  %br
+  = @supplier_purchase.ordered_from_supplier_at
+
+%p
+  %strong Record last updated
+  %br
+  = @supplier_purchase.updated_at
+
+%p
+  %strong Clients
+  %ul
+    - @supplier_purchase.clients.each do |client|
+      %li= link_to client.name, @client
+
+
+%p
+  %strong Suppliers
+  %ul
+    - @supplier_purchase.suppliers.each do |client|
+      %li= link_to client.name, @client
+
+-# %p
+-#   %strong Total Buying Price
+-#   %br
+-#   = @supplier_purchase.display_total_buy
+-#
+-# %p
+-#   %strong Total Selling Price
+-#   %br
+-#   = @supplier_purchase.display_total_sell
+
+-# %p
+-#   %strong Total Profit
+-#   %br
+-#   = @supplier_purchase.display_total_profit
+
+
+%table.table.table-striped
+  %thead
+    %th Item#
+    %th QTY
+    %th Description
+    %th Unit Price
+    %th Amount
+
+  %tbody
+    - @supplier_purchase.supplier_orders.each do |supplier_order|
+      %tr
+        %td= @supplier_purchase.supplier_orders.index(supplier_order) + 1
+        %td= supplier_order.offer.request.decorate.display_quantity
+        %td.compact= simple_format(supplier_order.offer.decorate.actual_specs)
+        %td= supplier_order.offer.decorate.display_buying_price
+        %td= supplier_order.offer.decorate.display_total_buying_price
+
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), supplier_purchases_path, :class => 'btn btn-default'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_supplier_purchase_path(@supplier_purchase), :class => 'btn btn-primary'
+  -# = link_to t('.destroy', :default => t("helpers.links.destroy")), order_path(@order), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

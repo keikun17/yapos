@@ -9,6 +9,10 @@ class SupplierPurchasesController < ApplicationController
     @supplier_purchases = @supplier_purchases.paginate(page: params[:page], per_page: 80).decorate
   end
 
+  def show
+    @supplier_purchase = SupplierPurchase.find(params[:id]).decorate
+  end
+
   def print
     @supplier_purchase = SupplierPurchase.find(params[:id]).decorate
     @print_preview = true

@@ -16,7 +16,7 @@
   %tbody
     - @supplier_purchases.each do |supplier_purchase|
       %tr{class: "multi-content #{'error' if supplier_purchase.ordered_at.blank?}"}
-        %td= link_to supplier_purchase.reference, print_supplier_purchase_path(supplier_purchase), target: '_blank'
+        %td= link_to supplier_purchase.reference, supplier_purchase
         %td
           - supplier_purchase.quotes.uniq.each do |quote|
             = link_to quote.quote_reference, quote_path(quote)
