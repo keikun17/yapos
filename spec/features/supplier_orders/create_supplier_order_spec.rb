@@ -60,8 +60,9 @@ feature "Supplier Order Creation" do
         expect(page).to_not have_link("PO#1")
         click_link "Supplier Orders"
 
-        expect(page).to have_link("SUPPLIER PO#1")
-        handle_window = window_opened_by { click_link "SUPPLIER PO#1" }
+        click_link "SUPPLIER PO#1"
+
+        handle_window = window_opened_by { click_link "Print SUPPLIER PO#1" }
 
         within_window(handle_window) do
           #header
@@ -144,13 +145,8 @@ feature "Supplier Order Creation" do
       click_button "Update Order"
 
       click_link "Supplier Orders"
-
-      expect(page).to have_link("SUPPLIER PO#1")
-      expect(page).to have_link("SUPPLIER PO#2")
-
-
-      supplier_po_1_window = window_opened_by { click_link "SUPPLIER PO#1" }
-      supplier_po_2_window = window_opened_by { click_link "SUPPLIER PO#2" }
+      click_link "SUPPLIER PO#1"
+      supplier_po_1_window = window_opened_by { click_link "Print SUPPLIER PO#1" }
 
       within_window(supplier_po_1_window) do
         #header
@@ -165,6 +161,10 @@ feature "Supplier Order Creation" do
 
 
       end
+
+      click_link "Supplier Orders"
+      click_link "SUPPLIER PO#2"
+      supplier_po_2_window = window_opened_by { click_link "Print SUPPLIER PO#2" }
 
       within_window(supplier_po_2_window) do
         #header
@@ -250,9 +250,9 @@ feature "Supplier Order Creation" do
       ###########################
 
       click_link "Supplier Orders"
-      expect(page).to have_link("SUPPLIER PO#1")
+      click_link "SUPPLIER PO#1"
 
-      handle_window = window_opened_by { click_link "SUPPLIER PO#1", match: :first }
+      handle_window = window_opened_by { click_link "Print SUPPLIER PO#1", match: :first }
 
       within_window(handle_window) do
 

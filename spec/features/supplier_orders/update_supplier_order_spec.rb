@@ -59,11 +59,9 @@ feature "Updating Supplier", js: true do
     it "shows the edited specs in the print out" do
       click_link "Supplier Orders"
       expect(page).not_to have_link("SUPPLIER PO#1-orig")
-      expect(page).to have_link("SUPPLIER PO#1-revised")
 
-
-      handle_window = window_opened_by { click_link "SUPPLIER PO#1-revised", match: :first }
-
+      click_link("SUPPLIER PO#1-revised")
+      handle_window = window_opened_by { click_link "Print SUPPLIER PO#1-revised", match: :first }
       within_window(handle_window) do
 
         #header
