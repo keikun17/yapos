@@ -100,14 +100,8 @@
           - if offer.service?
             %span.badge.badge-service Service
           = simple_format(offer.specs)
-          - if !offer.summary.blank?
-            %p.actual-offer
-              Actual :
-              = offer.summary
-              - if offer.vendor_item
-                .row
-                  .col-sm-12
-                    = link_to "View this item", price_movement_path(offer.vendor_item)
+          = render 'offers/actual_offer', offer: offer
+
         %td
           = simple_format(offer.supplier_order_actual_specs)
         %td
@@ -140,14 +134,7 @@
             - if offer.service?
               %span.badge.badge-service Service
             = simple_format(offer.specs)
-            - if !offer.summary.blank?
-              %p.actual-offer
-                Actual :
-                = offer.summary
-                - if offer.vendor_item
-                  .row
-                    .col-sm-12
-                      = link_to "View this item", price_movement_path(offer.vendor_item)
+            = render 'offers/actual_offer', offer: offer
 
           %td= offer.supplier_order_actual_specs
           %td

@@ -17,14 +17,7 @@
         - if offer.service?
           %span.badge.badge-service Service
         = simple_format(offer.specs)
-        - if !offer.summary.blank? || !offer.vendor_item.nil?
-          %p.actual-offer
-            Actual :
-            = offer.summary
-            - if offer.vendor_item.present?
-              .row
-                .col-sm-12
-                  = link_to "View this item", price_movement_path(offer.vendor_item)
+        = render 'offers/actual_offer', offer: offer
 
     %td
       - if offer and offer.supplier
@@ -76,14 +69,7 @@
         - if offer.service?
           %span.badge.badge-service Service
         = simple_format(offer.specs)
-        - if !offer.summary.blank? || !offer.vendor_item.nil?
-          %p.actual-offer
-            Actual :
-            = offer.summary
-            - if offer.vendor_item.present?
-              .row
-                .col-sm-12
-                  = link_to "View this item", price_movement_path(offer.vendor_item)
+        = render 'offers/actual_offer', offer: offer
       %td
         - if offer.supplier
           = link_to offer.supplier_name, offer.supplier
