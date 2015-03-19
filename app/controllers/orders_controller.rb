@@ -69,15 +69,13 @@ class OrdersController < ApplicationController
                          ).end_of_day
 
     @orders = @orders.order("orders.purchase_date desc").where(purchase_date: @from_date..@to_date)
-    # @orders = @orders.paginate(:page => params[:page], :per_page => 10) 
+
     unless params[:client_id].blank?
       @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
     end
 
     @orders = @orders
     @decorated_orders = @orders.decorate
-
-    # @decorated_orders = OrderDecorator.decorate_collection(@orders.to_a)
 
     render layout: "printable"
   end
