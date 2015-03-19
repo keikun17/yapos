@@ -159,20 +159,20 @@ class Quote < ActiveRecord::Base
   end
 
   def offered_specs
-    offers.uniq.pluck(:specs)
+    offers.pluck(:specs).uniq
   end
 
   def offered_vendor_item_code
     # offers.map(&:vendor_item_code).uniq.compact
-    offers.uniq.pluck.(:vendor_item_code)
+    offers.pluck.(:vendor_item_code).uniq
   end
 
   def offer_summaries
-    offers.uniq.pluck(:summary)
+    offers.pluck(:summary).uniq
   end
 
   def supplier_names
-    self.suppliers.uniq.pluck(:name)
+    self.suppliers.pluck(:name).uniq
   end
 
   def display_status
