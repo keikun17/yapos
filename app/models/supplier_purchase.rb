@@ -32,7 +32,7 @@ class SupplierPurchase < ActiveRecord::Base
   has_many :quotes, -> {uniq},   through: :offers
   has_many :orders, -> {uniq}, through: :offers
 
-  validate :reference, uniqueness: true
+  validates :reference, uniqueness: true
 
   def as_indexed_json(options={})
     self.as_json(
