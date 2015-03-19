@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails4_client_side_validations'
-gem 'rails', '~> 4.1.8'
+gem 'rails', '~> 4.2'
 gem 'haml-rails'
 gem 'sass-rails', '~> 5.0.1'
 gem 'coffee-rails', '4.1.0'
