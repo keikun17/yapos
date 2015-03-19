@@ -18,6 +18,11 @@
   %br
   = @order.display_purchase_date
 
+%p
+  %strong Record last updated
+  %br
+  = @order.updated_at.to_date
+
 - if @order.custom_quote_reference.present?
   %h4 Purchase Requests :
   %p
