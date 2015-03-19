@@ -168,13 +168,6 @@ GEM
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (4.0.3)
-      jquery-rails
-      railties (>= 3.1.0)
-    jquery-ui-sass-rails (4.0.3.0)
-      jquery-rails
-      jquery-ui-rails (= 4.0.3)
-      railties (>= 3.1.0)
     json (1.8.2)
     less (2.6.0)
       commonjs (~> 0.2.7)
@@ -368,7 +361,6 @@ DEPENDENCIES
   factory_girl_rails (~> 4.0)
   haml-rails
   jquery-rails
-  jquery-ui-sass-rails
   json (~> 1.8.2)
   less-rails
   libv8 (~> 3.16)

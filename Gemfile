@@ -7,7 +7,7 @@ gem 'sass-rails', '~> 5.0.1'
 gem 'coffee-rails', '4.1.0'
 gem 'less-rails'
 gem 'jquery-rails'
-gem 'jquery-ui-sass-rails'
+# gem 'jquery-ui-sass-rails'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'web-console', '~> 2.0'
 
