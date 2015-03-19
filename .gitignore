@@ -19,5 +19,8 @@ uploads
 # Ignore public/assets, run rake assets:precompile on prod instead
 /public/assets
 
+# Ignore Code Climate coverage folder
+coverage
+
 # Ignore .env file read by the `dotenv-rails` gem
 .env
