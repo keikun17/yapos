@@ -7,11 +7,6 @@ class OfferDecorator < ApplicationDecorator
   end
   # End of Decorated Association
 
-
-  def services_count
-    self.services.count
-  end
-
   def actual_specs
     @actual_specs ||= (self.supplier_order_actual_specs || self.specs)
   end
