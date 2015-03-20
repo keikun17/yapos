@@ -10,6 +10,9 @@ feature "Quotes Creation", js: true do
     expect(VendorItem.count).to eq(3)
   end
 
+  it "should appear on the client's page"
+  it "should appear on the supplier's page"
+
   it "should be searchable" do
     visit root_path
 

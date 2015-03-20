@@ -324,3 +324,12 @@ feature "Supplier Order Creation" do
 
 end
 
+
+feature "Estimated Ex-works, deliivery and Actual Delivery date" do
+
+  context "When set" do
+    it "is displayed in the client's page, supplier's page, quote's page, order's page"
+    it "Upodates the kanban board"
+  end
+
+end

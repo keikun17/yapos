@@ -101,6 +101,7 @@ feature "Order Creation" do
 
   context "Different RFQs" do
   end
+  scenario "Marks an order in the clients page as ordered"
 end
 
 feature "Editing Order" do
