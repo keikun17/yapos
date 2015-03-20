@@ -132,14 +132,6 @@ class OfferDecorator < ApplicationDecorator
     str
   end
 
-  def total_local_buying_price
-    str = h.number_to_currency(self.total_buying_price || 0, unit: Currency::LOCAL_CURRENCY)
-    if !self.price_suffix.blank?
-      str = str + " (#{self.price_suffix})"
-    end
-    str
-  end
-
   def display_total_selling_price
     str = h.number_to_currency(self.total_selling_price || 0, unit: Currency::LOCAL_CURRENCY)
     if !self.price_suffix.blank?
