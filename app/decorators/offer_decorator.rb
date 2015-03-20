@@ -130,44 +130,20 @@ class OfferDecorator < ApplicationDecorator
     @suffix ||= [self.price_vat_status,self.price_basis].compact.join(" ")
   end
 
-  def estimated_manufacture_end_date
-    if offer.supply?
-      if date = self.supplier_order_estimated_manufactured_at
-        date.to_date.to_s
-      else
-        if supplier_order
-          h.content_tag :p do
-            html  = h.link_to_modal("Set Manufacture end date", self.supplier_order, {class: 'btn btn-small btn-success', modal_id: 'exworks'})
-            html << (h.render 'supplier_orders/modals/set_manufacture_date', modal_id: h.dom_id(supplier_order) + 'exworks', supplier_order: supplier_order.decorate)
-          end
-        else
-          display_none
-        end
-      end
-
-    else
-      "N/A"
-    end
-
-  end
-
   def estimated_delivery_date
-    if offer.supply?
-      if date = self.supplier_order_estimated_delivered_at
-        date.to_date.to_s
-      else
-        if supplier_order
-          h.content_tag :p do
-            html  = h.link_to_modal("Set Estimated Delivery", self.supplier_order, {class: 'btn btn-small btn-success', modal_id: 'eta'})
-            html << (h.render 'supplier_orders/modals/set_estimated_delivery_date', modal_id: h.dom_id(supplier_order) + 'eta', supplier_order: supplier_order.decorate)
-          end
-        else
-          display_none
-        end
-      end
+    return "N/A" if !offer.supply?
 
+    if date = self.supplier_order_estimated_delivered_at
+      date.to_date.to_s
     else
-      "N/A"
+      if supplier_order
+        h.content_tag :p do
+          html  = h.link_to_modal("Set Estimated Delivery", self.supplier_order, {class: 'btn btn-small btn-success', modal_id: 'eta'})
+          html << (h.render 'supplier_orders/modals/set_estimated_delivery_date', modal_id: h.dom_id(supplier_order) + 'eta', supplier_order: supplier_order.decorate)
+        end
+      else
+        display_none
+      end
     end
   end
 

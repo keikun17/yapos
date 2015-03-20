@@ -33,7 +33,7 @@
         %td= offer.summary
         %td= offer.supplier_name
         %td
-          = offer.estimated_manufacture_end_date
+          = render 'offers/estimated_manufactured_at', offer: offer
         %td= offer.estimated_delivery_date
         %td= offer.delivered_at
 

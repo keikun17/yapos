@@ -81,8 +81,7 @@
               = offer.supplier_purchase_link
           %td
             %i= offer.ordered_from_supplier_at
-          %td
-            %i= offer.estimated_manufacture_end_date
+          %td= render 'offers/estimated_manufactured_at', offer: offer
           %td
             %i= offer.estimated_delivery_date
           %td= offer.delivered_at
@@ -110,8 +109,7 @@
                   = offer.supplier_purchase_link
               %td
                 %i= offer.ordered_from_supplier_at
-              %td
-                %i= offer.estimated_manufacture_end_date
+              %td= render 'offers/estimated_manufactured_at', offer: offer
               %td
                 %i= offer.estimated_delivery_date
               %td
