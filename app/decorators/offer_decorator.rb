@@ -70,15 +70,6 @@ class OfferDecorator < ApplicationDecorator
     end
   end
 
-  def display_summary
-    @display_summary ||= if summary.blank?
-                           h.link_to('Please enter the actual spec for this offer', h.edit_quote_path(self.quote))
-                         else
-                           summary
-                         end
-
-  end
-
   def quantity_label(label_class="")
     request.decorate.to_label(label_class)
   end
