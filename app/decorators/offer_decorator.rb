@@ -1,28 +1,20 @@
 class OfferDecorator < ApplicationDecorator
   decorates_association :request
 
+  delegate :ordered_from_supplier_at, to: :decorated_supplier_purchase, prefix: false, allow_nil: true
+
   # Decorated Associations
   def decorated_supplier_purchase
-    @decorated_supplier_purchase ||= SupplierPurchaseDecorator.new(self.supplier_purchase)
+    @decorated_supplier_purchase ||= if self.supplier_purchase
+                                     SupplierPurchaseDecorator.new(self.supplier_purchase)
+                                   else
+                                     nil
+                                   end
   end
   # End of Decorated Association
 
   def actual_specs
     @actual_specs ||= (self.supplier_order_actual_specs || self.specs)
-  end
-
-  def ordered_from_supplier_at
-    if offer.supply?
-      if self.supplier_purchase.nil? or self.supplier_purchase.reference.blank?
-        "Item not yet purchased from Supplier"
-      else
-        decorated_supplier_purchase.ordered_from_supplier_at
-      end
-
-    else
-      "N/A"
-    end
-
   end
 
   def supplier_purchase_link
