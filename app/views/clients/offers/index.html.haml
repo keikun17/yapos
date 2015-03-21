@@ -32,9 +32,8 @@
         %td= offer.complete_quantity
         %td= offer.summary
         %td= offer.supplier_name
-        %td
-          = render 'offers/estimated_manufactured_at', offer: offer
-        %td= offer.estimated_delivery_date
+        %td= render 'offers/estimated_manufactured_at', offer: offer
+        %td= render 'offers/estimated_delivery_date', offer: offer
         %td= offer.delivered_at
 
 .pull-right= will_paginate(@offers)

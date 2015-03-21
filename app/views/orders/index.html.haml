@@ -82,8 +82,7 @@
           %td
             %i= offer.ordered_from_supplier_at
           %td= render 'offers/estimated_manufactured_at', offer: offer
-          %td
-            %i= offer.estimated_delivery_date
+          %td= render 'offers/estimated_delivery_date', offer: offer
           %td= offer.delivered_at
 
           - offers.each do |offer|
@@ -110,8 +109,7 @@
               %td
                 %i= offer.ordered_from_supplier_at
               %td= render 'offers/estimated_manufactured_at', offer: offer
-              %td
-                %i= offer.estimated_delivery_date
+              %td= render 'offers/estimated_delivery_date', offer: offer
               %td
                 %i= offer.delivered_at
 .pull-right=will_paginate(@orders)
