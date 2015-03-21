@@ -34,7 +34,7 @@
         %td= offer.supplier_name
         %td= render 'offers/estimated_manufactured_at', offer: offer
         %td= render 'offers/estimated_delivery_date', offer: offer
-        %td= offer.delivered_at
+        %td= render 'offers/delivered_at', offer: offer
 
 .pull-right= will_paginate(@offers)
 
