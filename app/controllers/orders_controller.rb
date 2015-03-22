@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
   end
 
   def services
-    @orders = Order.includes(:quotes, {quotes: :offers}).where(offers: {service: true})
+    @orders = Order.with_service_offers
 
     if !params[:client_id].blank?
       @client = Client.find(params[:client_id])
@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
   end
 
   def pending
-    @orders = Order.includes(:offers).references(:offers).where.not(offers: {service: true}).where.not(offers: {id: nil}).not_yet_ordered
+    @orders = Order.with_supply_offers
 
     if !params[:client_id].blank?
       @client = Client.find(params[:client_id])
@@ -156,7 +156,7 @@ class OrdersController < ApplicationController
   private
 
   def set_po_required_count
-    po_required = Order.joins(:offers).references(:offers).where.not(offers: {service: true}).where.not(offers: {id: nil}).not_yet_ordered
+    po_required = Order.with_supply_offers
     if !params[:client_id].blank?
       @po_required_count = po_required.includes(:quotes).where(quotes: {client_id: params[:client_id]} ).count
     else
