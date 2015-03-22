@@ -72,7 +72,6 @@ class OrdersController < ApplicationController
       @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
     end
 
-    @orders = @orders
     @decorated_orders = @orders.decorate
 
     render layout: "printable"
