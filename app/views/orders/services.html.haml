@@ -67,8 +67,9 @@
               %span.badge.badge-service Service
               = offer.specs
             - if !offer.supplier_order_actual_specs.blank?
-              %span.label.label-important Actual:
-              =offer.supplier_order_actual_specs
+              %p.actual-offer
+                Actual:
+                = offer.supplier_order_actual_specs
           %td= offer.supplier_purchase_link
           %td= order.display_purchase_date
           %td
@@ -86,9 +87,9 @@
                   %span.badge.badge-service Service
                   = offer.specs
                 - if !offer.supplier_order_actual_specs.blank?
-                  %span.label.label-important Actual:
-
-                  =offer.supplier_order_actual_specs
+                  %p.actual-offer
+                    Actual:
+                    = offer.supplier_order_actual_specs
               %td= offer.supplier_purchase_link
               %td= order.display_purchase_date
               %td
