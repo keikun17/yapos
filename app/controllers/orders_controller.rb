@@ -12,9 +12,7 @@ class OrdersController < ApplicationController
     end
 
     @orders = @orders.order("orders.purchase_date desc")
-    @orders = @orders.paginate(:page => params[:page], :per_page => 40)
-
-    @decorated_orders = OrderDecorator.decorate_collection(@orders.to_a)
+    @orders = @orders.paginate(:page => params[:page], :per_page => 40).decorate
 
     respond_to do |format|
       format.html # index.html.erb
@@ -31,9 +29,7 @@ class OrdersController < ApplicationController
     end
 
     @orders = @orders.order("orders.purchase_date desc")
-    @orders = @orders.paginate(:page => params[:page], :per_page => 40)
-
-    @decorated_orders = OrderDecorator.decorate_collection(@orders.to_a)
+    @orders = @orders.paginate(:page => params[:page], :per_page => 40).decorate
 
     respond_to do |format|
       format.html # index.html.erb
@@ -50,8 +46,7 @@ class OrdersController < ApplicationController
     end
 
     @orders = @orders.order("orders.purchase_date desc")
-    @orders = @orders.paginate(per_page: 40, page: params[:page])
-    @decorated_orders = OrderDecorator.decorate_collection(@orders)
+    @orders = @orders.paginate(per_page: 40, page: params[:page]).decorate
   end
 
   def print_delivery_monitoring
@@ -72,7 +67,7 @@ class OrdersController < ApplicationController
       @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
     end
 
-    @decorated_orders = @orders.decorate
+    @orders = @orders.decorate
 
     render layout: "printable"
   end

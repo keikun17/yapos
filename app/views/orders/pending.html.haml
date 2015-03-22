@@ -26,7 +26,7 @@
       %th Offer
       %th.col-sm-2
   %tbody
-    - @decorated_orders.each do |order|
+    - @orders.each do |order|
       - offer_count = order.offers.count
       - offers = order.offers.decorate
       - offer = offers.shift
