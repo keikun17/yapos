@@ -5,10 +5,7 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
-    filter_orders_by_client
-
-    @orders = @orders.order("orders.purchase_date desc")
-    @orders = @orders.paginate(:page => params[:page], :per_page => 40).decorate
+    filter_orders_by_client_and_decorate
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,10 +15,7 @@ class OrdersController < ApplicationController
 
   def services
     @orders = Order.with_service_offers
-    filter_orders_by_client
-
-    @orders = @orders.order("orders.purchase_date desc")
-    @orders = @orders.paginate(:page => params[:page], :per_page => 40).decorate
+    filter_orders_by_client_and_decorate
 
     respond_to do |format|
       format.html # index.html.erb
@@ -31,15 +25,12 @@ class OrdersController < ApplicationController
 
   def pending
     @orders = Order.with_supply_offers
-    filter_orders_by_client
-
-    @orders = @orders.order("orders.purchase_date desc")
-    @orders = @orders.paginate(per_page: 40, page: params[:page]).decorate
+    filter_orders_by_client_and_decorate
   end
 
   def print_delivery_monitoring
     @orders = Order.ordered
-    filter_orders_by_client
+    filter_orders_by_client_and_decorate
 
     @from_date = Time.zone.local(params[:print]['from_date(1i)'],
       params[:print]['from_date(2i)'],
@@ -51,10 +42,7 @@ class OrdersController < ApplicationController
       params[:print]['to_date(3i)']
                          ).end_of_day
 
-    @orders = @orders.order("orders.purchase_date desc")
-      .where(purchase_date: @from_date..@to_date)
-      .decorate
-
+    filter_orders_by_client_and_decorate
     render layout: "printable"
   end
 
@@ -145,11 +133,14 @@ class OrdersController < ApplicationController
     end
   end
 
-  def filter_orders_by_client
+  def filter_orders_by_client_and_decorate
     if !params[:client_id].blank?
       @client = Client.find(params[:client_id])
       @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
     end
+
+    @orders = @orders.order("orders.purchase_date desc")
+    @orders = @orders.paginate(:page => params[:page], :per_page => 40).decorate
   end
 
 end
