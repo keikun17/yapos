@@ -9,7 +9,6 @@ class OrdersController < ApplicationController
     if !params[:client_id].blank?
       @client = Client.find(params[:client_id])
       @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
-    else
     end
 
     @orders = @orders.order("orders.purchase_date desc")
@@ -29,7 +28,6 @@ class OrdersController < ApplicationController
     if !params[:client_id].blank?
       @client = Client.find(params[:client_id])
       @orders = @orders.where(quotes: {client_id: params[:client_id]})
-    else
     end
 
     @orders = @orders.order("orders.purchase_date desc")
