@@ -74,7 +74,7 @@
           %td= order.display_purchase_date
           %td
           %td
-          %td= offer.delivered_at
+          %td= render 'offers/delivered_at', offer: offer
 
           - offers.each do |offer|
             %tr{class: offer_row_class(offer)}
@@ -94,5 +94,5 @@
               %td= order.display_purchase_date
               %td
               %td
-              %td= offer.delivered_at
+              %td= render 'offers/delivered_at', offer: offer
 .pull-right=will_paginate(@orders)
