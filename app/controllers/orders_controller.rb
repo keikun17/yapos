@@ -29,20 +29,22 @@ class OrdersController < ApplicationController
   end
 
   def print_delivery_monitoring
-    @orders = Order.ordered
-    filter_orders_by_client_and_decorate
 
     @from_date = Time.zone.local(params[:print]['from_date(1i)'],
-      params[:print]['from_date(2i)'],
-      params[:print]['from_date(3i)']
+                                 params[:print]['from_date(2i)'],
+                                 params[:print]['from_date(3i)']
                                 ).beginning_of_day
 
     @to_date = Time.zone.local(params[:print]['to_date(1i)'],
-      params[:print]['to_date(2i)'],
-      params[:print]['to_date(3i)']
-                         ).end_of_day
+                               params[:print]['to_date(2i)'],
+                               params[:print]['to_date(3i)']
+                              ).end_of_day
+
+    @orders = Order.ordered.order("orders.purchase_date desc")
+      .where(purchase_date: @from_date..@to_date)
 
     filter_orders_by_client_and_decorate
+
     render layout: "printable"
   end
 
