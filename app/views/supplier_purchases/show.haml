@@ -4,7 +4,7 @@
     = "# #{@supplier_purchase.reference}"
     = link_to t('.edit', :default => t("helpers.links.edit")), edit_supplier_purchase_path(@supplier_purchase), :class => 'btn btn-primary'
 
-    = link_to "Print #{@supplier_purchase.reference}", print_supplier_purchase_path(@supplier_purchase),  class: 'btn btn-default', target: '_blank'
+    = link_to "Print Supplier PO# #{@supplier_purchase.reference}", print_supplier_purchase_path(@supplier_purchase),  class: 'btn btn-default', target: '_blank'
 
 
 %p
