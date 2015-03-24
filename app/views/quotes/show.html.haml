@@ -11,16 +11,17 @@
       = link_to "Print only #{supplier.name} offers", printable_view_quote_path(@quote, supplier_id: supplier.id), :class => 'btn btn-default', target: '_blank'
 
 .row
-  - if !@quote.title.blank?
-    %h2
-      = simple_format(@quote.title)
+  .col-sm-12
+    - if !@quote.title.blank?
+      %h2
+        = simple_format(@quote.title)
 
-  - if !@quote.blurb.blank?
-    %h4
-      = simple_format(@quote.blurb)
+    - if !@quote.blurb.blank?
+      %h4
+        = simple_format(@quote.blurb)
 
-  - if !@quote.blurb.blank? or !@quote.title.blank?
-    %hr
+    - if !@quote.blurb.blank? or !@quote.title.blank?
+      %hr
 
 .row
 
