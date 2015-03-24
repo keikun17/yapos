@@ -5,7 +5,7 @@
       %th.requested-item Requested Items
       - unless params[:controller] == 'clients'
         %th.client-name Client Name
-      %th.request-date Client Requested At
+      %th.hidden-xs.request-date Client Requested At
       %th.supplier-name Supplier
       %th.po-reference Client PO
   %tbody
@@ -32,7 +32,7 @@
 
         - unless params[:controller] == 'clients'
           %td= link_to_client(quote.client)
-        %td= quote.quote_date.to_date if quote.quote_date
+        %td.hidden-xs= quote.quote_date.to_date if quote.quote_date
         %td= supplier_links(quote)
         %td
           = quote.order_links_with_date
