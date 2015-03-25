@@ -12,6 +12,10 @@ class OffersController < ApplicationController
     @offers = @offers.order(created_at: :desc).paginate(page: params[:page], per_page: 40).decorate
   end
 
+  def edit
+    @offer = Offer.find(params[:id])
+  end
+
   def quick_purchase
     @offer = Offer.find(params[:id])
 

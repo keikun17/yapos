@@ -18,6 +18,7 @@
           %span.badge.badge-service Service
         = simple_format(offer.specs)
         = render 'offers/actual_offer', offer: offer
+        = link_to "Edit Offer", edit_offer_path(offer)
 
     %td
       - if offer and offer.supplier
@@ -70,6 +71,7 @@
           %span.badge.badge-service Service
         = simple_format(offer.specs)
         = render 'offers/actual_offer', offer: offer
+        = link_to "Edit Offer", edit_offer_path(offer)
       %td
         - if offer.supplier
           = link_to offer.supplier_name, offer.supplier

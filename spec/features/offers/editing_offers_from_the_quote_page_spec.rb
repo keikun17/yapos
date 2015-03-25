@@ -8,7 +8,7 @@ feature "Editing Offers from the Quote page", js: true do
     click_link "Price Quotes"
     click_link "PR#0001"
 
-    click_link "Edit Offer"
+    click_link "Edit Offer", match: :first # Just thest the first offer
 
     fill_in "Specs/Description", with: "2015 Very Heavy Bolter"
     fill_in "Actual Specs", with: "Heavy UBER Bolter 2015 model S2"
@@ -36,7 +36,7 @@ feature "Editing Offers from the Quote page", js: true do
       click_link "Price Quotes"
       click_link "PR#0001"
 
-      click_link "Edit Offer"
+      click_link "Edit Offer", match: :first # Just the first offer
 
       fill_in "Client PO#", with: "PO Number 1"
 

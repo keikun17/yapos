@@ -17,7 +17,7 @@ Yapos::Application.routes.draw do
 
   resources :stocks
 
-  resources :offers, only: :index
+  resources :offers, only: [:index, :edit, :update]
 
   patch 'offers/vendor_code_update/:id', to: 'offers#vendor_code_update', as: :vendor_code_update
 

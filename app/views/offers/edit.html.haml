@@ -1,0 +1,120 @@
+= form_for @offer, :html => { :class => 'form-horizontal changes-confirmed' }, validate: true do |f|
+  .row
+    .col-sm-12
+      %table.table.table-bordered#quotes
+        %tr
+          %td{colspan: 5}
+            .col-sm-4
+              .row
+                = f.label :supplier_id, "Brand", class: 'offer-cell'
+                = f.select :supplier_id, options_for_select(Supplier.all.collect{|s| [s.name, s.id]}, f.object.supplier_id), {:include_blank => true}, :class => 'form-control'
+
+              .row
+                .checkbox
+                  %label
+                  = f.check_box :hide_supplier_in_print
+                  Hide Brand in Print
+
+              .row
+
+                = f.label :specs, "Specs/Description", class: 'offer-cell'
+                = f.text_area :specs, :class => 'col-sm-12 form-control', :rows => 4, :placeholder => "Specs"
+
+              .row
+                = f.label :summary, "Actual Specs", class: 'offer-cell'
+                - #FIXME : Move placeholder to a yaml that stores placeholder texts
+                = f.text_area :summary, :class => 'col-sm-12 form-control', :rows => 4, :placeholder => "Example: 900mmW,EP200x2P,3x2,HR,ENDLESS"
+
+              .row
+                .checkbox
+                  = f.label :service do
+                    = f.check_box :service
+                    Service
+
+              .row
+                = f.label :vendor_item_id, "Vendor Item ID", class: 'offer-cell'
+                = f.text_field :vendor_item_id, readonly: true, tb_vendor_item_id_field: 'true', class: 'form-control'
+
+              .row
+                = f.label :vendor_item_code, "Vendor Item Code", class: 'offer-cell'
+                = f.text_field :vendor_item_code, readonly: true, tb_vendor_item_code_field: 'true', class: 'form-control'
+
+              .row
+                = link_to "Input Actual Specs", '#vendor_code_form', tb_shows_nearest_modal: 'true', data: {toggle: 'modal'}, class: 'btn'
+                = render 'vendor_items/modal/form', vendor_item: f.object.vendor_item
+
+            .col-sm-3
+
+              .form-group
+                = f.label :price_vat_status, "VAT Status", class: 'col-sm-3 control-label'
+                .controls.col-sm-8
+                  = f.text_field :price_vat_status, :class => 'form-control col-sm-12', :placeholder => "VAT EX or VAT INC"
+
+              .form-group
+                = f.label :buying_price, "Supplier Price", class: 'col-sm-3 control-label'
+                .controls.col-sm-8
+                  = f.select(:buying_currency, Currency.all, {}, class: 'form-control')
+                  = f.text_field :buying_price, :class => 'form-control', placeholder: 0.00
+
+
+              .form-group
+                = f.label :selling_price, "Our Price", class: 'col-sm-3 control-label'
+                .controls.col-sm-8
+                  = f.select(:currency, Currency.all, {}, class: 'form-control col-sm-5')
+                  = f.text_field :selling_price, :class => 'form-control col-sm-7', placeholder: 0.00
+
+              .form-group
+                = f.label :price_basis, "Price Basis", class: "col-sm-3 control-label"
+                .controls.col-sm-8
+                  = f.text_field :price_basis, :class => 'form-control col-sm-12', :placeholder => "FOB LOCATION"
+
+            .col-sm-3
+              .form-group
+                = f.label :terms, "Terms", class: 'col-sm-3 control-label'
+                .controls.col-sm-9
+                  = f.text_field :terms, :class => 'form-control col-sm-10', data: { field_group: 'terms' }
+                  %a.glyphicon.glyphicon-share{ data: { field_group: 'terms' }, title: "Copy to all offers for the same supplier" }
+              .form-group
+                = f.label :delivery, "Delivery", class: 'col-sm-3 control-label'
+                .controls.col-sm-9
+                  = f.text_field :delivery, :class => 'form-control col-sm-10', data: { field_group: 'delivery'}
+                  %a.glyphicon.glyphicon-share{ data: {field_group: 'delivery'}, title: "Copy to all offers for the same supplier" }
+
+              .form-group
+                = f.label :warranty, "Warranty", class: 'col-sm-3 control-label'
+                .controls.col-sm-9
+                  = f.text_field :warranty, :class => 'form-control col-sm-10', data: { field_group: 'warranty'}
+                  %a.glyphicon.glyphicon-share{ data: {field_group: 'warranty'}, title: "Copy to all offers for the same supplier" }
+
+              .form-group
+                = f.label :remarks, "Notes", class: 'col-sm-3 control-label'
+                .controls.col-sm-9
+                  = f.text_field :remarks, :class => 'form-control col-sm-10', data: { field_group: 'request_notes'}
+                  %a.glyphicon.glyphicon-share{ data: {field_group: 'request_notes'}, title: "Copy to all offers for the same supplier" }
+
+              .form-group
+                = f.label :internal_notes, "Interal Notes", class: 'col-sm-3 control-label'
+                .controls.col-sm-9
+                  = f.text_area :internal_notes, :class => 'form-control col-sm-10', data: { field_group: 'request_notes'}
+                  %br
+                  (Will not appear in print)
+
+
+            .col-sm-2
+              .form-group
+                = f.label :order_reference, "Client PO#", class: 'col-sm-3 control-label'
+                .control.col-sm-9
+                  = f.text_field :order_reference, :class => 'form-control col-sm-12'
+
+              .form-group
+                = f.label :delivery_receipt_reference, "DR#", class: 'col-sm-3 control-label'
+                .control.col-sm-9
+                  = f.text_field :delivery_receipt_reference, :class => 'form-control col-sm-12'
+
+              .form-group
+                = f.label :sales_invoice_reference, "SI#", class: 'col-sm-3 control-label'
+                .control.col-sm-9
+                  = f.text_field :sales_invoice_reference, :class => 'form-control col-sm-12'
+  .row
+    .col-sm-12
+      = f.submit "Update Offer", class: 'btn btn-primary'
