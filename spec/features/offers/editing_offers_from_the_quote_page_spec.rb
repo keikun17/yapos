@@ -26,7 +26,7 @@ feature "Editing Offers from the Quote page" do
     fill_in "Supplier Price", with: 100
     fill_in "Our Price", with: 110
 
-    click_link "Update Offer"
+    click_button "Update Offer"
   end
 
   context "Filling up the PO field", js: false do
@@ -40,7 +40,7 @@ feature "Editing Offers from the Quote page" do
 
       fill_in "Client PO#", with: "PO Number 1"
 
-      click_link "Update Offer"
+      click_button "Update Offer"
     end
 
     it "Marks the offer and quote as purchased and Creates a PO record" do
