@@ -1,9 +1,9 @@
 require "rails_helper"
 
-feature "Editing Offers from the Quote page", js: true do
+feature "Editing Offers from the Quote page" do
   include_context "Quote with 2 request and 3 offers"
 
-  it "should update the quote's offer in the quote page" do
+  it "should update the quote's offer in the quote page", js: true do
     visit root_path
     click_link "Price Quotes"
     click_link "PR#0001"
