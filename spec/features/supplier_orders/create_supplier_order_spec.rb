@@ -62,7 +62,7 @@ feature "Supplier Order Creation" do
 
         click_link "SUPPLIER PO#1"
 
-        handle_window = window_opened_by { click_link "Print SUPPLIER PO#1" }
+        handle_window = window_opened_by { click_link "Print Supplier PO# SUPPLIER PO#1" }
 
         within_window(handle_window) do
           #header
@@ -146,7 +146,8 @@ feature "Supplier Order Creation" do
 
       click_link "Supplier Orders"
       click_link "SUPPLIER PO#1"
-      supplier_po_1_window = window_opened_by { click_link "Print SUPPLIER PO#1" }
+
+      supplier_po_1_window = window_opened_by { click_link "Print Supplier PO# SUPPLIER PO#1" }
 
       within_window(supplier_po_1_window) do
         #header
@@ -164,7 +165,7 @@ feature "Supplier Order Creation" do
 
       click_link "Supplier Orders"
       click_link "SUPPLIER PO#2"
-      supplier_po_2_window = window_opened_by { click_link "Print SUPPLIER PO#2" }
+      supplier_po_2_window = window_opened_by { click_link "Print Supplier PO# SUPPLIER PO#2" }
 
       within_window(supplier_po_2_window) do
         #header
@@ -252,7 +253,7 @@ feature "Supplier Order Creation" do
       click_link "Supplier Orders"
       click_link "SUPPLIER PO#1"
 
-      handle_window = window_opened_by { click_link "Print SUPPLIER PO#1", match: :first }
+      handle_window = window_opened_by { click_link "Print Supplier PO# SUPPLIER PO#1", match: :first }
 
       within_window(handle_window) do
 
