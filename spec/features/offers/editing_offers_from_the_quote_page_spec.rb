@@ -29,7 +29,7 @@ feature "Editing Offers from the Quote page" do
     click_button "Update Offer"
   end
 
-  context "Filling up the PO field", js: false do
+  context "Filling up the PO field", js: true do
 
     before do
       visit root_path
@@ -47,12 +47,13 @@ feature "Editing Offers from the Quote page" do
       click_link "Client Orders"
 
       expect(page).to have_link("PO Number 1")
+
       click_link "PO Number 1"
 
-      expect(page).to contain("Super Seller")
-      expect(page).to contain("2014 Heavy Bolter")
-      expect(page).not_to contain("Billy light chainsaw")
-      expect(page).not_to contain("ACME Light chainsaw Variant 9001")
+      expect(page).to have_link("Super Seller")
+      expect(page).to have_text("2014 Heavy Bolter")
+      expect(page).not_to have_text("Billy light chainsaw")
+      expect(page).not_to have_text("ACME Light chainsaw Variant 9001")
     end
 
   end

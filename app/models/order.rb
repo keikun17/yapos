@@ -67,9 +67,9 @@ class Order < ActiveRecord::Base
     # TODO : impplement 'client_purchased' scope on Offer instead of an iteration
     # and condition checks
     #
-    # e.g. : self.offers.client_purchascd.map(&:purchase_from_supplier)
+    # e.g. : self.offers.client_purchascd.map(&:purchase_from_supplier_if_needed)
     self.offers.each do |offer|
-      offer.purchase_from_supplier
+      offer.purchase_from_supplier_if_needed
     end
 
     self.supplier_purchases.each(&:reindex)

@@ -129,7 +129,7 @@ class Offer < ActiveRecord::Base
     end
   end
 
-  def purchase_from_supplier
+  def purchase_from_supplier_if_needed
     if !supplier_order.nil? or !supplier_order_reference.blank?
       SupplierPurchase.find_or_create_by(reference: self.supplier_order.reference)
     end
