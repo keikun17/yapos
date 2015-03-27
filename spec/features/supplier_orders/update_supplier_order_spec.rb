@@ -61,7 +61,7 @@ feature "Updating Supplier", js: true do
       expect(page).not_to have_link("SUPPLIER PO#1-orig")
 
       click_link("SUPPLIER PO#1-revised")
-      handle_window = window_opened_by { click_link "Print SUPPLIER PO#1-revised", match: :first }
+      handle_window = window_opened_by { click_link "Print Supplier PO# SUPPLIER PO#1-revised", match: :first }
       within_window(handle_window) do
 
         #header
