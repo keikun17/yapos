@@ -16,7 +16,8 @@ class SupplierPurchase < ActiveRecord::Base
     :ordered_at,
     :signatory,
     :signatory_position,
-    :hide_client_in_print
+    :hide_client_in_print,
+    :supplier_orders_attributes
 
   # belongs_to :order
   has_many :supplier_orders,
@@ -33,6 +34,8 @@ class SupplierPurchase < ActiveRecord::Base
   has_many :orders, -> {uniq}, through: :offers
 
   validates :reference, uniqueness: true
+
+  accepts_nested_attributes_for :supplier_orders
 
   def as_indexed_json(options={})
     self.as_json(

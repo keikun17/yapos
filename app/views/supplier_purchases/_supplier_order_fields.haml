@@ -1,0 +1,6 @@
+%tr
+  %td= @supplier_purchase.supplier_orders.index(f.object)
+  %td= f.object.offer.request.decorate.display_quantity
+  %td= f.text_area :actual_specs, class: 'form-control' unless f.object.offer.service?
+  %td= f.object.offer.decorate.display_buying_price
+  %td= f.object.offer.decorate.display_total_buying_price

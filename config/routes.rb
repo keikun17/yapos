@@ -41,7 +41,7 @@ Yapos::Application.routes.draw do
     end
   end
 
-  resources :supplier_orders, only: :update
+  resources :supplier_orders, only: [:edit, :update]
 
   resources :supplier_purchases do
     member do

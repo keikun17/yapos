@@ -32,8 +32,22 @@
       = f.check_box :hide_client_in_print, class: 'check_box'
       Hide Client in Print
 
-  = render 'supplier_orders', supplier_purchase: @supplier_purchase
+  -# = render 'supplier_orders', supplier_purchase: @supplier_purchase
 
+  %table.table.table-condensed.table-bordered
+    %tr
+      %th Item#
+      %th QTY
+      %th Description
+      %th Unit Price
+      %th Amount
+    = f.fields_for :supplier_orders do |builder|
+      = render :partial => 'supplier_order_fields', locals: {f: builder, supplier_purchase: @supplier_purchase}
+
+  %tr
+    %td{colspan:3}
+    %th TOTAL
+    %td= @supplier_purchase.display_total_amount
 
   .form-group
     = f.label :delivery, 'Delivery' ,:class => 'control-label'
