@@ -79,6 +79,42 @@ feature "Updating Supplier", js: true do
 
     end
 
+
+    it "can be reedited from the supplier purchase form" do
+      click_link "Supplier Orders"
+      expect(page).not_to have_link("SUPPLIER PO#1-orig")
+
+      click_link("SUPPLIER PO#1-revised")
+      click_link("Edit", match: :first)
+
+      # Form
+      within(page.all(".supplier-order-item")[0]) do
+        find(:css, "textarea[name^='supplier_purchase[supplier_orders_attributes]'][name$='[actual_specs]']").set("Personal Chainsaw Superior Edition")
+      end
+      click_button "Update Supplier purchase"
+
+      # Navigate back to te supplier orders page
+      click_link "Supplier Orders"
+      click_link("SUPPLIER PO#1-revised")
+      handle_window = window_opened_by { click_link "Print Supplier PO# SUPPLIER PO#1-revised", match: :first }
+      within_window(handle_window) do
+
+        #header
+        expect(page).to have_text("SUPPLIER PO#1")
+        expect(page).to have_text("Sybil")
+
+        expect(page).to have_text("5.0 piece")
+        expect(page).to have_text("Personal Chainsaw Superior Edition")
+        expect(page).to have_text("US$1,234,567,899.88/piece")
+        expect(page).to have_text("US$6,172,839,499.40")
+
+        # Total Price
+        expect(page).to have_text("US$6,172,839,499.40")
+      end
+
+
+    end
+
     it "Should be searchable" do
       visit root_path
 
