@@ -1,6 +1,8 @@
 %tr
-  %td= @supplier_purchase.supplier_orders.index(f.object)
-  %td= f.object.offer.request.decorate.display_quantity
-  %td= f.text_area :actual_specs, class: 'form-control' unless f.object.offer.service?
-  %td= f.object.offer.decorate.display_buying_price
-  %td= f.object.offer.decorate.display_total_buying_price
+  %td.col-sm-1= @supplier_purchase.supplier_orders.index(f.object)
+  %td.col-sm-1= f.object.offer.request.decorate.display_quantity
+  %td.col-sm-3= f.object.offer.request.specs
+  %td.col-sm-3= render 'offers/actual_offer', offer: f.object.offer
+  %td.col-sm-3= f.text_area :actual_specs, class: 'form-control' unless f.object.offer.service?
+  %td.col-sm-1= f.object.offer.decorate.display_buying_price
+  %td.col-sm-1= f.object.offer.decorate.display_total_buying_price
