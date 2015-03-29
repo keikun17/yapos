@@ -49,11 +49,11 @@ class SupplierPurchaseDecorator < ApplicationDecorator
   end
 
   def client_names
-    clients.map(&:name).join(',')
+    clients.map(&:name).join(', ')
   end
 
   def supplier_names
-    suppliers.map(&:name).join(',')
+    suppliers.map(&:name).join(', ')
   end
 
   def offer
