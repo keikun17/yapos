@@ -43,11 +43,6 @@ class SupplierPurchaseDecorator < ApplicationDecorator
     @display_total_amount
   end
 
-  def client_name
-    ActiveSupport::Deprecation.warn("Yapos : Deprecate this in favor of `client_names`")
-    clients.map(&:name).join(',')
-  end
-
   def client_names
     clients.map(&:name).join(', ')
   end

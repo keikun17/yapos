@@ -32,7 +32,10 @@
             %br
 
         %td Supplier Order
-        %td=supplier_purchase.client_name
+        %td
+          - supplier_purchase.clients.each do |supplier|
+            = link_to client.name, client
+            %br
         %td
           - supplier_purchase.suppliers.each do |supplier|
             = link_to supplier.name, supplier

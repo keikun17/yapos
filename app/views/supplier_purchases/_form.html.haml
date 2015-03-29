@@ -28,7 +28,7 @@
   .form-group
     = label_tag 'subject', 'Subject', :class => 'control-label'
     .controls
-      = text_field_tag :subject, @supplier_purchase.client_name, :class => 'form-control disabledInput', disabled: 'true'
+      = text_field_tag :subject, @supplier_purchase.client_names, :class => 'form-control disabledInput', disabled: 'true'
       = f.check_box :hide_client_in_print, class: 'check_box'
       Hide Client in Print
 
