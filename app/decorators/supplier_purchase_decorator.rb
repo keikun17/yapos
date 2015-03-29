@@ -52,6 +52,10 @@ class SupplierPurchaseDecorator < ApplicationDecorator
     clients.map(&:name).join(',')
   end
 
+  def supplier_names
+    suppliers.map(&:name).join(',')
+  end
+
   def offer
     @offer ||= OfferDecorator.new(self.offer)
   end
