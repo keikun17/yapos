@@ -13,7 +13,6 @@
       - quote = quote.decorate
       %tr
         %td= link_to quote.quote_reference, quote
-        -# %td= link_to quote.load.to_s, quote.url #FIXME : make this work without calling .load
         %td
           - requests = quote.requests
           - requests.each do |r|

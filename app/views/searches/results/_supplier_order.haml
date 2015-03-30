@@ -13,7 +13,6 @@
     - results.each do |supplier_purchase|
       %tr
         %td= link_to supplier_purchase.reference, print_supplier_purchase_path(supplier_purchase), target: '_blank'
-        -# %td= link_to quote.load.to_s, quote.url #FIXME : make this work without calling .load
         %td
           %ul
             - supplier_purchase.quotes.each do |quote|
