@@ -4,10 +4,6 @@ class SupplierPurchaseDecorator < ApplicationDecorator
     @supplier_name ||=  first_supplier_name
   end
 
-  def link_to_supplier
-    @supplier_link ||= first_supplier_link
-  end
-
   def ordered_from_supplier_at(options={})
     options[:required_text] ||= 'Please Fill Up'
     if self.ordered_at.nil?
@@ -56,28 +52,6 @@ class SupplierPurchaseDecorator < ApplicationDecorator
   end
 
   private
-
-  def first_supplier_name
-    ActiveSupport::Deprecation.warn("Yapos : Deprecate this in favor of `supplier_names` decorator")
-    if !supplier_orders.empty?
-      supplier_orders.first.supplier_name
-    end
-  end
-
-  # FIXME Ugly!, the 'order' association in particular...
-  def first_supplier_link
-    ActiveSupport::Depracation.warn("Yapos : Deprecate this in favor of `supplier_links`")
-    if !supplier_orders.empty? and !order.nil? and self.order.suppliers.first.present?
-      h.link_to first_supplier_name, h.supplier_path(self.order.suppliers.first)
-    end
-  end
-
-  def first_client
-    ActiveSupport::Deprecation.warn("Yapos : Deprecate this. There should be no more use cases that uses this")
-    if !supplier_orders.empty?
-      supplier_orders.first.offer.client
-    end
-  end
 
   def total_amount_suffix
     @total_amount_suffix ||= if supplier_orders.first

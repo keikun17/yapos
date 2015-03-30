@@ -3,7 +3,7 @@
   .form-group
     = label_tag 'company', 'To', :class => 'control-label'
     .controls
-      = text_field_tag :company, @supplier_purchase.supplier_name, :class => 'form-control disabledInput', disabled: 'true'
+      = text_field_tag :company, @supplier_purchase.supplier_names, :class => 'form-control disabledInput', disabled: 'true'
 
   .form-group
     = f.label :address, 'Address' ,:class => 'control-label'
