@@ -43,7 +43,7 @@ class Offer < ActiveRecord::Base
     :foreign_key => 'order_reference'
 
   has_one :quote, :through => :request
-  has_one :supplier_order, dependent: :destroy
+  has_one :supplier_order, inverse_of: :offer, dependent: :destroy
   has_one :supplier_purchase, :through => :supplier_order
   has_one :client, :through => :quote
 

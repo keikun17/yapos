@@ -19,8 +19,9 @@ class SupplierPurchase < ActiveRecord::Base
     :hide_client_in_print,
     :supplier_orders_attributes
 
-  # belongs_to :order
+
   has_many :supplier_orders,
+    inverse_of: :supplier_purchase,
     primary_key: :reference,
     foreign_key: :reference
 

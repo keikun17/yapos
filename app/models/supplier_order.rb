@@ -9,6 +9,7 @@ class SupplierOrder < ActiveRecord::Base
     :offer_attributes
 
   belongs_to :supplier_purchase,
+    inverse_of: :supplier_orders,
     primary_key: :reference,
     foreign_key: :reference
 
