@@ -90,6 +90,8 @@ feature "Updating Supplier", js: true do
       # Form
       within(page.all(".supplier-order-item")[0]) do
         find(:css, "textarea[name^='supplier_purchase[supplier_orders_attributes]'][name$='[actual_specs]']").set("Personal Chainsaw Superior Edition")
+        find(:css, "select[name^='supplier_purchase[supplier_orders_attributes]'][name$='[buying_currency]']").select("JPY")
+        find(:css, "input[name^='supplier_purchase[supplier_orders_attributes]'][name$='[buying_price]']").set("300.36")
       end
       click_button "Update Supplier purchase"
 
@@ -105,11 +107,10 @@ feature "Updating Supplier", js: true do
 
         expect(page).to have_text("5.0 piece")
         expect(page).to have_text("Personal Chainsaw Superior Edition")
-        expect(page).to have_text("US$1,234,567,899.88/piece")
-        expect(page).to have_text("US$6,172,839,499.40")
+        expect(page).to have_text("JPY300.36/piece")
 
         # Total Price
-        expect(page).to have_text("US$6,172,839,499.40")
+        expect(page).to have_text("JPY1,501.80")
       end
 
 

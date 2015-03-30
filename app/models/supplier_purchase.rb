@@ -35,7 +35,7 @@ class SupplierPurchase < ActiveRecord::Base
 
   validates :reference, uniqueness: true
 
-  accepts_nested_attributes_for :supplier_orders
+  accepts_nested_attributes_for :supplier_orders, update_only: true
 
   def as_indexed_json(options={})
     self.as_json(

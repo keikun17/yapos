@@ -27,8 +27,9 @@ class SupplierPurchasesController < ApplicationController
   def update
     @supplier_purchase = SupplierPurchase.find(params[:id]).decorate
     respond_to do |format|
-      if @supplier_purchase.update_attributes(params[:supplier_purchase]) and @supplier_purchase.reindex
-        format.html { redirect_to supplier_purchases_path, notice: 'Supplier Purchase was successfully updated.' }
+      if @supplier_purchase.update_attributes(params[:supplier_purchase])
+        @supplier_purchase.reindex
+        format.html { redirect_to @supplier_purchase, notice: 'Supplier Purchase was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
