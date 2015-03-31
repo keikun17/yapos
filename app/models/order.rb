@@ -106,6 +106,14 @@ class Order < ActiveRecord::Base
     self.suppliers.uniq.map(&:name)
   end
 
+  def reindex
+    begin
+      __elasticsearch__.delete_document
+    rescue
+      # Do nothing, carry on
+    end
+    __elasticsearch__.index_document
+  end
 end
 
 # == Schema Information
