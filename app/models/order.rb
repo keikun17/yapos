@@ -33,8 +33,8 @@ class Order < ActiveRecord::Base
   validates_presence_of :reference
   validates_associated :attachments
 
-  accepts_nested_attributes_for :quotes
-  accepts_nested_attributes_for :offers
+  accepts_nested_attributes_for :quotes, update_only: true
+  accepts_nested_attributes_for :offers, update_only: true
   accepts_nested_attributes_for :attachments,
     :allow_destroy => true,
     :reject_if => lambda { |a| a[:document].nil? }
