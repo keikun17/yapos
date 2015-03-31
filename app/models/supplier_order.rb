@@ -14,6 +14,8 @@ class SupplierOrder < ActiveRecord::Base
     foreign_key: :reference
 
   belongs_to :offer, inverse_of: :supplier_order
+  has_one :quote, through: :offer
+  has_one :order, through: :offer
   accepts_nested_attributes_for :offer, update_only: true
 
   delegate :request, to: :offer, allow_nil: true
