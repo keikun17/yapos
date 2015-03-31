@@ -34,7 +34,10 @@ class SupplierPurchase < ActiveRecord::Base
   has_many :quotes, -> {uniq},   through: :offers
   has_many :orders, -> {uniq}, through: :offers
 
-  validates :reference, uniqueness: true
+  validates :reference,
+    uniqueness: true,
+    allow_blank: true,
+    if: -> (x){ x.reference_changed?  }
 
   accepts_nested_attributes_for :supplier_orders, update_only: true
 
