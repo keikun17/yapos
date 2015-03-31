@@ -10,7 +10,7 @@ class OfferDecorator < ApplicationDecorator
 
   def supplier_purchase_link
     if self.supplier_purchase
-      h.link_to self.supplier_purchase_reference, h.print_supplier_purchase_path(self.supplier_purchase)
+      h.link_to self.supplier_purchase_reference, self.supplier_purchase
     else
       self.supplier_order_reference
     end
