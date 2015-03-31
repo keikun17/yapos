@@ -25,15 +25,16 @@ class SupplierPurchasesController < ApplicationController
   end
 
   def update
-    @supplier_purchase = SupplierPurchase.find(params[:id]).decorate
+    @supplier_purchase = SupplierPurchase.find(params[:id])
     respond_to do |format|
       if @supplier_purchase.update_attributes(params[:supplier_purchase])
         @supplier_purchase.reindex
         format.html { redirect_to @supplier_purchase, notice: 'Supplier Purchase was successfully updated.' }
         format.json { head :no_content }
       else
+        @supplier_purchase = @supplier_purchase.decorate
         format.html { render action: "edit" }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        format.json { render json: @supplier_purchase.errors, status: :unprocessable_entity }
       end
     end
   end
