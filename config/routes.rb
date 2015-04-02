@@ -3,6 +3,7 @@ Yapos::Application.routes.draw do
 
   resources :vendor_items, only: :create
 
+  get 'deliveries_and_invoices', to: 'deliveries_and_invoices#index'
 
   resources :products do
     resources :vendor_items
