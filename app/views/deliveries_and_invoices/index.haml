@@ -9,7 +9,6 @@
       %th DR#
       %th DR Date
       %th SI#
-      %th SI Date
       %th PR#
       %th PO#
 
@@ -17,8 +16,9 @@
     - @offers.each do |offer|
       %tr
         %td= offer.delivery_receipt_reference
-        %td xxx
+        %td
+          - if offer.supplier_order.delivered_at
+            = offer.supplier_order.delivered_at.to_date.to_s(:long)
         %td= offer.sales_invoice_reference
-        %td xxx
         %td= offer.quote.quote_reference
         %td= offer.order_reference
