@@ -1,3 +1,6 @@
+.page-header
+  %h1 Stocks
+
 = link_to t('.new', :default => t("helpers.links.new")), new_stock_path, :class => 'btn btn-primary'
 .pull-right= will_paginate(@stocks)
 
