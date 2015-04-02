@@ -3,7 +3,7 @@
 
 - else
   - if date = offer.supplier_order_estimated_manufactured_at
-    date = date.to_date.to_s
+    = date.to_date.to_s(:long)
   - else
     - if offer.supplier_order
       %p
