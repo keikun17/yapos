@@ -20,5 +20,5 @@
           - if offer.supplier_order.delivered_at
             = offer.supplier_order.delivered_at.to_date.to_s(:long)
         %td= offer.sales_invoice_reference
-        %td= offer.quote.quote_reference
-        %td= offer.order_reference
+        %td= link_to offer.quote.quote_reference, offer.quote
+        %td= link_to offer.order_reference, offer.order
