@@ -20,4 +20,5 @@ label.offer-cell{
 
 .actions{
   padding: 5px 0 5px 0;
+  @extend .pull-left;
 }
