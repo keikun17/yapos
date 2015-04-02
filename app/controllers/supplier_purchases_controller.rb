@@ -2,9 +2,9 @@ class SupplierPurchasesController < ApplicationController
 
   def index
     @supplier_purchases = SupplierPurchase.where("supplier_purchases.reference <> ''")
-    @supplier_purchases = @supplier_purchases.includes(:supplier_orders).where.not(supplier_orders: {id: nil})
-    @supplier_purchases = @supplier_purchases.order('supplier_purchases.id desc')
-    @supplier_purchases = @supplier_purchases.paginate(page: params[:page], per_page: 80).decorate
+      .includes(:supplier_orders).where.not(supplier_orders: {id: nil})
+      .order('supplier_purchases.id desc')
+      .page(params[:page]).per_page(80).decorate
   end
 
   def show

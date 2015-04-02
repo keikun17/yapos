@@ -9,7 +9,7 @@ class OffersController < ApplicationController
       @offers = Offer.all
     end
 
-    @offers = @offers.order(created_at: :desc).paginate(page: params[:page], per_page: 40).decorate
+    @offers = @offers.order(created_at: :desc).page(params[:page]).per_page(40).decorate
   end
 
   def edit

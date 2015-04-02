@@ -5,7 +5,7 @@ class QuotesController < ApplicationController
   # GET /quotes
   # GET /quotes.json
   def index
-    @quotes = Quote.paginate(:page => params[:page], :per_page => 20)
+    @quotes = Quote.page(params[:page]).per_page(20)
 
     unless params[:client_id].blank?
       @quotes = @quotes.where(client_id: params[:client_id])
@@ -22,7 +22,7 @@ class QuotesController < ApplicationController
   # TODO : Change name? the path name is ugly (pending_client_po_quote_path)
   # must be a sign that there is a better name for this out there.
   def pending_client_po
-    @quotes = Quote.pending_client_order.paginate(page: params[:page], per_page:20).decorate
+    @quotes = Quote.pending_client_order.page(params[:page]).per_page(20).decorate
     unless params[:client_id].blank?
       @quotes = @quotes.where(client_id: params[:client_id])
     end
@@ -33,7 +33,7 @@ class QuotesController < ApplicationController
     unless params[:client_id].blank?
       @quotes = @quotes.where(client_id: params[:client_id])
     end
-    @quotes = @quotes.paginate(page: params[:page], per_page: 20).decorate
+    @quotes = @quotes.page(params[:page]).per_page(20).decorate
   end
 
   # GET /quotes/1

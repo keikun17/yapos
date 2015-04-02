@@ -4,7 +4,7 @@ class Clients::OffersController  < ApplicationController
 
   def index
     @client = Client.find(params[:client_id])
-    @offers = @client.offers.order(created_at: :desc).paginate(per_page: 50, page: params[:page]).decorate
+    @offers = @client.offers.order(created_at: :desc).page(params[:page]).per_page(50).decorate
 
     respond_with @offers
 

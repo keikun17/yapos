@@ -142,7 +142,7 @@ class OrdersController < ApplicationController
     end
 
     @orders = @orders.order("orders.purchase_date desc")
-    @orders = @orders.paginate(:page => params[:page], :per_page => 40).decorate
+    @orders = @orders.page(params[:page]).per_page(40).decorate
   end
 
 end

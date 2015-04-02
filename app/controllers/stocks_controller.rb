@@ -1,7 +1,7 @@
 class StocksController < ApplicationController
 
   def index
-    @stocks = Stock.all.paginate(page: params[:page])
+    @stocks = Stock.all.page(params[:page])
   end
 
   def show

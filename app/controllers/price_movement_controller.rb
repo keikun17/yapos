@@ -12,7 +12,8 @@ class PriceMovementController < ApplicationController
   end
 
   def uncategorized
-    @offers = Offer.where("offers.vendor_item_code ='' OR offers.vendor_item_code is NULL").by_quote_date.paginate(page: params[:page], per_page: 40).decorate
+    @offers = Offer.where("offers.vendor_item_code ='' OR offers.vendor_item_code is NULL")
+      .by_quote_date.page(params[:page]).per_page(40).decorate
   end
 
 end
