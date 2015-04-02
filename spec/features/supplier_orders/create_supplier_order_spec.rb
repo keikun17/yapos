@@ -184,8 +184,8 @@ feature "Supplier Order Creation" do
   end
 
   context "Different RFQ", js: true do
-    include_context "Quote with 1 request and 2 offers"
-    include_context "Quote with 1 request and 1 offer"
+    include_context "Order quote with 1 request and 2 offers"
+    include_context "Order quote with 1 request and 1 offer"
 
     scenario "Same Supplier PO, different Client PO and RFQ" do
       visit root_path
@@ -195,27 +195,8 @@ feature "Supplier Order Creation" do
       ###########################
 
       # RFQ 1
-      click_link "Price Quotes"
-      click_link "PR# Q1-O2"
-      click_link "Edit", match: :first
-
-      within(page.all(".offer-line")[0]) do
-        fill_in "Client PO#", with: "PO#1"
-      end
-
-      click_button "Update Quote"
 
       # RFQ 2
-      click_link "Price Quotes"
-      click_link "PR# Q1-O1"
-      click_link "Edit", match: :first
-
-      # Offer #1 for Request #1
-      within(page.all(".offer-line")[0]) do
-        fill_in "Client PO#", with: "PO#2"
-      end
-
-      click_button "Update Quote"
 
       ###########################
       #  SETTING SUPPLIER ORDERS
