@@ -10,6 +10,7 @@ gem 'jquery-rails'
 # gem 'jquery-ui-sass-rails'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'web-console', '~> 2.0'
+gem 'responders'
 
 gem 'draper'
 
