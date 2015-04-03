@@ -63,7 +63,16 @@ class Offer < ActiveRecord::Base
     s
   end
 
-  scope :pending_client_order, -> { where("offers.order_reference = '' or offers.order_reference is null") }
+  scope :pending_client_order, -> {
+    # (1) This :
+    # includes(request: :orders).where(orders: {id: nil}).references(:request, :orders)
+
+    # (2) Or This way :
+    # where("offers.order_reference = '' or offers.order_reference is null")
+
+    # (3) Or this way :
+    includes({request: :orders}).where(requests: {client_purchased_count: 0} ).references(:requests)
+  }
 
   scope :pending_supplier_order, -> do
     s = purchased.includes(:supplier_order).references(:supplier_orders)

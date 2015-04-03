@@ -6,7 +6,7 @@ feature "Order Creation" do
 
     context "Same PO for [Quote1 Offer1] and [Quote# Offer1]", js: true do
 
-      before do
+      background do
         visit root_path
         click_link "PR#0001"
         click_link "Edit", match: :first
@@ -24,7 +24,8 @@ feature "Order Creation" do
         click_button "Update Quote"
       end
 
-      it "Creates just a single Order record" do
+
+      scenario "it creates just 1 PO record" do
         expect(Order.count).to eq(1)
         expect(Order.where(reference: 'PO#1')).not_to be_nil
         click_link "Client Orders"
@@ -32,6 +33,43 @@ feature "Order Creation" do
       end
 
       it "should be searchable"
+
+      feature "Client Offer Pages" do
+        background do
+          click_link "Client Records"
+          click_link "Blue Buyers"
+        end
+
+        scenario "shows the PR with linked O" do
+          expect(page).to have_link "PR#0001"
+          expect(page).to have_link "PO#1"
+        end
+      end
+
+      feature "Supplier Offer Pages" do
+        background do
+          click_link "Supplier Records"
+          click_link "Super Seller"
+        end
+
+        scenario "Updates the pages' tab contents" do
+          # feature "Tab 1: Awaiting client Purchase" do
+          click_link "Awaiting Client Purchase (Sorted by Quote Date)"
+          expect(page).not_to have_link("PR#0001")
+          expect(page).not_to have_link("PO#1")
+
+          # feature "Tab 2: Client Purchased" do
+          click_link "Client Purchased (Sorted by Order Date)"
+          expect(page).to have_link("PR#0001")
+          expect(page).to have_link("PO#1")
+
+          # feature "Tab 3: All (Sorted by Quote Date)" do
+          click_link "All (Sorted by Quote Date)"
+          expect(page).to have_link("PR#0001")
+          expect(page).to have_link("PO#1")
+        end
+      end
+
 
     end
 
