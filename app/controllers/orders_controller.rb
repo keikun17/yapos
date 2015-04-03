@@ -6,21 +6,11 @@ class OrdersController < ApplicationController
   def index
     @orders = Order.all
     filter_orders_by_client_and_decorate
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @orders }
-    end
   end
 
   def services
     @orders = Order.with_service_offers
     filter_orders_by_client_and_decorate
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @orders }
-    end
   end
 
   def pending
@@ -55,22 +45,12 @@ class OrdersController < ApplicationController
     @order = OrderDecorator.new(@order)
 
     @quotes = QuoteDecorator.decorate_collection(@order.quotes)
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @order }
-    end
   end
 
   # GET /orders/new
   # GET /orders/new.json
   def new
     @order = Order.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @order }
-    end
   end
 
   # GET /orders/1/edit
@@ -117,11 +97,7 @@ class OrdersController < ApplicationController
   def destroy
     @order = Order.find(params[:id])
     @order.destroy
-
-    respond_to do |format|
-      format.html { redirect_to orders_url }
-      format.json { head :no_content }
-    end
+    respond_with(@order)
   end
 
   private
