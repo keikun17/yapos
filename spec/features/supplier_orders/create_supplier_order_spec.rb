@@ -191,14 +191,6 @@ feature "Supplier Order Creation" do
       visit root_path
 
       ###########################
-      #  SETTING CLIENT ORDERS
-      ###########################
-
-      # RFQ 1
-
-      # RFQ 2
-
-      ###########################
       #  SETTING SUPPLIER ORDERS
       ###########################
 

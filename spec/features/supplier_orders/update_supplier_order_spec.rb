@@ -2,26 +2,10 @@ require 'rails_helper'
 
 feature "Updating Supplier", js: true do
   context "A Supplier Order that was updated" do
-    include_context "Quote with 1 request and 1 offer"
+    include_context "Order quote with 1 request and 1 offer"
 
     before do
       visit root_path
-
-      ###########################
-      #  SETTING CLIENT ORDERS
-      ###########################
-
-      # RFQ 1
-      click_link "Price Quotes"
-      click_link "PR# Q1-O1"
-      click_link "Edit", match: :first
-
-      # Offer #1 for Request #1
-      within(page.all(".offer-line")[0]) do
-        fill_in "Client PO#", with: "PO#1"
-      end
-
-      click_button "Update Quote"
 
       ###########################
       #  SETTING SUPPLIER ORDERS
@@ -30,7 +14,7 @@ feature "Updating Supplier", js: true do
       # Second Client PO for Q1-O1
       click_link "Client Orders"
       click_link "Supplier PO required"
-      click_link "PO#1"
+      click_link "PO#2"
       click_link "Edit", match: :first
 
       within(page.all(".offer-line")[0]) do
@@ -44,7 +28,7 @@ feature "Updating Supplier", js: true do
       # DO EDIT
       ###########################
       click_link "Client Orders"
-      click_link "PO#1"
+      click_link "PO#2"
       click_link "Edit", match: :first
 
       within(page.all(".offer-line")[0]) do
