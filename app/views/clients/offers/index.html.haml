@@ -30,7 +30,11 @@
         %td= link_to offer.order_reference, offer.order
         %td= offer.display_purchase_date
         %td= offer.complete_quantity
-        %td= offer.summary
+        %td
+          - if offer.service?
+            %span.badge.badge-service Service
+          = simple_format(offer.specs)
+          = render 'offers/actual_offer', offer: offer
         %td= offer.supplier_name
         %td= render 'offers/estimated_manufactured_at', offer: offer
         %td= render 'offers/estimated_delivery_date', offer: offer
