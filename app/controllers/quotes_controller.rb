@@ -13,10 +13,7 @@ class QuotesController < ApplicationController
 
     @quotes = @quotes.decorate
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @quotes }
-    end
+    respond_with(@quotes)
   end
 
   # TODO : Change name? the path name is ugly (pending_client_po_quote_path)
@@ -40,11 +37,7 @@ class QuotesController < ApplicationController
   # GET /quotes/1.json
   def show
     @quote = Quote.find(params[:id]).decorate
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @quote }
-    end
+    respond_with(@quote)
   end
 
   # GET /quotes/new
@@ -54,10 +47,8 @@ class QuotesController < ApplicationController
     @quote.requests.build
     @quote.attachments.build
     @quotes_today = Quote.today
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @quote }
-    end
+
+    respond_with(@quote)
   end
 
   # GET /quotes/1/edit
@@ -132,15 +123,18 @@ class QuotesController < ApplicationController
   def requote
     @parent_quote = Quote.find(params[:id])
     @quote = @parent_quote.requote!
-    respond_to do |format|
-      if @quote.persisted?
-        format.html { redirect_to @quote, notice: 'Quote was successfully requoted.' }
-        format.json { head :no_content }
-      else
-        format.html { redirect_to quotes_url }
-        format.json { render json: @quote.errors, status: :unprocessable_entity }
-      end
-    end
+
+    # respond_to do |format|
+    #   if @quote.persisted?
+    #     format.html { redirect_to @quote, notice: 'Quote was successfully requoted.' }
+    #     format.json { head :no_content }
+    #   else
+    #     format.html { redirect_to quotes_url }
+    #     format.json { render json: @quote.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
+    respond_with(@quote)
   end
 
   # DELETE /quotes/1
@@ -149,10 +143,7 @@ class QuotesController < ApplicationController
     @quote = Quote.find(params[:id])
     @quote.destroy
 
-    respond_to do |format|
-      format.html { redirect_to quotes_url }
-      format.json { head :no_content }
-    end
+    respond_with(@quote)
   end
 
   def set_badge_count
