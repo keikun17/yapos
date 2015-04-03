@@ -54,6 +54,16 @@ feature "Quotes Creation", js: true do
     expect(page).to have_text("light chainsaw")
     expect(page).to have_text("Billy light chainsaw")
     expect(page).not_to have_text("ACME Light chainsaw Variant 9001")
+
+    # Quote offers page
+    click_link "Price Quotes"
+    click_link "Offers"
+    expect(page).to have_link("PR#0001")
+    expect(page).to have_text("2014 Heavy Bolter")
+    expect(page).to have_text("Heavy Bolter 2014 model S1")
+    expect(page).to have_text("light chainsaw")
+    expect(page).to have_text("Billy light chainsaw")
+    expect(page).to have_text("ACME Light chainsaw Variant 9001")
   end
 
   it "should be searchable" do
