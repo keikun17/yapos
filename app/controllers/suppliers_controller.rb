@@ -4,10 +4,7 @@ class SuppliersController < ApplicationController
   def index
     @suppliers = Supplier.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @suppliers }
-    end
+    respond_with(@suppliers)
   end
 
   # GET /suppliers/1
@@ -26,21 +23,14 @@ class SuppliersController < ApplicationController
 
     @offers = OfferDecorator.decorate_collection(@offers)
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @supplier }
-    end
+    respond_with(@supplier)
   end
 
   # GET /suppliers/new
   # GET /suppliers/new.json
   def new
     @supplier = Supplier.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @supplier }
-    end
+    respond_with(@supplier)
   end
 
   # GET /suppliers/1/edit
@@ -52,32 +42,16 @@ class SuppliersController < ApplicationController
   # POST /suppliers.json
   def create
     @supplier = Supplier.new(params[:supplier])
-
-    respond_to do |format|
-      if @supplier.save
-        format.html { redirect_to @supplier, notice: 'Supplier was successfully created.' }
-        format.json { render json: @supplier, status: :created, location: @supplier }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @supplier.errors, status: :unprocessable_entity }
-      end
-    end
+    @supplier.save
+    respond_with(@supplier)
   end
 
   # PUT /suppliers/1
   # PUT /suppliers/1.json
   def update
     @supplier = Supplier.find(params[:id])
-
-    respond_to do |format|
-      if @supplier.update_attributes(params[:supplier])
-        format.html { redirect_to @supplier, notice: 'Supplier was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @supplier.errors, status: :unprocessable_entity }
-      end
-    end
+    @supplier.update_attributes(params[:supplier])
+    respond_with(@supplier)
   end
 
   # DELETE /suppliers/1
@@ -86,10 +60,7 @@ class SuppliersController < ApplicationController
     @supplier = Supplier.find(params[:id])
     @supplier.destroy
 
-    respond_to do |format|
-      format.html { redirect_to suppliers_url }
-      format.json { head :no_content }
-    end
+    respond_with(@supplier)
   end
 
   private
@@ -101,5 +72,5 @@ class SuppliersController < ApplicationController
   def only_client_purchased_offers?
     params[:filter_offers].eql?('ordered_offers')
   end
-  
+
 end
