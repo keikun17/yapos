@@ -47,12 +47,6 @@ class OrdersController < ApplicationController
     @quotes = QuoteDecorator.decorate_collection(@order.quotes)
   end
 
-  # GET /orders/new
-  # GET /orders/new.json
-  def new
-    @order = Order.new
-  end
-
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id]).decorate
