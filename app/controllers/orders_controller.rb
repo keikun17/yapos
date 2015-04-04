@@ -58,32 +58,16 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(params[:order])
-
-    respond_to do |format|
-      if @order.save and @order.purchase_selected_offers
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render json: @order, status: :created, location: @order }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
+    @order.purchase_selected_offers if @order.save
+    respond_with(@order)
   end
 
   # PUT /orders/1
   # PUT /orders/1.json
   def update
     @order = Order.find(params[:id])
-
-    respond_to do |format|
-      if @order.update_attributes(params[:order]) and @order.purchase_selected_offers
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
+    @order.purchase_selected_offers if @order.update_attributes(params[:order])
+    respond_with(@order)
   end
 
   # DELETE /orders/1
