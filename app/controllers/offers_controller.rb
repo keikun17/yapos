@@ -46,14 +46,20 @@ class OffersController < ApplicationController
   def update
     @offer = Offer.find(params[:id])
 
-    if @offer.update_attributes(params[:offer])
-      @offer.quote.reindex
-      @offer.quote.compute_total_offered_prices
-      @offer.purchase_from_supplier_if_needed
-      Purchase.make(@offer.quote.offers.purchased)
-    end
+    respond_to do |format|
+      if @offer.update_attributes(params[:offer])
+        @offer.quote.reindex
+        @offer.quote.compute_total_offered_prices
+        @offer.purchase_from_supplier_if_needed
 
-    respond_with(@offer)
+        Purchase.make(@offer.quote.offers.purchased)
+        format.html { redirect_to @offer.quote, notice: 'Offer was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to action: "edit" , error: 'Error. Record invalid'}
+        format.json { render json: @offer.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def vendor_code_update
