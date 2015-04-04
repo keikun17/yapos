@@ -156,7 +156,10 @@ class QuotesController < ApplicationController
   end
 
   def initialize_quote_associations_for_form
-    @quote.requests.build if @quote.requests.empty?
+    if @quote.requests.empty?
+      @quote.requests.build
+      @quote.requests.first.offers.build
+    end
     @quote.attachments.build if @quote.attachments.empty?
   end
 
