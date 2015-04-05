@@ -358,7 +358,7 @@ DEPENDENCIES
   active_model_serializers (= 0.9.0)
   annotate
   bootstrap-sass (~> 3.3.3)
-  capistrano
+  capistrano (~> 3.4.0)
   capybara
   carrierwave
   codeclimate-test-reporter

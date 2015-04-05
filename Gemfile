@@ -33,6 +33,7 @@ group :development do
   gem 'quiet_assets'
   gem 'annotate'
   gem 'taps', '~> 0.3.24'
+  gem 'capistrano', '~> 3.4.0', require: false
 end
 
 gem 'thin'
@@ -72,9 +73,6 @@ end
 
 # Use unicorn as the app server
 # gem 'unicorn'
-
-# Deploy with Capistrano
-gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'
