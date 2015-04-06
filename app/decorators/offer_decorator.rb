@@ -17,7 +17,7 @@ class OfferDecorator < ApplicationDecorator
   end
 
   def edit_supplier_purchase_link
-    if self.supplier_purchase
+    if self.supplier_order_reference.present?
       link = h.link_to "Edit", h.edit_supplier_purchase_path(self.supplier_purchase)
       "(#{link})".html_safe
     else
@@ -26,7 +26,7 @@ class OfferDecorator < ApplicationDecorator
   end
 
   def supplier_order_reference
-    super.blank? ? "Not Ordered" : super
+    super.blank? ? "Not Yet Ordered" : super
   end
 
   def display_specs(html_options = {})
