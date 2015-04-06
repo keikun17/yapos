@@ -80,7 +80,7 @@
               = offer.display_total_selling_price_by_currency
         %td
           - if offer
-            = render 'quotes/other_references', offer: offer
+            = render 'offers/other_references', offer: offer
 
       - offers.each do |offer|
         %tr
@@ -126,4 +126,4 @@
             %br
             = offer.display_total_selling_price_by_currency
           %td
-            = render 'quotes/other_references', offer: offer
+            = render 'offers/other_references', offer: offer
