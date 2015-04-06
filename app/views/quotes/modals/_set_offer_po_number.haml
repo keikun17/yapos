@@ -6,46 +6,52 @@
           %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
           %h3 Input Client PO Number
         .modal-body
-          .form-group
-            %label.control-label Quantity
-            .controls
-              = offer.complete_quantity
+          .row-fluid
+            .form-group
+              .col-sm-2
+                %strong Quantity
+              .col-sm-10
+                = offer.complete_quantity
 
-          .form-group
-            %label.control-label Specs
-            .controls
-              %p
-                %strong What the client requested
-                = simple_format(offer.request.specs)
-                %strong What we offered the client
-                = simple_format(offer.specs)
-                %strong What we will actually offer
-                .row
+          .row-fluid
+            .form-group
+              .col-sm-2
+                %strong Specs
+              .col-sm-10
+                %p
+                  %strong What the client requested
+                  = simple_format(offer.request.specs)
+                  %strong What we offered the client
+                  = simple_format(offer.specs)
+                  %strong What we will actually offer
                   = offer.vendor_item_csv
                   = simple_format(offer.summary, class: 'muted')
 
 
-          .form-group
-            = f.label :order_reference, "Client's PO Number", class: 'control-label'
-            .controls
-              = f.text_field :order_reference, class: 'text_field'
+          .row-fluid
+            .form-group
+              = f.label :order_reference, "Client's PO Number", class: 'col-sm-2'
+              .col-sm-6
+                = f.text_field :order_reference, class: 'form-control'
 
-          -# SupplierOrder
-          .form-group
-            = label '[post_save][supplier_order][actual_specs]', 'Specs to Order from Supplier', class: 'control-label'
-            .controls
-              = text_area_tag '[post_save][supplier_order][actual_specs]',offer.summary, class: 'text_area', rows: 4
+          .row-fluid
+            -# SupplierOrder
+            .form-group
+              = label '[post_save][supplier_order][actual_specs]', 'Specs to Order from Supplier', class: 'col-sm-2'
+              .col-sm-9
+                = text_area_tag '[post_save][supplier_order][actual_specs]',offer.summary, class: 'scol-sm-12 form-control', rows: 4
 
-          .form-group
-            = label '[post_save][supplier_order][reference]', 'Our PO# for our Supplier', class: 'control-label'
-            .controls
-              = text_field_tag '[post_save][supplier_order][reference]', '', class: 'text_field'
+          .row-fluid
+            .form-group
+              = label '[post_save][supplier_order][reference]', 'Our PO# for our Supplier', class: 'col-sm-2'
+              .col-sm-6
+                = text_field_tag '[post_save][supplier_order][reference]', '', class: 'form-control'
 
-              %br
-              %i last 5 PO issued are:
-              %ul
-                - SupplierPurchase.where.not(reference: '').limit(5).order(id: :desc).reverse.each do |sp|
-                  %li= sp.reference
+                %br
+                %i last 5 PO issued are:
+                %ul
+                  - SupplierPurchase.where.not(reference: '').limit(5).order(id: :desc).reverse.each do |sp|
+                    %li= sp.reference
 
 
         .modal-footer
