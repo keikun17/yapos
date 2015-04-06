@@ -102,8 +102,7 @@
           = simple_format(offer.specs)
           = render 'offers/actual_offer', offer: offer
 
-        %td
-          = simple_format(offer.supplier_order_actual_specs)
+        %td= simple_format(offer.supplier_order_actual_specs)
         %td
           - if offer.supplier.present?
             = link_to offer.supplier_name, supplier_path(offer.supplier)
