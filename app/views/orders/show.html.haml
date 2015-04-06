@@ -79,10 +79,10 @@
     %th Offered Spec
     %th Spec in Supplier PO
     %th Supplier
-    %th Delivery Date
     %th Supplier's Price
     %th Offered Price
     %th Our PO to Supplier
+    %th References
 
   %tbody
     - @quotes.each do |quote|
@@ -106,17 +106,6 @@
         %td
           - if offer.supplier.present?
             = link_to offer.supplier_name, supplier_path(offer.supplier)
-        %td
-          =  render 'offers/delivery_date', offer: offer
-          - if !offer.delivery_receipt_reference.blank?
-            .alert.alert-success
-              %strong DR#
-              = offer.delivery_receipt_reference
-
-          - if !offer.sales_invoice_reference.blank?
-            .alert.alert-success
-              %strong SI#
-              = offer.sales_invoice_reference
 
         %td.text-warning= offer.display_buying_price
         %td.text-success= offer.display_selling_price
@@ -124,6 +113,8 @@
           - unless offer.service?
             = offer.supplier_purchase_link
             = offer.edit_supplier_purchase_link
+        %td
+          = render 'quotes/other_references', offer: offer
       - offers.each do |offer|
         %tr
           %td
@@ -139,17 +130,6 @@
           %td
             - if offer.supplier.present?
               = link_to offer.supplier_name, supplier_path(offer.supplier)
-          %td
-            =  render 'offers/delivery_date', offer: offer
-            - if !offer.delivery_receipt_reference.blank?
-              .alert.alert-success
-                %strong DR#
-                = offer.delivery_receipt_reference
-
-            - if !offer.sales_invoice_reference.blank?
-              .alert.alert-success
-                %strong SI#
-                = offer.sales_invoice_reference
 
           %td.text-warning= offer.display_buying_price
           %td.text-success= offer.display_selling_price
@@ -157,6 +137,8 @@
             - unless offer.service?
               = offer.supplier_purchase_link
               = offer.edit_supplier_purchase_link
+          %td
+            = render 'quotes/other_references', offer: offer
 
 
 .form-actions
