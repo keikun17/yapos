@@ -1,0 +1,39 @@
+.modal.fade{id: modal_id}
+  .modal-dialog
+    .modal-content
+      = form_tag mass_update_si_and_dr_order_path(@order), method: :patch,  class: 'form-horizontal' do |f|
+        .modal-header
+          %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
+          %h3 Input the DR and SI number for this Order
+        .modal-body
+          .row
+            .col-sm-2
+              %strong # of offers
+            .col-sm-10
+              = @order.offers.count
+
+          .row
+            .col-sm-2
+              %strong List of all Specs
+            .col-sm-10
+              %p
+                Spec 1
+              %p
+                Spec 2
+              %p
+                Spec 3
+
+
+          .row
+            = label_tag :_order_dr_reference, "DR Reference", class: 'col-sm-2'
+            .col-sm-6
+              = text_field_tag '[order][dr_reference]',nil, class: 'form-control', placeholder: 'Leave this blank to keep DR references intact'
+
+          .row
+            = label_tag :_order_si_reference, "SI Reference", class: 'col-sm-2'
+            .col-sm-6
+              = text_field_tag '[order][si_reference]',nil ,class: 'form-control', placeholder: 'Leave this blank to keep SI references intact'
+
+        .modal-footer
+          %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
+          = submit_tag "Update all items for this order", :class => 'btn btn-primary'

@@ -52,6 +52,7 @@ class Offer < ActiveRecord::Base
   scope :purchased, -> { where("order_reference <> '' ") }
   scope :supplier_hidden_in_print, -> { where(hide_supplier_in_print: true) }
   scope :services, -> { where(service: true) }
+  scope :supplies, -> { where.not(service: true) }
 
   scope :from_supplier, ->(suppliers = 'all') do
     if suppliers.eql?('all')

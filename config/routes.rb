@@ -28,6 +28,11 @@ Yapos::Application.routes.draw do
       get 'print_delivery_monitoring'
       get 'services'
     end
+
+    member do
+      patch 'mass_update_si_and_dr', as: :mass_update_si_and_dr
+    end
+
     resources :attachments do
       member do
         get 'document'

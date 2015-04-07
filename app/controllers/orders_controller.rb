@@ -18,6 +18,22 @@ class OrdersController < ApplicationController
     filter_orders_by_client_and_decorate
   end
 
+  def mass_update_si_and_dr
+
+    @order = Order.find(params[:id])
+
+    if params[:order][:dr_reference].present?
+      @order.offers.supplies.update_all({delivery_receipt_reference: params[:order][:dr_reference]})
+    end
+
+    if params[:order][:si_reference].present?
+      @order.offers.supplies.update_all({sales_invoice_reference: params[:order][:si_reference]})
+    end
+
+    redirect_to @order, notice: "Order offers succesfully updated."
+
+  end
+
   def print_delivery_monitoring
 
     @from_date = Time.zone.local(params[:print]['from_date(1i)'],
