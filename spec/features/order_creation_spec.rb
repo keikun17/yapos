@@ -2,28 +2,9 @@ require 'rails_helper'
 
 feature "Order Creation" do
   context "Same RFQ" do
-    include_context "Quote with 2 request and 3 offers"
 
     context "Same PO for [Quote1 Offer1] and [Quote# Offer1]", js: true do
-
-      background do
-        visit root_path
-        click_link "PR#0001"
-        click_link "Edit", match: :first
-
-
-        # Offer #1 for Request #1
-        within(page.all(".offer-line")[0]) do
-          fill_in "Client PO#", with: "PO#1"
-        end
-
-        within(page.all(".offer-line")[2]) do
-          fill_in "Client PO#", with: "PO#1"
-        end
-
-        click_button "Update Quote"
-      end
-
+      include_context "Order quote with 2 requests and 3 offers"
 
       scenario "it creates just 1 PO record" do
         expect(Order.count).to eq(1)
@@ -74,6 +55,7 @@ feature "Order Creation" do
     end
 
     context "Different PO for [Quote1 Offer1] and [Quote# Offer1]", js: true do
+      include_context "Quote with 2 request and 3 offers"
       before do
         visit root_path
         click_link "PR#0001"
