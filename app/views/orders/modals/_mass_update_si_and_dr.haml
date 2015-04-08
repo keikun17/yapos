@@ -16,12 +16,11 @@
             .col-sm-2
               %strong List of all Specs
             .col-sm-10
-              %p
-                Spec 1
-              %p
-                Spec 2
-              %p
-                Spec 3
+
+              %strong Specs (As per client RFQ/Request)
+              %ul
+                - @order.supply_offers.each do |offer|
+                  %li= simple_format(offer.request.specs)
 
 
           .row
