@@ -5,11 +5,11 @@ class SearchesController < ApplicationController
     unless params[:search][:string].blank?
       case params[:search][:type]
       when 'quote'
-        @results = Quote.search(params[:search][:string]).records
+        @results = Quote.search(params[:search][:string]).records.order(quote_date: :desc)
       when 'order'
-        @results = Order.search(params[:search][:string]).records
+        @results = Order.search(params[:search][:string]).records.order(id: :desc)
       when 'supplier_order'
-        @results = SupplierPurchase.search(params[:search][:string]).records.decorate
+        @results = SupplierPurchase.search(params[:search][:string]).records.order(ordered_at: :desc, reference: :desc).uniq.decorate
       else
 
       end
