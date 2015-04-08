@@ -6,23 +6,22 @@
           %button.close.data{data: {dismiss: 'modal'}, 'aria-hidden' => true} x
           %h3 Input the DR and SI number for this Order
         .modal-body
-          .row
-            .col-sm-2
-              %strong # of offers
-            .col-sm-10
-              = @order.offers.count
+          .row-fluid
 
-          .row
-            .col-sm-2
-              %strong List of all Specs
-            .col-sm-10
-
-              %strong Specs (As per client RFQ/Request)
-              %ul
-                - @order.supply_offers.each do |offer|
-                  %li= simple_format(offer.request.specs)
+            %strong Specs (As per client RFQ/Request)
+            %table.table-bordered
+              %tr
+                %th Request
+                %th Offer
+                %th Actual
+              - @order.supply_offers.each do |offer|
+                %tr
+                  %td= simple_format(offer.request.specs)
+                  %td= simple_format(offer.specs)
+                  %td= simple_format(offer.summary)
 
 
+          %hr
           .row
             = label_tag :delivery_date, "DR Date", class: 'col-sm-2'
             .col-sm-6
