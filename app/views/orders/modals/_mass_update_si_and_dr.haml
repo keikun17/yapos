@@ -25,6 +25,11 @@
 
 
           .row
+            = label_tag :delivery_date, "DR Date", class: 'col-sm-2'
+            .col-sm-6
+              = date_select '[order][delivery_date]',nil, class: 'form-control', include_blank: true
+
+          .row
             = label_tag :_order_dr_reference, "DR Reference", class: 'col-sm-2'
             .col-sm-6
               = text_field_tag '[order][dr_reference]',nil, class: 'form-control', placeholder: 'Leave this blank to keep DR references intact'
