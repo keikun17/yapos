@@ -12,7 +12,7 @@
   %tbody
     - results.each do |supplier_purchase|
       %tr
-        %td= link_to supplier_purchase.reference, print_supplier_purchase_path(supplier_purchase), target: '_blank'
+        %td= link_to supplier_purchase.reference, supplier_purchase_path(supplier_purchase)
         %td
           %ul
             - supplier_purchase.quotes.each do |quote|
