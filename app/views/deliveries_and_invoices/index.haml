@@ -11,6 +11,8 @@
       %th SI#
       %th PR#
       %th PO#
+      %th Client
+      %th Supplier
 
   %tbody
     - @offers.each do |offer|
@@ -22,3 +24,5 @@
         %td= offer.sales_invoice_reference
         %td= link_to offer.quote.quote_reference, offer.quote
         %td= link_to offer.order_reference, offer.order
+        %td= link_to offer.client.name, offer.client
+        %td= link_to offer.supplier.name, offer.supplier
