@@ -61,10 +61,7 @@ class Order < ActiveRecord::Base
     )
   end
 
-  def mass_update_si_and_dr(params)
-    si_reference = params[:si_reference]
-    dr_reference = params[:dr_reference]
-    delivery_date = params[:delivery_date]
+  def mass_update_si_and_dr(si_reference: '', dr_reference: '', delivery_date: {})
 
     if dr_reference.present?
       self.offers.supplies.update_all({delivery_receipt_reference: dr_reference})
