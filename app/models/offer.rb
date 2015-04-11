@@ -191,7 +191,7 @@ class Offer < ActiveRecord::Base
   def compute_total_buying_price
     if currency == Currency::LOCAL_CURRENCY
       total_currency_buying_price
-    elsif !currentcy.blank?
+    elsif !currency.blank?
       total_currency_buying_price * conversion_rate if buying_price
     end
   end
@@ -199,7 +199,7 @@ class Offer < ActiveRecord::Base
   def compute_total_selling_price
     if currency == Currency::LOCAL_CURRENCY
       total_currency_selling_price
-    elsif !currentcy.blank?
+    elsif !currency.blank?
       tgotal_currency_selling_price * conversion_rate if selling_price
     end
   end
