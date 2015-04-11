@@ -54,15 +54,6 @@ class Offer < ActiveRecord::Base
   scope :services, -> { where(service: true) }
   scope :supplies, -> { where.not(service: true) }
 
-  scope :from_supplier, ->(suppliers = "all") do
-    if suppliers.eql?("all")
-      s = where.not(supplier_id: nil)
-    else
-      supplier_ids = suppliers.map(&:id)
-      s = where(supplier_id: supplier_ids)
-    end
-    s
-  end
 
   scope :pending_client_order, lambda do
     # (1) This :
@@ -131,6 +122,16 @@ class Offer < ActiveRecord::Base
   )
 
   delegate :ordered_at, :order_date, to: :supplier_purchase, allow_nil: true, prefix: true
+
+
+  def self.from_supplier(suppliers: "all")
+    if suppliers.eql?("all")
+      where.not(supplier_id: nil)
+    else
+      supplier_ids = suppliers.map(&:id)
+      where(supplier_id: supplier_ids)
+    end
+  end
 
   def supply?
     !self.service?
