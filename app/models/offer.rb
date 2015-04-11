@@ -1,6 +1,6 @@
 class Offer < ActiveRecord::Base
-
-  attr_accessible :request,
+  attr_accessible(
+    :request,
     :vendor_item_id,
     :supplier_id,
     :specs,
@@ -26,6 +26,7 @@ class Offer < ActiveRecord::Base
     :hide_supplier_in_print,
     :internal_notes,
     :service
+  )
 
   belongs_to :request
 
