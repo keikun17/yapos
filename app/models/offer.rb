@@ -82,7 +82,8 @@ class Offer < ActiveRecord::Base
   end
 
   scope :by_quote_date, lambda do
-    includes(:quote).references(:quotes).order("quotes.quote_date desc")
+    includes(:quote).references(:quotes)
+      .order(quotes: { quote_date: :desc })
   end
   scope :by_supplier_order_date, lambda do
     includes(supplier_order: :supplier_purchase)
