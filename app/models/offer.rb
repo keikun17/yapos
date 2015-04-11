@@ -75,17 +75,19 @@ class Offer < ActiveRecord::Base
     includes({request: :orders}).where(requests: {client_purchased_count: 0} ).references(:requests)
   }
 
-  scope :pending_supplier_order, -> do
+  scope :pending_supplier_order, lambda do
     s = purchased.includes(:supplier_order).references(:supplier_orders)
     s = s.where('supplier_orders.reference is null')
     s
   end
 
-  scope :by_quote_date, -> do
+  scope :by_quote_date, lambda do
     includes(:quote).references(:quotes).order("quotes.quote_date desc")
   end
-  scope :by_supplier_order_date, -> do
-    includes(supplier_order: :supplier_purchase).references(:supplier_orders, :supplier_purchases).order("supplier_purchases.ordered_at is null desc").order("supplier_purchases.ordered_at desc")
+  scope :by_supplier_order_date, lambda do
+    includes(supplier_order: :supplier_purchase)
+      .references(:supplier_orders, :supplier_purchases)
+      .order({ supplier_purchases: :ordered_at } => :desc, { supplier_purchases: :ordered_at } => :desc)
   end
 
   # Client Delegation
