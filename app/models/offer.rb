@@ -167,7 +167,7 @@ class Offer < ActiveRecord::Base
       conversion_rate = if conversion_rate.blank?
                           Currency::CURRENCY_MAPPING[currency]
                         else
-                          self.conversion_rate
+                          self.currency_conversion
                         end
 
       if buying_price
