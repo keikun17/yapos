@@ -40,14 +40,12 @@ class Offer < ActiveRecord::Base
 
   belongs_to :supplier
   belongs_to :vendor_item
-  belongs_to :order,
-    :primary_key => 'reference',
-    :foreign_key => 'order_reference'
+  belongs_to :order, primary_key: "reference", foreign_key: "order_reference"
 
-  has_one :quote, :through => :request
+  has_one :quote, through: :request
   has_one :supplier_order, inverse_of: :offer, dependent: :destroy
-  has_one :supplier_purchase, :through => :supplier_order
-  has_one :client, :through => :quote
+  has_one :supplier_purchase, through: :supplier_order
+  has_one :client, through: :quote
 
   accepts_nested_attributes_for :supplier_order
 
@@ -55,7 +53,6 @@ class Offer < ActiveRecord::Base
   scope :supplier_hidden_in_print, -> { where(hide_supplier_in_print: true) }
   scope :services, -> { where(service: true) }
   scope :supplies, -> { where.not(service: true) }
-
 
   scope :pending_client_order, lambda do
     # (1) This :
@@ -124,7 +121,6 @@ class Offer < ActiveRecord::Base
   )
 
   delegate :ordered_at, :order_date, to: :supplier_purchase, allow_nil: true, prefix: true
-
 
   def self.from_supplier(suppliers: "all")
     if suppliers.eql?("all")
