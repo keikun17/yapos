@@ -124,7 +124,8 @@ class Offer < ActiveRecord::Base
 
   delegate :ordered_at, :order_date, to: :supplier_purchase, allow_nil: true, prefix: true
 
-  def self.from_supplier(suppliers: "all")
+  def self.from_supplier(suppliers)
+    suppliers ||= 'all'
     if suppliers.eql?("all")
       where.not(supplier_id: nil)
     else
