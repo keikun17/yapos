@@ -200,7 +200,7 @@ class Offer < ActiveRecord::Base
     if currency == Currency::LOCAL_CURRENCY
       total_currency_selling_price
     elsif !currency.blank?
-      tgotal_currency_selling_price * conversion_rate if selling_price
+      total_currency_selling_price * conversion_rate if selling_price
     end
   end
 end
