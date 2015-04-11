@@ -80,7 +80,7 @@ class Offer < ActiveRecord::Base
   scope :by_supplier_order_date, (lambda do
     includes(supplier_order: :supplier_purchase)
       .references(:supplier_orders, :supplier_purchases)
-      .order(supplier_purchases: { ordered_at: :desc }, supplier_purchases: { ordered_at: :desc })
+      .order("supplier_purchases.ordered_at is null desc").order("supplier_purchases.ordered_at desc")
   end)
 
   # Client Delegation
