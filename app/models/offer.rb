@@ -128,26 +128,26 @@ class Offer < ActiveRecord::Base
   end
 
   def client_ordered?
-    !self.order_reference.blank?
+    !order_reference.blank?
   end
 
   def client_purchased_status
-    if self.order_reference.blank?
-      'non_client_purchased'
+    if order_reference.blank?
+      "non_client_purchased"
     else
-      'client_purchased'
+      "client_purchased"
     end
   end
 
   def purchase_from_supplier_if_needed
-    if !supplier_order.nil? or !supplier_order_reference.blank?
+    if !supplier_order.nil? || !supplier_order_reference.blank?
       SupplierPurchase.find_or_create_by(reference: supplier_order.reference)
     end
   end
 
   def total_currency_buying_price
     qty = request_quantity || 1
-    (self.buying_price || 0) * qty
+    (buying_price || 0) * qty
   end
 
   def total_currency_selling_price
