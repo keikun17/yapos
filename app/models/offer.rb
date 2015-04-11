@@ -141,18 +141,18 @@ class Offer < ActiveRecord::Base
 
   def purchase_from_supplier_if_needed
     if !supplier_order.nil? or !supplier_order_reference.blank?
-      SupplierPurchase.find_or_create_by(reference: self.supplier_order.reference)
+      SupplierPurchase.find_or_create_by(reference: supplier_order.reference)
     end
   end
 
   def total_currency_buying_price
-    qty = self.request_quantity || 1
+    qty = request_quantity || 1
     (self.buying_price || 0) * qty
   end
 
   def total_currency_selling_price
-    qty = self.request_quantity || 1
-    (self.selling_price || 0) * qty
+    qty = request_quantity || 1
+    (selling_price || 0) * qty
   end
 
   def update_total_prices
