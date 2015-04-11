@@ -139,8 +139,11 @@ class Offer < ActiveRecord::Base
     end
   end
 
+  # FIXME : We do not need this method and any calls to this method. We should
+  # instead guarantee that a SupplierPurchase record is made everytime a
+  # Supplier PO refernce is supplied on the supplier order record.
   def purchase_from_supplier_if_needed
-    if !supplier_order.nil? || !supplier_order_reference.blank?
+    if supplier_order.present? && supplier_purchase.nil?
       SupplierPurchase.find_or_create_by(reference: supplier_order.reference)
     end
   end
