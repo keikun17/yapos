@@ -158,26 +158,21 @@ class Offer < ActiveRecord::Base
   def update_total_prices
     # FIXME : We are not storing the conversion rate anymore. Let's do a
     # fixed currency conversion that can be set at an admin options level
-    if self.currency == Currency::LOCAL_CURRENCY
+    if currency == Currency::LOCAL_CURRENCY
       (self.total_buying_price = total_currency_buying_price) if buying_price
       (self.total_selling_price = total_currency_selling_price) if selling_price
 
-    elsif !self.currency.blank?
+    elsif !currency.blank?
 
       conversion_rate = if conversion_rate.blank?
                           Currency::CURRENCY_MAPPING[currency]
                         else
-                          self.currency_conversion
+                          elf.currency_conversion
                         end
 
-      if buying_price
-        self.total_buying_price = total_currency_buying_price * conversion_rate
+      self.total_buying_price = total_currency_buying_price * conversion_rate if buying_price
 
-      end
-
-      if selling_price
-        self.total_selling_price = total_currency_selling_price * conversion_rate
-      end
+      self.total_selling_price = total_currency_selling_price * conversion_rate if selling_price
 
     else
       0
