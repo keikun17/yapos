@@ -29,6 +29,8 @@ class SupplierPurchasesController < ApplicationController
     respond_to do |format|
       if @supplier_purchase.update_attributes(params[:supplier_purchase])
         @supplier_purchase.reindex
+        @supplier_purchase.offers.map(&:update_total_prices)
+
         format.html { redirect_to @supplier_purchase, notice: 'Supplier Purchase was successfully updated.' }
         format.json { head :no_content }
       else
