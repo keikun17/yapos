@@ -54,9 +54,9 @@ class Offer < ActiveRecord::Base
   scope :services, -> { where(service: true) }
   scope :supplies, -> { where.not(service: true) }
 
-  scope :from_supplier, ->(suppliers = 'all') do
-    if suppliers.eql?('all')
-      s = where('supplier_id is not null')
+  scope :from_supplier, ->(suppliers = "all") do
+    if suppliers.eql?("all")
+      s = where.not(supplier_id: nil)
     else
       supplier_ids = suppliers.map(&:id)
       s = where(supplier_id: supplier_ids)
@@ -64,7 +64,7 @@ class Offer < ActiveRecord::Base
     s
   end
 
-  scope :pending_client_order, -> {
+  scope :pending_client_order, lambda do
     # (1) This :
     # includes(request: :orders).where(orders: {id: nil}).references(:request, :orders)
 
@@ -72,13 +72,13 @@ class Offer < ActiveRecord::Base
     # where("offers.order_reference = '' or offers.order_reference is null")
 
     # (3) Or this way :
-    includes({request: :orders}).where(requests: {client_purchased_count: 0} ).references(:requests)
-  }
+    includes(request: :orders).where(requests: { client_purchased_count: 0 }).references(:requests)
+  end
 
   scope :pending_supplier_order, lambda do
-    s = purchased.includes(:supplier_order).references(:supplier_orders)
-    s = s.where('supplier_orders.reference is null')
-    s
+    purchased.includes(:supplier_order)
+      .references(:supplier_orders)
+      .where(supplier_orders: { reference: nil })
   end
 
   scope :by_quote_date, lambda do
@@ -88,7 +88,7 @@ class Offer < ActiveRecord::Base
   scope :by_supplier_order_date, lambda do
     includes(supplier_order: :supplier_purchase)
       .references(:supplier_orders, :supplier_purchases)
-      .order( supplier_purchases: { ordered_at: :desc }, supplier_purchases: { ordered_at: :desc })
+      .order(supplier_purchases: { ordered_at: :desc }, supplier_purchases: { ordered_at: :desc })
   end
 
   # Client Delegation
