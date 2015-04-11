@@ -277,6 +277,7 @@ GEM
       rspec-mocks (~> 3.2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
+    rubocop-rspec (1.2.2)
     ruby-progressbar (1.7.1)
     ruby_parser (3.6.5)
       sexp_processor (~> 4.1)
@@ -386,6 +387,7 @@ DEPENDENCIES
   rails_best_practices
   responders
   rspec-rails (~> 3.1)
+  rubocop-rspec
   sass-rails (~> 5.0.1)
   selenium-webdriver (= 2.44.0)
   spring-commands-rspec

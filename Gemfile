@@ -52,6 +52,7 @@ gem 'uglifier', '>= 1.3.0'
 
 
 group :development, :test do
+  gem 'rubocop-rspec', require: false
   gem 'rspec-rails', '~> 3.1'
   gem 'pry-nav'
 end
