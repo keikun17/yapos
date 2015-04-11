@@ -54,7 +54,7 @@ class Offer < ActiveRecord::Base
   scope :services, -> { where(service: true) }
   scope :supplies, -> { where.not(service: true) }
 
-  scope :pending_client_order, lambda do
+  scope :pending_client_order, (lambda do
     # (1) This :
     # includes(request: :orders).where(orders: {id: nil}).references(:request, :orders)
 
@@ -63,23 +63,24 @@ class Offer < ActiveRecord::Base
 
     # (3) Or this way :
     includes(request: :orders).where(requests: { client_purchased_count: 0 }).references(:requests)
-  end
+  end)
 
-  scope :pending_supplier_order, lambda do
+  scope :pending_supplier_order, (lambda do
     purchased.includes(:supplier_order)
       .references(:supplier_orders)
       .where(supplier_orders: { reference: nil })
-  end
+  end)
 
-  scope :by_quote_date, lambda do
+  scope :by_quote_date, (lambda do
     includes(:quote).references(:quotes)
       .order(quotes: { quote_date: :desc })
-  end
-  scope :by_supplier_order_date, lambda do
+  end)
+
+  scope :by_supplier_order_date, (lambda do
     includes(supplier_order: :supplier_purchase)
       .references(:supplier_orders, :supplier_purchases)
       .order(supplier_purchases: { ordered_at: :desc }, supplier_purchases: { ordered_at: :desc })
-  end
+  end)
 
   # Client Delegation
   delegate :name, to: :client, prefix: true, allow_nil: true
