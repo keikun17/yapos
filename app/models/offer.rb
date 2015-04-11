@@ -99,9 +99,12 @@ class Offer < ActiveRecord::Base
   delegate :reference, to: :supplier_purchase, prefix: true, allow_nil: true
 
   # Request Delegation
-  delegate :quantity,
+  delegate(
+    :quantity,
     :unit,
-    :specs, :to => :request, :prefix => true, :allow_nil => true
+    :specs,
+    to: :request, prefix: true, allow_nil: true
+  )
 
   # Quote Delegation
   delegate :quote_reference, to: :quote, prefix: false, allow_nil: true
@@ -111,7 +114,8 @@ class Offer < ActiveRecord::Base
   delegate :csv, to: :vendor_item, prefix: true, allow_nil: true
 
   # Supplier Order Delegation
-  delegate :reference,
+  delegate(
+    :reference,
     :ordered_at,
     :estimated_manufactured_at,
     :estimated_manufacture_date,
@@ -121,7 +125,9 @@ class Offer < ActiveRecord::Base
     :delivery_date,
     :delivered?,
     :actual_specs,
-    :ordered_from_supplier?, to: :supplier_order, prefix: true, allow_nil: true
+    :ordered_from_supplier?,
+    to: :supplier_order, prefix: true, allow_nil: true
+  )
 
   delegate :ordered_at, :order_date, to: :supplier_purchase, allow_nil: true, prefix: true
 
