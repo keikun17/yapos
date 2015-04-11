@@ -29,12 +29,14 @@ class Offer < ActiveRecord::Base
 
   belongs_to :request
 
-  counter_culture :request, column_name: Proc.new {|model|
-    "#{model.client_purchased_status}_count"
-  }, :column_names => {
-    ["offers.order_reference <> ''"] => 'client_purchased_count',
-    ["offers.order_reference = '' or offers.order_reference is null"] => 'non_client_purchased_count'
-  }
+  counter_culture(
+    :request,
+    column_name: proc { |model| "#{model.client_purchased_status}_count" },
+    column_names:  {
+      ["offers.order_reference <> ''"] => "client_purchased_count",
+      ["offers.order_reference = '' or offers.order_reference is null"] => "non_client_purchased_count"
+    }
+  )
 
   belongs_to :supplier
   belongs_to :vendor_item
