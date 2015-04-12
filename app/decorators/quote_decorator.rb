@@ -14,43 +14,42 @@ class QuoteDecorator < ApplicationDecorator
   end
 
   def order_links
-    links = OrderDecorator.decorate_collection(self.orders).collect(&:link)
+    links = orders.decorate.collect(&:link)
     links.uniq!
-    links.join(',').html_safe
+    links.join(",").html_safe
   end
 
   def order_dates
-    dates = OrderDecorator.decorate_collection(self.orders).collect(&:display_purchase_date)
-    dates.join(',').html_safe
+    dates = orders.decorate.collect(&:display_purchase_date)
+    dates.join(",").html_safe
   end
-
 
   def order_links_with_date
     order_links = []
-    OrderDecorator.decorate_collection(self.orders.uniq).each do |order|
+    OrderDecorator.decorate_collection(orders.uniq).each do |order|
       order_links << (order.link + "(#{order.display_purchase_date})".html_safe)
     end
-    order_links.join(',').html_safe
+    order_links.join(",").html_safe
   end
 
   # Maybe this belongs here instead of the model because this
   # is leaning more toward behavior than data
   def offer_details_mergable?(attr, supplier_id = nil)
     if supplier_id.blank?
-      self.offers.map(&attr).uniq.count <= 1
+      offers.map(&attr).uniq.count <= 1
     else
-      supplier_offers = self.offers.where(supplier_id: supplier_id)
+      supplier_offers = offers.where(supplier_id: supplier_id)
       supplier_offers.map(&attr).uniq.count <= 1
     end
   end
 
   def count_offers_with_internal_notes
-    self.offers.where("offers.internal_notes <> ''").count
+    offers.where("offers.internal_notes <> ''").count
   end
 
   def offer_supplier_name_mergable?(supplier_id = nil)
     if supplier_id.blank?
-      offers.map(&:supplier_name).present? and offers.supplier_hidden_in_print.empty?
+      offers.map(&:supplier_name).present? && offers.supplier_hidden_in_print.empty?
     else
       offers.where(supplier_id: supplier_id).supplier_hidden_in_print.empty?
     end
