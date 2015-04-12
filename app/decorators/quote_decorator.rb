@@ -50,10 +50,9 @@ class QuoteDecorator < ApplicationDecorator
 
   def offer_supplier_name_mergable?(supplier_id = nil)
     if supplier_id.blank?
-      self.offers.map(&:supplier_name).uniq.count <= 1 and self.offers.supplier_hidden_in_print.empty?
+      self.offers.map(&:supplier_name).present? and self.offers.supplier_hidden_in_print.empty?
     else
-      supplier_offers = self.offers.where(supplier_id: supplier_id)
-      supplier_offers.map(&:supplier_name).uniq.count <= 1 and supplier_offers.supplier_hidden_in_print.empty?
+      self.offers.where(supplier_id: supplier_id).supplier_hidden_in_print.empty?
     end
   end
 
@@ -135,5 +134,4 @@ class QuoteDecorator < ApplicationDecorator
       return @solo_offer.terms
     end
   end
-
 end
