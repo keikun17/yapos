@@ -81,7 +81,7 @@ class QuoteDecorator < ApplicationDecorator
       o = offers.where(supplier_id: supplier_id)
     end
 
-    o.first.supplier_name if !o.empty? && o.supplier_hidden_in_print.empty?
+    solo_offer.supplier_name if solo_offer(supplier_id) && o.supplier_hidden_in_print.empty?
   end
 
   def solo_offer_remarks(supplier_id = nil)
