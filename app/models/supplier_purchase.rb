@@ -61,16 +61,13 @@ class SupplierPurchase < ActiveRecord::Base
   end
 
   def supplier_specs
-    as = supplier_orders.map(&:actual_specs)
-    as = as.uniq.compact
-    as
+    supplier_orders.map(&:actual_specs).uniq.compact
   end
 
   def actual_specs
-    as = supplier_orders.map(&:actual_specs)
-    as = as.uniq.compact
-    as
+    supplier_orders.map(&:actual_specs).uniq.compact
   end
+
   def order_date
     ordered_at.to_date.to_s(:long) if ordered_at
   end
