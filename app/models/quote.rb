@@ -157,11 +157,6 @@ class Quote < ActiveRecord::Base
     offers.pluck(:specs).uniq
   end
 
-  def offered_vendor_item_code
-    # offers.map(&:vendor_item_code).uniq.compact
-    offers.pluck.(:vendor_item_code).uniq
-  end
-
   def offer_summaries
     offers.pluck(:summary).uniq
   end
