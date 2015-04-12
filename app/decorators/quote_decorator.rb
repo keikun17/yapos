@@ -50,9 +50,9 @@ class QuoteDecorator < ApplicationDecorator
 
   def offer_supplier_name_mergable?(supplier_id = nil)
     if supplier_id.blank?
-      self.offers.map(&:supplier_name).present? and self.offers.supplier_hidden_in_print.empty?
+      offers.map(&:supplier_name).present? and offers.supplier_hidden_in_print.empty?
     else
-      self.offers.where(supplier_id: supplier_id).supplier_hidden_in_print.empty?
+      offers.where(supplier_id: supplier_id).supplier_hidden_in_print.empty?
     end
   end
 
@@ -60,7 +60,7 @@ class QuoteDecorator < ApplicationDecorator
     mergable_columns = [:supplier_name, :supplier, :remarks, :delivery, :warranty, :terms]
     counter = 0
     @offer_spec_colspan ||= mergable_columns.collect do |attr|
-      counter +=1 if offer_details_mergable?(attr, supplier_id)
+      counter += 1 if offer_details_mergable?(attr, supplier_id)
       counter
     end.last
 
@@ -68,9 +68,10 @@ class QuoteDecorator < ApplicationDecorator
   end
 
   def quantity_labels
-    requests.decorate.map{|x|
+    labels = requests.decorate.map do |x|
       x.to_label("label label-inverse")
-    }.join(' ').html_safe
+    end
+    labels.join(" ").html_safe
   end
 
   def solo_offer_supplier_name(supplier_id = nil)
