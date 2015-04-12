@@ -57,12 +57,7 @@ class SupplierPurchase < ActiveRecord::Base
   end
 
   def reindex
-    begin
-      __elasticsearch__.delete_document
-    rescue
-      # Do nothing, carry on
-    end
-    __elasticsearch__.index_document
+    __elasticsearch__.reindex
   end
 
   def supplier_specs
