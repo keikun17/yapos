@@ -172,14 +172,14 @@ class Quote < ActiveRecord::Base
   end
 
   def supplier_names
-    self.suppliers.pluck(:name).uniq
+    suppliers.pluck(:name).uniq
   end
 
   def display_status
     if !offers.purchased.empty?
-      text = "Awarded"
+      "Awarded"
     else
-      text = status
+      status
     end
   end
 
@@ -189,10 +189,10 @@ class Quote < ActiveRecord::Base
 
   # FIXME : Reimplement
   def requote!
-    duplicate_quote = self.dup
-    duplicate_quote.quote_reference = self.quote_reference + '-requote'
+    duplicate_quote = dup
+    duplicate_quote.quote_reference = quote_reference + "-requote"
 
-    self.requests.each do |request|
+    requests.each do |request|
       duplicate_request = request.dup
 
       request.offers.each do |offer|
@@ -207,11 +207,10 @@ class Quote < ActiveRecord::Base
 
       duplicate_request.quote_id = nil
       duplicate_quote.requests << duplicate_request
-
     end
 
     duplicate_quote.status = "Pending"
-    duplicate_quote.quote_date = Time.now
+    duplicate_quote.quote_date = Time.zone.now
     duplicate_quote.save
     duplicate_quote
   end
@@ -219,7 +218,6 @@ class Quote < ActiveRecord::Base
   def compute_total_offered_prices
     offers.map(&:update_total_prices)
   end
-
 end
 
 # == Schema Information
