@@ -57,7 +57,7 @@ class SupplierPurchase < ActiveRecord::Base
   end
 
   def reindex
-    __elasticsearch__.reindex
+    __elasticsearch__.index_document
   end
 
   def supplier_specs
