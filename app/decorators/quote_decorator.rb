@@ -49,7 +49,7 @@ class QuoteDecorator < ApplicationDecorator
 
   def offer_supplier_name_mergable?(supplier_id = nil)
     if supplier_id.blank?
-      offers.map(&:supplier_name).present? && offers.supplier_hidden_in_print.empty?
+      offers.map(&:supplier_name).uniq.length.eql?(1) && offers.supplier_hidden_in_print.empty?
     else
       offers.where(supplier_id: supplier_id).supplier_hidden_in_print.empty?
     end
