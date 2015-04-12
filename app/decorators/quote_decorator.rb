@@ -75,63 +75,35 @@ class QuoteDecorator < ApplicationDecorator
 
   def solo_offer_supplier_name(supplier_id = nil)
     if supplier_id.nil?
-      o = self.offers
+      o = offers
     else
-      o = self.offers.where(supplier_id: supplier_id)
+      o = offers.where(supplier_id: supplier_id)
     end
 
-    if o.supplier_hidden_in_print.empty?
-      if @solo_offer ||= o.first
-        return @solo_offer.supplier_name
-      end
-    end
+    o.first.supplier_name if !o.empty? && o.supplier_hidden_in_print.empty?
   end
 
   def solo_offer_remarks(supplier_id = nil)
-    if supplier_id.nil?
-      o = self.offers
-    else
-      o = self.offers.where(supplier_id: supplier_id)
-    end
-
-    if @solo_offer ||= o.first
-      return @solo_offer.remarks
-    end
+    solo_offer(supplier_id).remarks if solo_offer(supplier_id)
   end
 
   def solo_offer_delivery(supplier_id = nil)
-    if supplier_id.nil?
-      o = self.offers
-    else
-      o = self.offers.where(supplier_id: supplier_id)
-    end
-
-    if @solo_offer ||= o.first
-      return @solo_offer.delivery
-    end
+    solo_offer(supplier_id).delivery if solo_offer(supplier_id)
   end
 
   def solo_offer_warranty(supplier_id = nil)
-    if supplier_id.nil?
-      o = self.offers
-    else
-      o = self.offers.where(supplier_id: supplier_id)
-    end
-
-    if @solo_offer ||= o.first
-      return @solo_offer.warranty
-    end
+    solo_offer(supplier_id).warranty if solo_offer(supplier_id)
   end
 
-  def solo_offer_terms(suppier_id = nil)
-    if supplier_id.nil?
-      o = self.offers
-    else
-      o = self.offers.where(supplier_id: supplier_id)
-    end
+  def solo_offer_terms(supplier_id = nil)
+    solo_offer(supplier_id).terms if solo_offer(supplier_id)
+  end
 
-    if @solo_offer ||= o.first
-      return @solo_offer.terms
-    end
+  def solo_offer(supplier_id = nil)
+    @solo_offer ||= if supplier_id.nil?
+                      offers.first
+                    else
+                      offers.where(supplier_id: supplier_id).first
+                    end
   end
 end
