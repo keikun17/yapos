@@ -2,10 +2,10 @@ class QuoteDecorator < ApplicationDecorator
   decorates_association :requests
 
   def short_client_name
-    unless client_abbrev.blank?
-      client_abbrev
-    else
+    if client_abbrev.blank?
       client_name
+    else
+      client_abbrev
     end
   end
 
