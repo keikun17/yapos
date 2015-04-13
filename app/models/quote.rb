@@ -41,9 +41,7 @@ class Quote < ActiveRecord::Base
 
   accepts_nested_attributes_for :requests,
     :allow_destroy => true,
-    :reject_if => lambda { |r| r[:supplier].nil? &&
-                           r[:specs].blank? &&
-                           r[:remarks].blank?  }
+    :reject_if => lambda { |r| r[:supplier].nil? && r[:specs].blank? && r[:remarks].blank?  }
 
   belongs_to :client
   belongs_to :supplier
@@ -62,8 +60,11 @@ class Quote < ActiveRecord::Base
 
   default_scope { order("quotes.quote_date desc, quotes.id desc") }
 
-  scope :pending_client_order, -> { not_closed.includes(:requests).merge(Request.pending_client_order) }
-  scope :pending_supplier_order, -> do
+  def self.pending_client_order
+    not_closed.includes(:requests).merge(Request.pending_client_order) 
+  end
+
+  def self.pending_supplier_order
     s = not_closed.includes([:supplier_orders, :offers]).references(:supplier_orders, :offers)
 
     # Where the Supplier order has no Supplier PO Reference
@@ -77,37 +78,34 @@ class Quote < ActiveRecord::Base
   end
 
   # Quotes that needs to be have the ex-works date set
-  scope :for_scheduling, -> do
+  def self.for_scheduling
     not_closed.includes(:supplier_orders).references(:supplier_orders)
       .where("supplier_orders.reference != '' or supplier_orders.reference is not null")
       .where("supplier_orders.estimated_manufactured_at is null")
       .where("supplier_orders.delivered_at is null")
   end
 
-  scope :manufacturing, -> do
+  def self.manufacturing
     not_closed.includes(:supplier_orders).references(:supplier_orders)
       .where("supplier_orders.reference != '' or supplier_orders.reference is not null")
-      .where("'#{Time.now.to_s(:db)}' < supplier_orders.estimated_manufactured_at")
+      .where("'#{Time.zone.now.to_s(:db)}' < supplier_orders.estimated_manufactured_at")
       .where("supplier_orders.delivered_at is null")
   end
 
-  scope :for_delivery, -> do
+  def self.for_delivery
     not_closed.includes(:supplier_orders).references(:supplier_orders)
-    .where("'#{Time.now.to_s(:db)}' >= supplier_orders.estimated_manufactured_at")
-    .where("supplier_orders.delivered_at is null")
+      .where("'#{Time.zone.now.to_s(:db)}' >= supplier_orders.estimated_manufactured_at")
+      .where("supplier_orders.delivered_at is null")
   end
 
-  scope :today, -> do
-    where(created_at: (Date.today..Date.tomorrow))
-  end
+  scope :today, -> { where(created_at: (Time.zone.today..Time.zone.tomorrow)) }
 
   # Tire/ElasticSearch Configuration
-  def as_indexed_json(options={})
-    self.as_json(
+  def as_indexed_json(options = {})
+    as_json(
       only: [
         :title, :blurb, :quote_reference, :display_status,
-        :description, :quote_date,
-
+        :description, :quote_date
       ],
 
       # Associations
@@ -125,7 +123,7 @@ class Quote < ActiveRecord::Base
           only: [
             :specs, :vendor_item_code, :summary,
 
-            #Repeat the `methods`
+            # Repeat the `methods`
             :supplier_name
           ]
         }
