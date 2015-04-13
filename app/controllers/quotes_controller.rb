@@ -5,7 +5,7 @@ class QuotesController < ApplicationController
   # GET /quotes
   # GET /quotes.json
   def index
-    @quotes = Quote.page(params[:page]).per_page(20)
+    @quotes = Quote.page(params[:page]).per_page(40)
 
     unless params[:client_id].blank?
       @quotes = @quotes.where(client_id: params[:client_id])
