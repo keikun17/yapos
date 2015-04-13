@@ -119,7 +119,6 @@ class Quote < ActiveRecord::Base
           only: [:quantity, :unit, :specs, :item_code]
         },
 
-
         # Offers Association
         offers: {
           methods: [:supplier_name],
@@ -130,10 +129,7 @@ class Quote < ActiveRecord::Base
             :supplier_name
           ]
         }
-
-
       }
-
     )
   end
 
@@ -144,9 +140,7 @@ class Quote < ActiveRecord::Base
   # /-- Tire/ElasticSearch config
 
   def request_specs
-    r = requests.map(&:specs)
-    r = r.uniq.compact
-    r
+    requests.map(&:specs).uniq.compact
   end
 
   def supplier_po
