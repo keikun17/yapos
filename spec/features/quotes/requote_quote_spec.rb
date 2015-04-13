@@ -26,6 +26,7 @@ feature "Requoting Quote", js: true do
       expect(page).to have_link(requote_reference)
 
       expect(Order.count).to eq(1)
+      expect(Request.count).to eq(4)
       expect(Offer.count).to eq(6)
 
       click_link requote_reference
