@@ -84,8 +84,8 @@
     %th Supplier
     %th Supplier's Price
     %th Offered Price
-    %th Our PO to Supplier
     %th References
+    %th Our PO to Supplier
 
   %tbody
     - @quotes.each do |quote|
@@ -113,11 +113,11 @@
         %td.text-warning= offer.display_buying_price
         %td.text-success= offer.display_selling_price
         %td
+          = render 'offers/other_references', offer: offer
+        %td
           - unless offer.service?
             = offer.supplier_purchase_link
             = offer.edit_supplier_purchase_link
-        %td
-          = render 'offers/other_references', offer: offer
       - offers.each do |offer|
         %tr
           %td
@@ -137,11 +137,11 @@
           %td.text-warning= offer.display_buying_price
           %td.text-success= offer.display_selling_price
           %td
+            = render 'offers/other_references', offer: offer
+          %td
             - unless offer.service?
               = offer.supplier_purchase_link
               = offer.edit_supplier_purchase_link
-          %td
-            = render 'offers/other_references', offer: offer
 
 
 .form-actions
