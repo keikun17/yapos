@@ -20,7 +20,9 @@ class OrdersController < ApplicationController
 
   def mass_update_si_and_dr
     @order = Order.find(params[:id])
-    @order.mass_update_si_and_dr(
+
+    DrAndSiMassUpdater.update(
+      @order,
       si_reference: params[:order][:si_reference],
       dr_reference: params[:order][:dr_reference],
       delivery_date: params[:order][:delivery_date]
