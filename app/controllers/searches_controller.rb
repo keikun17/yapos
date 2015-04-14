@@ -38,7 +38,7 @@ class SearchesController < ApplicationController
     when "Contains"
       @vendor_items = VendorItem.find_with_fields(fields)
     when "Exact"
-      @vendor_items = VendorItem.find_with_exact_fields(fields)
+      @vendor_items = [VendorItem.find_with_exact_fields(fields)]
     end
   end
 
