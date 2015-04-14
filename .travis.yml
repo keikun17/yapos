@@ -25,7 +25,7 @@ script:
 
   - bundle exec rake db:schema:load
   - bundle exec rake db:test:prepare
-  - bundle exec rspec spec/features
+  - bundle exec rspec spec
 
 after_failure:
   - "mysql -e 'show databases;'"
