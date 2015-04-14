@@ -104,7 +104,7 @@ class VendorItem < ActiveRecord::Base
       x.product_field_ids == arg_product_field_ids
     end
 
-    results
+    results.first
 
   end
 

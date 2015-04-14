@@ -25,8 +25,8 @@ RSpec.describe VendorItem, :type => :model do
         {vendor_item_fields: {product_field_id: field_bottom_cover.id , value: '3' }}
       ])
 
-      expect(method_call).to include(ep100x5x3)
-      expect(method_call).not_to include(ep200x6x2, ep100x5x2, ep100x1000mmx5x3)
+      expect(method_call).to eq(ep100x5x3)
+      # expect(method_call).not_to include(ep200x6x2, ep100x5x2, ep100x1000mmx5x3)
     end
   end
 end
