@@ -38,7 +38,7 @@ feature "Requoting Quote", js: true do
       expect(page).to have_text("Billy light chainsaw")
       expect(page).to have_text("ACME Light chainsaw Variant 9001")
       expect(page).to have_text("Based on previous client order : PO#1 ")
-      expect(page).to have_text("Based on previous client order : #{quote_reference} ")
+      expect(page).to have_text("Based on previous RFQ: #{quote_reference}")
     end
 
   end
