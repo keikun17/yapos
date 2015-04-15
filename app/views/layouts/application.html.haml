@@ -49,9 +49,6 @@
                     %li= link_to "Products List", products_path
                     %li= link_to "Price Trend", price_movements_path
                     %li= link_to "Search Vendor Item", search_vendor_item_path
-                    %li.divider
-                    %li.nav-header Upcoming
-                    %li= link_to "Invoice and Receipts", '#', class: 'disabled'
 
                 %li
                   = form_tag search_path, method: :get, class: 'navbar-form' do
