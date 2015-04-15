@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature "Requoting Quote", js: true do
-  include_context "Order quote with 2 requests and 3 offers"
+  include_context "Supplier ordered quote with 2 requests and 3 offers"
 
   context "Requote" do
 
@@ -9,7 +9,8 @@ feature "Requoting Quote", js: true do
     let(:po_reference) { "PO#1"}
     let(:requote_reference) { "PR#0001-requote"}
     let(:client_name) { "BBuy" }
-    let(:po_reference_1) { "PO#1" }
+    let(:po_reference) { "PO#1" }
+    let(:supplier_po_reference) { "SUPPLIER PO#1" }
 
     before do
       visit root_path
@@ -37,8 +38,9 @@ feature "Requoting Quote", js: true do
       expect(page).to have_text("lighth chainsaw")
       expect(page).to have_text("Billy light chainsaw")
       expect(page).to have_text("ACME Light chainsaw Variant 9001")
-      expect(page).to have_text("Based on previous client order : PO#1 ")
       expect(page).to have_text("Based on previous RFQ: #{quote_reference}")
+      expect(page).to have_text("Based on previous client order: #{po_reference} ")
+      expect(page).to have_text("Based on previous supplier purchase: #{supplier_po_reference}")
     end
 
   end
