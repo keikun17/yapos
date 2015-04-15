@@ -9,7 +9,7 @@ feature "Requoting Quote", js: true do
     let(:po_reference) { "PO#1"}
     let(:requote_reference) { "PR#0001-requote"}
     let(:client_name) { "BBuy" }
-
+    let(:po_reference_1) { "PO#1" }
 
     before do
       visit root_path
@@ -30,13 +30,15 @@ feature "Requoting Quote", js: true do
       expect(Offer.count).to eq(6)
 
       click_link requote_reference
-      expect(page).to_not have_text(po_reference)
+      expect(page).to have_link("Enter PO#")
       expect(page).to have_text(client_name)
       expect(page).to have_text("heavy bolter")
       expect(page).to have_text("2014 Heavy Bolter")
       expect(page).to have_text("lighth chainsaw")
       expect(page).to have_text("Billy light chainsaw")
       expect(page).to have_text("ACME Light chainsaw Variant 9001")
+      expect(page).to have_text("Based on previous client order : PO#1 ")
+      expect(page).to have_text("Based on previous client order : #{quote_reference} ")
     end
 
   end
