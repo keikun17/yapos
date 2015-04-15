@@ -5,30 +5,10 @@ feature "Supplier Order Creation" do
 
 
   context "Order within Same RFQ", js: true do
-    include_context "Quote with 2 request and 3 offers"
+    include_context "Order quote with 2 requests and 3 offers"
 
     context "Same Supplier PO number" do
       before do
-        visit root_path
-        click_link "PR#0001"
-        click_link "Edit", match: :first
-
-
-        # Offer #1 for Request #1
-        within(page.all(".offer-line")[0]) do
-          fill_in "Client PO#", with: "PO#1"
-        end
-
-        # Offer #2 for Request #2
-        within(page.all(".offer-line")[2]) do
-          fill_in "Client PO#", with: "PO#1"
-        end
-
-        click_button "Update Quote"
-
-        expect(Order.count).to eq(1)
-        expect(Order.where(reference: 'PO#1')).not_to be_nil
-
         click_link "Client Orders"
 
         expect(page).to have_link("PO#1")
@@ -51,13 +31,15 @@ feature "Supplier Order Creation" do
 
         click_button "Update Order"
 
-        # Make sure that the PO is removed from the 'Supplier PO required' page
       end
 
-      it "should be printable" do
+      scenario "It should be removed from the 'Supplier PO required' list" do
         click_link "Client Orders"
         click_link "Supplier PO required"
         expect(page).to_not have_link("PO#1")
+      end
+
+      it "should be printable" do
         click_link "Supplier Orders"
 
         click_link "SUPPLIER PO#1"
