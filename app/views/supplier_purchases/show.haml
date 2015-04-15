@@ -25,14 +25,14 @@
   %strong Clients
   %ul
     - @supplier_purchase.clients.each do |client|
-      %li= link_to client.name, @client
+      %li= link_to client.name, client
 
 
 %p
   %strong Suppliers
   %ul
-    - @supplier_purchase.suppliers.each do |client|
-      %li= link_to client.name, @client
+    - @supplier_purchase.suppliers.each do |supplier|
+      %li= link_to supplier.name, supplier
 
 -# %p
 -#   %strong Total Buying Price
