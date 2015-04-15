@@ -5,33 +5,9 @@ feature "Supplier Order Creation" do
 
 
   context "Order within Same RFQ", js: true do
-    include_context "Order quote with 2 requests and 3 offers"
 
     context "Same Supplier PO number" do
-      before do
-        click_link "Client Orders"
-
-        expect(page).to have_link("PO#1")
-
-        click_link "Supplier PO required"
-        expect(page).to have_link("PO#1")
-
-        click_link "PO#1"
-        click_link "Edit", match: :first
-
-        within(page.all(".offer-line")[0]) do
-          find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("HVY BLTR 2014S1")
-          find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#1")
-        end
-
-        within(page.all(".offer-line")[1]) do
-          find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("LIGHT CSAW v9001")
-          find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#1")
-        end
-
-        click_button "Update Order"
-
-      end
+      include_context "Supplier ordered quote with 2 requests and 3 offers"
 
       scenario "It should be removed from the 'Supplier PO required' list" do
         click_link "Client Orders"
@@ -84,81 +60,65 @@ feature "Supplier Order Creation" do
     end
 
 
-    scenario "Different Supplier PO#" do
-      visit root_path
-      click_link "PR#0001"
-      click_link "Edit", match: :first
+    context "Different Supplier PO#" do
+      include_context "Order quote with 2 requests and 3 offers"
+
+      scenario "Different Supplier PO#" do
+        click_link "Client Orders"
+        expect(page).to have_link("PO#1")
+
+        click_link "Supplier PO required"
+        expect(page).to have_link("PO#1")
+
+        click_link "PO#1"
+        click_link "Edit", match: :first
+
+        within(page.all(".offer-line")[0]) do
+          find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("HVY BLTR 2014S1")
+          find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#1")
+        end
+
+        within(page.all(".offer-line")[1]) do
+          find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("LIGHT CSAW v9001")
+          find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#2")
+        end
+
+        click_button "Update Order"
+
+        click_link "Supplier Orders"
+        click_link "SUPPLIER PO#1"
+
+        supplier_po_1_window = window_opened_by { click_link "Print Supplier PO# SUPPLIER PO#1" }
+
+        within_window(supplier_po_1_window) do
+          #header
+          expect(page).to have_text("SUPPLIER PO#1")
+          expect(page).to have_text("Blue Buyers")
+
+          # Request 1 Offer 1
+          expect(page).to have_text("100.0 meter")
+          expect(page).to have_text("HVY BLTR 2014S1")
+          expect(page).to have_text("US$90.00/meter")
+          expect(page).to have_text("US$9,000.00")
 
 
-      # Offer #1 for Request #1
-      within(page.all(".offer-line")[0]) do
-        fill_in "Client PO#", with: "PO#1"
-      end
+        end
 
-      # Offer #2 for Request #2
-      within(page.all(".offer-line")[2]) do
-        fill_in "Client PO#", with: "PO#1"
-      end
+        click_link "Supplier Orders"
+        click_link "SUPPLIER PO#2"
+        supplier_po_2_window = window_opened_by { click_link "Print Supplier PO# SUPPLIER PO#2" }
 
-      click_button "Update Quote"
+        within_window(supplier_po_2_window) do
+          #header
+          expect(page).to have_text("SUPPLIER PO#2")
+          expect(page).to have_text("Blue Buyers")
 
-      expect(Order.count).to eq(1)
-      expect(Order.where(reference: 'PO#1')).not_to be_nil
-
-      click_link "Client Orders"
-      expect(page).to have_link("PO#1")
-
-      click_link "Supplier PO required"
-      expect(page).to have_link("PO#1")
-
-      click_link "PO#1"
-      click_link "Edit", match: :first
-
-      within(page.all(".offer-line")[0]) do
-        find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("HVY BLTR 2014S1")
-        find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#1")
-      end
-
-      within(page.all(".offer-line")[1]) do
-        find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("LIGHT CSAW v9001")
-        find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#2")
-      end
-
-      click_button "Update Order"
-
-      click_link "Supplier Orders"
-      click_link "SUPPLIER PO#1"
-
-      supplier_po_1_window = window_opened_by { click_link "Print Supplier PO# SUPPLIER PO#1" }
-
-      within_window(supplier_po_1_window) do
-        #header
-        expect(page).to have_text("SUPPLIER PO#1")
-        expect(page).to have_text("Blue Buyers")
-
-        # Request 1 Offer 1
-        expect(page).to have_text("100.0 meter")
-        expect(page).to have_text("HVY BLTR 2014S1")
-        expect(page).to have_text("US$90.00/meter")
-        expect(page).to have_text("US$9,000.00")
-
-
-      end
-
-      click_link "Supplier Orders"
-      click_link "SUPPLIER PO#2"
-      supplier_po_2_window = window_opened_by { click_link "Print Supplier PO# SUPPLIER PO#2" }
-
-      within_window(supplier_po_2_window) do
-        #header
-        expect(page).to have_text("SUPPLIER PO#2")
-        expect(page).to have_text("Blue Buyers")
-
-        # Request 2 Offer2
-        expect(page).to have_text("200.0 meter")
-        expect(page).to have_text("LIGHT CSAW v9001")
-        expect(page).to have_text("PHP12,345,678,999.88/meter")
-        expect(page).to have_text("PHP2,469,135,799,976.00")
+          # Request 2 Offer2
+          expect(page).to have_text("200.0 meter")
+          expect(page).to have_text("LIGHT CSAW v9001")
+          expect(page).to have_text("PHP12,345,678,999.88/meter")
+          expect(page).to have_text("PHP2,469,135,799,976.00")
+        end
       end
     end
 
