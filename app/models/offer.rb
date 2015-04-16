@@ -89,8 +89,8 @@ class Offer < ActiveRecord::Base
   delegate :name, to: :client, prefix: true, allow_nil: true
 
   # Supplier Delegation
-  delegate :name, to: :supplier, prefix: true, allow_nil: true
-  delegate :address, to: :supplier, prefix: true, allow_nil: true
+  delegate :name, :address, to: :supplier, prefix: true, allow_nil: true
+
   delegate :reference, to: :supplier_purchase, prefix: true, allow_nil: true
 
   # Request Delegation
@@ -102,8 +102,7 @@ class Offer < ActiveRecord::Base
   )
 
   # Quote Delegation
-  delegate :quote_reference, to: :quote, prefix: false, allow_nil: true
-  delegate :quote_date, to: :quote, prefix: false, allow_nil: true
+  delegate :quote_reference, :quote_date, to: :quote, prefix: false, allow_nil: true
 
   # Vendor Item Delegation
   delegate :csv, to: :vendor_item, prefix: true, allow_nil: true
@@ -144,13 +143,6 @@ class Offer < ActiveRecord::Base
     !order_reference.blank?
   end
 
-  def client_purchased_status
-    if order_reference.blank?
-      "non_client_purchased"
-    else
-      "client_purchased"
-    end
-  end
 
   # FIXME : We do not need this method and any calls to this method. We should
   # instead guarantee that a SupplierPurchase record is made everytime a
@@ -158,6 +150,16 @@ class Offer < ActiveRecord::Base
   def purchase_from_supplier_if_needed
     if supplier_order.present? && supplier_purchase.nil?
       SupplierPurchase.find_or_create_by(reference: supplier_order.reference)
+    end
+  end
+
+  private
+
+  def client_purchased_status
+    if order_reference.blank?
+      "non_client_purchased"
+    else
+      "client_purchased"
     end
   end
 
