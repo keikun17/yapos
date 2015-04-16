@@ -16,6 +16,8 @@ class SupplierOrder < ActiveRecord::Base
   belongs_to :offer, inverse_of: :supplier_order
   has_one :quote, through: :offer
   has_one :order, through: :offer
+  has_one :supplier, through: :offer
+  has_one :client, through: :offer
   accepts_nested_attributes_for :offer, update_only: true
 
   delegate :request, to: :offer, allow_nil: true
@@ -25,8 +27,9 @@ class SupplierOrder < ActiveRecord::Base
     !self.delivered_at.blank?
   end
 
-  delegate :supplier_name, to: :offer, allow_nil: true, prefix: false
-  delegate :supplier_address, to: :offer, allow_nil: true, prefix: false
+  delegate :name, to: :supplier, allow_nil: true, prefix:true
+  delegate :address, to: :supplier, allow_nil: true, prefix: false
+
   delegate :total_buying_price, to: :offer, allow_nil: true, prefix: true
   delegate :total_currency_buying_price, to: :offer, allow_nil: true, prefix: true
   delegate :price_vat_status, to: :offer, allow_nil: true, prefix: true
