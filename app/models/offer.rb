@@ -58,13 +58,9 @@ class Offer < ActiveRecord::Base
   scope :supplies, -> { where.not(service: true) }
 
   scope :pending_client_order, (lambda do
-    # (1) This :
-    # includes(request: :orders).where(orders: {id: nil}).references(:request, :orders)
-
-    # (2) Or This way :
-    # where("offers.order_reference = '' or offers.order_reference is null")
-
     # (3) Or this way :
+    # This checks if there are sibling offers that belong to the same request
+    # that is already purchased.
     includes(request: :orders).where(requests: { client_purchased_count: 0 }).references(:requests)
   end)
 
