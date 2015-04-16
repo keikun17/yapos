@@ -67,6 +67,5 @@ end
 #  delivered_at              :datetime
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
-#  actual_specs              :text
+#  actual_specs              :text(65535)
 #
-

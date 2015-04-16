@@ -20,8 +20,8 @@ end
 #  reference          :string(255)
 #  unit               :string(255)
 #  supplier_id        :integer
-#  description        :text
-#  remarks            :text
+#  description        :text(65535)
+#  remarks            :text(65535)
 #  date_acquired      :datetime
 #  date_used_up       :datetime
 #  created_at         :datetime

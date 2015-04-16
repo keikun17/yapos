@@ -53,11 +53,11 @@ end
 # Table name: requests
 #
 #  id                         :integer          not null, primary key
-#  specs                      :text
+#  specs                      :text(65535)
 #  quote_id                   :integer
 #  supplier_id                :integer
-#  quoted_specifications      :text
-#  remarks                    :text
+#  quoted_specifications      :text(65535)
+#  remarks                    :text(65535)
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  quantity                   :float(24)

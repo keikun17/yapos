@@ -120,8 +120,7 @@ end
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  custom_quote_reference :string(255)
-#  description            :text
+#  description            :text(65535)
 #  supplier_id            :integer
 #  client_id              :integer
 #
-

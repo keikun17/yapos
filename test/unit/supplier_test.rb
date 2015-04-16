@@ -16,6 +16,5 @@ end
 #  updated_at      :datetime         not null
 #  emails          :string(255)
 #  contact_numbers :string(255)
-#  address         :text
+#  address         :text(65535)
 #
-

@@ -106,11 +106,11 @@ end
 #  recipient            :string(255)
 #  string               :string(255)
 #  address              :string(255)
-#  delivery             :text
-#  price_basis          :text
-#  remarks              :text
-#  terms                :text
-#  warranty             :text
+#  delivery             :text(65535)
+#  price_basis          :text(65535)
+#  remarks              :text(65535)
+#  terms                :text(65535)
+#  warranty             :text(65535)
 #  ordered_at           :datetime
 #  signatory            :string(255)
 #  signatory_position   :string(255)
