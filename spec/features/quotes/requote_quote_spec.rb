@@ -1,9 +1,43 @@
 require 'rails_helper'
 
 feature "Requoting Quote", js: true do
-  include_context "Supplier ordered quote with 2 requests and 3 offers"
 
-  context "Requote" do
+  context "Requote Quote" do
+    include_context "Quote with 1 request and 1 offer"
+    let(:quote_reference) { "PR# Q1-O1"}
+    let(:requote_reference) { "#{quote_reference}-requote"}
+    let(:client_name) { "SBL"}
+
+    before do
+      visit root_path
+      click_link "Price Quotes"
+      click_link(quote_reference)
+
+      click_link "Requote", match: :first
+    end
+
+    scenario do
+      expect(Request.count).to eq(2)
+      expect(Offer.count).to eq(2)
+
+      click_link "Price Quotes"
+      expect(page).to have_link(quote_reference)
+
+      click_link requote_reference
+
+      expect(page).to have_text(client_name)
+      expect(page).to have_text("Personal Chainsaw")
+      expect(page).to have_text("PRS-LCS-CSAW")
+      expect(page).to have_text("Chainsaw (handcarry edition)")
+
+      expect(page).to have_text("Based on previous RFQ: #{quote_reference}")
+      expect(page).to_not have_text("Based on previous client order:")
+      expect(page).to_not have_text("Based on previous supplier purchase:")
+    end
+  end
+
+  context "Requote Qutote with PO and Supplier PO" do
+    include_context "Supplier ordered quote with 2 requests and 3 offers"
 
     let(:quote_reference) { "PR#0001"}
     let(:po_reference) { "PO#1"}

@@ -2,7 +2,8 @@ class Requoter
   def self.requote(quote)
     duplicate_quote = quote.dup
     internal_note = "Based on previous RFQ: #{quote.quote_reference}\r\n"
-    duplicate_quote.internal_notes = internal_note
+    duplicate_quote ||= ""
+    duplicate_quote.internal_notes = duplicate_quote.internal_notes.prepend(internal_note)
 
     duplicate_quote.quote_reference = quote.quote_reference + "-requote"
 
@@ -16,11 +17,13 @@ class Requoter
         duplicate_offer.sales_invoice_reference = nil
 
         if offer.order.present?
+          duplicate_offer.internal_notes ||= ""
           internal_note = "Based on previous client order: #{offer.order_reference}\r\n"
           duplicate_offer.internal_notes = duplicate_offer.internal_notes.prepend(internal_note)
         end
 
         if offer.supplier_purchase.present?
+          duplicate_offer.internal_notes ||= ""
           internal_note = "Based on previous supplier purchase: #{offer.supplier_order.supplier_purchase.reference}\r\n"
           duplicate_offer.internal_notes = duplicate_offer.internal_notes.prepend(internal_note)
         end
