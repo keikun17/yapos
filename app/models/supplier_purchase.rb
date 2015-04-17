@@ -91,7 +91,7 @@ class SupplierPurchase < ActiveRecord::Base
   #FIXME : UGLY
   def client
     ActiveSupport::Deprecation.warn("Yapos : Deprecate this. There should be no more use cases that uses this")
-    supplier_orders.first.offer.client
+    supplier_orders.first.client
   end
 
 end
