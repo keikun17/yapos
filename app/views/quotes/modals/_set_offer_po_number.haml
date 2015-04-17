@@ -50,7 +50,9 @@
                   %li= sp.reference
 
             .col-sm-6
-              Internal notes abcd
+              .alert.alert-internal-note
+                %strong.text-info Offer Internal Notes:
+                #{simple_format(offer.internal_notes, class: 'text-info')}
 
         .modal-footer
           %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close
