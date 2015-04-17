@@ -36,7 +36,7 @@
               = offer.client.name
           %td
             #{offer.request_quantity} #{offer.request_unit}
-          %td
+          %td{class: "#{'service' if offer.service?}"}
             = offer.summary
           %td
             = offer.supplier_purchase_reference
@@ -61,7 +61,7 @@
             %tr
               %td
                 #{offer.request_quantity} #{offer.request_unit}
-              %td
+              %td{class: "#{'service' if offer.service?}"}
                 = offer.summary
               %td
                 = offer.supplier_purchase_reference

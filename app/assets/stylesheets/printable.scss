@@ -39,6 +39,12 @@
       border-radius: 0px !important;
     }
 
+    td {
+      &.service {
+        background-color: #000;
+      }
+    }
+
     p {
       line-height: 14px;
       margin-bottom: 0px;
