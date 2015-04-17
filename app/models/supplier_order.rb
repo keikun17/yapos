@@ -27,8 +27,8 @@ class SupplierOrder < ActiveRecord::Base
     !self.delivered_at.blank?
   end
 
-  delegate :name, to: :supplier, allow_nil: true, prefix:true
-  delegate :address, to: :supplier, allow_nil: true, prefix: false
+  delegate :name, to: :supplier, allow_nil: true, prefix: true
+  delegate :address, to: :supplier, allow_nil: true, prefix: true
 
   delegate :total_buying_price, to: :offer, allow_nil: true, prefix: true
   delegate :total_currency_buying_price, to: :offer, allow_nil: true, prefix: true
