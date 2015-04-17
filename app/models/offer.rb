@@ -149,8 +149,6 @@ class Offer < ActiveRecord::Base
     end
   end
 
-  private
-
   def client_purchased_status
     if order_reference.blank?
       "non_client_purchased"
