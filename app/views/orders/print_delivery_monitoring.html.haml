@@ -11,7 +11,6 @@
       %th{width: '30px'} Qty
       %th.col-sm-4 Actual
       %th{width: '50px'} Supplier Purchase Ref
-      %th{width: '50px'} Supplier Price
       %th{width: '50px'} Supplier
       %th{width: '50px'} Client Purchased at
       %th{width: '50px'} Estimated EX-Works Date
@@ -41,8 +40,6 @@
           %td
             = offer.supplier_purchase_reference
           %td
-            = offer.display_buying_price
-          %td
             = offer.supplier_name
           %td
             %i= order.display_purchase_date
@@ -65,8 +62,6 @@
                 = offer.summary
               %td
                 = offer.supplier_purchase_reference
-              %td
-                = offer.display_buying_price
               %td
                 = offer.supplier_name
               %td
