@@ -14,15 +14,18 @@
       %td
         %strong TO
       %td : #{@supplier_purchase.supplier_names}
-    %tr
-      %td
-        %strong ADDRESS
-      %td : #{@supplier_purchase.address}
 
-    %tr
-      %td
-        %strong ATTENTION
-      %td : #{@supplier_purchase.recipient}
+    - if @supplier_purchase.address.present?
+      %tr
+        %td
+          %strong ADDRESS
+        %td : #{@supplier_purchase.address}
+
+    - if @supplier_purchase.recipient.present?
+      %tr
+        %td
+          %strong ATTENTION
+        %td : #{@supplier_purchase.recipient}
 
     %tr
       %td
