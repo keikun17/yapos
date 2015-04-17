@@ -18,8 +18,8 @@ class SupplierPurchasesController < ApplicationController
 
   def edit
     @supplier_purchase = SupplierPurchase.find(params[:id]).decorate
+    @supplier_purchase.address ||= @supplier_purchase.supplier_address
     if @supplier_purchase.ordered_at.nil?
-      @supplier_purchase.address = @supplier_purchase.supplier_address
       @supplier_purchase.ordered_at = Time.now
     end
   end
