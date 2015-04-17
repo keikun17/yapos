@@ -27,9 +27,9 @@
 
       - if offer
         %tr
-          %td
+          %td{rowspan: offer_count}
             %strong= link_to order.reference, order
-          %td
+          %td{rowspan: offer_count}
             - if !offer.client.abbrev.blank?
               = offer.client.abbrev
             - else
@@ -59,12 +59,6 @@
 
           - offers.each do |offer|
             %tr
-              %td{style: 'border-top: none'}
-              %td
-                - if !offer.client.abbrev.blank?
-                  = offer.client.abbrev
-                - else
-                  = offer.client.name
               %td
                 #{offer.request_quantity} #{offer.request_unit}
               %td
