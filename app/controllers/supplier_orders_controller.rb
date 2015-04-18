@@ -7,7 +7,7 @@ class SupplierOrdersController < ApplicationController
         format.html { redirect_to :back, notice: 'Supplier Order was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to back action: "edit" , error: 'Error. Record invalid'}
+        format.html { redirect_to :back, action: "edit" , error: 'Error. Record invalid'}
         format.json { render json: @supplier_order.errors, status: :unprocessable_entity }
       end
     end
