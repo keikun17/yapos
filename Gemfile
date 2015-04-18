@@ -55,6 +55,7 @@ group :development, :test do
   gem 'rubocop-rspec', require: false
   gem 'rspec-rails', '~> 3.1'
   gem 'pry-nav'
+  gem 'haml-lint', require: false
 end
 
 group :test do
