@@ -63,7 +63,7 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id]).decorate
-    @order.purchase_date ||= Time.now
+    @order.purchase_date ||= Time.zone.now
     @order.attachments.build if @order.attachments.empty?
   end
 

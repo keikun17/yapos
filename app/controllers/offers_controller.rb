@@ -26,7 +26,7 @@ class OffersController < ApplicationController
         Purchase.make([@offer])
 
         # Set Order date to current date
-        @offer.order.update_attributes(purchase_date: Time.now)
+        @offer.order.update_attributes(purchase_date: Time.zone.now)
 
         @offer.supplier_order.update_attributes(params['post_save']['supplier_order'])
 
