@@ -30,7 +30,7 @@ class Order < ActiveRecord::Base
   has_many :supplier_orders, -> {uniq}, :through => :supply_offers
   has_many :supplier_purchases, -> {uniq}, through: :supplier_orders
 
-  validates_presence_of :reference
+  validates :reference, presence: value
   validates_associated :attachments
 
   accepts_nested_attributes_for :quotes, update_only: true
