@@ -8,14 +8,16 @@
     %h3 Print Delivery Monitoring Sheet
     = form_tag print_delivery_monitoring_orders_path, method: 'get' do
       = hidden_field_tag :client_id, params[:client_id]
+      .row
+        = label_tag "print[from_date]", "From", class: 'col-sm-1'
+        .col-sm-11
+          = date_select "print[from_date]", "from_date", {default: Date.today.beginning_of_month}, {class: "form-control date-select col-sm-4"}
+      .row
+        = label_tag "print[to_date]", "To", class: 'col-sm-1'
+        .col-sm-11
+          = date_select "print[to_date]", 'to_date', {default: Date.today.end_of_month}, {class: "form-control date-select col-sm-4"}
       %p
-        From
-        = date_select 'print', 'from_date', default: Date.today.beginning_of_month
-      %p
-        To
-        = date_select 'print', 'to_date', default: Date.today.end_of_month
-      %p
-        = submit_tag "Print", class: 'btn'
+        = submit_tag "Print", class: 'btn btn-default'
 
 .row
   .col-sm-12
