@@ -32,7 +32,6 @@ class OrdersController < ApplicationController
   end
 
   def print_delivery_monitoring
-
     @from_date = Time.zone.local(params[:print]['from_date(1i)'],
                                  params[:print]['from_date(2i)'],
                                  params[:print]['from_date(3i)']

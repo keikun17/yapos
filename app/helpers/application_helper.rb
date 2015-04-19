@@ -27,9 +27,14 @@ module ApplicationHelper
     html_options[:class] ||= 'btn'
     html_options[:role] ||= 'button'
     html_options[:data] ||= {toggle: 'modal'}
-    modal_id = html_options.delete(:modal_id) || ""
 
+    if object.is_a?(String)
+    link_to(text, "##{object}", html_options)
+    else
+      modal_id = html_options.delete(:modal_id) || ""
     link_to(text, "##{dom_id(object) + modal_id}", html_options)
+    end
+
   end
 
   def display_quantity(quantity, unit)
