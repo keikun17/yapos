@@ -406,9 +406,11 @@ DEPENDENCIES
   rails_best_practices
   responders
   rspec-rails (~> 3.1)
+  rubocop
   rubocop-rspec
   sass-rails (~> 5.0.1)
   selenium-webdriver (= 2.44.0)
+  simplecov
   spring-commands-rspec
   taps (~> 0.3.24)
   therubyracer (= 0.12.1)
