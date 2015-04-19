@@ -6,7 +6,6 @@
     = link_to t('.edit', :default => t("helpers.links.edit")), edit_order_path(@order), :class => 'btn btn-primary'
     = link_to_modal "Set SI/DR details for all offers in this order", @order, class: 'btn btn-primary'
 
-
     - @order.supplier_purchases.where.not(reference: '').uniq.each do |supplier_purchase|
       = link_to "Print #{supplier_purchase.reference}", print_supplier_purchase_path(supplier_purchase),  class: 'btn btn-default'
 
