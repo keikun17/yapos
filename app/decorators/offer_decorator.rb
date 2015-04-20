@@ -145,6 +145,12 @@ class OfferDecorator < ApplicationDecorator
     end
   end
 
+  def loss?
+    return false if buying_currency != currency
+    return false if buying_price.nil? or selling_price.nil?
+    buying_price > selling_price
+  end
+
   private
 
     def display_none
