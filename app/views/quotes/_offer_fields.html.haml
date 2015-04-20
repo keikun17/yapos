@@ -45,7 +45,8 @@
         .form-group
           = f.label :price_vat_status, "VAT Status", class: 'col-sm-3 control-label'
           .controls.col-sm-8
-            = f.text_field :price_vat_status, :class => 'form-control col-sm-12', :placeholder => "VAT EX or VAT INC"
+            = f.text_field :price_vat_status, :class => 'form-control col-sm-12', :placeholder => "VAT EX or VAT INC", data: { field_group: 'vat' }
+            %a.glyphicon.glyphicon-share{ data: { field_group: 'vat' }, title: "Copy to all offers for the same supplier" }
 
         .form-group
           = f.label :buying_price, "Supplier Price", class: 'col-sm-3 control-label'
@@ -63,7 +64,8 @@
         .form-group
           = f.label :price_basis, "Price Basis", class: "col-sm-3 control-label"
           .controls.col-sm-8
-            = f.text_field :price_basis, :class => 'form-control col-sm-12', :placeholder => "FOB LOCATION"
+            = f.text_field :price_basis, :class => 'form-control col-sm-12', :placeholder => "FOB LOCATION", data: { field_group: 'basis' }
+            %a.glyphicon.glyphicon-share{ data: {field_group: 'basis'}, title: "Copy to all offers for the same supplier" }
 
       .col-sm-3
         .form-group
