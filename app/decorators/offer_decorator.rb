@@ -146,7 +146,7 @@ class OfferDecorator < ApplicationDecorator
   end
 
   def loss?
-    if (buying_currency != currency) && (buying_price.nil? or selling_price.nil?)
+    if (buying_currency != currency) || (buying_price.nil? || selling_price.nil?)
       return false
     elsif  buying_price.present? and !selling_price.present?
       return true
