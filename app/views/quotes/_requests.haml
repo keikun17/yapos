@@ -51,7 +51,7 @@
           %strong Total:
           %br
           = offer.display_total_buying_price
-      %td{ class: "#{ !offer.loss? ? 'text-succes' : 'loss' }" }
+      %td{ class: "#{ offer.present? and !offer.loss? ? 'text-succes' : 'loss' }" }
         - if offer
           %strong Unit Price:
           %br
