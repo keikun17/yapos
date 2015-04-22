@@ -5,6 +5,8 @@ Yapos::Application.routes.draw do
 
   get 'deliveries_and_invoices', to: 'deliveries_and_invoices#index'
 
+  resources :quote_comments, only: :create
+
   resources :products do
     resources :vendor_items
   end

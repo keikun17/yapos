@@ -2,6 +2,10 @@ class Quote < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+  acts_as_commentable
+
+  has_many :comment_threads, :class_name => "QuoteComment", :as => :commentable
+
   attr_accessible :title,
     # :description, #TODO : Remove 'description' column. it has no valid use
     # case anymore
@@ -62,7 +66,7 @@ class Quote < ActiveRecord::Base
   default_scope { order("quotes.quote_date desc, quotes.id desc") }
 
   def self.pending_client_order
-    not_closed.includes(:requests).merge(Request.pending_client_order) 
+    not_closed.includes(:requests).merge(Request.pending_client_order)
   end
 
   def self.pending_supplier_order
