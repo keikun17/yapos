@@ -5,17 +5,17 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
-    filter_orders_by_client_and_decorate
+    filter_orders_by_params_and_decorate
   end
 
   def services
     @orders = Order.with_service_offers
-    filter_orders_by_client_and_decorate
+    filter_orders_by_params_and_decorate
   end
 
   def pending
     @orders = Order.with_supply_offers
-    filter_orders_by_client_and_decorate
+    filter_orders_by_params_and_decorate
   end
 
   def mass_update_si_and_dr
@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
     @orders = Order.ordered.order("orders.purchase_date desc")
       .where(purchase_date: @from_date..@to_date)
 
-    filter_orders_by_client_and_decorate
+    filter_orders_by_params_and_decorate
 
     render layout: "printable"
   end
@@ -101,10 +101,14 @@ class OrdersController < ApplicationController
     end
   end
 
-  def filter_orders_by_client_and_decorate
+  def filter_orders_by_params_and_decorate
     if !params[:client_id].blank?
       @client = Client.find(params[:client_id])
       @orders = @orders.includes(:quotes).where(quotes: {client_id: params[:client_id]})
+    end
+
+    if !params[:supplier_id].blank?
+      @orders = @orders.includes(:suppliers).where(suppliers: {id: params[:supplier_id]})
     end
 
     @orders = @orders.order("orders.purchase_date desc")
