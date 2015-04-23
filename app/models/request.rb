@@ -23,7 +23,7 @@ class Request < ActiveRecord::Base
 
   validates :specs, :presence => true
 
-  default_scope -> { order('position asc') }
+  default_scope -> { order('requests.position asc') }
   scope :pending_client_order, -> do
     where('requests.non_client_purchased_count > 0 and requests.client_purchased_count = 0').references(:requests)
   end
