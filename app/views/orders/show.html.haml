@@ -11,60 +11,67 @@
 
 = render 'orders/modals/mass_update_si_and_dr', modal_id: dom_id(@order)
 
-%p
-  %strong Client PO#
-  %br
-  = @order.reference
-%p
-  %strong Client ordered at
-  %br
-  = @order.display_purchase_date
+.row
+  .col-sm-6
+    %p
+      %strong Client PO#
+      %br
+      = @order.reference
+    %p
+      %strong Client ordered at
+      %br
+      = @order.display_purchase_date
 
-%p
-  %strong Record last updated
-  %br
-  = @order.updated_at.to_date
+    %p
+      %strong Record last updated
+      %br
+      = @order.updated_at.to_date
 
-- if @order.custom_quote_reference.present?
-  %h4 Purchase Requests :
-  %p
-    %strong= model_class.human_attribute_name(:custom_quote_reference) + ':'
-    %br
-    = @order.custom_quote_reference
-
-%p
-  %strong= model_class.human_attribute_name(:client) + ':'
-  %br
-  = @order.client_links
-
-- if @order.suppliers.present?
-  %p
-    %strong= model_class.human_attribute_name(:supplier) + ':'
-    %br
-    = @order.supplier_links
-
-%p
-  %strong Total Buying Price
-  %br
-  = @order.display_total_buy
-
-%p
-  %strong Total Selling Price
-  %br
-  = @order.display_total_sell
-
-%p
-  %strong Total Profit
-  %br
-  = @order.display_total_profit
-
-- if @order.description.present?
-  .row
-    %div.alert.alert-info
-      %h3 Internal Notes :
+    - if @order.custom_quote_reference.present?
+      %h4 Purchase Requests :
       %p
-        -# TODO : rename order.description to internal notes
-        =simple_format @order.description
+        %strong= model_class.human_attribute_name(:custom_quote_reference) + ':'
+        %br
+        = @order.custom_quote_reference
+
+    %p
+      %strong= model_class.human_attribute_name(:client) + ':'
+      %br
+      = @order.client_links
+
+    - if @order.suppliers.present?
+      %p
+        %strong= model_class.human_attribute_name(:supplier) + ':'
+        %br
+        = @order.supplier_links
+
+    %p
+      %strong Total Buying Price
+      %br
+      = @order.display_total_buy
+
+    %p
+      %strong Total Selling Price
+      %br
+      = @order.display_total_sell
+
+    %p
+      %strong Total Profit
+      %br
+      = @order.display_total_profit
+
+    - if @order.description.present?
+      .row
+        %div.alert.alert-info
+          %h3 Internal Notes :
+          %p
+            -# TODO : rename order.description to internal notes
+            =simple_format @order.description
+
+  .col-sm-6
+    - @order.quotes.each do |quote|
+      = render 'quotes/comments', quote: quote
+
 
 %h3 Attachments
 - if @order.attachments.empty?
