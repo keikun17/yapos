@@ -1,0 +1,7 @@
+%h3 Comments for RFQ #{quote.quote_reference}
+.comments
+  - quote.comment_threads.each do |comment|
+    .comment
+      .text-muted
+        = comment.created_at.to_date
+      = simple_format comment.body
