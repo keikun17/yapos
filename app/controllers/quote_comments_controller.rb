@@ -5,6 +5,6 @@ class QuoteCommentsController < ApplicationController
     @comment = Comment.build_from(@quote, current_user.id, params[:quote_comment][:body])
     @comment.save
 
-    redirect_to @quote, success: 'Comment added succesfully'
+    redirect_to @quote, notice: 'Comment added succesfully'
   end
 end
