@@ -2,11 +2,15 @@ class OffersController < ApplicationController
 
   def index
 
+    @offers = Offer.all
+
     if params[:client_id].present?
       @client = Client.find(params[:client_id])
       @offers = @client.offers
-    else
-      @offers = Offer.all
+    end
+
+    if params[:supplier_id].present?
+      @offers = @offers.where(supplier_id: params[:supplier_id])
     end
 
     @offers = @offers.order(created_at: :desc).page(params[:page]).per_page(40).decorate
