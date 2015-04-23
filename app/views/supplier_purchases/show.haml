@@ -7,47 +7,54 @@
     = link_to "Print Supplier PO# #{@supplier_purchase.reference}", print_supplier_purchase_path(@supplier_purchase),  class: 'btn btn-default', target: '_blank'
 
 
-%p
-  %strong Client PO#
-  %br
-  = @supplier_purchase.reference
-%p
-  %strong Ordered from supplier at
-  %br
-  = @supplier_purchase.ordered_from_supplier_at
+.row
+  .col-sm-6
+    %p
+      %strong Client PO#
+      %br
+      = @supplier_purchase.reference
+    %p
+      %strong Ordered from supplier at
+      %br
+      = @supplier_purchase.ordered_from_supplier_at
 
-%p
-  %strong Record last updated
-  %br
-  = @supplier_purchase.updated_at
+    %p
+      %strong Record last updated
+      %br
+      = @supplier_purchase.updated_at
 
-%p
-  %strong Clients
-  %ul
-    - @supplier_purchase.clients.each do |client|
-      %li= link_to client.name, client
+    %p
+      %strong Clients
+      %ul
+        - @supplier_purchase.clients.each do |client|
+          %li= link_to client.name, client
 
 
-%p
-  %strong Suppliers
-  %ul
-    - @supplier_purchase.suppliers.each do |supplier|
-      %li= link_to supplier.name, supplier
+    %p
+      %strong Suppliers
+      %ul
+        - @supplier_purchase.suppliers.each do |supplier|
+          %li= link_to supplier.name, supplier
 
--# %p
--#   %strong Total Buying Price
--#   %br
--#   = @supplier_purchase.display_total_buy
--#
--# %p
--#   %strong Total Selling Price
--#   %br
--#   = @supplier_purchase.display_total_sell
+    -# %p
+    -#   %strong Total Buying Price
+    -#   %br
+    -#   = @supplier_purchase.display_total_buy
+    -#
+    -# %p
+    -#   %strong Total Selling Price
+    -#   %br
+    -#   = @supplier_purchase.display_total_sell
 
--# %p
--#   %strong Total Profit
--#   %br
--#   = @supplier_purchase.display_total_profit
+    -# %p
+    -#   %strong Total Profit
+    -#   %br
+    -#   = @supplier_purchase.display_total_profit
+
+  .col-sm-6
+    - @supplier_purchase.quotes.each do |quote|
+      - if quote.comment_threads.present?
+        = render 'quotes/comments', quote: quote
 
 
 %table.table.table-striped

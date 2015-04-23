@@ -70,7 +70,8 @@
 
   .col-sm-6
     - @order.quotes.each do |quote|
-      = render 'quotes/comments', quote: quote
+      - if quote.comment_threads.present?
+        = render 'quotes/comments', quote: quote
 
 
 %h3 Attachments
