@@ -6,32 +6,20 @@ class QuotesController < ApplicationController
   # GET /quotes.json
   def index
     @quotes = Quote.includes(:requests, :offers, offers: :supplier_order)
-      .page(params[:page]).per_page(40)
-
-    unless params[:client_id].blank?
-      @quotes = @quotes.where(client_id: params[:client_id])
-    end
-
-    @quotes = @quotes.decorate
-
+    @quotes = filter_quotes_by_params(params).decorate
     respond_with(@quotes)
   end
 
   # TODO : Change name? the path name is ugly (pending_client_po_quote_path)
   # must be a sign that there is a better name for this out there.
   def pending_client_po
-    @quotes = Quote.pending_client_order.page(params[:page]).per_page(20).decorate
-    unless params[:client_id].blank?
-      @quotes = @quotes.where(client_id: params[:client_id])
-    end
+    @quotes = Quote.pending_client_order
+    @quotes = filter_quotes_by_params(params).decorate
   end
 
   def pending
     @quotes = Quote.with_pending_requests
-    unless params[:client_id].blank?
-      @quotes = @quotes.where(client_id: params[:client_id])
-    end
-    @quotes = @quotes.page(params[:page]).per_page(20).decorate
+    @quotes = filter_quotes_by_params(params).decorate
   end
 
   # GET /quotes/1
@@ -148,6 +136,18 @@ class QuotesController < ApplicationController
 
   def set_quotes_today_counter
     @quotes_today = Quote.today
+  end
+
+  def filter_quotes_by_params(params)
+    unless params[:client_id].blank?
+      @quotes = @quotes.where(client_id: params[:client_id])
+    end
+
+    unless params[:supplier_id].blank?
+      @quotes = @quotes.includes(:suppliers).where(suppliers: { id: params[:supplier_id] })
+    end
+
+    @quotes = @quotes.page(params[:page]).per_page(40)
   end
 
   def initialize_quote_associations_for_form

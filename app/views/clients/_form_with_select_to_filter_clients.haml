@@ -1,4 +1,9 @@
 = form_tag({}, {class: 'form-inline', method: :get}) do
-  = label_tag 'client_id', 'Filter by clients'
-  = select_tag 'client_id', options_from_collection_for_select(Client.all, 'id', 'name', params[:client_id]), prompt: 'All', class: 'form-control'
-  = submit_tag "filter", class: 'btn btn-primary'
+  .row
+    .col-sm-12
+      = label_tag 'client_id', 'Filter by clients'
+      = select_tag 'client_id', options_from_collection_for_select(Client.all, 'id', 'name', params[:client_id]), prompt: 'All', class: 'form-control'
+
+      = label_tag 'supplier_id', 'Filter by Suppliers'
+      = select_tag 'supplier_id', options_from_collection_for_select(Supplier.all, 'id', 'name', params[:supplier_id]), prompt: 'All', class: 'form-control'
+      = submit_tag "filter", class: 'btn btn-primary'
