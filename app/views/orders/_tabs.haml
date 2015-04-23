@@ -1,0 +1,16 @@
+%ul.nav.nav-tabs
+
+  %li{ class: "#{ 'active' if params[:action] == 'index' }" }
+    - link = orders_path(params)
+    - if params[:client_id].blank?
+      = link_to "All", link
+    - else
+      = link_to "#{ @client.name }", link
+
+  - link = pending_orders_path(params)
+  %li{ class: "#{ 'active' if params[:action] == 'pending' }"}
+    = link_to_badge "Supplier PO required", link, count: @po_required_count
+
+  - link = services_orders_path(params)
+  %li{ class: "#{'active' if params[:action] == 'services' }" }
+    = link_to "Services", link

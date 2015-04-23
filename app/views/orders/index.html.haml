@@ -9,16 +9,8 @@
   .col-sm-12
     = render 'clients/form_with_select_to_filter_clients'
 
-%ul.nav.nav-tabs
-  %li.active
-    - if params[:client_id].blank?
-      = link_to "All", orders_path(client_id: params[:client_id])
-    - else
-      = link_to "All #{@client.name}", orders_path(client_id: params[:client_id])
-  %li
-    = link_to_badge("Supplier PO required", pending_orders_path(client_id: params[:client_id]), count: @po_required_count)
-  %li
-    = link_to "Services", services_orders_path(client_id: params[:client_id])
+
+= render 'orders/tabs'
 
 .pull-right=will_paginate(@orders)
 -# = link_to t('.new', :default => t("helpers.links.new")), new_order_path, :class => 'btn btn-primary'
