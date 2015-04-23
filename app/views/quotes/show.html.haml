@@ -92,7 +92,7 @@
   .col-sm-3
 
 .row
-  .col-sm-12
+  .col-sm-6
     %h3 Comments
     .comments
       - @quote.comment_threads.each do |comment|
@@ -101,23 +101,24 @@
             = comment.created_at.to_date
           = simple_format comment.body
 
-= form_for @quote.root_comments.build do |f|
-  = f.hidden_field :commentable_id, default: @quote.id
-  .row
-    .col-sm-4
-      = f.text_area :body, class: 'form-control'
-    .col-sm-4
-      = f.submit "Comment", class: 'btn btn-primary'
+    = form_for @quote.root_comments.build do |f|
+      = f.hidden_field :commentable_id, default: @quote.id
+      .row
+        .col-sm-4
+          = f.text_area :body, class: 'form-control'
+        .col-sm-4
+          = f.submit "Comment", class: 'btn btn-primary'
 
 
-- if @quote.internal_notes.present? or @quote.count_offers_with_internal_notes > 0
-  .row
-    %div.alert.alert-info
-      %h3 Internal Notes :
-      = @quote.internal_notes
-      %br
-      - if @quote.count_offers_with_internal_notes > 0
-        %span.offer-internal-note-count There are #{@quote.count_offers_with_internal_notes} offers with internal notes.
+  .col-sm-6
+    - if @quote.internal_notes.present? or @quote.count_offers_with_internal_notes > 0
+      .row
+        %div.alert.alert-info
+          %h3 Internal Notes :
+          = @quote.internal_notes
+          %br
+          - if @quote.count_offers_with_internal_notes > 0
+            %span.offer-internal-note-count There are #{@quote.count_offers_with_internal_notes} offers with internal notes.
 
 
 .row
