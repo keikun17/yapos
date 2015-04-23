@@ -29,7 +29,6 @@ class Order < ActiveRecord::Base
   has_many :suppliers, -> {uniq}, :through => :offers
   has_many :supplier_orders, -> {uniq}, :through => :supply_offers
   has_many :supplier_purchases, -> {uniq}, through: :supplier_orders
-  has_many :comment_threads, -> {uniq}, through: :quotes
 
   validates :reference, presence: true
   validates_associated :attachments
