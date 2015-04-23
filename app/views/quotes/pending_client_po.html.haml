@@ -7,13 +7,13 @@
 
 %ul.nav.nav-tabs
   %li
-    = link_to 'All Quoted', quotes_path(client_id: params[:client_id])
+    = link_to 'All Quoted', quotes_path(client_id: params[:client_id], supplier_id: params[:supplier_id])
   %li
-    = link_to_badge("Offer Required", pending_quotes_path(client_id: params[:client_id]), count: @offers_required_count)
+    = link_to_badge("Offer Required", pending_quotes_path(client_id: params[:client_id], supplier_id: params[:supplier_id]), count: @offers_required_count)
   %li.active.active
-    = link_to_badge('Awaiting PO', pending_client_po_quotes_path(client_id: params[:client_id]), count: @awaiting_order_count)
+    = link_to_badge('Awaiting PO', pending_client_po_quotes_path(client_id: params[:client_id], supplier_id: params[:supplier_id]), count: @awaiting_order_count)
   %li
-    = link_to "Offers", offers_path(client_id: params[:client_id])
+    = link_to "Offers", offers_path(client_id: params[:client_id], supplier_id: params[:supplier_id])
 
 
 = link_to 'New Quote', new_quote_path, :class => 'btn btn-primary'
