@@ -97,10 +97,11 @@
     = form_for @quote.root_comments.build do |f|
       = f.hidden_field :commentable_id, default: @quote.id
       .row
-        .col-sm-4
-          = f.text_area :body, class: 'form-control'
-        .col-sm-4
-          = f.submit "Comment", class: 'btn btn-primary'
+        .col-sm-8
+          %p
+            = f.text_area :body, class: 'form-control'
+          .pull-right
+            = f.submit "Comment", class: 'btn btn-primary'
 
 
   .col-sm-6
