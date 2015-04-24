@@ -41,7 +41,7 @@ class SupplierOrder < ActiveRecord::Base
   validates :offer_id, presence: true
 
   def ordered_from_supplier?
-    !self.reference.blank? && !ordered_at.blank?
+    !self.reference.blank? && !supplier_purchase_ordered_at.blank?
   end
 
   def estimated_delivery_date
