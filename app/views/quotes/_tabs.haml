@@ -1,17 +1,18 @@
 %ul.nav.nav-tabs
 
+  - client_supplier_params = { client_id: params[:client_id], supplier_id: params[:supplier_id] }
   %li{class: "#{'active' if params[:action] == 'index'}"}
-    - link = quotes_path(client_id: params[:client_id], supplier_id: params[:supplier_id])
+    - link = quotes_path(client_supplier_params)
     = link_to 'All Quoted', link
 
   %li{class: "#{'active' if params[:action] == 'pending'}"}
-    - link = pending_quotes_path(client_id: params[:client_id], supplier_id: params[:supplier_id])
+    - link = pending_quotes_path(client_supplier_params)
     = link_to_badge "Offer Required", link, count: @offers_required_count
 
   %li{class: "#{'active' if params[:action] == 'pending_client_po'}"}
-    - link = pending_client_po_quotes_path(client_id: params[:client_id], supplier_id: params[:supplier_id])
+    - link = pending_client_po_quotes_path(client_supplier_params)
     = link_to_badge 'Awaiting PO', link, count: @awaiting_order_count
 
   %li{class: "#{'active' if params[:controller] == 'offers'}"}
-    - link = offers_path(client_id: params[:client_id], supplier_id: params[:supplier_id])
+    - link = offers_path(client_supplier_params)
     = link_to "Offers", link
