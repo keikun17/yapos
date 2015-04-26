@@ -101,12 +101,42 @@ feature "Print quotes", js: true do
   context "2 different suppliers in the quote, one supplier is hidden" do
     include_context "Quote with 2 request and 3 offers"
 
+    let(:rfq_reference) { "PR#0001" }
     before do
+      click_link "Price Quotes"
+      click_link rfq_reference
+      click_link "Edit", match: :first
+
+      # Hide ACME
+      within(page.all(".offer-line")[2]) do
+        find(:css, "input[name^='quote[requests_attributes]'][name$='[hide_supplier_in_print]']").set(true)
+      end
+
+      click_button "Update Quote"
     end
 
-    scenario "Print all offers"
+    scenario "Print all offers" do
+      click_link "Price Quotes"
+      click_link rfq_reference
 
-    scenario "Print supplier specific"
+      handle_window = window_opened_by { click_link "Print" }
+      within_window(handle_window) do
+        expect(page).to_not have_text("ACME")
+        expect(page).to have_text("Super Seller")
+      end
+
+    end
+
+    scenario "Print supplier specific" do
+      click_link "Price Quotes"
+      click_link rfq_reference
+
+      handle_window = window_opened_by { click_link "Print only ACME offers" }
+      within_window(handle_window) do
+        expect(page).to_not have_text("BRAND")
+        expect(page).to_not have_text("ACME")
+      end
+    end
 
   end
 
