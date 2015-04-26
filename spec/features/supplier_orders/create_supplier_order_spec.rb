@@ -1,11 +1,7 @@
 require 'rails_helper'
 
 feature "Supplier Order Creation" do
-
-
-
   context "Order within Same RFQ", js: true do
-
     context "Same Supplier PO number" do
       include_context "Supplier ordered quote with 2 requests and 3 offers"
 
@@ -58,7 +54,6 @@ feature "Supplier Order Creation" do
         end
       end
     end
-
 
     context "Different Supplier PO#" do
       include_context "Order quote with 2 requests and 3 offers"
@@ -122,7 +117,31 @@ feature "Supplier Order Creation" do
       end
     end
 
-    scenario "Client is hidden from printable view"
+  end
+
+  context "Client is hidden from printable view", js:true do
+    include_context "Supplier ordered quote with 1 request and 1 offer"
+    let(:supplier_po_reference) { "SupplierPO#2" }
+
+    before do
+      click_link "Supplier Orders"
+      click_link supplier_po_reference
+      click_link "Edit", match: :first
+
+      find("#supplier_purchase_hide_client_in_print").set(true)
+      click_button "Update Supplier purchase"
+    end
+
+    scenario "Client should not show up in the printable view" do
+      click_link "Supplier Orders"
+      click_link supplier_po_reference
+      supplier_po_1_window = window_opened_by { click_link "Print Supplier PO# #{supplier_po_reference}" }
+
+      within_window(supplier_po_1_window) do
+        expect(page).not_to have_text("Sybil")
+        expect(page).to have_text("Super Seller")
+      end
+    end
   end
 
   context "Different RFQ", js: true do
