@@ -39,7 +39,10 @@
               - if offer.service?
                 %span.badge.badge-service Service
               = offer.specs
-            = offer.display_actual_specs
+            - if !offer.supplier_order_actual_specs.blank?
+              %p.actual-offer
+                Actual :
+                =offer.supplier_order_actual_specs
 
           %td
             - if offer.supplier_purchase.nil? || offer.supplier_purchase.reference.blank?
@@ -58,7 +61,10 @@
                   - if offer.service?
                     %span.badge.badge-service Service
                   = offer.specs
-                = offer.display_actual_specs
+                - if !offer.supplier_order_actual_specs.blank?
+                  %p.actual-offer
+                    Actual :
+                    =offer.supplier_order_actual_specs
 
               %td
                 - if offer.supplier_purchase.nil? || offer.supplier_purchase.reference.blank?
