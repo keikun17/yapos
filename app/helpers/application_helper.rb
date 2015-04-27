@@ -12,8 +12,9 @@ module ApplicationHelper
     fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
       render(association.to_s.singularize + "_fields", :f => builder)
     end
+    icon = content_tag :span, '',class: 'glyphicon glyphicon-plus'
     anchor_text = content_tag :i, name, class: 'icon-plus'
-    link_to(anchor_text, 'javascript:;', onclick: "add_fields(#{target}, \"#{association}\", \"#{escape_javascript(fields)}\")", class: 'btn btn-success')
+    link_to((icon+anchor_text), 'javascript:;', onclick: "add_fields(#{target}, \"#{association}\", \"#{escape_javascript(fields)}\")", class: 'btn btn-success btn-sm')
   end
 
   def link_to_badge(text, path, options = {})
