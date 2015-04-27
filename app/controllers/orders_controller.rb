@@ -44,8 +44,8 @@ class OrdersController < ApplicationController
 
     @orders = Order.ordered.order("orders.purchase_date desc")
       .where(purchase_date: @from_date..@to_date)
-
-    filter_orders_by_params_and_decorate
+      .order("orders.purchase_date desc")
+      .decorate
 
     render layout: "printable"
   end
