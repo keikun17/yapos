@@ -5,13 +5,11 @@
   - if date = offer.supplier_order_estimated_manufactured_at
     = date.to_date.to_s(:long)
   - else
-    - if offer.supplier_order
+    - if offer.supplier_order and !offer.supplier_order.delivery_date
       %p
         = link_to_modal "Set Manufacture end date", offer.supplier_order, {class: 'btn btn-small btn-success', modal_id: 'exworks'}
         = render 'supplier_orders/modals/set_manufacture_date', modal_id: dom_id(offer.supplier_order) + 'exworks', supplier_order: offer.supplier_order.decorate
     - else
-      - if offer.client_ordered?
-        %span.muted Please Edit
-      - else
-        No PO
+      - if !offer.client_ordered?
+        Not yet ordered
 
