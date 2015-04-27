@@ -7,7 +7,7 @@
   - else
     - if offer.supplier_order and !offer.supplier_order.delivery_date
       %p
-        = link_to_modal "Set Estimated Delivery", offer.supplier_order, {class: 'btn btn-small btn-success', modal_id: 'eta'}
+        = link_to_modal "Set Estimated Delivery", offer.supplier_order, {class: 'btn btn-small btn-info', modal_id: 'eta'}
         = render 'supplier_orders/modals/set_estimated_delivery_date', modal_id: dom_id(offer.supplier_order) + 'eta', supplier_order: offer.supplier_order.decorate
     - else
       - if !offer.client_ordered?
