@@ -20,8 +20,8 @@
       %th{width: '50px'} SI#
   %tbody
     - @orders.each do |order|
-      - offer_count = order.offers.count
-      - offers = order.offers.decorate
+      - offers = order.offers.supplies.decorate
+      - offer_count = offers.count
       - offer = offers.shift
 
       - if offer
