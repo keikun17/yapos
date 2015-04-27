@@ -1,7 +1,7 @@
 .client-order-header
   %h1
     Delivery Monitoring
-    = link_to_modal "Print", 'delivery_monitoring_modal', class: 'btn btn-default'
+    = link_to_modal "Print Delivery Monitoring", 'delivery_monitoring_modal', class: 'btn btn-default'
 
 = render 'print_delivery_monitoring'
 
@@ -9,8 +9,8 @@
   .col-sm-12
     = render 'clients/form_with_select_to_filter_clients'
 
-
 = render 'orders/tabs'
+
 
 .pull-right=will_paginate(@orders)
 -# = link_to t('.new', :default => t("helpers.links.new")), new_order_path, :class => 'btn btn-primary'
