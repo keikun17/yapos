@@ -1,8 +1,10 @@
 module ApplicationHelper
 
   def link_to_remove_fields(name, f, target = 'this')
+    icon = content_tag :span, '',class: 'glyphicon glyphicon-remove'
     anchor_text = content_tag :i, name,  class: 'icon-trash'
-    f.hidden_field(:_destroy) + link_to(raw(anchor_text),'javascript:;', onclick: "remove_fields(#{target})", class: 'btn btn-danger')
+
+    f.hidden_field(:_destroy) + link_to(raw(icon + anchor_text),'javascript:;', onclick: "remove_fields(#{target})", class: 'btn btn-danger btn-sm')
   end
 
   def link_to_add_fields(name, f, association, target = 'this')
