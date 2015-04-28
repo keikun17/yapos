@@ -27,7 +27,7 @@
       - if offer
         %tr
           %td{rowspan: offer_count}
-            %strong= link_to order.reference, order
+            %strong= order.reference
           %td{rowspan: offer_count}
             - if !offer.client.abbrev.blank?
               = offer.client.abbrev
