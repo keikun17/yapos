@@ -1,9 +1,9 @@
 %table.table
   %tr
-    %th
-      Invoice Reference
-    %th
-      Amount
+    %th Invoice Reference
+    %th Invoice Amount
+    %th PO references
+    %th DR references
   - @invoices.each do |invoice|
     %tr
       %td= link_to invoice.reference, invoice
@@ -12,3 +12,10 @@
           = link_to "Input amount", edit_invoice_path(invoice)
         - else
           = invoice.amount
+      %td
+        - invoice.orders.each do |order|
+          = link_to order.reference, order
+          %br
+      %td
+        = invoice.offers.where.not(delivery_receipt_reference: nil).collect(&:delivery_receipt_reference).uniq.join(',')
+
