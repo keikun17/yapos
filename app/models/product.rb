@@ -6,6 +6,9 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :product_fields, allow_destroy: true, :reject_if => lambda { |r| r[:name].blank? &&
                            r[:unit].blank? &&
                            r[:field_type].blank?  }
+
+  default_scope { order(name: :asc) }
+
 end
 
 # == Schema Information
