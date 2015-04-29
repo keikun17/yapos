@@ -15,6 +15,8 @@ class Order < ActiveRecord::Base
 
   has_many :attachments, :as => :attachable
 
+  has_and_belongs_to_many :payments, join_table: :orders_payments
+
   has_many :offers,
     :foreign_key => 'order_reference',
     :primary_key => 'reference'
