@@ -1,0 +1,14 @@
+%table.table
+  %tr
+    %th
+      Invoice Reference
+    %th
+      Amount
+  - @invoices.each do |invoice|
+    %tr
+      %td= link_to invoice.reference, invoice
+      %td
+        - if invoice.amount.blank?
+          = link_to "Input amount", edit_invoice_path(invoice)
+        - else
+          = invoice.amount
