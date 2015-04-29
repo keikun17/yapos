@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429062033) do
+ActiveRecord::Schema.define(version: 20150429150548) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id",   limit: 4
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(version: 20150429062033) do
 
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "invoices", force: :cascade do |t|
+    t.string   "reference",    limit: 255
+    t.datetime "invoice_date"
+    t.decimal  "amount",                   precision: 15, scale: 2
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+  end
 
   create_table "offers", force: :cascade do |t|
     t.integer  "request_id",                 limit: 4
@@ -86,6 +94,14 @@ ActiveRecord::Schema.define(version: 20150429062033) do
   add_index "offers", ["vendor_item_code"], name: "index_offers_on_vendor_item_code", using: :btree
   add_index "offers", ["vendor_item_id"], name: "index_offers_on_vendor_item_id", using: :btree
 
+  create_table "offers_invoices", force: :cascade do |t|
+    t.integer "offer_id",   limit: 4
+    t.integer "invoice_id", limit: 4
+  end
+
+  add_index "offers_invoices", ["invoice_id"], name: "index_offers_invoices_on_invoice_id", using: :btree
+  add_index "offers_invoices", ["offer_id"], name: "index_offers_invoices_on_offer_id", using: :btree
+
   create_table "orders", force: :cascade do |t|
     t.string   "reference",              limit: 255
     t.datetime "purchase_date"
@@ -97,14 +113,6 @@ ActiveRecord::Schema.define(version: 20150429062033) do
     t.integer  "client_id",              limit: 4
   end
 
-  create_table "orders_payments", force: :cascade do |t|
-    t.integer "orders_id",   limit: 4
-    t.integer "payments_id", limit: 4
-  end
-
-  add_index "orders_payments", ["orders_id"], name: "index_orders_payments_on_orders_id", using: :btree
-  add_index "orders_payments", ["payments_id"], name: "index_orders_payments_on_payments_id", using: :btree
-
   create_table "payments", force: :cascade do |t|
     t.string   "reference",     limit: 255
     t.datetime "date_received"
@@ -112,6 +120,14 @@ ActiveRecord::Schema.define(version: 20150429062033) do
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
   end
+
+  create_table "payments_invoices", force: :cascade do |t|
+    t.integer "invoice_id", limit: 4
+    t.integer "payment_id", limit: 4
+  end
+
+  add_index "payments_invoices", ["invoice_id"], name: "index_payments_invoices_on_invoice_id", using: :btree
+  add_index "payments_invoices", ["payment_id"], name: "index_payments_invoices_on_payment_id", using: :btree
 
   create_table "product_fields", force: :cascade do |t|
     t.string   "name",       limit: 255
