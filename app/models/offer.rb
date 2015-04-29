@@ -50,7 +50,26 @@ class Offer < ActiveRecord::Base
   has_one :supplier_purchase, through: :supplier_order
   has_one :client, through: :quote
 
+  has_many :offers_invoices, dependent: :destroy
+  has_many :invoices, through: :offers_invoices
+
   accepts_nested_attributes_for :supplier_order
+
+  accepts_nested_attributes_for :invoices,
+    :allow_destroy => false,
+    :reject_if => lambda { |i| i[:reference].blank? }
+
+
+  def autosave_associated_records_for_invoices
+    puts 'wakoko'
+    if existing_invoice = Invoice.find_by(reference: invoice.reference)
+      existing_invoices << existing_invoice
+    else
+      new_invoices << invoice
+    end
+
+    self.invoices << new_invoices + existing_invoices
+  end
 
   scope :purchased, -> { where("order_reference <> '' ") }
   scope :supplier_hidden_in_print, -> { where(hide_supplier_in_print: true) }
