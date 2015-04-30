@@ -22,9 +22,14 @@
             .controls
               = ff.text_field :delivery_receipt_reference,  class: 'text-field'
 
-            = ff.label :sales_invoice_reference, 'SI #', class: 'control-label'
-            .controls
-              = ff.text_field :sales_invoice_reference,  class: 'text-field'
+            %div
+              .row.table.table-bordered#quotes
+                - if ff.object.invoices.empty?
+                  - ff.object.invoices.build
+                = ff.fields_for :invoices do |builder|
+                  = render 'orders/invoice_fields', :f => builder
+                .row
+                  .col-sm-12= link_to_add_fields "Add Invoice" , ff, :invoices, '$(this).parent()'
 
         .modal-footer
           %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close

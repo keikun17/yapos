@@ -19,6 +19,7 @@ class Offer < ActiveRecord::Base
     :delivery,
     :warranty,
     :supplier_order_attributes,
+    :invoices_attributes,
     :total_buying_price,
     :total_selling_price,
     :price_basis,
@@ -29,6 +30,22 @@ class Offer < ActiveRecord::Base
     :internal_notes,
     :service
   )
+
+  def invoices_attributes=(things)
+    things.each do |k,v|
+      marked_for_deletion = (!v["_destroy"].nil? and (v.delete("_destroy") != 'false'))
+      invoice = Invoice.find_or_create_by(reference: v["reference"])
+
+      if marked_for_deletion
+        self.invoices.delete(invoice)
+
+      else
+        self.invoices << invoice unless self.invoices.include?(invoice)
+      end
+
+    end
+
+  end
 
   belongs_to :request
 
@@ -58,18 +75,6 @@ class Offer < ActiveRecord::Base
   accepts_nested_attributes_for :invoices,
     :allow_destroy => false,
     :reject_if => lambda { |i| i[:reference].blank? }
-
-
-  def autosave_associated_records_for_invoices
-    puts 'wakoko'
-    if existing_invoice = Invoice.find_by(reference: invoice.reference)
-      existing_invoices << existing_invoice
-    else
-      new_invoices << invoice
-    end
-
-    self.invoices << new_invoices + existing_invoices
-  end
 
   scope :purchased, -> { where("order_reference <> '' ") }
   scope :supplier_hidden_in_print, -> { where(hide_supplier_in_print: true) }
