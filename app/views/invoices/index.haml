@@ -1,3 +1,5 @@
+.pull-right= will_paginate(@invoices)
+
 %table.table
   %tr
     %th Invoice Reference
@@ -19,3 +21,4 @@
       %td
         = invoice.offers.where.not(delivery_receipt_reference: nil).collect(&:delivery_receipt_reference).uniq.join(',')
 
+.pull-right= will_paginate(@invoices)
