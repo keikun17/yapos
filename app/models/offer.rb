@@ -31,21 +31,22 @@ class Offer < ActiveRecord::Base
     :service
   )
 
-  def invoices_attributes=(things)
-    things.each do |k,v|
-      marked_for_deletion = (!v["_destroy"].nil? and (v.delete("_destroy") != 'false'))
-      invoice = Invoice.find_or_create_by(reference: v["reference"])
-
-      if marked_for_deletion
-        self.invoices.delete(invoice)
-
-      else
-        self.invoices << invoice unless self.invoices.include?(invoice)
-      end
-
-    end
-
-  end
+  # TODO : Prevent duplicate associations
+  # def invoices_attributes=(things)
+  #   things.each do |k,v|
+  #     marked_for_deletion = (!v["_destroy"].nil? and (v.delete("_destroy") != 'false'))
+  #     invoice = Invoice.find_or_create_by(reference: v["reference"])
+  #
+  #     if marked_for_deletion
+  #       self.invoices.delete(invoice)
+  #
+  #     else
+  #       self.invoices << invoice unless self.invoices.include?(invoice)
+  #     end
+  #
+  #   end
+  #
+  # end
 
   belongs_to :request
 
@@ -73,7 +74,7 @@ class Offer < ActiveRecord::Base
   accepts_nested_attributes_for :supplier_order
 
   accepts_nested_attributes_for :invoices,
-    :allow_destroy => false,
+    :allow_destroy => true,
     :reject_if => lambda { |i| i[:reference].blank? }
 
   scope :purchased, -> { where("order_reference <> '' ") }
