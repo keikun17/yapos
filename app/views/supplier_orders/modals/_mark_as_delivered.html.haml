@@ -23,7 +23,7 @@
               = ff.text_field :delivery_receipt_reference,  class: 'text-field'
 
             %div
-              .row.table.table-bordered#quotes
+              .row.table.table-bordered#invoices
                 - if ff.object.invoices.empty?
                   - ff.object.invoices.build
                 = ff.fields_for :invoices do |builder|
