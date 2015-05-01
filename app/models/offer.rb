@@ -43,7 +43,7 @@ class Offer < ActiveRecord::Base
         self.invoices.delete(invoice)
 
       else
-        _invoices << invoice
+        _invoices << invoice unless invoice.reference.blank?
       end
 
     end
