@@ -33,6 +33,8 @@ class Offer < ActiveRecord::Base
 
   # TODO : Prevent duplicate associations
   def invoices_attributes=(things)
+    _invoices = []
+
     things.each do |k,v|
       marked_for_deletion = (!v["_destroy"].nil? and (v.delete("_destroy") != 'false'))
       invoice = Invoice.find_or_create_by(reference: v["reference"])
@@ -41,10 +43,12 @@ class Offer < ActiveRecord::Base
         self.invoices.delete(invoice)
 
       else
-        self.invoices << invoice unless self.invoices.include?(invoice)
+        _invoices << invoice
       end
 
     end
+
+    self.invoices = _invoices
 
   end
 
