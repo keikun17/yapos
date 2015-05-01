@@ -24,7 +24,7 @@ class Offer < ActiveRecord::Base
     :total_selling_price,
     :price_basis,
     :delivery_receipt_reference,
-    :sales_invoice_reference,
+    :sales_invoice_reference, # TODO Mark for deletion, Invoice model implemented
     :vendor_item_code,
     :hide_supplier_in_print,
     :internal_notes,
