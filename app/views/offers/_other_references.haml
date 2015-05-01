@@ -13,10 +13,12 @@
       %strong DR#
       = offer.delivery_receipt_reference
 
-  - if !offer.sales_invoice_reference.blank?
+  - if !offer.invoices.empty?
     .alert.alert-success
-      %strong SI#
-      = offer.sales_invoice_reference
+      - offer.invoices.each do |invoice|
+        %strong SI#
+        = link_to invoice.reference, invoice
+        %br
 
   = render 'offers/delivery_date', offer: offer
 
