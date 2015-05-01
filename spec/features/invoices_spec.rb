@@ -37,6 +37,28 @@ feature "Sales Invoice", js: true do
       expect(page).to have_link(sales_invoice_reference_2)
     end
 
+    context "delete invoice" do
+      before do
+        go_create_invoices
+        click_link "Client Orders"
+        click_link order_reference
+        click_link "Set Delivery"
+        click_link "Add Invoice"
+
+        within(page.all(".invoice-line")[1]) do
+          click_link "SI" # This is the label of the deletion button
+        end
+
+        click_button "Update DR and SI record"
+      end
+
+      it "Removes the association to the invoice" do
+        expect(page).to have_link(sales_invoice_reference_1)
+        expect(page).not_to have_link(sales_invoice_reference_2)
+        expect(Invoice.count).to eq(2) # Invoice does not get deleted. Association just removed
+      end
+    end
+
     context "An existing Sales invoice record is being assigned" do
       before do
         Invoice.create(name: 'SI#2')
@@ -90,6 +112,28 @@ feature "Sales Invoice", js: true do
       expect(page).to have_link(sales_invoice_reference_2)
     end
 
+    context "Invoice Removal" do
+
+      before do
+        go_create_invoices
+        click_link "Client Orders"
+        click_link order_reference
+        click_link "Edit", match: :first
+
+        within(page.all(".invoice-line")[1]) do
+          click_link "SI" # This is the label of the deletion button
+        end
+
+        click_button "Update Order"
+      end
+
+      it "Removes the association to the invoice" do
+        expect(page).to have_link(sales_invoice_reference_1)
+        expect(page).not_to have_link(sales_invoice_reference_1)
+        expect(Invoice.count).to eq(2) # Invoice does not get deleted. Association just removed
+      end
+    end
+
     context "An existing Sales invoice record is being assigned" do
        before do
          Invoice.create(name: sales_invoice_reference_1)
@@ -106,7 +150,6 @@ feature "Sales Invoice", js: true do
         expect(page).to have_link(sales_invoice_reference_2)
       end
 
-      pending "Invoice does not get created and offer get associated to existing invoice"
     end
   end
 
