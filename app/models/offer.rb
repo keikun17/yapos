@@ -32,21 +32,21 @@ class Offer < ActiveRecord::Base
   )
 
   # TODO : Prevent duplicate associations
-  # def invoices_attributes=(things)
-  #   things.each do |k,v|
-  #     marked_for_deletion = (!v["_destroy"].nil? and (v.delete("_destroy") != 'false'))
-  #     invoice = Invoice.find_or_create_by(reference: v["reference"])
-  #
-  #     if marked_for_deletion
-  #       self.invoices.delete(invoice)
-  #
-  #     else
-  #       self.invoices << invoice unless self.invoices.include?(invoice)
-  #     end
-  #
-  #   end
-  #
-  # end
+  def invoices_attributes=(things)
+    things.each do |k,v|
+      marked_for_deletion = (!v["_destroy"].nil? and (v.delete("_destroy") != 'false'))
+      invoice = Invoice.find_or_create_by(reference: v["reference"])
+
+      if marked_for_deletion
+        self.invoices.delete(invoice)
+
+      else
+        self.invoices << invoice unless self.invoices.include?(invoice)
+      end
+
+    end
+
+  end
 
   belongs_to :request
 
