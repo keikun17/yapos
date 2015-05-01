@@ -31,7 +31,7 @@
 
       = ff.fields_for :offer do |ff|
         %div
-          .row.table.table-bordered#invoices
+          .controls#invoices
             - if ff.object.invoices.empty?
               - ff.object.invoices.build
             = ff.fields_for :invoices do |builder|
