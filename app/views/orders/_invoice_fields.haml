@@ -1,0 +1,7 @@
+.row.invoice-line.fields.alternating-invoice-fields
+  .col-sm-2
+    = f.label :reference, "SI Reference", class: 'reference-cell'
+  .col-sm-3
+    = f.text_field :reference, class: 'form-control'
+  .col-sm-1= link_to_remove_fields "SI", f
+
