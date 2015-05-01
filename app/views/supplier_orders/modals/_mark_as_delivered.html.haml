@@ -29,7 +29,7 @@
                 = ff.fields_for :invoices do |builder|
                   = render 'orders/invoice_fields', :f => builder
                 .row
-                  .col-sm-12= link_to_add_fields "Add Invoice" , ff, :invoices, '$(this).parent()'
+                  .col-sm-12= link_to_add_fields "Add Invoice" , ff, :invoices, '$(this).parent()', 'orders/invoice_fields'
 
         .modal-footer
           %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close

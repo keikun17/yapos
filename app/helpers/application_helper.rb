@@ -7,10 +7,12 @@ module ApplicationHelper
     f.hidden_field(:_destroy) + link_to(raw(icon + anchor_text),'javascript:;', onclick: "remove_fields(#{target})", class: 'btn btn-danger btn-sm')
   end
 
-  def link_to_add_fields(name, f, association, target = 'this')
+  def link_to_add_fields(name, f, association, target = 'this', partial_path = nil)
     new_object = f.object.class.reflect_on_association(association).klass.new
+    partial_path ||= association.to_s.singularize + '_fields'
+
     fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
-      render(association.to_s.singularize + "_fields", :f => builder)
+      render(partial_path, :f => builder)
     end
     icon = content_tag :span, '',class: 'glyphicon glyphicon-plus'
     anchor_text = content_tag :i, name, class: 'icon-plus'
