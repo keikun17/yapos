@@ -29,8 +29,15 @@
       = f.label :delivery_receipt_reference, "DR#"
       = f.text_field :delivery_receipt_reference, class: 'form-control'
 
-      = f.label :sales_invoice_reference, "SI#"
-      = f.text_field :sales_invoice_reference, class: 'form-control'
+      = ff.fields_for :offer do |ff|
+        %div
+          .row.table.table-bordered#invoices
+            - if ff.object.invoices.empty?
+              - ff.object.invoices.build
+            = ff.fields_for :invoices do |builder|
+              = render 'orders/invoice_fields', :f => builder
+            .row
+              .col-sm-12= link_to_add_fields "Add Invoice" , ff, :invoices, '$(this).parent()', 'orders/invoice_fields'
 
 
 
