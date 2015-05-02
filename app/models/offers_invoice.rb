@@ -4,3 +4,12 @@ class OffersInvoice < ActiveRecord::Base
 
   validates_uniqueness_of :offer_id, scope: :invoice_id
 end
+
+# == Schema Information
+#
+# Table name: offers_invoices
+#
+#  id         :integer          not null, primary key
+#  offer_id   :integer
+#  invoice_id :integer
+#

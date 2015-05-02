@@ -10,3 +10,15 @@ class Invoice < ActiveRecord::Base
   has_and_belongs_to_many :payments, join_table: :payments_invoices
 
 end
+
+# == Schema Information
+#
+# Table name: invoices
+#
+#  id           :integer          not null, primary key
+#  reference    :string(255)
+#  invoice_date :datetime
+#  amount       :decimal(15, 2)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
