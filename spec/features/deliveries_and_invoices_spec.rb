@@ -49,14 +49,26 @@ feature "Delivery and SI", js: true do
         click_link "PO#1"
         click_link "Set SI/DR details for all offers in this order"
         fill_in "DR Reference", with: "DR#0101"
-        fill_in "SI Reference", with: "SI#0909"
-        click_button "Update all items for this order"
 
+        click_link "Add Sales Invoice"
+        within(page.all(".invoice-line")[0]) do
+          fill_in "SI Reference", with: "SI#0909-a"
+        end
+        within(page.all(".invoice-line")[1]) do
+          fill_in "SI Reference", with: "SI#0909-b"
+        end
+
+        click_button "Update all items for this order"
       end
 
       it "Updates the DR and SI of all the non-service offers " do
+
+        # Only the Supplie Offers get DR
         expect(page).to have_content('DR#0101', count: 2)
-        expect(page).to have_content('SI#0909', count: 2)
+
+        # Supply and Service Offers get SI
+        expect(page).to have_content('SI#0909-a', count: 3)
+        expect(page).to have_content('SI#0909-b', count: 3)
       end
     end
 
