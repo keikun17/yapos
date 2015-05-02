@@ -83,7 +83,7 @@ feature "Delivery and SI", js: true do
         click_link "Client Orders"
         click_link "Set Delivery"
         fill_in "DR #", with: 'DR#1-1'
-        click_button "Update Supplier order"
+        click_button "Update DR and SI record"
       end
 
       it "adds an entry to the Delivery and Invoices page" do
@@ -99,8 +99,8 @@ feature "Delivery and SI", js: true do
         visit root_path
         click_link "Client Orders"
         click_link "Set Delivery"
-        fill_in "SI #", with: 'SI#1-1'
-        click_button "Update Supplier order"
+        fill_in "SI Reference", with: 'SI#1-1'
+        click_button "Update DR and SI record"
       end
 
       it "adds an entry to the Delivery and Invoices page" do
