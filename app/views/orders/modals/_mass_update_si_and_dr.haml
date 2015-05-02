@@ -20,7 +20,6 @@
                   %td= simple_format(offer.specs)
                   %td= simple_format(offer.summary)
 
-
           %hr
           .row
             = label_tag :delivery_date, "DR Date", class: 'col-sm-2'
@@ -32,10 +31,16 @@
             .col-sm-6
               = text_field_tag '[order][dr_reference]',nil, class: 'form-control', placeholder: 'Leave this blank to keep DR references intact'
 
-          .row
-            = label_tag :_order_si_reference, "SI Reference", class: 'col-sm-2'
-            .col-sm-6
-              = text_field_tag '[order][si_reference]',nil ,class: 'form-control', placeholder: 'Leave this blank to keep SI references intact'
+          %h3 Sales Invoices
+          .text-muted This will not remove existing SI from the offers listed below
+          - offer = Offer.new
+          = fields_for offer  do |ff|
+            %div
+              .controls#invoices
+                = fields_for 'offer[invoices_attributes][1]' do |builder|
+                  = render 'orders/invoice_fields', :f => builder
+                .row
+                  .col-sm-12= link_to_add_fields "Add Sales Invoice" , ff, :invoices, '$(this).parent()', 'orders/invoice_fields'
 
         .modal-footer
           %button.btn{data: {dismiss:"modal"}, 'aria-hidden' => true} Close

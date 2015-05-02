@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
 
     DrAndSiMassUpdater.update(
       @order,
-      si_reference: params[:order][:si_reference],
+      si_references: params[:offer][:invoices_attributes],
       dr_reference: params[:order][:dr_reference],
       delivery_date: params[:order][:delivery_date]
     )
