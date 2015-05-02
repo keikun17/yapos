@@ -36,7 +36,7 @@ class Offer < ActiveRecord::Base
     _invoices = []
 
     things.each do |k,v|
-      marked_for_deletion = (!v["_destroy"].nil? and (v.delete("_destroy") != 'false'))
+      marked_for_deletion = (!v["_destroy"].blank? and (v.delete("_destroy") != 'false'))
       invoice = Invoice.find_or_create_by(reference: v["reference"])
 
       if marked_for_deletion
