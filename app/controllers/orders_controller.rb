@@ -18,6 +18,7 @@ class OrdersController < ApplicationController
     filter_orders_by_params_and_decorate
   end
 
+  # TODO : Move this on its own controller
   def mass_update_si_and_dr
     @order = Order.find(params[:id])
 
