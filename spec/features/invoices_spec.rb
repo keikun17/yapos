@@ -129,7 +129,7 @@ feature "Sales Invoice", js: true do
 
       it "Removes the association to the invoice" do
         expect(page).to have_link(sales_invoice_reference_1)
-        expect(page).not_to have_link(sales_invoice_reference_1)
+        expect(page).not_to have_link(sales_invoice_reference_2)
         expect(Invoice.count).to eq(2) # Invoice does not get deleted. Association just removed
       end
     end
