@@ -163,7 +163,7 @@ feature "Supplier Order Creation" do
 
       within(page.all(".offer-line")[0]) do
         find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("Billy light chainsaw")
-        find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#1")
+        find(:css, "input[name^='order[offers_attributes]'][name$='[supplier_order_attributes][reference]']").set("SUPPLIER PO#1")
       end
       click_button "Update Order"
 
@@ -175,7 +175,7 @@ feature "Supplier Order Creation" do
 
       within(page.all(".offer-line")[0]) do
         find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("Personal Chainsaw")
-        find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#1")
+        find(:css, "input[name^='order[offers_attributes]'][name$='[supplier_order_attributes][reference]']").set("SUPPLIER PO#1")
       end
       click_button "Update Order"
 
