@@ -10,7 +10,7 @@ RSpec.shared_context "Supplier ordered quote with 1 request and 1 offer", :a => 
 
     within(page.all(".offer-line")[0]) do
       find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("Handchainsaw")
-      find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SupplierPO#2")
+      find(:css, "input[name^='order[offers_attributes]'][name$='[supplier_order_attributes][reference]']").set("SupplierPO#2")
     end
 
     click_button "Update Order"
