@@ -103,9 +103,8 @@ feature "Delivery and SI", js: true do
         click_button "Update DR and SI record"
       end
 
-      it "adds an entry to the Delivery and Invoices page" do
-
-        visit deliveries_and_invoices_path
+      it "adds an entry to the Invoices page" do
+        visit invoices_path
         expect(page).to have_text("SI#1-1")
         expect(page).to have_link("PR# Q1-O1")
         expect(page).to have_link("PO#2")
