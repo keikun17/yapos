@@ -19,7 +19,7 @@ feature "Updating Supplier", js: true do
 
       within(page.all(".offer-line")[0]) do
         find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("Personal Chainsaw")
-        find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#1-orig")
+        find(:css, "input[name^='order[offers_attributes]'][name$='[supplier_order_attributes][reference]']").set("SUPPLIER PO#1-orig")
       end
 
       click_button "Update Order"
@@ -33,7 +33,7 @@ feature "Updating Supplier", js: true do
 
       within(page.all(".offer-line")[0]) do
         find(:css, "textarea[name^='order[offers_attributes]'][name$='[actual_specs]']").set("Super Personal Chainsaw")
-        find(:css, "input[name^='order[offers_attributes]'][name$='[reference]']").set("SUPPLIER PO#1-revised")
+        find(:css, "input[name^='order[offers_attributes]'][name$='[supplier_order_attributes][reference]']").set("SUPPLIER PO#1-revised")
       end
 
       click_button "Update Order"
