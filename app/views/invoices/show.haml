@@ -2,6 +2,7 @@
   %h1
     Invoice
     = @invoice.reference
+    = link_to 'Edit', edit_invoice_path(@invoice), :class => 'btn btn-primary'
 
 .row
   .col-sm-3
@@ -31,8 +32,3 @@
       %br
 
 
-  .col-sm-1
-  .col-sm-1
-  .col-sm-1
-  .col-sm-1
-  .col-sm-1

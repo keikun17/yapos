@@ -1,0 +1,14 @@
+= form_for @invoice, html: {class: 'form-horizontal'} do |f|
+  .row
+    .col-sm-6
+      .row
+        .form-group
+          = f.label :reference, class: 'control-label col-sm-4'
+          .col-sm-6
+            = f.text_field :reference, class: 'form-control'
+  .row
+    .col-sm-6
+
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to "Cancel", invoices_path, :class => 'btn'
