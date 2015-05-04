@@ -1,0 +1,38 @@
+.invoices-header
+  %h1
+    Invoice
+    = @invoice.reference
+
+.row
+  .col-sm-3
+    %h3 Invoice Date
+  .col-sm-5
+    = @invoice.invoice_date.to_s(:long) if @invoice.invoice_date
+.row
+  .col-sm-3
+    %h3 RFQ References
+    - @invoice.quotes.each do |quote|
+      = link_to quote.quote_reference, quote
+      %br
+
+  .col-sm-3
+    %h3 Purchase Orders
+    - @invoice.orders.each do |order|
+      %strong Purchase Order
+      = link_to order.reference, order
+
+
+      - order.offers.includes(:invoices).where( { invoices: {id: @invoice } } ).each do |offer|
+        = render 'offers/actual_offer', offer: offer
+  .col-sm-3
+    %h3 DR References
+    - @invoice.offers.each do |offer|
+      = offer.delivery_receipt_reference
+      %br
+
+
+  .col-sm-1
+  .col-sm-1
+  .col-sm-1
+  .col-sm-1
+  .col-sm-1
