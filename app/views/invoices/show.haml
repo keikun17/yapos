@@ -11,13 +11,13 @@
 .row
   .col-sm-3
     %h3 RFQ References
-    - @invoice.quotes.each do |quote|
+    - @invoice.quotes.uniq.each do |quote|
       = link_to quote.quote_reference, quote
       %br
 
   .col-sm-3
     %h3 Purchase Orders
-    - @invoice.orders.each do |order|
+    - @invoice.orders.uniq.each do |order|
       %strong Purchase Order
       = link_to order.reference, order
 
