@@ -31,27 +31,6 @@ class Offer < ActiveRecord::Base
     :service
   )
 
-  # TODO : Prevent duplicate associations
-  def invoices_attributes=(things)
-    _invoices = []
-
-    things.each do |k,v|
-      marked_for_deletion = (!v["_destroy"].blank? and (v.delete("_destroy") != 'false'))
-      invoice = Invoice.find_or_create_by(reference: v["reference"])
-
-      if marked_for_deletion
-        self.invoices.delete(invoice)
-
-      else
-        _invoices << invoice unless invoice.reference.blank?
-      end
-
-    end
-
-    self.invoices = _invoices
-
-  end
-
   belongs_to :request
 
   counter_culture(
@@ -149,6 +128,28 @@ class Offer < ActiveRecord::Base
   )
 
   delegate :ordered_at, :order_date, to: :supplier_purchase, allow_nil: true, prefix: true
+
+  # TODO : Prevent duplicate associations
+  def invoices_attributes=(things)
+    _invoices = []
+
+    things.each do |k,v|
+      marked_for_deletion = (!v["_destroy"].blank? and (v.delete("_destroy") != 'false'))
+      invoice = Invoice.find_or_create_by(reference: v["reference"])
+
+      if marked_for_deletion
+        self.invoices.delete(invoice)
+
+      else
+        _invoices << invoice unless invoice.reference.blank?
+      end
+
+    end
+
+    self.invoices = _invoices
+
+  end
+
 
   def self.from_supplier(suppliers)
     suppliers ||= 'all'
