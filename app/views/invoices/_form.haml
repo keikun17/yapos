@@ -3,11 +3,24 @@
     .col-sm-6
       .row
         .form-group
-          = f.label :reference, class: 'control-label col-sm-4'
+          = f.label :reference, class: 'control-label col-sm-6'
           .col-sm-6
             = f.text_field :reference, class: 'form-control'
   .row
     .col-sm-6
+      .row
+        .form-group
+          = f.label :invoice_date, class: 'control-label col-sm-6'
+          .col-sm-6
+            = f.date_select :invoice_date, {}, class: 'form-control date-select'
+  .row
+    .col-sm-6
+      .row
+        .form-group
+          = f.label :amount, 'Actual Invoice Total Amount', class: 'control-label col-sm-6'
+          .col-sm-6
+            = f.text_field :amount, class: 'form-control'
+
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
