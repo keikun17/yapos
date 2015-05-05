@@ -1,5 +1,5 @@
 class Invoice < ActiveRecord::Base
-  attr_accessible :reference, :invoice_date, :amount
+  attr_accessible :reference, :invoice_date, :amount, :payments_attributes
 
   validates :reference, presence: true, uniqueness: true
 
@@ -8,7 +8,12 @@ class Invoice < ActiveRecord::Base
   has_many :orders, through: :offers
   has_many :quotes, through: :offers
 
-  has_and_belongs_to_many :payments, join_table: :payments_invoices
+  has_many :payments_invoices, dependent: :destroy
+  has_many :payments, through: :payments_invoices
+
+  accepts_nested_attributes_for :payments,
+    :allow_destroy => true,
+    :reject_if => lambda { |p| p[:reference].blank? }
 
 end
 

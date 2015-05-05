@@ -21,7 +21,18 @@
           .col-sm-6
             = f.text_field :amount, class: 'form-control'
 
+  %h3 Payment Records
+  .row
+    .col-sm-10
+      - f.object.payments.build if f.object.payments.empty?
+      = f.fields_for :payments do |ff|
+        = render 'invoices/payment_fields', f: ff
+      .row
+        .col-sm-12= link_to_add_fields "Add Payment" , f, :payments, '$(this).parent()'
 
-  .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
-    = link_to "Cancel", invoices_path, :class => 'btn'
+
+  .row
+    .col-sm-12
+      .form-actions
+        = f.submit nil, :class => 'btn btn-primary'
+        = link_to "Cancel", invoices_path, :class => 'btn'
