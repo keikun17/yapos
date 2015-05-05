@@ -42,4 +42,10 @@
       = offer.delivery_receipt_reference
       %br
 
+  .col-sm-3
+    %h3 Payment References
+    - @invoice.payments.each do |payment|
+      = payment.reference
+      %br
+
 
