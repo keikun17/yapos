@@ -5,19 +5,17 @@
     = link_to 'Edit', edit_invoice_path(@invoice), :class => 'btn btn-primary'
 
 .row
-  .col-sm-2
-    %h3
-      Invoice Date
-  .col-sm-6
-    %h3
+  .col-sm-3
+    %p
+      %strong Invoice Date
+      %br
       = @invoice.invoice_date.to_date.to_s(:long) if @invoice.invoice_date
 
 .row
-  .col-sm-2
-    %h3
-      Invoice Amount
-  .col-sm-6
-    %h3
+  .col-sm-3
+    %p
+      %strong Invoice Amount
+      %br
       = @invoice.display_amount
 
 %hr
