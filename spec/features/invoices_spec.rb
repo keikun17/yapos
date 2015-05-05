@@ -2,11 +2,12 @@ require 'rails_helper'
 
 feature "Sales Invoice", js: true do
   include_context "Order quote with 1 request and 1 offer"
+  let(:order_reference) { "PO#2" }
+  let(:rfq_reference) { "PR# Q1-O1" }
+  let(:sales_invoice_reference_1) { "SI#1" }
+  let(:sales_invoice_reference_2) { "SI#2" }
 
   feature "Associating Sales invoice from the order's 'Set Delivery' modal" do
-    let(:order_reference) { "PO#2" }
-    let(:sales_invoice_reference_1) { "SI#1" }
-    let(:sales_invoice_reference_2) { "SI#2" }
 
     let(:go_create_invoices) {
       click_link "Client Orders"
@@ -35,6 +36,15 @@ feature "Sales Invoice", js: true do
       expect(page).to have_link(order_reference)
       expect(page).to have_link(sales_invoice_reference_1)
       expect(page).to have_link(sales_invoice_reference_2)
+
+      click_link(sales_invoice_reference_1)
+      expect(page).to have_link(order_reference)
+      expect(page).to have_link(rfq_reference)
+
+      visit "/invoices"
+      expect(page).to have_link(sales_invoice_reference_2)
+      expect(page).to have_link(order_reference)
+      expect(page).to have_link(rfq_reference)
     end
 
     context "delete invoice" do
@@ -56,6 +66,16 @@ feature "Sales Invoice", js: true do
         expect(page).to have_link(sales_invoice_reference_1)
         expect(page).not_to have_link(sales_invoice_reference_2)
         expect(Invoice.count).to eq(2) # Invoice does not get deleted. Association just removed
+
+        visit "/invoices"
+        click_link(sales_invoice_reference_1)
+        expect(page).to have_link(order_reference)
+        expect(page).to have_link(rfq_reference)
+
+        visit "/invoices"
+        click_link(sales_invoice_reference_2)
+        expect(page).not_to have_link(order_reference)
+        expect(page).not_to have_link(rfq_reference)
       end
     end
 
@@ -79,9 +99,6 @@ feature "Sales Invoice", js: true do
   end
 
   feature "Setting the Sales invoice from the 'edit order' page" do
-    let(:order_reference) { "PO#2" }
-    let(:sales_invoice_reference_1) { "SI#1" }
-    let(:sales_invoice_reference_2) { "SI#2" }
 
     let(:go_create_invoices) do
       click_link "Client Orders"
@@ -110,6 +127,15 @@ feature "Sales Invoice", js: true do
       expect(page).to have_link(order_reference)
       expect(page).to have_link(sales_invoice_reference_1)
       expect(page).to have_link(sales_invoice_reference_2)
+
+      click_link(sales_invoice_reference_1)
+      expect(page).to have_link(order_reference)
+      expect(page).to have_link(rfq_reference)
+
+      visit "/invoices"
+      click_link(sales_invoice_reference_2)
+      expect(page).to have_link(order_reference)
+      expect(page).to have_link(rfq_reference)
     end
 
     context "Invoice Removal" do
@@ -131,14 +157,24 @@ feature "Sales Invoice", js: true do
         expect(page).to have_link(sales_invoice_reference_1)
         expect(page).not_to have_link(sales_invoice_reference_2)
         expect(Invoice.count).to eq(2) # Invoice does not get deleted. Association just removed
+
+        visit '/invoices'
+        click_link(sales_invoice_reference_1)
+        expect(page).to have_link(order_reference)
+        expect(page).to have_link(rfq_reference)
+
+        visit "/invoices"
+        click_link(sales_invoice_reference_2)
+        expect(page).not_to have_link(order_reference)
+        expect(page).not_to have_link(rfq_reference)
       end
     end
 
     context "An existing Sales invoice record is being assigned" do
-       before do
-         Invoice.create(name: sales_invoice_reference_1)
-         go_create_invoices
-       end
+      before do
+        Invoice.create(name: sales_invoice_reference_1)
+        go_create_invoices
+      end
 
       it "Uses existing invoice record and associates is with the order" do
         visit "/invoices"
@@ -148,6 +184,16 @@ feature "Sales Invoice", js: true do
         expect(page).to have_link(order_reference)
         expect(page).to have_link(sales_invoice_reference_1)
         expect(page).to have_link(sales_invoice_reference_2)
+
+        visit "/invoices"
+        click_link(sales_invoice_reference_1)
+        expect(page).to have_link(order_reference)
+        expect(page).to have_link(rfq_reference)
+
+        visit "/invoices"
+        click_link(sales_invoice_reference_2)
+        expect(page).to have_link(order_reference)
+        expect(page).to have_link(rfq_reference)
       end
 
     end
