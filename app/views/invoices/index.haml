@@ -15,7 +15,7 @@
         - if invoice.amount.blank?
           = link_to "Input amount", edit_invoice_path(invoice)
         - else
-          = invoice.amount
+          = invoice.display_amount
       %td
         - invoice.payments.each do |payment|
           = payment.reference
