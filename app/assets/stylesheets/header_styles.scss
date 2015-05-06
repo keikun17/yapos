@@ -54,3 +54,9 @@
   @extend .pos-header;
   @extend .theme-supplier-order;
 }
+
+.payments-header{
+  @extend .pos-header;
+  @extend .theme-payment;
+}
+
