@@ -9,6 +9,10 @@
     %tr
       %th.reference Payment reference
       %th Sales Invoice references
+      %th RFQ references
+      %th PO references
+      %th DR references
+
       %th
   %tbody
     - @payments.each do |payment|
@@ -19,3 +23,13 @@
             = link_to invoice.reference, invoice
             %br
         %td
+          - payment.quotes.each do |quote|
+            = link_to quote.quote_reference, quote
+            %br
+
+        %td
+          - payment.orders.each do |order|
+            = link_to order.reference, order
+            %br
+        %td
+          = payment.offers.where.not(delivery_receipt_reference: nil).collect(&:delivery_receipt_reference).uniq.join(',')
