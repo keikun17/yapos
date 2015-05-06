@@ -4,6 +4,7 @@
   %tr
     %th Invoice Reference
     %th Invoice Amount
+    %th Payment references
     %th RFQ references
     %th PO references
     %th DR references
@@ -15,6 +16,10 @@
           = link_to "Input amount", edit_invoice_path(invoice)
         - else
           = invoice.amount
+      %td
+        - invoice.payments.each do |payment|
+          = payment.reference
+          %br
       %td
         - invoice.quotes.each do |quote|
           = link_to quote.quote_reference, quote
