@@ -1,0 +1,21 @@
+.payments-header
+  %h1
+    Payments
+
+.pull-right= will_paginate(@payments)
+
+%table.table.payments-list
+  %thead
+    %tr
+      %th.reference Payment reference
+      %th Sales Invoice references
+      %th
+  %tbody
+    - @payments.each do |payment|
+      %tr
+        %td= payment.reference
+        %td
+          - payment.invoices.each do |invoice|
+            = link_to invoice.reference, invoice
+            %br
+        %td
