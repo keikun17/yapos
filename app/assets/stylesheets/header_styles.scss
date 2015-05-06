@@ -22,7 +22,6 @@
   z-index: 1;
 }
 
-
 .print-header-label{
   @extend .col-sm-12 !optional;
   border: 2px solid black;
@@ -44,6 +43,11 @@
 .client-order-header {
   @extend .pos-header;
   @extend .theme-order;
+}
+
+.invoices-header{
+  @extend .pos-header;
+  @extend .theme-invoice;
 }
 
 .supplier-purchases-header{
