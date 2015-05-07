@@ -8,6 +8,7 @@
   %tr
     %th Invoice Reference
     %th Invoice Amount
+    %th Invoice Date
     %th Payment references
     %th RFQ references
     %th PO references
@@ -20,6 +21,7 @@
           = link_to "Input amount", edit_invoice_path(invoice)
         - else
           = invoice.display_amount
+      %td= invoice.display_date
       %td
         - invoice.payments.each do |payment|
           = payment.reference
