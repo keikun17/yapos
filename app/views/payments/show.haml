@@ -1,0 +1,51 @@
+.payments-header
+  %h1
+    Payment
+    = @payment.reference
+    = link_to 'Edit', edit_payment_path(@payment), :class => 'btn btn-primary'
+
+.row
+  .col-sm-3
+    %p
+      %strong Payment Date
+      %br
+      = @payment.display_date
+
+.row
+  .col-sm-3
+    %p
+      %strong Payment Amount
+      %br
+      = @payment.display_amount
+
+%hr
+
+.row
+  .col-sm-3
+    %h3 RFQ References
+    - @payment.quotes.uniq.each do |quote|
+      = link_to quote.quote_reference, quote
+      %br
+
+  .col-sm-3
+    %h3 Purchase Orders
+    - @payment.orders.uniq.each do |order|
+      %strong Purchase Order
+      = link_to order.reference, order
+
+
+      - order.offers.includes(:payments).where( { payments: {id: @payment } } ).each do |offer|
+        = render 'offers/actual_offer', offer: offer
+  .col-sm-3
+    %h3 DR References
+    - @payment.offers.each do |offer|
+      = offer.delivery_receipt_reference
+      %br
+
+  .col-sm-3
+    %h3 Payment References
+    - @payment.invoices.each do |invoice|
+      = link_to invoice.reference, invoice
+      %br
+
+

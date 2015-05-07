@@ -17,7 +17,7 @@
   %tbody
     - @payments.each do |payment|
       %tr
-        %td= payment.reference
+        %td= link_to payment.reference, payment
         %td
           - payment.invoices.each do |invoice|
             = link_to invoice.reference, invoice

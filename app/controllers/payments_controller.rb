@@ -8,5 +8,9 @@ class PaymentsController < ApplicationController
 
   end
 
+  def show
+    @payment = Payment.find(params[:id]).decorate
+  end
+
 
 end

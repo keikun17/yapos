@@ -53,6 +53,7 @@ class Offer < ActiveRecord::Base
 
   has_many :offers_invoices, dependent: :destroy
   has_many :invoices, through: :offers_invoices
+  has_many :payments, through: :invoices
 
   accepts_nested_attributes_for :supplier_order
 
