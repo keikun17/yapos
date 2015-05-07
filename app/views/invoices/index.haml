@@ -24,7 +24,7 @@
       %td= invoice.display_date
       %td
         - invoice.payments.each do |payment|
-          = payment.reference
+          = link_to payment.reference, payment
           %br
       %td
         - invoice.quotes.each do |quote|
