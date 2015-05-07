@@ -9,7 +9,7 @@
     %p
       %strong Invoice Date
       %br
-      = @invoice.invoice_date.to_date.to_s(:long) if @invoice.invoice_date
+      = @invoice.display_date
 
 .row
   .col-sm-3
