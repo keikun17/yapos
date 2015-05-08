@@ -22,7 +22,7 @@ feature "Client Management" do
 
   scenario "New Client" do
     expect(Client.count).to eq(0)
-    click_link "Client Records"
+    click_link "Clients"
     click_link "New"
 
     fill_in "Name", with: "Super Cement"
@@ -50,7 +50,7 @@ feature "Client Management" do
            address: "Pasig, Manila"
           )
 
-    click_link "Client Records"
+    click_link "Clients"
     click_link "Super Cement"
     click_link "Edit"
 

@@ -16,7 +16,7 @@ feature "Order Creation" do
 
     feature "Client Offer Pages" do
       background do
-        click_link "Client Records"
+        click_link "Clients"
         click_link "Blue Buyers"
       end
 
@@ -28,7 +28,7 @@ feature "Order Creation" do
 
     feature "Supplier Offer Pages" do
       background do
-        click_link "Supplier Records"
+        click_link "Suppliers"
         click_link "Super Seller"
       end
 
@@ -129,7 +129,7 @@ feature "Order Creation" do
 
       scenario "RFQ and quote in the client and supplier's page should be highlighted" do
         # Client Records
-        click_link "Client Records"
+        click_link "Clients"
         click_link client_name
 
         #   RFQ list
@@ -142,7 +142,7 @@ feature "Order Creation" do
 
 
         # Supplier Records
-        click_link "Supplier Records"
+        click_link "Suppliers"
         click_link supplier_name
 
         click_link "Awaiting Client Purchase (Sorted by Quote Date)"

@@ -22,7 +22,7 @@ feature "Supplier Management" do
 
   scenario "New Supplier" do
     expect(Supplier.count).to eq(0)
-    click_link "Supplier Records"
+    click_link "Suppliers"
     click_link "New"
 
     fill_in "Name", with: "Super Rubber"
@@ -48,7 +48,7 @@ feature "Supplier Management" do
            address: "Pasig, Manila"
           )
 
-    click_link "Supplier Records"
+    click_link "Suppliers"
     click_link "Super Rubber"
     click_link "Edit"
 

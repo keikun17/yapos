@@ -13,7 +13,7 @@ feature "Quotes Creation", js: true do
   it "should appear on the 'all offers' page, client's quotes and offers page and suppliers' quotes and offers page" do
     # Clients Quotes and offers
     visit root_path
-    click_link "Client Records"
+    click_link "Clients"
     click_link "Blue Buyers"
     expect(page).to have_link("PR#0001")
     expect(page).to have_text('heavy bolter')
@@ -29,7 +29,7 @@ feature "Quotes Creation", js: true do
 
     # Supplier Quotes and offers
     visit root_path
-    click_link "Supplier Records"
+    click_link "Suppliers"
     click_link "Super Seller"
     click_link "Awaiting Client Purchase (Sorted by Quote Date)"
     expect(page).to have_link("PR#0001")
