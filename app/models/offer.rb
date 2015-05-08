@@ -52,8 +52,8 @@ class Offer < ActiveRecord::Base
   has_one :client, through: :quote
 
   has_many :offers_invoices, dependent: :destroy
-  has_many :invoices, through: :offers_invoices
-  has_many :payments, through: :invoices
+  has_many :invoices, -> { uniq }, through: :offers_invoices
+  has_many :payments, -> { uniq }, through: :invoices
 
   accepts_nested_attributes_for :supplier_order
 
