@@ -12,6 +12,18 @@ li#supplier-order-nav a{
   @extend .theme-supplier-order
 }
 
+li#invoice-nav a{
+  @extend .theme-invoice
+}
+
+li#payment-nav a{
+  @extend .theme-payment
+}
+
+li#delivery-nav a{
+  @extend .theme-delivery
+}
+
 #nav-search{
   width: 285px;
 }
