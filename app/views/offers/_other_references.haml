@@ -13,14 +13,23 @@
       %strong DR#
       = offer.delivery_receipt_reference
 
+  = render 'offers/delivery_date', offer: offer
+
   - if !offer.invoices.empty?
     .alert.alert-success
+      %strong Invoices
       - offer.invoices.each do |invoice|
-        %strong SI#
         = link_to invoice.reference, invoice
         %br
 
-  = render 'offers/delivery_date', offer: offer
+  - if !offer.payments.empty?
+    .alert.alert-success
+      %strong Payments
+      - offer.payments.each do |payment|
+        = link_to payment.reference, payment
+        %br
+
+
 
 - else
   = link_to_modal "Enter PO#", offer, class: 'btn btn-small btn-success'
