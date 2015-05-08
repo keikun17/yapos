@@ -12,5 +12,15 @@ class PaymentsController < ApplicationController
     @payment = Payment.find(params[:id]).decorate
   end
 
+  def edit
+    @payment = Payment.find(params[:id]).decorate
+  end
+
+  def update
+    @payment = Payment.find(params[:id]).decorate
+    @payment.update_attributes(params[:payment])
+
+    respond_with(@payment)
+  end
 
 end

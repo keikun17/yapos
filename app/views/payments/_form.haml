@@ -1,0 +1,28 @@
+= form_for @payment, html: {class: 'form-horizontal'} do |f|
+  .row
+    .col-sm-6
+      .row
+        .form-group
+          = f.label :reference, class: 'control-label col-sm-6'
+          .col-sm-6
+            = f.text_field :reference, class: 'form-control'
+  .row
+    .col-sm-6
+      .row
+        .form-group
+          = f.label :date_received, class: 'control-label col-sm-6'
+          .col-sm-6
+            = f.date_select :date_received, {}, class: 'form-control date-select'
+  .row
+    .col-sm-6
+      .row
+        .form-group
+          = f.label :amount, 'Actual Payment Total Amount', class: 'control-label col-sm-6'
+          .col-sm-6
+            = f.text_field :amount, class: 'form-control'
+
+  .row
+    .col-sm-12
+      .form-actions
+        = f.submit nil, :class => 'btn btn-primary'
+        = link_to "Cancel", payments_path, :class => 'btn'
