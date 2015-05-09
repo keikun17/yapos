@@ -81,7 +81,7 @@ feature "Delivery and SI", js: true do
       before do
         visit root_path
         click_link "Client Orders"
-        click_link "Set Delivery"
+        click_link "Set Delivery / SI"
         fill_in "DR #", with: 'DR#1-1'
         click_button "Update DR and SI record"
       end
@@ -98,7 +98,7 @@ feature "Delivery and SI", js: true do
       before do
         visit root_path
         click_link "Client Orders"
-        click_link "Set Delivery"
+        click_link "Set Delivery / SI"
         fill_in "SI Reference", with: 'SI#1-1'
         click_button "Update DR and SI record"
       end

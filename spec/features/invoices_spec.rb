@@ -12,7 +12,7 @@ feature "Sales Invoice", js: true do
     let(:go_create_invoices) {
       click_link "Client Orders"
       click_link order_reference
-      click_link "Set Delivery"
+      click_link "Set Delivery / SI"
       click_link "Add Invoice"
 
       within(page.all(".invoice-line")[0]) do
@@ -52,7 +52,7 @@ feature "Sales Invoice", js: true do
         go_create_invoices
         click_link "Client Orders"
         click_link order_reference
-        click_link "Set Delivery"
+        click_link "Set Delivery / SI"
         click_link "Add Invoice"
 
         within(page.all(".invoice-line")[1]) do
