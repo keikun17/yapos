@@ -1,34 +1,69 @@
+-# - if offer.order
+-#   .alert.alert-success
+-#     %strong Client PO#
+-#     = link_to offer.order_reference, offer.order
+-#
+-#   - if !offer.supplier_purchase_reference.blank?
+-#     .alert.alert-info
+-#       %strong Supplier PO#
+-#       = link_to offer.supplier_purchase.reference, offer.supplier_purchase
+-#
+-#   - if !offer.delivery_receipt_reference.blank?
+-#     .alert.alert-success
+-#       %strong DR#
+-#       = offer.delivery_receipt_reference
+-#
+-#   = render 'offers/delivery_date', offer: offer
+-#
+-#   - if !offer.invoices.empty?
+-#     .alert.alert-success
+-#       %strong Invoices
+-#       - offer.invoices.each do |invoice|
+-#         = link_to invoice.reference, invoice
+-#         %br
+-#
+-#   - if !offer.payments.empty?
+-#     .alert.alert-success
+-#       %strong Payments
+-#       - offer.payments.each do |payment|
+-#         = link_to payment.reference, payment
+-#         %br
+
+
 - if offer.order
-  .alert.alert-success
-    %strong Client PO#
-    = link_to offer.order_reference, offer.order
-
-  - if !offer.supplier_purchase_reference.blank?
-    .alert.alert-info
-      %strong Supplier PO#
-      = link_to offer.supplier_purchase.reference, offer.supplier_purchase
-
-  - if !offer.delivery_receipt_reference.blank?
-    .alert.alert-success
-      %strong DR#
-      = offer.delivery_receipt_reference
-
   = render 'offers/delivery_date', offer: offer
+  %strong Client PO#
+  %br
+  - if offer.order
+    = link_to offer.order_reference, offer.order, class: 'label label-order'
+    %br
 
+
+  %strong Supplier PO#
+  %br
+  - if !offer.supplier_purchase_reference.blank?
+    = link_to offer.supplier_purchase.reference, offer.supplier_purchase, class: 'label label-supplier-order'
+    %br
+
+  %strong DR#
+  %br
+  - if !offer.delivery_receipt_reference.blank?
+    %span.label.label-delivery= offer.delivery_receipt_reference
+    %br
+
+  %strong Invoices
+  %br
   - if !offer.invoices.empty?
-    .alert.alert-success
-      %strong Invoices
-      - offer.invoices.each do |invoice|
-        = link_to invoice.reference, invoice
-        %br
+    - offer.invoices.each do |invoice|
+      = link_to invoice.reference, invoice, class: 'label label-invoice'
+      %br
 
+  %strong Payments
+  %br
   - if !offer.payments.empty?
-    .alert.alert-success
-      %strong Payments
-      - offer.payments.each do |payment|
-        = link_to payment.reference, payment
-        %br
-
+    - offer.payments.each do |payment|
+      = link_to payment.reference, payment, class: 'label label-payment'
+      %br
 
 
 - else
