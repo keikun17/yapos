@@ -33,37 +33,42 @@
 - if offer.order
   = render 'offers/delivery_date', offer: offer
   %strong Client PO#
-  %br
-  - if offer.order
-    = link_to offer.order_reference, offer.order, class: 'label label-order'
-    %br
+  .row-fluid
+    .col-sm-12
+      - if offer.order
+        = link_to offer.order_reference, offer.order, class: 'label label-order'
+        %br
 
 
   %strong Supplier PO#
-  %br
-  - if !offer.supplier_purchase_reference.blank?
-    = link_to offer.supplier_purchase.reference, offer.supplier_purchase, class: 'label label-supplier-order'
-    %br
+  .row-fluid
+    .col-sm-12
+      - if !offer.supplier_purchase_reference.blank?
+        = link_to offer.supplier_purchase.reference, offer.supplier_purchase, class: 'label label-supplier-order'
+        %br
 
   %strong DR#
-  %br
-  - if !offer.delivery_receipt_reference.blank?
-    %span.label.label-delivery= offer.delivery_receipt_reference
-    %br
+  .row-fluid
+    .col-sm-12
+      - if !offer.delivery_receipt_reference.blank?
+        %span.label.label-delivery= offer.delivery_receipt_reference
+        %br
 
   %strong Invoices
-  %br
-  - if !offer.invoices.empty?
-    - offer.invoices.each do |invoice|
-      = link_to invoice.reference, invoice, class: 'label label-invoice'
-      %br
+  .row-fluid
+    .col-sm-12
+      - if !offer.invoices.empty?
+        - offer.invoices.each do |invoice|
+          = link_to invoice.reference, invoice, class: 'label label-invoice'
+          %br
 
   %strong Payments
-  %br
-  - if !offer.payments.empty?
-    - offer.payments.each do |payment|
-      = link_to payment.reference, payment, class: 'label label-payment'
-      %br
+  .row-fluid
+    .col-sm-12
+      - if !offer.payments.empty?
+        - offer.payments.each do |payment|
+          = link_to payment.reference, payment, class: 'label label-payment'
+          %br
 
 
 - else
