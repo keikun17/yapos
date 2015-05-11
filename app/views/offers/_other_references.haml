@@ -70,7 +70,9 @@
           = link_to payment.reference, payment, class: 'label label-payment'
           %br
 
-  = render 'offers/delivery_date', offer: offer
+  .row-fluid
+    .col-sm-12
+      = render 'offers/delivery_date', offer: offer
 
 - else
   = link_to_modal "Enter PO#", offer, class: 'btn btn-small btn-success'
