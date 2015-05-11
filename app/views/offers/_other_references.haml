@@ -31,7 +31,6 @@
 
 
 - if offer.order
-  = render 'offers/delivery_date', offer: offer
   %strong Client PO#
   .row-fluid
     .col-sm-12
@@ -54,6 +53,7 @@
         %span.label.label-delivery= offer.delivery_receipt_reference
         %br
 
+
   %strong Invoices
   .row-fluid
     .col-sm-12
@@ -70,6 +70,7 @@
           = link_to payment.reference, payment, class: 'label label-payment'
           %br
 
+  = render 'offers/delivery_date', offer: offer
 
 - else
   = link_to_modal "Enter PO#", offer, class: 'btn btn-small btn-success'
