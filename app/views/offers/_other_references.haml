@@ -75,7 +75,7 @@
       = render 'offers/delivery_date', offer: offer
 
 - else
-  = link_to_modal "Enter PO#", offer, class: 'btn btn-small btn-success'
+  = link_to_modal "Enter PO#", offer, class: 'btn btn-sm btn-success'
   = render 'quotes/modals/set_offer_po_number', modal_id: dom_id(offer), offer: OfferDecorator.decorate(offer)
 
 

@@ -18,5 +18,5 @@
             %span.label.label-inverse= supplier_order.offer.supplier_name
             = supplier_order.reference
             %br
-            = link_to_modal("Estimate Manufacture Date", supplier_order, {class: 'btn btn-small btn-primary'})
+            = link_to_modal("Estimate Manufacture Date", supplier_order, {class: 'btn btn-sm btn-primary'})
         = render 'supplier_orders/modals/set_manufacture_date', modal_id: dom_id(supplier_order), supplier_order: SupplierOrderDecorator.new(supplier_order)
