@@ -103,7 +103,7 @@ class Quote < ActiveRecord::Base
       .where("supplier_orders.delivered_at is null")
   end
 
-  scope :today, -> { where(created_at: (Time.zone.today..Time.zone.tomorrow)) }
+  scope :today, -> { where(created_at: (Time.zone.today.beginning_of_day..Time.zone.today.end_of_day)) }
 
   # Tire/ElasticSearch Configuration
   def as_indexed_json(options = {})
