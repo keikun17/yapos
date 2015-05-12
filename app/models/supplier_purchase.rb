@@ -41,6 +41,13 @@ class SupplierPurchase < ActiveRecord::Base
 
   accepts_nested_attributes_for :supplier_orders, update_only: true
 
+  def self.today
+    supplier_purchases= SupplierPurchase.arel_table
+    created_today = supplier_purchases[:created_at].in(Time.zone.today.beginning_of_day..Time.zone.today.end_of_day)
+    ordered_today = supplier_purchases[:ordered_at].in(Time.zone.today.beginning_of_day..Time.zone.today.end_of_day)
+    SupplierPurchase.where(created_today.or(ordered_today))
+  end
+
   def as_indexed_json(options={})
     self.as_json(
       include: {
