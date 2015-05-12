@@ -103,7 +103,12 @@ class Quote < ActiveRecord::Base
       .where("supplier_orders.delivered_at is null")
   end
 
-  scope :today, -> { where(created_at: (Time.zone.today.beginning_of_day..Time.zone.today.end_of_day)) }
+  def self.today
+    quotes = Quote.arel_table
+    created_today = quotes[:created_at].in(Time.zone.today.beginning_of_day..Time.zone.today.end_of_day)
+    quoted_today = quotes[:quote_date].in(Time.zone.today.beginning_of_day..Time.zone.today.end_of_day)
+    Quote.where(created_today.or(quoted_today))
+  end
 
   # Tire/ElasticSearch Configuration
   def as_indexed_json(options = {})
