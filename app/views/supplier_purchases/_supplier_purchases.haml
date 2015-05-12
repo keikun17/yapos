@@ -1,0 +1,35 @@
+%table.table.table-condensed
+  %thead
+    %th.col-sm-1 SUPPLIER PO#
+    %th.col-sm-1 RFQs
+    %th.col-sm-1 ClientPOs
+    %th.col-sm-6 Specs
+    %th.col-sm-1 Ordered from Supplier at
+    %th.col-sm-1 Supplier
+    %th.col-sm-1
+  %tbody
+    - supplier_purchases.each do |supplier_purchase|
+      %tr{class: "multi-content #{'error' if supplier_purchase.ordered_at.blank?}"}
+        %td= link_to supplier_purchase.reference, supplier_purchase
+        %td
+          - supplier_purchase.quotes.uniq.each do |quote|
+            = link_to quote.quote_reference, quote_path(quote)
+            (#{quote.client_abbrev || quote.client_name})
+            %br
+        %td
+          - supplier_purchase.orders.each do |order|
+            = link_to order.reference, order
+            %br
+        %td
+          - supplier_purchase.supplier_orders.each do |supplier_order|
+            %p
+              %span.request-quantity= supplier_order.offer.request.decorate.display_quantity
+              = supplier_order.actual_specs
+        %td= supplier_purchase.ordered_from_supplier_at
+        %td
+          - supplier_purchase.suppliers.each do |supplier|
+            = link_to supplier.name, supplier
+            %br
+        %td
+          = link_to 'Edit', edit_supplier_purchase_path(supplier_purchase),:class => 'btn btn-mini'
+          = link_to 'Print', print_supplier_purchase_path(supplier_purchase),:class => 'btn btn-mini', target: '_blank'
