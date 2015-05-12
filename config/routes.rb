@@ -93,6 +93,7 @@ Yapos::Application.routes.draw do
 
 
   get 'accounting' => 'accounting#index', :as => 'accounting'
+  get 'today' => 'today#show', :as => 'today'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
