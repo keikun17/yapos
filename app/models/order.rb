@@ -45,6 +45,12 @@ class Order < ActiveRecord::Base
   scope :with_supply_offers, -> { includes(:offers).references(:offers).where.not(offers: {service: true}).where.not(offers: {id: nil}).not_yet_ordered }
   scope :with_service_offers, -> { includes(:quotes, {quotes: :offers}).where(offers: {service: true}) }
 
+  def self.today
+    orders = Order.arel_table
+    created_today = orders[:created_at].in(Time.zone.today.beginning_of_day..Time.zone.today.end_of_day)
+    ordered_today = orders[:purchase_date].in(Time.zone.today.beginning_of_day..Time.zone.today.end_of_day)
+    Order.where(created_today.or(ordered_today))
+  end
 
   # Tire/ElasticSearch Configuration
 
