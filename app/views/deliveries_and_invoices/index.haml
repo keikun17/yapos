@@ -5,6 +5,10 @@
 
 = render 'invoices/print_delivery_monitoring'
 
+.row
+  .col-sm-12
+    = render 'clients/form_with_select_to_filter_clients'
+
 .pull-right= will_paginate(@offers)
 
 %table.table
