@@ -4,7 +4,17 @@ class SupplierPurchasesController < ApplicationController
     @supplier_purchases = SupplierPurchase.where("supplier_purchases.reference <> ''")
       .includes(:supplier_orders).where.not(supplier_orders: {id: nil})
       .order('supplier_purchases.id desc')
-      .page(params[:page]).per_page(80).decorate
+
+    if !params[:client_id].blank?
+      @client = Client.find(params[:client_id])
+      @supplier_purchases = @supplier_purchases.includes(:quotes).where(quotes: {client_id: params[:client_id]})
+    end
+
+    if !params[:supplier_id].blank?
+      @supplier_purchases = @supplier_purchases.includes(:suppliers).where(suppliers: {id: params[:supplier_id]})
+    end
+
+    @supplier_purchases = @supplier_purchases.page(params[:page]).per_page(40).decorate
   end
 
   def show

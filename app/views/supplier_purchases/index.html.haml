@@ -1,6 +1,10 @@
 .supplier-purchases-header
   %h1 Supplier Orders
 
+.row
+  .col-sm-12
+    = render 'clients/form_with_select_to_filter_clients'
+
 
 .pull-right=will_paginate(@supplier_purchases)
 = render 'supplier_purchases/supplier_purchases', supplier_purchases: @supplier_purchases
