@@ -1,6 +1,16 @@
 class InvoicesController < ApplicationController
   def index
-    @invoices = Invoice.all.page(params[:page]).per_page(50).decorate
+    @invoices = Invoice.all
+
+    if !params[:client_id].blank?
+      @invoices = @invoices.includes(:quotes).where(quotes: {client_id: params[:client_id]})
+    end
+
+    if !params[:supplier_id].blank?
+      @invoices = @invoices.includes(:suppliers).where(suppliers: {id: params[:supplier_id]})
+    end
+
+    @invoices = @invoices.page(params[:page]).per_page(50).decorate
   end
 
   def show

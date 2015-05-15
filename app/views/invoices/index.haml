@@ -2,6 +2,10 @@
   %h1
     Invoices
 
+.row
+  .col-sm-12
+    = render 'clients/form_with_select_to_filter_clients'
+
 .pull-right= will_paginate(@invoices)
 
 %table.table
@@ -29,6 +33,7 @@
       %td
         - invoice.quotes.each do |quote|
           = link_to quote.quote_reference, quote
+          (#{quote.client.decorate.display_name})
           %br
       %td
         - invoice.orders.each do |order|

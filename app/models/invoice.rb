@@ -5,6 +5,7 @@ class Invoice < ActiveRecord::Base
 
   has_many :offers_invoices, dependent: :destroy
   has_many :offers, through: :offers_invoices
+  has_many :suppliers, through: :offers
   has_many :orders, through: :offers
   has_many :quotes, through: :offers
 
