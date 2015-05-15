@@ -25,6 +25,7 @@
         %td
           - payment.quotes.each do |quote|
             = link_to quote.quote_reference, quote
+            (#{quote.client.decorate.display_name})
             %br
 
         %td
