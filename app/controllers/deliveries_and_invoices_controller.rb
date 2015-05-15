@@ -6,7 +6,6 @@ class DeliveriesAndInvoicesController < ApplicationController
       .order("supplier_orders.delivered_at desc")
 
     if !params[:client_id].blank?
-      @client = Client.find(params[:client_id])
       @offers = @offers.where(quotes: {client_id: params[:client_id]})
     end
 
