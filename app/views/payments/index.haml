@@ -2,6 +2,10 @@
   %h1
     Payments
 
+.row
+  .col-sm-12
+    = render 'clients/form_with_select_to_filter_clients'
+
 .pull-right= will_paginate(@payments)
 
 %table.table.payments-list
