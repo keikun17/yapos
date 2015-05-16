@@ -13,6 +13,7 @@
     %tr
       %th.reference Payment reference
       %th Sales Invoice references
+      %th Payment Amount
       %th RFQ references
       %th PO references
       %th DR references
@@ -26,6 +27,11 @@
           - payment.invoices.each do |invoice|
             = link_to invoice.reference, invoice
             %br
+        %td
+          - if payment.amount.blank?
+            = link_to "Input amount", edit_payment_path(payment)
+          - else
+            = payment.display_amount
         %td
           - payment.quotes.each do |quote|
             = link_to quote.quote_reference, quote

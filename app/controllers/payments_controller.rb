@@ -11,7 +11,7 @@ class PaymentsController < ApplicationController
       @payments = @payments.includes(:suppliers).where(suppliers: {id: params[:supplier_id]})
     end
 
-    @payments = @payments.page(params[:page]).per_page(40)
+    @payments = @payments.page(params[:page]).per_page(40).decorate
   end
 
   def unpaid_orders
