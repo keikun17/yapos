@@ -2,7 +2,7 @@ class DeliveriesAndInvoicesController < ApplicationController
   def index
     @offers = Offer.purchased
       .where("offers.delivery_receipt_reference <> ''")
-      .includes([:order, :quote, :supplier_order])
+      .includes([:order, :quote, :supplier_order, :invoices, :client, :supplier])
 
     if !params[:client_id].blank?
       @offers = @offers.where(quotes: {client_id: params[:client_id]})
