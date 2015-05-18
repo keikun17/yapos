@@ -1,7 +1,7 @@
 class DeliveriesAndInvoicesController < ApplicationController
   def index
     @offers = Offer.purchased
-      .where("offers.delivery_receipt_reference <> '' or offers.sales_invoice_reference <> ''")
+      .where("offers.delivery_receipt_reference <> ''")
       .includes([:order, :quote, :supplier_order])
       .order("supplier_orders.delivered_at desc")
 
