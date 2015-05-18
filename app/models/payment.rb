@@ -6,6 +6,7 @@ class Payment < ActiveRecord::Base
   has_many :orders, through: :invoices
   has_many :offers, through: :invoices
   has_many :quotes, through: :invoices
+  has_many :clients, through: :invoices
   has_many :suppliers, through: :offers
 
 end

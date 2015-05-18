@@ -43,4 +43,4 @@
             = link_to order.reference, order
             %br
         %td
-          = payment.offers.where.not(delivery_receipt_reference: nil).collect(&:delivery_receipt_reference).uniq.join(',')
+          = payment.offers.collect(&:delivery_receipt_reference).uniq.join(',')

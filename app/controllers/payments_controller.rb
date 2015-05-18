@@ -2,6 +2,7 @@ class PaymentsController < ApplicationController
 
   def index
     @payments = Payment.all
+      .includes([:offers, :quotes, :orders, :clients])
 
     if !params[:client_id].blank?
       @payments = @payments.includes(:quotes).where(quotes: {client_id: params[:client_id]})
