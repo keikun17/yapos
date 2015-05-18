@@ -40,6 +40,6 @@
           = link_to order.reference, order
           %br
       %td
-        = invoice.offers.where.not(delivery_receipt_reference: nil).collect(&:delivery_receipt_reference).uniq.join(',')
+        = invoice.offers.collect(&:delivery_receipt_reference).uniq.join(',')
 
 .pull-right= will_paginate(@invoices)
