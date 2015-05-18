@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429150548) do
+ActiveRecord::Schema.define(version: 20150518055754) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id",   limit: 4
@@ -112,6 +112,8 @@ ActiveRecord::Schema.define(version: 20150429150548) do
     t.integer  "supplier_id",            limit: 4
     t.integer  "client_id",              limit: 4
   end
+
+  add_index "orders", ["reference"], name: "index_orders_on_reference", using: :btree
 
   create_table "payments", force: :cascade do |t|
     t.string   "reference",     limit: 255
