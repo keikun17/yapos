@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518060128) do
+ActiveRecord::Schema.define(version: 20150518061718) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id",   limit: 4
@@ -88,9 +88,11 @@ ActiveRecord::Schema.define(version: 20150518060128) do
 
   add_index "offers", ["delivery_receipt_reference"], name: "index_offers_on_delivery_receipt_reference", using: :btree
   add_index "offers", ["order_reference"], name: "index_offers_on_order_reference", using: :btree
+  add_index "offers", ["request_id"], name: "index_offers_on_request_id", using: :btree
   add_index "offers", ["sales_invoice_reference"], name: "index_offers_on_sales_invoice_reference", using: :btree
   add_index "offers", ["service"], name: "index_offers_on_service", using: :btree
   add_index "offers", ["summary"], name: "index_offers_on_summary", using: :btree
+  add_index "offers", ["supplier_id"], name: "index_offers_on_supplier_id", using: :btree
   add_index "offers", ["vendor_item_code"], name: "index_offers_on_vendor_item_code", using: :btree
   add_index "offers", ["vendor_item_id"], name: "index_offers_on_vendor_item_id", using: :btree
 
@@ -168,7 +170,9 @@ ActiveRecord::Schema.define(version: 20150518060128) do
     t.text     "blurb",              limit: 65535
   end
 
+  add_index "quotes", ["client_id"], name: "index_quotes_on_client_id", using: :btree
   add_index "quotes", ["quote_date"], name: "index_quotes_on_quote_date", using: :btree
+  add_index "quotes", ["quote_reference"], name: "index_quotes_on_quote_reference", using: :btree
 
   create_table "requests", force: :cascade do |t|
     t.text     "specs",                      limit: 65535
@@ -187,6 +191,7 @@ ActiveRecord::Schema.define(version: 20150518060128) do
   end
 
   add_index "requests", ["item_code"], name: "index_requests_on_item_code", using: :btree
+  add_index "requests", ["quote_id"], name: "index_requests_on_quote_id", using: :btree
 
   create_table "stocks", force: :cascade do |t|
     t.float    "remaining_quantity", limit: 24
