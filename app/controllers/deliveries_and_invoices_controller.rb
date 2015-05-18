@@ -34,6 +34,8 @@ class DeliveriesAndInvoicesController < ApplicationController
     case by
     when "dr"
       offers = offers.order(delivery_receipt_reference: direction)
+    when 'delivery-date'
+      offers = offers.order("supplier_orders.delivered_at IS NOT NULL, supplier_orders.delivered_at #{direction.to_s}")
     end
 
     offers

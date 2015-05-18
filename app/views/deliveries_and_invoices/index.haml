@@ -16,7 +16,8 @@
     %tr
       %th
         = link_to "DR#", {sort: 'dr', direction: (params[:direction].eql?('asc') ? 'desc' : 'asc')}
-      %th DR Date
+      %th
+        = link_to "DR Date", {sort: 'delivery-date', direction: (params[:direction].eql?('asc') ? 'desc' : 'asc')}
       %th SI#
       %th PR#
       %th PO#
