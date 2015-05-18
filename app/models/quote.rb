@@ -16,7 +16,7 @@ class Quote < ActiveRecord::Base
     :quantity,
     :quote_date,
     :quote_reference,
-    :supplier_id,
+    :supplier_id, #TODO : Remove supplier ID because we reference the supplier from the offer
     # :status, # TODO : Remove 'status' column. we have no use for this anymore.
     #                   the 'cancelled' status should just be a check box
     :client_id,
