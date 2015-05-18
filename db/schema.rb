@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518055754) do
+ActiveRecord::Schema.define(version: 20150518060128) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id",   limit: 4
@@ -212,6 +212,9 @@ ActiveRecord::Schema.define(version: 20150518055754) do
     t.datetime "updated_at",                              null: false
     t.text     "actual_specs",              limit: 65535
   end
+
+  add_index "supplier_orders", ["offer_id"], name: "index_supplier_orders_on_offer_id", using: :btree
+  add_index "supplier_orders", ["reference"], name: "index_supplier_orders_on_reference", using: :btree
 
   create_table "supplier_purchases", force: :cascade do |t|
     t.integer  "order_id",             limit: 4
