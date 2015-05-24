@@ -168,7 +168,7 @@ class Quote < ActiveRecord::Base
   end
 
   def display_status
-    if !offers.purchased.empty?
+    if orders.present?
       "Awarded"
     else
       status
