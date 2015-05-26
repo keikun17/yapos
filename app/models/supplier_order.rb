@@ -20,12 +20,7 @@ class SupplierOrder < ActiveRecord::Base
   has_one :client, through: :offer
   accepts_nested_attributes_for :offer, update_only: true
 
-  delegate :request, to: :offer, allow_nil: true
-
-
-  def delivered?
-    !self.delivered_at.blank?
-  end
+  delegate :request, :delivered?, to: :offer, allow_nil: true
 
   delegate :name, to: :supplier, allow_nil: true, prefix: true
   delegate :address, to: :supplier, allow_nil: true, prefix: true

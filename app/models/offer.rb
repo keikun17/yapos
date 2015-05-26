@@ -126,7 +126,6 @@ class Offer < ActiveRecord::Base
     :estimated_delivery_date,
     :delivered_at,
     :delivery_date,
-    :delivered?,
     :actual_specs,
     :ordered_from_supplier?,
     to: :supplier_order, prefix: true, allow_nil: true
@@ -155,6 +154,9 @@ class Offer < ActiveRecord::Base
 
   end
 
+  def delivered?
+    delivery_receipt_reference.present?
+  end
 
   def self.from_supplier(suppliers)
     suppliers ||= 'all'
