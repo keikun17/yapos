@@ -8,5 +8,5 @@
       = link_to "#{ @client.name }", link
 
   - link = deliveries_and_invoices_client_ordered_20_days_ago_path(client_supplier_params)
-  %li{ class: "#{'active' if params[:action] == 'services' }" }
+  %li{ class: "#{'active' if params[:action] == 'client_ordered_20_days_ago' }" }
     = link_to "Ordered 20 days ago but undelivered", link
