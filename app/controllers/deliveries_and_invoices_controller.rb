@@ -4,13 +4,7 @@ class DeliveriesAndInvoicesController < ApplicationController
       .delivered
       .includes([:order, :quote, :supplier_order, :invoices, :client, :supplier])
 
-    if !params[:client_id].blank?
-      @offers = @offers.where(quotes: {client_id: params[:client_id]})
-    end
-
-    if !params[:supplier_id].blank?
-      @offers = @offers.includes(:supplier).where(suppliers: {id: params[:supplier_id]})
-    end
+    filter_offers_by_client_an_supplier
 
     if params[:sort].present?
       @offers = sort(@offers, params[:sort], params[:direction])
@@ -25,13 +19,24 @@ class DeliveriesAndInvoicesController < ApplicationController
       .includes([:order, :quote, :supplier_order, :invoices, :client, :supplier])
       .where("orders.purchase_date < ?", 20.days.ago)
 
+    filter_offers_by_client_an_supplier
+
     @offers = @offers.order("orders.purchase_date desc")
     @offers = @offers.page(params[:page]).per_page(50)
   end
 
-
-
   private
+
+  def filter_offers_by_client_an_supplier
+    if !params[:client_id].blank?
+      @offers = @offers.where(quotes: {client_id: params[:client_id]})
+      @client = Client.find(params[:client_id])
+    end
+
+    if !params[:supplier_id].blank?
+      @offers = @offers.includes(:supplier).where(suppliers: {id: params[:supplier_id]})
+    end
+  end
 
   def sort(offers, by, direction)
 
