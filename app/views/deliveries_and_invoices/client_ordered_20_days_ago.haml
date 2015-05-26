@@ -27,7 +27,7 @@
     - @offers.each do |offer|
       - order = offer.order.decorate
       %tr
-        %td= link_to offer.supplier_purchase_reference, offer.supplier_purchase
+        %td= offer.supplier_purchase_link
         %td= link_to order.reference, order
         %td= order.display_purchase_date(warn:false)
         %td= link_to offer.quote.quote_reference, offer.quote

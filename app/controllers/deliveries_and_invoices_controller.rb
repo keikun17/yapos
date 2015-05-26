@@ -10,7 +10,7 @@ class DeliveriesAndInvoicesController < ApplicationController
       @offers = sort(@offers, params[:sort], params[:direction])
     end
 
-    @offers = @offers.page(params[:page]).per_page(50)
+    @offers = @offers.page(params[:page]).per_page(50).decorate
   end
 
   def client_ordered_20_days_ago
@@ -22,7 +22,7 @@ class DeliveriesAndInvoicesController < ApplicationController
     filter_offers_by_client_an_supplier
 
     @offers = @offers.order("orders.purchase_date desc")
-    @offers = @offers.page(params[:page]).per_page(50)
+    @offers = @offers.page(params[:page]).per_page(50).decorate
   end
 
   private
