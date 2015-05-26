@@ -1,0 +1,48 @@
+.deliveries-header
+  %h1
+    Deliveries
+    = link_to_modal "Print Delivery Monitoring", 'delivery_monitoring_modal', class: 'btn btn-default'
+
+= render 'invoices/print_delivery_monitoring'
+
+.row
+  .col-sm-12
+    = render 'clients/form_with_select_to_filter_clients'
+
+.pull-right= will_paginate(@offers)
+
+%table.table
+  %thead
+    %tr
+      %th
+        = link_to "DR#", {sort: 'dr', direction: (params[:direction].eql?('asc') ? 'desc' : 'asc')}
+      %th
+        = link_to "DR Date", {sort: 'delivery-date', direction: (params[:direction].eql?('asc') ? 'desc' : 'asc')}
+      %th SI#
+      %th PR#
+      %th PO#
+      %th PO Date
+      %th Client
+      %th Supplier
+
+  %tbody
+    - @offers.each do |offer|
+      - order = offer.order.decorate
+
+      %tr
+        %td= offer.delivery_receipt_reference
+        %td
+          - if offer.supplier_order.delivered_at
+            = offer.supplier_order.delivered_at.to_date.to_s(:long)
+        %td
+          - if offer.sales_invoice_reference.present?
+            -# TODO. Remove this after confirming all legacy invoices have been migrated For legacy sales invoices
+            (#{ offer.sales_invoice_reference } )
+          - offer.invoices.each do |invoice|
+            = link_to invoice.reference, invoice
+            %br
+        %td= link_to offer.quote.quote_reference, offer.quote
+        %td= link_to order.reference, order
+        %td= order.display_purchase_date(warn:false)
+        %td= link_to offer.client.name, offer.client
+        %td= link_to offer.supplier.name, offer.supplier

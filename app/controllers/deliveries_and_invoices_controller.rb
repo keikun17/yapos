@@ -19,6 +19,15 @@ class DeliveriesAndInvoicesController < ApplicationController
     @offers = @offers.page(params[:page]).per_page(50)
   end
 
+  def past_20_days
+    @offers = Offer.purchased
+      .undelivered
+      .includes([:order, :quote, :supplier_order, :invoices, :client, :supplier])
+
+    @offers = @offers.page(params[:page]).per_page(50)
+  end
+
+
 
   private
 
