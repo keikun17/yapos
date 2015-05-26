@@ -6,12 +6,16 @@ class OrderDecorator < ApplicationDecorator
     @decorated_offers ||= offers.decorate
   end
 
-  def display_purchase_date
+  def display_purchase_date(warn: true)
     if purchase_date.nil?
-      str = h.content_tag :i do
-        h.link_to "Please Complete Order Form", h.edit_order_path(self)
+
+      if warn
+        str = h.content_tag :i do
+          h.link_to "Please Complete Order Form", h.edit_order_path(self)
+        end
+        str = str.html_safe
       end
-      str = str.html_safe
+
     else
       str = purchase_date.to_date
     end
