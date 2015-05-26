@@ -9,6 +9,8 @@
   .col-sm-12
     = render 'clients/form_with_select_to_filter_clients'
 
+= render 'deliveries_and_invoices/tabs'
+
 .pull-right= will_paginate(@offers)
 
 %table.table

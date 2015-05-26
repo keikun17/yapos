@@ -1,0 +1,12 @@
+%ul.nav.nav-tabs
+  - client_supplier_params = { client_id: params[:client_id], supplier_id: params[:supplier_id] }
+  %li{ class: "#{ 'active' if params[:action] == 'index' }" }
+    - link = deliveries_and_invoices_path(client_supplier_params)
+    - if params[:client_id].blank?
+      = link_to "All", link
+    - else
+      = link_to "#{ @client.name }", link
+
+  - link = deliveries_and_invoices_client_ordered_20_days_ago_path(client_supplier_params)
+  %li{ class: "#{'active' if params[:action] == 'services' }" }
+    = link_to "Ordered 20 days ago but undelivered", link
