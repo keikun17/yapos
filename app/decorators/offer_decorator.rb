@@ -57,7 +57,7 @@ class OfferDecorator < ApplicationDecorator
   end
 
   def display_status
-    if self.supplier_order_delivered?
+    if self.delivered?
       "Delivered"
     elsif self.supplier_order_ordered_from_supplier?
       "Ordered"

@@ -25,7 +25,7 @@
               %span.request-quantity= request.display_quantity
               = request.item_code_link
               = truncate(request.specs, length: 200)
-              - delivery_dates = request.offers.map{|offer| offer.supplier_order_delivered_at }.compact 
+              - delivery_dates = request.offers.map{|offer| offer.delivered? }.compact
               - if quote.awarded?
                 - if !delivery_dates.empty?
                   %span.label.label-success Delivered at :#{delivery_dates.map(&:to_date).join(',')}

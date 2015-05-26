@@ -1,4 +1,4 @@
-- if date = offer.supplier_order_delivered_at
+- if date = offer.delivered?
   = date.to_date.to_s
 - else
   - if offer.supplier_order
