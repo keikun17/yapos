@@ -19,11 +19,13 @@ class DeliveriesAndInvoicesController < ApplicationController
     @offers = @offers.page(params[:page]).per_page(50)
   end
 
-  def past_20_days
+  def client_ordered_20_days_ago
     @offers = Offer.purchased
       .undelivered
       .includes([:order, :quote, :supplier_order, :invoices, :client, :supplier])
+      .where("orders.purchase_date < ?", 20.days.ago)
 
+    @offers = @offers.order("orders.purchase_date desc")
     @offers = @offers.page(params[:page]).per_page(50)
   end
 
