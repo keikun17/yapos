@@ -8,7 +8,7 @@ Yapos::Application.routes.draw do
   resources :payments
 
   get 'deliveries_and_invoices', to: 'deliveries_and_invoices#index'
-  get 'deliveries_and_invoices/past_20_days', to: 'deliveries_and_invoices#past_20_days'
+  get 'deliveries_and_invoices/client_ordered_20_days_ago', to: 'deliveries_and_invoices#client_ordered_20_days_ago'
 
   resources :quote_comments, only: :create
 
