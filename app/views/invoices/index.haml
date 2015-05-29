@@ -19,7 +19,7 @@
     %th DR references
   - @invoices.each do |invoice|
     %tr
-      %td= link_to invoice.reference, invoice
+      %td= link_to invoice.reference, invoice, class: 'label label-invoice'
       %td
         - if invoice.amount.blank?
           = link_to "Input amount", edit_invoice_path(invoice)
