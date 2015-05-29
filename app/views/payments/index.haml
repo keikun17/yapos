@@ -22,10 +22,10 @@
   %tbody
     - @payments.each do |payment|
       %tr
-        %td= link_to payment.reference, payment
+        %td= link_to payment.reference, payment, class: 'label label-payment'
         %td
           - payment.invoices.each do |invoice|
-            = link_to invoice.reference, invoice
+            = link_to invoice.reference, invoice, class: 'label label-invoice'
             %br
         %td
           - if payment.amount.blank?
@@ -34,13 +34,15 @@
             = payment.display_amount
         %td
           - payment.quotes.each do |quote|
-            = link_to quote.quote_reference, quote
+            = link_to quote.quote_reference, quote, class: 'label label-quote'
             (#{quote.client.decorate.display_name})
             %br
 
         %td
           - payment.orders.each do |order|
-            = link_to order.reference, order
+            = link_to order.reference, order, class: 'label label-order'
             %br
         %td
-          = payment.offers.collect(&:delivery_receipt_reference).uniq.join(',')
+          - payment.offers.collect(&:delivery_receipt_reference).uniq.each do |dr|
+            %span.label.label-delivery= dr
+            %br
