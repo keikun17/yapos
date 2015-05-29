@@ -28,7 +28,7 @@
       %td= invoice.display_date
       %td
         - invoice.payments.each do |payment|
-          = link_to payment.reference, payment
+          = link_to payment.reference, payment, class: 'label label-payment'
           %br
       %td
         - invoice.quotes.each do |quote|
@@ -37,9 +37,12 @@
           %br
       %td
         - invoice.orders.each do |order|
-          = link_to order.reference, order
+          = link_to order.reference, order, class: 'label label-order'
           %br
       %td
-        = invoice.offers.collect(&:delivery_receipt_reference).uniq.join(',')
+        - invoice.offers.collect(&:delivery_receipt_reference).uniq.each do |dr|
+          %span.label.label-delivery
+            = dr
+          %br
 
 .pull-right= will_paginate(@invoices)
