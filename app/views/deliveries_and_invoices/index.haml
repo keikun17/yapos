@@ -29,7 +29,8 @@
   %tbody
     - @offers.each do |offer|
       %tr
-        %td= offer.delivery_receipt_reference
+        %td
+          %span.label.label-delivery= offer.delivery_receipt_reference
         %td
           - if offer.supplier_order.delivered_at
             = offer.supplier_order.delivered_at.to_date.to_s(:long)
@@ -38,9 +39,9 @@
             -# TODO. Remove this after confirming all legacy invoices have been migrated For legacy sales invoices
             (#{ offer.sales_invoice_reference } )
           - offer.invoices.each do |invoice|
-            = link_to invoice.reference, invoice
+            = link_to invoice.reference, invoice, class: 'label label-invoice'
             %br
-        %td= link_to offer.quote.quote_reference, offer.quote
-        %td= link_to offer.order_reference, offer.order
+        %td= link_to offer.quote.quote_reference, offer.quote, class: 'label label-quote'
+        %td= link_to offer.order_reference, offer.order, class: 'label label-order'
         %td= link_to offer.client.name, offer.client
         %td= link_to offer.supplier.name, offer.supplier if offer.supplier
