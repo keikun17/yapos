@@ -51,6 +51,10 @@ gem 'libv8', '~> 3.16'
 gem 'therubyracer', '0.12.1'
 gem 'uglifier', '>= 1.3.0'
 
+gem 'groupdate'
+gem 'chartkick'
+gem 'active_median'
+
 
 group :development, :test do
   gem 'rubocop-rspec', require: false

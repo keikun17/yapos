@@ -7,4 +7,8 @@ class KanbanController < ApplicationController
     @for_delivery = Quote.for_delivery.decorate
   end
 
+  def activities
+
+  end
+
 end
