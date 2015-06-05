@@ -19,7 +19,7 @@ Yapos::Application.routes.draw do
   devise_for :users
 
   get 'kanban', to: 'kanban#show'
-  get 'activities', to: 'kanban#activities'
+  get 'activities/quotes', to: 'kanban#quotes'
 
   get 'price_movements', to: 'price_movement#index', as: :price_movements
   get 'price_movement/:vendor_item_id', to: 'price_movement#show', as: :price_movement
