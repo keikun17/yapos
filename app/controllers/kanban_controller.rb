@@ -8,7 +8,7 @@ class KanbanController < ApplicationController
   end
 
   def quotes
-
+    @quotes_data = Quote.where(created_at: [1.year.ago..Time.zone.now]).group_by_day(:created_at, time_zone: Time.zone).count
   end
 
 end
