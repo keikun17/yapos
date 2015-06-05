@@ -1,4 +1,9 @@
 - content_for :head do
   = javascript_include_tag '//www.google.com/jsapi','chartkick'
 
-= line_chart @quotes_count
+.quote-header
+  %h1 Quotes for the past year
+
+.row
+  .col-sm-12
+    = line_chart @quotes_count
