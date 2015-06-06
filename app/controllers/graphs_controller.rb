@@ -1,5 +1,5 @@
-class KanbanController < ApplicationController	
-	
+class GraphsController < ApplicationController
+
   def show
     @need_supplier_order = Quote.pending_supplier_order.decorate
     @for_scheduling = Quote.for_scheduling.decorate
