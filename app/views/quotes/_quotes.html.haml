@@ -12,7 +12,7 @@
     - quotes.each do |quote|
       %tr{:class => quote_row_class(quote)}
         %td
-          %strong= link_to quote.display_reference, quote, class: 'quote-link'
+          %strong= link_to quote.display_reference, quote, class: 'reference reference-quote'
         %td
           - if !quote.title.blank? and !quote.requests.empty?
             %strong= truncate(quote.title, :length => 40, :omission => "...")
