@@ -22,16 +22,7 @@ tr.alternating-offer-fields{
 }
 
 table.quotes-table{
-
-  tr {
-    &.success a.quote-link{
-      // text-decoration: underline;
-      color: #468847;
-    }
-
-  }
-
-  th.reference,
+  th.ref,
   th.client-name,
   th.supplier-name,
   th.request-date,
