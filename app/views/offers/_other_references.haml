@@ -3,7 +3,7 @@
   .row-fluid
     .col-sm-12
       - if offer.order
-        = link_to offer.order_reference, offer.order, class: 'label label-order'
+        = link_to offer.order_reference, offer.order, class: 'reference reference-order'
         %br
 
 
@@ -11,14 +11,14 @@
   .row-fluid
     .col-sm-12
       - if !offer.supplier_purchase_reference.blank?
-        = link_to offer.supplier_purchase.reference, offer.supplier_purchase, class: 'label label-supplier-order'
+        = link_to offer.supplier_purchase.reference, offer.supplier_purchase, class: 'reference reference-supplier-order'
         %br
 
   %strong DR#
   .row-fluid
     .col-sm-12
       - if !offer.delivery_receipt_reference.blank?
-        %span.label.label-delivery= offer.delivery_receipt_reference
+        %span.reference.reference-delivery= offer.delivery_receipt_reference
         %br
 
 
@@ -27,7 +27,7 @@
     .col-sm-12
       - if !offer.invoices.empty?
         - offer.invoices.each do |invoice|
-          = link_to invoice.reference, invoice, class: 'label label-invoice'
+          = link_to invoice.reference, invoice, class: 'reference reference-invoice'
           %br
 
   %strong Payments
@@ -35,7 +35,7 @@
     .col-sm-12
       - if !offer.payments.empty?
         - offer.payments.each do |payment|
-          = link_to payment.reference, payment, class: 'label label-payment'
+          = link_to payment.reference, payment, class: 'reference reference-payment'
           %br
 
   .row-fluid

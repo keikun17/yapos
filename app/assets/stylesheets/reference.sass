@@ -1,0 +1,39 @@
+@import 'theme.scss'
+
+.reference
+  @extend .label !optional
+
+  &:hover
+    text-decoration: underline
+    color: black
+
+  &-quote
+    color: $quote-color
+    background-color: transparent
+    border: 1px solid $quote-color
+    text-decoration: none
+
+  &-order
+    color: $order-color
+    background-color: transparent
+    border: 1px solid $order-color
+
+  &-invoice
+    color: $invoice-color
+    background-color: transparent
+    border: 1px solid $invoice-color
+
+  &-supplier-order
+    color: $supplier-order-color
+    background-color: transparent
+    border: 1px solid $supplier-order-color
+
+  &-payment
+    color: $payment-color
+    background-color: transparent
+    border: 1px solid $payment-color
+
+  &-delivery
+    color: $delivery-color
+    background-color: transparent
+    border: 1px solid $delivery-color

@@ -1,31 +1,39 @@
+$quote-color : #3498DB;
+$order-color : #68ca8f;
+$supplier-order-color: #34495e;
+$invoice-color: #553982;
+$payment-color: #F37934;
+$delivery-color: #f1c40f;
+$service-color: #825a2c;
+
 .theme-quote {
-  background-color: #3498DB;
+  background-color: $quote-color;
   color: #fff;
 }
 
 
 .theme-order {
-  background-color: #68ca8f;
+  background-color: $order-color;
   color: #fff;
 }
 
 .theme-supplier-order {
-  background-color: #34495e;
+  background-color: $supplier-order-color;
   color: #fff;
 }
 
 .theme-invoice {
-  background-color: #553982;
+  background-color: $invoice-color;
   color: #fff;
 }
 
 .theme-payment {
-  background-color: #F37934;
+  background-color: $payment-color;
   color: #fff;
 }
 
 .theme-delivery {
-  background-color: #f1c40f;
+  background-color: $delivery-color;
   color: #fff;
 }
 
