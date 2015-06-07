@@ -24,14 +24,14 @@
   .col-sm-3
     %h3 RFQ References
     - @invoice.quotes.uniq.each do |quote|
-      = link_to quote.quote_reference, quote, class: 'label label-quote'
+      = link_to quote.quote_reference, quote, class: 'reference reference-quote'
       %br
 
   .col-sm-3
     %h3 Purchase Orders
     - @invoice.orders.uniq.each do |order|
       %strong Purchase Order
-      = link_to order.reference, order, class: 'label label-order'
+      = link_to order.reference, order, class: 'reference reference-order'
 
 
       - order.offers.includes(:invoices).where( { invoices: {id: @invoice } } ).each do |offer|
@@ -39,13 +39,13 @@
   .col-sm-3
     %h3 DR References
     - @invoice.offers.each do |offer|
-      %span.label.label-delivery= offer.delivery_receipt_reference
+      %span.reference.reference-delivery= offer.delivery_receipt_reference
       %br
 
   .col-sm-3
     %h3 Payment References
     - @invoice.payments.each do |payment|
-      = link_to payment.reference, payment, class: 'label label-payment'
+      = link_to payment.reference, payment, class: 'reference reference-payment'
       %br
 
 
