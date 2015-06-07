@@ -26,7 +26,7 @@
       - if offer
         %tr{class: offer_row_class(offer)}
           %td{rowspan: offer_count}
-            %strong= link_to order.reference, order, class: 'label label-order'
+            %strong= link_to order.reference, order, class: 'reference reference-order'
           %td{rowspan: offer_count}
             = order.display_purchase_date
           %td
