@@ -28,9 +28,9 @@
       - order = offer.order.decorate
       %tr
         %td= offer.supplier_purchase_link
-        %td= link_to order.reference, order, class: 'label label-order'
+        %td= link_to order.reference, order, class: 'reference reference-order'
         %td= order.display_purchase_date(warn:false)
-        %td= link_to offer.quote.quote_reference, offer.quote, class: 'label label-quote'
+        %td= link_to offer.quote.quote_reference, offer.quote, class: 'reference reference-quote'
         %td= link_to offer.client.name, offer.client
         %td= link_to offer.supplier.name, offer.supplier if offer.supplier
         %td
@@ -38,5 +38,5 @@
             -# TODO. Remove this after confirming all legacy invoices have been migrated For legacy sales invoices
             (#{ offer.sales_invoice_reference } )
           - offer.invoices.each do |invoice|
-            = link_to invoice.reference, invoice, class: 'label label-invoice'
+            = link_to invoice.reference, invoice, class: 'reference reference-invoice'
             %br
