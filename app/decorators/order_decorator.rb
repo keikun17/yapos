@@ -40,7 +40,7 @@ class OrderDecorator < ApplicationDecorator
   end
 
   def link
-    (h.link_to reference, h.order_path(self)).html_safe
+    (h.link_to reference, h.order_path(self), class: 'reference  reference-order').html_safe
   end
 
   def total_buy
