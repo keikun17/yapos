@@ -10,15 +10,15 @@
   %tbody
     - supplier_purchases.each do |supplier_purchase|
       %tr{class: "multi-content #{'error' if supplier_purchase.ordered_at.blank?}"}
-        %td= link_to supplier_purchase.reference, supplier_purchase
+        %td= link_to supplier_purchase.reference, supplier_purchase, class: "reference reference-supplier-order" 
         %td
           - supplier_purchase.quotes.uniq.each do |quote|
-            = link_to quote.quote_reference, quote_path(quote)
+            = link_to quote.quote_reference, quote_path(quote), class: "reference reference-quote"
             (#{quote.client_abbrev || quote.client_name})
             %br
         %td
           - supplier_purchase.orders.each do |order|
-            = link_to order.reference, order
+            = link_to order.reference, order, class: "reference reference-order"
             %br
         %td
           - supplier_purchase.supplier_orders.each do |supplier_order|
