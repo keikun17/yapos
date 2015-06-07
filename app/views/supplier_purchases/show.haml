@@ -75,8 +75,8 @@
         %td.compact= simple_format(supplier_order.offer.decorate.actual_specs)
         %td= supplier_order.offer.decorate.display_buying_price
         %td= supplier_order.offer.decorate.display_total_buying_price
-        %td= link_to supplier_order.quote.quote_reference, supplier_order.quote
-        %td= link_to supplier_order.order.reference, supplier_order.order
+        %td= link_to supplier_order.quote.quote_reference, supplier_order.quote, class: "reference reference-quote"
+        %td= link_to supplier_order.order.reference, supplier_order.order, class: "reference reference-order"
 
 
 .form-actions
