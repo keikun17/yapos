@@ -1,8 +1,11 @@
-.row.payment-line.fields.alternating-payment-fields
-  .col-sm-4
-    = f.label :reference, "Payment Reference", class: 'reference-cell'
-  .col-sm-4
-    = f.text_field :reference, class: 'form-control'
-  .col-sm-1= link_to_remove_fields "Payment", f
+.row-fluid.payment-line.fields.alternating-payment-fields
+  .row
+    .col-sm-3
+      = f.text_field :reference, class: 'form-control'
+    .col-sm-3
+      .input-group
+        %span.input-group-addon= Currency::LOCAL_CURRENCY
+        = f.text_field :amount, class: 'form-control'
+    .col-sm-1= link_to_remove_fields "Payment", f
 
 

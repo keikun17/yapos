@@ -24,7 +24,15 @@
   %h3 Payment Records
   .row
     .col-sm-10
+      .row-fluid
+        .row
+          .col-sm-3
+            %strong Reference
+          .col-sm-3
+            %strong Amount
+
       - f.object.payments.build if f.object.payments.empty?
+
       = f.fields_for :payments do |ff|
         = render 'invoices/payment_fields', f: ff
       .row.actions
