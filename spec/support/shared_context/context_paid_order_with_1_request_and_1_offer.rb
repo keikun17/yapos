@@ -15,13 +15,13 @@ RSpec.shared_context "Paid order with 1 request and 1 offer", :a => :b do
     fill_in "Actual Invoice Total Amount", with: "12345678987.67"
 
     within(page.all(".payment-line")[0]) do
-      fill_in "Payment Reference", with: "Check#1001"
+      find(:css, "input[name^='invoice[payments_attributes]'][name$='[reference]']").set("Check#1001")
     end
 
     click_link "Add Payment"
 
     within(page.all(".payment-line")[1]) do
-      fill_in "Payment Reference", with: "Check#1002"
+      find(:css, "input[name^='invoice[payments_attributes]'][name$='[reference]']").set("Check#1002")
     end
 
     click_button "Update Invoice"
