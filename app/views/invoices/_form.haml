@@ -19,7 +19,9 @@
         .form-group
           = f.label :amount, 'Actual Invoice Total Amount', class: 'control-label col-sm-6'
           .col-sm-6
-            = f.text_field :amount, class: 'form-control'
+            .input-group
+              %span.input-group-addon= Currency::LOCAL_CURRENCY
+              = f.text_field :amount, class: 'form-control'
 
   %h3 Payment Records
   .row
