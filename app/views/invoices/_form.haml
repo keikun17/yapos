@@ -27,10 +27,11 @@
       - f.object.payments.build if f.object.payments.empty?
       = f.fields_for :payments do |ff|
         = render 'invoices/payment_fields', f: ff
-      .row
+      .row.actions
         .col-sm-12= link_to_add_fields "Add Payment" , f, :payments, '$(this).parent()'
 
 
+  %hr
   .row
     .col-sm-12
       .form-actions
