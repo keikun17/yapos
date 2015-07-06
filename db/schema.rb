@@ -17,14 +17,14 @@ ActiveRecord::Schema.define(version: 20150518061718) do
     t.integer  "attachable_id",   limit: 4
     t.string   "attachable_type", limit: 255
     t.string   "document",        limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "clients", force: :cascade do |t|
     t.string   "name",            limit: 255
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "emails",          limit: 255
     t.string   "contact_numbers", limit: 255
     t.text     "address",         limit: 65535
@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(version: 20150518061718) do
     t.string   "currency",                   limit: 255
     t.float    "currency_conversion",        limit: 24
     t.string   "order_reference",            limit: 255
-    t.datetime "created_at",                                                                        null: false
-    t.datetime "updated_at",                                                                        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "remarks",                    limit: 65535
     t.string   "terms",                      limit: 255
     t.string   "delivery",                   limit: 255
@@ -107,8 +107,8 @@ ActiveRecord::Schema.define(version: 20150518061718) do
   create_table "orders", force: :cascade do |t|
     t.string   "reference",              limit: 255
     t.datetime "purchase_date"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "custom_quote_reference", limit: 255
     t.text     "description",            limit: 65535
     t.integer  "supplier_id",            limit: 4
@@ -156,8 +156,8 @@ ActiveRecord::Schema.define(version: 20150518061718) do
     t.float    "quantity",           limit: 24
     t.text     "description",        limit: 65535
     t.string   "status",             limit: 255
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "client_id",          limit: 4
     t.integer  "supplier_id",        limit: 4
     t.integer  "order_id",           limit: 4
@@ -180,8 +180,8 @@ ActiveRecord::Schema.define(version: 20150518061718) do
     t.integer  "supplier_id",                limit: 4
     t.text     "quoted_specifications",      limit: 65535
     t.text     "remarks",                    limit: 65535
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.float    "quantity",                   limit: 24
     t.string   "unit",                       limit: 255
     t.integer  "client_purchased_count",     limit: 4,     default: 0
@@ -213,8 +213,8 @@ ActiveRecord::Schema.define(version: 20150518061718) do
     t.datetime "estimated_manufactured_at"
     t.datetime "estimated_delivered_at"
     t.datetime "delivered_at"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "actual_specs",              limit: 65535
   end
 
@@ -245,8 +245,8 @@ ActiveRecord::Schema.define(version: 20150518061718) do
 
   create_table "suppliers", force: :cascade do |t|
     t.string   "name",            limit: 255
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "emails",          limit: 255
     t.string   "contact_numbers", limit: 255
     t.text     "address",         limit: 65535
@@ -263,8 +263,8 @@ ActiveRecord::Schema.define(version: 20150518061718) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
