@@ -43,7 +43,7 @@
       %br
 
   .col-sm-3
-    %h3 Payment References
+    %h3 Payment / O.R. References
     - @invoice.payments.each do |payment|
       = link_to payment.reference, payment, class: 'reference reference-payment'
       %br

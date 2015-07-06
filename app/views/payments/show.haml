@@ -1,20 +1,20 @@
 .payments-header
   %h1
-    Payment
+    Payment / O.R. #
     = @payment.reference
     = link_to 'Edit', edit_payment_path(@payment), :class => 'btn btn-primary'
 
 .row
   .col-sm-3
     %p
-      %strong Payment Date
+      %strong Payment / O.R. Date
       %br
       = @payment.display_date
 
 .row
   .col-sm-3
     %p
-      %strong Payment Amount
+      %strong Payment / O.R. Amount
       %br
       = @payment.display_amount
 
