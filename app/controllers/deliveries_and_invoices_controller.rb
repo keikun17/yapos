@@ -8,6 +8,8 @@ class DeliveriesAndInvoicesController < ApplicationController
 
     if params[:sort].present?
       @offers = sort(@offers, params[:sort], params[:direction])
+    else
+      @offers = sort(@offers, 'dr', 'desc')
     end
 
     @offers = @offers.page(params[:page]).per_page(50).decorate
@@ -39,7 +41,6 @@ class DeliveriesAndInvoicesController < ApplicationController
   end
 
   def sort(offers, by, direction)
-
     direction = case direction
                 when 'desc'
                   :desc
