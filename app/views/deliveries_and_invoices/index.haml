@@ -35,9 +35,6 @@
           - if offer.supplier_order.delivered_at
             = offer.supplier_order.delivered_at.to_date.to_s(:long)
         %td
-          - if offer.sales_invoice_reference.present?
-            -# TODO. Remove this after confirming all legacy invoices have been migrated For legacy sales invoices
-            (#{ offer.sales_invoice_reference } )
           - offer.invoices.each do |invoice|
             = link_to invoice.reference, invoice, class: 'reference reference-invoice'
             %br
