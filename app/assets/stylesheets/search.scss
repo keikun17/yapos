@@ -1,27 +1,33 @@
 @import 'theme.scss';
 
 li#quotes-nav a{
-  @extend .theme-quote
+  color: $quote-color
+  // @extend .theme-quote
 }
 
 li#order-nav a{
-  @extend .theme-order
+  color: $order-color
+  // @extend .theme-order
 }
 
 li#supplier-order-nav a{
-  @extend .theme-supplier-order
+  color: $supplier-order-alt-color
+  // @extend .theme-supplier-order
 }
 
 li#invoice-nav a{
-  @extend .theme-invoice
+  color: $invoice-alt-color
+  // @extend .theme-invoice
 }
 
 li#payment-nav a{
-  @extend .theme-payment
+  color: $payment-color
+  // @extend .theme-payment
 }
 
 li#delivery-nav a{
-  @extend .theme-delivery
+  color: $delivery-color
+  // @extend .theme-delivery
 }
 
 #nav-search{
