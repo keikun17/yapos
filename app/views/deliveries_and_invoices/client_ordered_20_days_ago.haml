@@ -31,7 +31,9 @@
         %td= link_to order.reference, order, class: 'reference reference-order'
         %td= order.display_purchase_date(warn:false)
         %td= link_to offer.quote.quote_reference, offer.quote, class: 'reference reference-quote'
-        %td= link_to offer.client.name, offer.client
+        %td
+          - if offer.client
+            = link_to offer.client.name, offer.client
         %td= link_to offer.supplier.name, offer.supplier if offer.supplier
         %td
           - if offer.sales_invoice_reference.present?
