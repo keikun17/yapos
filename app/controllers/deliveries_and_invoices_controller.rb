@@ -2,7 +2,7 @@ class DeliveriesAndInvoicesController < ApplicationController
   def index
     @offers = Offer.purchased
       .delivered
-      .includes([:order, :quote, :supplier_order, :invoices, :client, :supplier])
+      .includes([ :quote, :supplier_order, :invoices, :client, :supplier ])
 
     filter_offers_by_client_an_supplier
 
