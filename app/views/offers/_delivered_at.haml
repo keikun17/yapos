@@ -2,7 +2,6 @@
   = date.to_date.to_s
 - else
   - if offer.supplier_order
-    %hr
     = link_to_modal "Set Delivery / SI", offer.supplier_order, {class: 'btn btn-sm btn-success', modal_id: 'delivery'}
     = render 'supplier_orders/modals/mark_as_delivered', modal_id: dom_id(offer.supplier_order) + 'delivery', supplier_order: offer.supplier_order.decorate
   - else
