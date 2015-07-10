@@ -22,7 +22,7 @@ class DrAndSiMassUpdater
       end
     end
 
-    if delivery_date["(1i)"].present? and delivery_date["(2i)"].present? and delivery_date["3i)"].present?
+    if delivery_date["(1i)"].present? and delivery_date["(2i)"].present? and delivery_date["(3i)"].present?
       date = Date.new delivery_date["(1i)"].to_i, delivery_date["(2i)"].to_i, delivery_date["(3i)"].to_i
       order.supplier_orders.update_all({delivered_at: date})
     end
