@@ -27,6 +27,13 @@ class StocksController < ApplicationController
     @stock = Stock.find(params[:id])
   end
 
+  def destroy
+    @stock = Stock.find(params[:id])
+    @stock.destroy
+
+    redirect_to stocks_path
+  end
+
   def update
     @stock = Stock.find(params[:id])
     if @stock.update_attributes(params[:stock])
