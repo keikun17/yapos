@@ -104,10 +104,13 @@
           %strong= link_to quote.display_reference, quote
         %td
           %span.request-quantity= offer.request.display_quantity
+          = offer.request.item_code_link
           = offer.request_specs
         %td
           - if offer.service?
             %span.badge.badge-service Service
+
+
           = simple_format(offer.specs)
           = render 'offers/actual_offer', offer: offer
 
@@ -125,6 +128,7 @@
         %tr
           %td
             %span.request-quantity= offer.request.display_quantity
+            = offer.request.item_code_link
             = offer.request_specs
           %td
             - if offer.service?
