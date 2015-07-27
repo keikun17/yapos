@@ -19,7 +19,7 @@
     - @stocks.each do |stock|
       %tr
         %td=link_to stock.reference, stock_path(stock)
-        %td= stock.quantity
+        %td= stock.remaining_quantity
         %td= stock.unit
         %td= stock.description
         %td= stock.remarks
