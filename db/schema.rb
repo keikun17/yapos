@@ -11,25 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150518061718) do
+ActiveRecord::Schema.define(version: 20150911110054) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id",   limit: 4
     t.string   "attachable_type", limit: 255
     t.string   "document",        limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "clients", force: :cascade do |t|
-    t.string   "name",            limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "emails",          limit: 255
-    t.string   "contact_numbers", limit: 255
-    t.text     "address",         limit: 65535
-    t.string   "abbrev",          limit: 255
+    t.string   "name",              limit: 255
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "emails",            limit: 255
+    t.string   "contact_numbers",   limit: 255
+    t.text     "address",           limit: 65535
+    t.string   "abbrev",            limit: 255
+    t.integer  "parent_company_id", limit: 4
   end
+
+  add_index "clients", ["parent_company_id"], name: "index_clients_on_parent_company_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.integer  "commentable_id",   limit: 4
@@ -65,8 +68,8 @@ ActiveRecord::Schema.define(version: 20150518061718) do
     t.string   "currency",                   limit: 255
     t.float    "currency_conversion",        limit: 24
     t.string   "order_reference",            limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                        null: false
+    t.datetime "updated_at",                                                                        null: false
     t.text     "remarks",                    limit: 65535
     t.string   "terms",                      limit: 255
     t.string   "delivery",                   limit: 255
@@ -107,8 +110,8 @@ ActiveRecord::Schema.define(version: 20150518061718) do
   create_table "orders", force: :cascade do |t|
     t.string   "reference",              limit: 255
     t.datetime "purchase_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "custom_quote_reference", limit: 255
     t.text     "description",            limit: 65535
     t.integer  "supplier_id",            limit: 4
@@ -116,6 +119,10 @@ ActiveRecord::Schema.define(version: 20150518061718) do
   end
 
   add_index "orders", ["reference"], name: "index_orders_on_reference", using: :btree
+
+  create_table "parent_company_tables", force: :cascade do |t|
+    t.string "name", limit: 255
+  end
 
   create_table "payments", force: :cascade do |t|
     t.string   "reference",     limit: 255
@@ -156,8 +163,8 @@ ActiveRecord::Schema.define(version: 20150518061718) do
     t.float    "quantity",           limit: 24
     t.text     "description",        limit: 65535
     t.string   "status",             limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "client_id",          limit: 4
     t.integer  "supplier_id",        limit: 4
     t.integer  "order_id",           limit: 4
@@ -180,8 +187,8 @@ ActiveRecord::Schema.define(version: 20150518061718) do
     t.integer  "supplier_id",                limit: 4
     t.text     "quoted_specifications",      limit: 65535
     t.text     "remarks",                    limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
     t.float    "quantity",                   limit: 24
     t.string   "unit",                       limit: 255
     t.integer  "client_purchased_count",     limit: 4,     default: 0
@@ -213,8 +220,8 @@ ActiveRecord::Schema.define(version: 20150518061718) do
     t.datetime "estimated_manufactured_at"
     t.datetime "estimated_delivered_at"
     t.datetime "delivered_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.text     "actual_specs",              limit: 65535
   end
 
@@ -245,8 +252,8 @@ ActiveRecord::Schema.define(version: 20150518061718) do
 
   create_table "suppliers", force: :cascade do |t|
     t.string   "name",            limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "emails",          limit: 255
     t.string   "contact_numbers", limit: 255
     t.text     "address",         limit: 65535
@@ -263,8 +270,8 @@ ActiveRecord::Schema.define(version: 20150518061718) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
