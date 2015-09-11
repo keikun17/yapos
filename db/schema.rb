@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 20150911110054) do
 
   add_index "orders", ["reference"], name: "index_orders_on_reference", using: :btree
 
-  create_table "parent_company_tables", force: :cascade do |t|
+  create_table "parent_companies", force: :cascade do |t|
     t.string "name", limit: 255
   end
 

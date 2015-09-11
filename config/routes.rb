@@ -1,4 +1,5 @@
 Yapos::Application.routes.draw do
+  resources :parent_companies
   resources :vendor_item_fields
 
   resources :vendor_items, only: :create

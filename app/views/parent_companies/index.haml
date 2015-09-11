@@ -1,0 +1,5 @@
+%h1 Client Groups
+
+%ul
+  - @parent_companies.each do |parent_company|
+    %li= link_to parent_company.name, parent_company
