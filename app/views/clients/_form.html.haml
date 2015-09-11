@@ -7,6 +7,12 @@
     = f.label :abbrev, "Name Abbreviation", :class => 'control-label'
     .controls
       = f.text_field :abbrev, :class => 'text_field'
+
+  .form-group
+    = f.label :parent_company_id, :class => 'control-label'
+    .controls
+      = f.select :parent_company_id, ParentCompany.all.collect{|c| [c.name, c.id]}, {:include_blank => true}, :class => 'form-control'
+
   .form-group
     = f.label :emails, :class => 'control-label'
     .controls

@@ -1,10 +1,11 @@
 class Client < ActiveRecord::Base
-  attr_accessible :name, :emails, :contact_numbers, :address, :abbrev
+  attr_accessible :name, :emails, :contact_numbers, :address, :abbrev, :parent_company_id
 
   has_many :quotes
   has_many :orders, through: :quotes
   has_many :requests, through: :quotes
   has_many :offers, through: :quotes
+  belongs_to :parent_company
 
   default_scope -> { order('name asc') }
 end
