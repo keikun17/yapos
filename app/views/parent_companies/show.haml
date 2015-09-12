@@ -10,4 +10,7 @@
     - else
       %li= client.name
 
+%h4 RFQs
+- if @parent_company.quotes.present?
+  = render :partial => 'quotes/quotes', :locals => {:quotes => @parent_company.quotes.decorate, :model_class => Quote}
 
