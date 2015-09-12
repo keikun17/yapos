@@ -10,12 +10,13 @@ end
 #
 # Table name: clients
 #
-#  id              :integer          not null, primary key
-#  name            :string(255)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  emails          :string(255)
-#  contact_numbers :string(255)
-#  address         :text(65535)
-#  abbrev          :string(255)
+#  id                :integer          not null, primary key
+#  name              :string(255)
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  emails            :string(255)
+#  contact_numbers   :string(255)
+#  address           :text(65535)
+#  abbrev            :string(255)
+#  parent_company_id :integer
 #

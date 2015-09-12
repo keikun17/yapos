@@ -7,3 +7,11 @@ class ParentCompany < ActiveRecord::Base
 
   default_scope -> { order('name asc') }
 end
+
+# == Schema Information
+#
+# Table name: parent_companies
+#
+#  id   :integer          not null, primary key
+#  name :string(255)
+#
