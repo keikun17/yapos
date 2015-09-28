@@ -30,9 +30,9 @@ feature "Requoting Quote", js: true do
       expect(page).to have_text("PRS-LCS-CSAW")
       expect(page).to have_text("Chainsaw (handcarry edition)")
 
-      expect(page).to have_text("Based on previous RFQ: #{quote_reference}")
-      expect(page).to_not have_text("Based on previous client order:")
-      expect(page).to_not have_text("Based on previous supplier purchase:")
+      expect(page).to have_text("History RFQ: #{quote_reference}")
+      expect(page).to_not have_text("History client order:")
+      expect(page).to_not have_text("History supplier purchase:")
     end
   end
 
@@ -72,9 +72,9 @@ feature "Requoting Quote", js: true do
       expect(page).to have_text("lighth chainsaw")
       expect(page).to have_text("Billy light chainsaw")
       expect(page).to have_text("ACME Light chainsaw Variant 9001")
-      expect(page).to have_text("Based on previous RFQ: #{quote_reference}")
-      expect(page).to have_text("Based on previous client order: #{po_reference} ")
-      expect(page).to have_text("Based on previous supplier purchase: #{supplier_po_reference}")
+      expect(page).to have_text("History RFQ: #{quote_reference}")
+      expect(page).to have_text("History client order: #{po_reference} ")
+      expect(page).to have_text("History supplier purchase: #{supplier_po_reference}")
     end
 
   end
