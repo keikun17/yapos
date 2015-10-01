@@ -1,9 +1,11 @@
 .page-header
   %h1= client.name
   - if client.abbrev
-    %h3= client.abbrev
+    %h3 Company Abbreviation : #{client.abbrev}
+  - if client.parent_company
+    %h3 Member of : #{link_to client.parent_company.name, client.parent_company}
 
-  = link_to "List Material Codes", client_client_items_path(client), class: 'btn'
+  = link_to "List Material Codes", client_client_items_path(client), class: 'btn btn-info'
 
 %p
   %strong Emails :
