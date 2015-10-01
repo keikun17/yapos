@@ -3,3 +3,5 @@
 %ul
   - @parent_companies.each do |parent_company|
     %li= link_to parent_company.name, parent_company
+
+= link_to "New Parent Company", new_parent_company_path, :class => 'btn btn-primary'
