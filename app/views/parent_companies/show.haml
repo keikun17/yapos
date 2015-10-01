@@ -5,7 +5,7 @@
 
 %ul
   - @parent_company.clients.each do |client|
-    - if client.abbrev.blank?
+    - if !client.abbrev.blank?
       %li= client.abbrev
     - else
       %li= client.name
