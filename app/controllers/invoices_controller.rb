@@ -1,7 +1,8 @@
 class InvoicesController < ApplicationController
   def index
     @invoices = Invoice.all
-      .includes([:offers, :quotes, :orders, :offers, :clients, :payments])
+      .includes([:offers, :quotes, :clients, :payments])
+      # .includes([:offers, :quotes, :orders, :clients, :payments])
 
     if !params[:client_id].blank?
       @invoices = @invoices.includes(:quotes).where(quotes: {client_id: params[:client_id]})
