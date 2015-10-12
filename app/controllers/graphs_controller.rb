@@ -9,7 +9,9 @@ class GraphsController < ApplicationController
 
   def performance
     @quotes_count = Quote.where(created_at: [1.year.ago..Time.zone.now]).group_by_day(:created_at, time_zone: Time.zone).count
+    @prev_quotes_count = Quote.where(created_at: [2.year.ago..1.year.ago]).group_by_day(:created_at, time_zone: Time.zone).count
     @orders_count = Order.where(created_at: [1.year.ago..Time.zone.now]).group_by_day(:created_at, time_zone: Time.zone).count
+    @prev_orders_count = Order.where(created_at: [2.year.ago..1.year.ago]).group_by_day(:created_at, time_zone: Time.zone).count
   end
 
 end

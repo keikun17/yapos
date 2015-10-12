@@ -2,14 +2,25 @@
 - content_for :head do
   = javascript_include_tag '//www.google.com/jsapi','chartkick'
 
-%h1 Quotes for the past year
+%h1 Quotes
 
 .row
   .col-sm-12
+    %h3 This year
     = line_chart @quotes_count
+.row
+  .col-sm-12
+    %h3 Last year
+    = line_chart @prev_quotes_count
 
-%h1 Orders for the past year
+%h1 Orders 
 
 .row
   .col-sm-12
+    %h3 This year
     = line_chart @orders_count
+
+.row
+  .col-sm-12
+    %h3 Last year
+    = line_chart @prev_orders_count
