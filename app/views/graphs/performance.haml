@@ -7,20 +7,12 @@
 .row
   .col-sm-12
     %h3 This year
-    = line_chart @quotes_count
-.row
-  .col-sm-12
-    %h3 Last year
-    = line_chart @prev_quotes_count
+    = line_chart [ {name: "LAST YEAR", data: @prev_quotes_count}, {name: "THIS YEAR", data: @quotes_count} ]
 
-%h1 Orders 
+%h1 Orders
 
 .row
   .col-sm-12
-    %h3 This year
-    = line_chart @orders_count
+    = line_chart [ {name: "LAST YEAR", data: @prev_orders_count}, {name: "THIS YEAR", data: @orders_count} ]
 
-.row
-  .col-sm-12
-    %h3 Last year
-    = line_chart @prev_orders_count
+
