@@ -6,13 +6,14 @@
 
 .row
   .col-sm-12
-    %h3 This year
-    = line_chart [ {name: "LAST YEAR", data: @prev_quotes_count}, {name: "THIS YEAR", data: @quotes_count} ]
+    = line_chart @quote_dates
 
 %h1 Orders
 
+%hr
+
 .row
   .col-sm-12
-    = line_chart [ {name: "LAST YEAR", data: @prev_orders_count}, {name: "THIS YEAR", data: @orders_count} ]
+    = line_chart @order_dates
 
 
