@@ -10,8 +10,8 @@ class GraphsController < ApplicationController
   def performance
     # QUOTES
     @quotes_count = Quote.where(created_at: [1.year.ago..Time.zone.now]).group_by_month(:created_at, time_zone: Time.zone).count
-    @quotes_one_year_ago = Quote.where(created_at: [2.year.ago..1.year.ago]).group_by_month(:created_at, time_zone: Time.zone).count
-    @quotes_two_years_ago = Quote.where(created_at: [3.year.ago..2.year.ago]).group_by_month(:created_at, time_zone: Time.zone).count
+    @quotes_one_year_ago = Quote.where(created_at: [2.year.ago..1.year.ago.end_of_month]).group_by_month(:created_at, time_zone: Time.zone).count
+    @quotes_two_years_ago = Quote.where(created_at: [3.year.ago..2.year.ago.end_of_month]).group_by_month(:created_at, time_zone: Time.zone).count
 
     @quotes_one_year_ago = align_chartkick_dates(@quotes_one_year_ago, 1)
     @quotes_two_years_ago = align_chartkick_dates(@quotes_two_years_ago, 2)
@@ -25,8 +25,8 @@ class GraphsController < ApplicationController
 
     # ORDERS
     @orders_count = Order.where(created_at: [1.year.ago..Time.zone.now]).group_by_month(:created_at, time_zone: Time.zone).count
-    @orders_one_year_ago = Order.where(created_at: [2.year.ago..1.year.ago]).group_by_month(:created_at, time_zone: Time.zone).count
-    @orders_two_years_ago = Order.where(created_at: [3.year.ago..2.year.ago]).group_by_month(:created_at, time_zone: Time.zone).count
+    @orders_one_year_ago = Order.where(created_at: [2.year.ago..1.year.ago.end_of_month]).group_by_month(:created_at, time_zone: Time.zone).count
+    @orders_two_years_ago = Order.where(created_at: [3.year.ago..2.year.ago.end_of_month]).group_by_month(:created_at, time_zone: Time.zone).count
 
     @orders_one_year_ago = align_chartkick_dates(@orders_one_year_ago, 1)
     @orders_two_years_ago = align_chartkick_dates(@orders_two_years_ago, 2)
