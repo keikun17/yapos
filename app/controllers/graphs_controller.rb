@@ -21,6 +21,7 @@ class GraphsController < ApplicationController
     ]
   end
 
+  # TODO : extract MonthlyPerformance class
   def performance
     # QUOTES
     @quotes_count = Quote.where(created_at: [1.year.ago..Time.zone.now]).group_by_month(:created_at, time_zone: Time.zone).count
