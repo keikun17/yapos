@@ -21,6 +21,7 @@ Yapos::Application.routes.draw do
 
   get 'graphs/kanban', to: 'graphs#kanban'
   get 'graphs/performance', to: 'graphs#performance'
+  get 'graphs/profits', to: 'graphs#profits'
 
   get 'price_movements', to: 'price_movement#index', as: :price_movements
   get 'price_movement/:vendor_item_id', to: 'price_movement#show', as: :price_movement

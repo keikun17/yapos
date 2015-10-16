@@ -7,6 +7,14 @@ class GraphsController < ApplicationController
     @for_delivery = Quote.for_delivery.decorate
   end
 
+  def profits
+    @sales = [
+      { name: Time.now.year, data: MonthlyProfit.for(Time.now.year) },
+      { name: 1.year.ago.year, data: align_chartkick_dates(MonthlyProfit.for(1.year.ago.year), 1) },
+      { name: 2.years.ago.year, data: align_chartkick_dates(MonthlyProfit.for(2.years.ago.year), 2) },
+    ]
+  end
+
   def performance
     # QUOTES
     @quotes_count = Quote.where(created_at: [1.year.ago..Time.zone.now]).group_by_month(:created_at, time_zone: Time.zone).count
