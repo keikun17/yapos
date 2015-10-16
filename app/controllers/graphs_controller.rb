@@ -9,9 +9,15 @@ class GraphsController < ApplicationController
 
   def profits
     @sales = [
-      { name: Time.now.year, data: MonthlyProfit.for(Time.now.year) },
-      { name: 1.year.ago.year, data: align_chartkick_dates(MonthlyProfit.for(1.year.ago.year), 1) },
-      { name: 2.years.ago.year, data: align_chartkick_dates(MonthlyProfit.for(2.years.ago.year), 2) },
+      { name: Time.now.year, data: MonthlyProfit.for(Time.now.year, {service: false}) },
+      { name: 1.year.ago.year, data: align_chartkick_dates(MonthlyProfit.for(1.year.ago.year, {service: false}), 1) },
+      { name: 2.years.ago.year, data: align_chartkick_dates(MonthlyProfit.for(2.years.ago.year, {service: false}), 2) },
+    ]
+
+    @services = [
+      { name: Time.now.year, data: MonthlyProfit.for(Time.now.year, {service: true}) },
+      { name: 1.year.ago.year, data: align_chartkick_dates(MonthlyProfit.for(1.year.ago.year, {service: true}), 1) },
+      { name: 2.years.ago.year, data: align_chartkick_dates(MonthlyProfit.for(2.years.ago.year, {service: true}), 2) },
     ]
   end
 
