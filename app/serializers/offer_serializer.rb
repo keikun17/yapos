@@ -54,4 +54,5 @@ end
 #  internal_notes             :text(65535)
 #  buying_currency            :string(255)
 #  service                    :boolean          default(FALSE)
+#  from_stock                 :boolean          default(FALSE)
 #
