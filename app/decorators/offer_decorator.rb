@@ -9,6 +9,7 @@ class OfferDecorator < ApplicationDecorator
   end
 
   def supplier_purchase_link
+    return "FROM STOCK" if self.from_stock
     if self.supplier_purchase
       h.link_to self.supplier_purchase_reference, self.supplier_purchase, class: 'reference reference-supplier-order'
     else
