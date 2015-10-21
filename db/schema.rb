@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20151021145240) do
     t.text     "internal_notes",             limit: 65535
     t.string   "buying_currency",            limit: 255
     t.boolean  "service",                    limit: 1,                              default: false
+    t.boolean  "from_stock",                 limit: 1,                              default: false
   end
 
   add_index "offers", ["delivery_receipt_reference"], name: "index_offers_on_delivery_receipt_reference", using: :btree
