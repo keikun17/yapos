@@ -31,8 +31,8 @@ feature "Editing Quotes", js: true  do
 
       click_link "submit"
 
-      fill_in "Supplier Price", with: 100
-      fill_in "Our Price", with: 110
+      fill_in "Buying Price", with: 100
+      fill_in "Selling Price", with: 110
     end
 
     click_button "Update Quote"

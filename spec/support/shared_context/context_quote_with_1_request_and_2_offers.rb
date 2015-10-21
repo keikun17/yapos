@@ -60,8 +60,8 @@ RSpec.shared_context "Quote with 1 request and 2 offers", :a => :b do
       find(:css, "select[name^='quote[requests_attributes]'][name$='[buying_currency]']").select("US$")
       find(:css, "select[name^='quote[requests_attributes]'][name$='[currency]']").select("US$")
       fill_in "VAT Status", with: "VAT EX"
-      fill_in "Supplier Price", with: 50
-      fill_in "Our Price", with: 60
+      fill_in "Buying Price", with: 50
+      fill_in "Selling Price", with: 60
       fill_in "Price Basis", with: "FOB JAPAN"
 
       fill_in "Terms", with: "30 days"
@@ -90,8 +90,8 @@ RSpec.shared_context "Quote with 1 request and 2 offers", :a => :b do
       click_link "submit"
 
       fill_in "VAT Status", with: "VAT INC"
-      fill_in "Supplier Price", with: 4300
-      fill_in "Our Price", with: 5000
+      fill_in "Buying Price", with: 4300
+      fill_in "Selling Price", with: 5000
       fill_in "Price Basis", with: "FOB PIER"
 
       fill_in "Terms", with: "60 days"
