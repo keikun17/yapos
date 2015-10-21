@@ -47,6 +47,7 @@ class Requoter
       duplicate_offer.request_id = nil
       duplicate_offer.delivery_receipt_reference = nil
       duplicate_offer.sales_invoice_reference = nil
+      duplicate_offer.from_stock = false
 
       if offer.order.present?
         duplicate_offer.internal_notes ||= ""
