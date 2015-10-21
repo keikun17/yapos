@@ -24,7 +24,7 @@ class Requoter
 
   private
 
-  def self.duplicate_quote_requests_and_offers(quote:)
+  def self.duplicate_quote_requests_and_offers(quote)
     duplicate_requests = []
 
     quote.requests.each do |request|
@@ -39,7 +39,7 @@ class Requoter
     duplicate_requests
   end
 
-  def self.duplicate_request_offers(request:)
+  def self.duplicate_request_offers(request)
     duplicate_offers = []
 
     request.offers.each do |offer|
