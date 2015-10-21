@@ -28,7 +28,8 @@ class Offer < ActiveRecord::Base
     :vendor_item_code,
     :hide_supplier_in_print,
     :internal_notes,
-    :service
+    :service,
+    :from_stock
   )
 
   belongs_to :request

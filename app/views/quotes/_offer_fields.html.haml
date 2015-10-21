@@ -48,9 +48,13 @@
             = f.text_field :price_vat_status, :class => 'form-control col-sm-12', :placeholder => "VAT EX or VAT INC", data: { field_group: 'vat' }
             %a.glyphicon.glyphicon-share{ data: { field_group: 'vat' }, title: "Copy to all offers for the same supplier" }
 
+        %hr
+
         .form-group
-          = f.label :buying_price, "Supplier Price", class: 'col-sm-3 control-label'
+          = f.label :buying_price, "Buying Price", class: 'col-sm-3 control-label'
           .controls.col-sm-8
+            = f.check_box :from_stock
+            Get From Stock
             = f.select(:buying_currency, Currency.all, {}, class: 'form-control')
             = f.text_field :buying_price, :class => 'form-control', placeholder: 0.00
 
@@ -60,6 +64,8 @@
           .controls.col-sm-8
             = f.select(:currency, Currency.all, {}, class: 'form-control col-sm-5')
             = f.text_field :selling_price, :class => 'form-control col-sm-7', placeholder: 0.00
+
+        %hr
 
         .form-group
           = f.label :price_basis, "Price Basis", class: "col-sm-3 control-label"
