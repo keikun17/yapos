@@ -26,28 +26,34 @@
                 = offer.vendor_item_csv
                 = simple_format(offer.summary, class: 'muted')
 
+                - if offer.from_stock?
+                  %h3 Retrieve from stock
 
           .row
             = f.label :order_reference, "Client's PO Number", class: 'col-sm-2'
             .col-sm-6
               = f.text_field :order_reference, class: 'form-control'
 
-          .row
-            = label '[post_save][supplier_order][actual_specs]', 'Specs to Order from Supplier', class: 'col-sm-2'
-            .col-sm-9
-              = text_area_tag '[post_save][supplier_order][actual_specs]',offer.summary, class: 'scol-sm-12 form-control', rows: 4
+          - unless offer.service? or offer.from_stock?
 
-          .row
-            = label '[post_save][supplier_order][reference]', 'Supplier PO Ref', class: 'col-sm-2'
-            .col-sm-10
-              = text_field_tag '[post_save][supplier_order][reference]', '', class: 'form-control'
+            .row
+              = label '[post_save][supplier_order][actual_specs]', 'Specs to Order from Supplier', class: 'col-sm-2'
+              .col-sm-9
+                = text_area_tag '[post_save][supplier_order][actual_specs]',offer.summary, class: 'scol-sm-12 form-control', rows: 4
 
-          .row
-            .col-sm-6
-              %i last 5 PO issued are:
-              %ul
-                - SupplierPurchase.where.not(reference: '').limit(5).order(id: :desc).reverse.each do |sp|
-                  %li= sp.reference
+            .row
+              = label '[post_save][supplier_order][reference]', 'Supplier PO Ref', class: 'col-sm-2'
+              .col-sm-10
+                = text_field_tag '[post_save][supplier_order][reference]', '', class: 'form-control'
+
+
+          - unless offer.service? or offer.from_stock?
+            .row
+              .col-sm-6
+                %i last 5 PO issued are:
+                %ul
+                  - SupplierPurchase.where.not(reference: '').limit(5).order(id: :desc).reverse.each do |sp|
+                    %li= sp.reference
 
             .col-sm-6
               .alert.alert-internal-note
