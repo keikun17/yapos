@@ -7,12 +7,12 @@ $invoice-alt-color: #A880E8;
 $payment-color: #F37934;
 $delivery-color: #f1c40f;
 $service-color: #825a2c;
+$stock-color: #f0ad4e;
 
 .theme-quote {
   background-color: $quote-color;
   color: #fff;
 }
-
 
 .theme-order {
   background-color: $order-color;
@@ -42,4 +42,9 @@ $service-color: #825a2c;
 .theme-service{
   border-color: #825a2c;
   color: #825a2c;
+}
+
+.theme-stock{
+  background-color: $stock-color;
+  color: #fff;
 }

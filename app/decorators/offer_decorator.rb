@@ -9,7 +9,8 @@ class OfferDecorator < ApplicationDecorator
   end
 
   def supplier_purchase_link
-    return "FROM STOCK" if self.from_stock?
+    return from_stock_label if self.from_stock?
+
     if self.supplier_purchase
       h.link_to self.supplier_purchase_reference, self.supplier_purchase, class: 'reference reference-supplier-order'
     else
@@ -83,7 +84,7 @@ class OfferDecorator < ApplicationDecorator
   # with_suffix: set to true if you want to return with suffix (VAT, Price
   # basis)
   def display_buying_price(options = {})
-    return "FROM STOCK" if self.from_stock?
+    return from_stock_label if self.from_stock?
 
     with_suffix = options[:with_suffix]
 
@@ -159,6 +160,10 @@ class OfferDecorator < ApplicationDecorator
     else
       buying_price >= selling_price
     end
+  end
+
+  def from_stock_label
+    h.content_tag :span, "FROM STOCK",  class: 'label label-stock'
   end
 
   private
