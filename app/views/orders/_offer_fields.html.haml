@@ -23,7 +23,7 @@
         - if !f.object.from_stock?
           = ff.text_field :reference, class: 'form-control'
         - else
-          FROM STOCK
+          = offer.from_stock_label
     %td
       - unless f.object.service? or f.object.from_stock?
         = ff.date_select :estimated_manufactured_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'form-control'

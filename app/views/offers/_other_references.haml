@@ -11,7 +11,7 @@
   .row-fluid
     .col-sm-12
       - if offer.from_stock?
-        FROM STOCK
+        = offer.from_stock_label
       - if !offer.supplier_purchase_reference.blank?
         = link_to offer.supplier_purchase.reference, offer.supplier_purchase, class: 'reference reference-supplier-order'
         %br
