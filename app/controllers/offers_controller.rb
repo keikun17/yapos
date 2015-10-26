@@ -32,10 +32,12 @@ class OffersController < ApplicationController
         # Set Order date to current date
         @offer.order.update_attributes(purchase_date: Time.zone.now)
 
-        @offer.supplier_order.update_attributes(params['post_save']['supplier_order'])
+        if !@offer.from_stock?
+          @offer.supplier_order.update_attributes(params['post_save']['supplier_order'])
 
-        # Create SupplierPurchase with
-        @offer.purchase_from_supplier_if_needed
+          # Create SupplierPurchase with
+          @offer.purchase_from_supplier_if_needed
+        end
 
         redirect_to :back, notice: "Offer's PO number successfully updated"
       else
