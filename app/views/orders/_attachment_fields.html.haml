@@ -1,11 +1,13 @@
 .fields
-  .row
-    .col-sm-2
+  .row.attachment-item
+    .col-sm-1
       - unless f.object.persisted?
-        = f.label :document
-    .col-sm-10
+        = f.label :document, "New Attachment"
+      - else
+        = f.label :document, "Existing Attachment"
+    .col-sm-11
       - if f.object.persisted?
         = f.object[:document]
       - else
-        = f.file_field :document, :class => 'field_field'
+        = f.file_field :document, :class => 'file_field'
       = link_to_remove_fields "remove", f
