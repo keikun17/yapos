@@ -32,7 +32,7 @@ class OffersController < ApplicationController
         # Set Order date to current date
         @offer.order.update_attributes(purchase_date: Time.zone.now)
 
-        if !@offer.from_stock?
+        if @offer.supplier_orderable?
           @offer.supplier_order.update_attributes(params['post_save']['supplier_order'])
 
           # Create SupplierPurchase with

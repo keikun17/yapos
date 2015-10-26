@@ -177,6 +177,10 @@ class Offer < ActiveRecord::Base
     !order_reference.blank?
   end
 
+  # Orderable if the offer is not a service and not a from_stock
+  def supplier_orderable?
+    !self.service? and !self.from_stock?
+  end
 
   # FIXME : We do not need this method and any calls to this method. We should
   # instead guarantee that a SupplierPurchase record is made everytime a
@@ -185,7 +189,7 @@ class Offer < ActiveRecord::Base
   # Also, do not create supplier order and supplier purchase records for stock
   # offers and service offers
   def purchase_from_supplier_if_needed
-    if !offer.from_stock? && supplier_order.present? && supplier_purchase.nil?
+    if self.supplier_orderable? && supplier_order.present? && supplier_purchase.nil?
       SupplierPurchase.find_or_create_by(reference: supplier_order.reference)
     end
   end
