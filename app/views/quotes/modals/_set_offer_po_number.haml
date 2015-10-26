@@ -34,7 +34,7 @@
             .col-sm-6
               = f.text_field :order_reference, class: 'form-control'
 
-          - unless offer.service? or offer.from_stock?
+          - if offer.supplier_orderable?
 
             .row
               = label '[post_save][supplier_order][actual_specs]', 'Specs to Order from Supplier', class: 'col-sm-2'
@@ -47,7 +47,7 @@
                 = text_field_tag '[post_save][supplier_order][reference]', '', class: 'form-control'
 
 
-          - unless offer.service? or offer.from_stock?
+          - if offer.supplier_orderable?
             .row
               .col-sm-6
                 %i last 5 PO issued are:

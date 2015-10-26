@@ -16,7 +16,7 @@
   = f.fields_for :supplier_order do |ff|
 
     %td
-      - unless f.object.service? or f.object.from_stock?
+      - if f.object.supplier_orderable?
         = ff.text_area :actual_specs, class: 'form-control'
     %td
       - unless f.object.service?
@@ -25,10 +25,10 @@
         - else
           = offer.from_stock_label
     %td
-      - unless f.object.service? or f.object.from_stock?
+      - if f.object.supplier_orderable?
         = ff.date_select :estimated_manufactured_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'form-control'
     %td
-      - unless f.object.service? or f.object.from_stock?
+      - if f.object.supplier_orderable?
         = ff.date_select :estimated_delivered_at,  {:prompt => { :day => 'Select day', :month => 'Select month', :year => 'Select year' }}, class: 'form-control'
 
     %td
