@@ -92,7 +92,7 @@ $ ->
     # find link's siblings field whose data will be copied
     button =  $(e.target)
     fieldGroup = button.data('fieldGroup')
-    field = button.siblings("input[data-field-group='#{fieldGroup}']")
+    field = button.parents('.controls').first().find("input[data-field-group='#{fieldGroup}']").first()
 
     console.log button
 
