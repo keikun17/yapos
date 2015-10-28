@@ -106,6 +106,7 @@ class QuotesController < ApplicationController
     if @quote.persisted?
       redirect_to @quote
     else
+      flash[:error] = "Error requoting : #{@quote.errors.full_messages}"
       redirect_to quotes_url
     end
   end
