@@ -87,7 +87,7 @@ $ ->
   ######################################################################
   # Quick copy
   ######################################################################
-  $("form").on "click", 'a[data-field-group]',(e) ->
+  $("form").on "click", '[data-field-group]',(e) ->
 
     # find link's siblings field whose data will be copied
     button =  $(e.target)
