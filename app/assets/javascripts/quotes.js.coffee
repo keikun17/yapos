@@ -92,16 +92,15 @@ $ ->
     # find link's siblings field whose data will be copied
     button =  $(e.target)
     fieldGroup = button.data('fieldGroup')
-    field = button.parents('.controls').first().find("input[data-field-group='#{fieldGroup}']").first()
+    field = button.parents('.controls').first().find("[data-field-group='#{fieldGroup}']").first()
 
     console.log button
 
     # find target fields with the same supplier
     supplierId = button.parents(".fields").find("select[name*='supplier_id']").val()
-    console.log supplierId
 
     same_supplier_fields = $("option[value='#{supplierId}']:selected").parent("select[name*='supplier_id']")
-    target_fields = same_supplier_fields.parents('.fields').find("input[data-field-group='#{fieldGroup}']")
+    target_fields = same_supplier_fields.parents('.fields').find("[data-field-group='#{fieldGroup}']")
 
     # copy the value over to those fields with the same supplier
     target_fields.val(field.val())
