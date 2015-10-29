@@ -61,11 +61,12 @@
             = f.text_field :buying_price, :class => 'form-control', placeholder: 0.00
 
 
-        .form-group
-          = f.label :selling_price, "Selling Price", class: 'col-sm-3 control-label'
-          .controls.col-sm-8
-            = f.select(:currency, Currency.all, {}, class: 'form-control col-sm-5')
-            = f.text_field :selling_price, :class => 'form-control col-sm-7', placeholder: 0.00
+        .form-inline
+          .form-group
+            = f.label :selling_price, "Selling Price", class: 'col-sm-3 control-label'
+            .controls.col-sm-8
+              = f.select(:currency, Currency.all, {}, class: 'form-control col-sm-3')
+              = f.text_field :selling_price, :class => 'form-control col-sm-6', placeholder: 0.00
 
         %hr
 
@@ -81,30 +82,31 @@
         .form-group
           = f.label :terms, "Terms", class: 'col-sm-3 control-label'
           .controls.col-sm-9
-            = f.text_field :terms, :class => 'form-control col-sm-10', data: { field_group: 'terms' }
+            = f.text_area :terms, :class => 'form-control', data: { field_group: 'terms' }
             %a.glyphicon.glyphicon-share{ data: { field_group: 'terms' }, title: "Copy to all offers for the same supplier" }
         .form-group
           = f.label :delivery, "Delivery", class: 'col-sm-3 control-label'
           .controls.col-sm-9
-            = f.text_field :delivery, :class => 'form-control col-sm-10', data: { field_group: 'delivery'}
+            = f.text_area :delivery, :class => 'form-control col-sm-10', data: { field_group: 'delivery'}
             %a.glyphicon.glyphicon-share{ data: {field_group: 'delivery'}, title: "Copy to all offers for the same supplier" }
 
         .form-group
           = f.label :warranty, "Warranty", class: 'col-sm-3 control-label'
           .controls.col-sm-9
-            = f.text_field :warranty, :class => 'form-control col-sm-10', data: { field_group: 'warranty'}
+            = f.text_area :warranty, :class => 'form-control col-sm-10', data: { field_group: 'warranty'}
             %a.glyphicon.glyphicon-share{ data: {field_group: 'warranty'}, title: "Copy to all offers for the same supplier" }
 
         .form-group
           = f.label :remarks, "Notes", class: 'col-sm-3 control-label'
           .controls.col-sm-9
-            = f.text_field :remarks, :class => 'form-control col-sm-10', data: { field_group: 'request_notes'}
+            = f.text_area :remarks, :class => 'form-control col-sm-10', data: { field_group: 'request_notes'}
             %a.glyphicon.glyphicon-share{ data: {field_group: 'request_notes'}, title: "Copy to all offers for the same supplier" }
 
         .form-group
           = f.label :internal_notes, "Interal Notes", class: 'col-sm-3 control-label'
           .controls.col-sm-9
-            = f.text_area :internal_notes, :class => 'form-control col-sm-10', data: { field_group: 'request_notes'}
+            = f.text_area :internal_notes, :class => 'form-control col-sm-10', data: { field_group: 'internal_notes'}
+            %a.glyphicon.glyphicon-share{ data: {field_group: 'internal_notes'}, title: "Copy to all offers for the same supplier" }
             %br
             (Will not appear in print)
 
