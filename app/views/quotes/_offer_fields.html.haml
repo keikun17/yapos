@@ -57,14 +57,16 @@
           .controls.col-sm-8
             = f.check_box :from_stock
             Get From Stock
-            = f.select(:buying_currency, Currency.all, {}, class: 'form-control')
-            = f.text_field :buying_price, :class => 'form-control', placeholder: 0.00
+            .row
+              .col-sm-5.--no-right-padding
+                = f.select(:buying_currency, Currency.all, {}, class: 'form-control')
+              .col-sm-7.--no-left-padding
+                = f.text_field :buying_price, :class => 'form-control', placeholder: 0.00
 
 
         .form-group
           = f.label :selling_price, "Selling Price", class: 'col-sm-3 control-label'
           .controls.col-sm-8
-            -# .form-inline
             .row
               .col-sm-5.--no-right-padding
                 = f.select(:currency, Currency.all, {}, class: 'form-control col-sm-3')
