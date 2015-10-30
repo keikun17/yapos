@@ -66,9 +66,9 @@
           .controls.col-sm-8
             -# .form-inline
             .row
-              .col-sm-5.--padding-right-none
+              .col-sm-5.--no-right-padding
                 = f.select(:currency, Currency.all, {}, class: 'form-control col-sm-3')
-              .col-sm-6
+              .col-sm-7.--no-left-padding
                 = f.text_field :selling_price, :class => 'form-control col-sm-6', placeholder: 0.00
 
         %hr
