@@ -61,12 +61,15 @@
             = f.text_field :buying_price, :class => 'form-control', placeholder: 0.00
 
 
-        .form-inline
-          .form-group
-            = f.label :selling_price, "Selling Price", class: 'col-sm-3 control-label'
-            .controls.col-sm-8
-              = f.select(:currency, Currency.all, {}, class: 'form-control col-sm-3')
-              = f.text_field :selling_price, :class => 'form-control col-sm-6', placeholder: 0.00
+        .form-group
+          = f.label :selling_price, "Selling Price", class: 'col-sm-3 control-label'
+          .controls.col-sm-8
+            -# .form-inline
+            .row
+              .col-sm-5.--padding-right-none
+                = f.select(:currency, Currency.all, {}, class: 'form-control col-sm-3')
+              .col-sm-6
+                = f.text_field :selling_price, :class => 'form-control col-sm-6', placeholder: 0.00
 
         %hr
 
