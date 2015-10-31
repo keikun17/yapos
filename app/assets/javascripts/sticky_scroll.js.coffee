@@ -1,7 +1,10 @@
 $(window).scroll ->
   navbar_height = document.getElementById('navbar').scrollHeight
-  if $(window).scrollTop() > navbar_height
-    $('.dev-environment-alert-header').css 'top', $(window).scrollTop() - navbar_height
+  scroll_distance = $(window).scrollTop()
+  sticky_element = document.getElementsByClassName('dev-environment-alert-header')[0]
+
+  if scroll_distance > navbar_height
+    sticky_element.style.top =  sticky_element.clientHeight + 'px'
   else
-    $('.dev-environment-alert-header').css 'top', 0
+    sticky_element.style.top = (navbar_height - scroll_distance) + sticky_element.clientHeight + 'px'
   return

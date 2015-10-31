@@ -16,12 +16,14 @@
 
 .dev-environment-alert-header{
   @extend .pos-header;
-  position: relative;
+  position: fixed;
   margin-bottom: 20px;
   background-color: red;
   color: #fff;
   z-index: 1;
+
 }
+
 
 .print-header-label{
   @extend .col-sm-12 !optional;
