@@ -20,7 +20,7 @@
 
   %body
     -unless defined? @print_preview
-      .navbar.navbar-inverse.navbar-static-top
+      #navbar.navbar.navbar-inverse.navbar-static-top
         .container-fluid
           %btn.navbar-toggle.collapsed(data-target="#navbar" data-toggle="collapse" aria-expanded="false" aria-controls="navbar")
             %span.icon-bar
@@ -29,7 +29,7 @@
           .navbar-header
             %a.navbar-brand(href="#") MLANDCORP
           - if user_signed_in?
-            #navbar.navbar-collapse.collapse
+            .navbar-collapse.collapse
               %ul.nav.navbar-nav
                 %li#quotes-nav= link_to "Price Quotes", quotes_path
                 %li#order-nav= link_to "Client Orders", orders_path
