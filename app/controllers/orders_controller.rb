@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.includes(offers: [:client, :request, :invoices, :supplier_purchase]).all
     filter_orders_by_params_and_decorate
   end
 
