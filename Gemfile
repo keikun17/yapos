@@ -35,6 +35,7 @@ group :development do
   gem 'annotate'
   gem 'taps', '~> 0.3.24'
   gem 'capistrano', '~> 3.4.0', require: false
+  gem 'bullet'
 end
 
 gem 'thin'
