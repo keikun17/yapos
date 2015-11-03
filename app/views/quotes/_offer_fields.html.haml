@@ -59,7 +59,7 @@
             Get From Stock
             .row
               .col-sm-5.--no-right-padding
-                = f.select(:buying_currency, Currency.all, {}, class: 'form-control')
+                = f.select(:buying_currency, Currency.all, {}, class: 'form-control no-dropdown')
               .col-sm-7.--no-left-padding
                 = f.text_field :buying_price, :class => 'form-control', placeholder: '0.00'
 
@@ -69,7 +69,7 @@
           .controls.col-sm-8
             .row
               .col-sm-5.--no-right-padding
-                = f.select(:currency, Currency.all, {}, class: 'form-control col-sm-3')
+                = f.select(:currency, Currency.all, {}, class: 'form-control no-dropdown col-sm-3')
               .col-sm-7.--no-left-padding
                 = f.text_field :selling_price, :class => 'form-control col-sm-6', placeholder: '0.00'
 
