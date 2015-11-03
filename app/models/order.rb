@@ -44,8 +44,7 @@ class Order < ActiveRecord::Base
 
   scope :with_supply_offers, -> {
     includes(
-      offers: :supplier_order,
-      supplier_orders: :supplier_purchase
+      {offers: [{supplier_order: :supplier_purchase}, :client, :request]},
     ).
     references(:offers).where.not(offers: {service: true}).where.not(offers: {id: nil}).not_yet_ordered
   }
