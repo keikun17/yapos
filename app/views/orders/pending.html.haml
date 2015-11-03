@@ -21,7 +21,7 @@
     - @orders.each do |order|
       - offer_count = order.offers.count
       - offers = order.offers.decorate
-      - offer = offers.shift
+      - offer = offers.first
 
       - if offer
         %tr{class: offer_row_class(offer)}
@@ -50,7 +50,7 @@
             - else
               %i Purchased
 
-          - offers.each do |offer|
+          - offers[1..-1].each do |offer|
             %tr{class: offer_row_class(offer)}
               %td
                 = link_to_client(offer.client)
