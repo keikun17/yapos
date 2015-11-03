@@ -1,11 +1,6 @@
 class OrderDecorator < ApplicationDecorator
 
   delegate_all
-  decorates_association :offers
-
-  def decorated_offers
-    @decorated_offers ||= offers.decorate
-  end
 
   def display_purchase_date(warn: true)
     if purchase_date.nil?

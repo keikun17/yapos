@@ -17,9 +17,10 @@
     - orders.each do |order|
       - offer_count = order.offers.count
       - offers = order.offers
-      - offer = offers.shift
+      - offer = offers.first
 
       - if offer
+        - offer = offer.decorate
         %tr{class: offer_row_class(offer)}
           %td{rowspan: offer_count}
             %strong= link_to order.reference, order, class: 'reference reference-order'
@@ -49,7 +50,8 @@
           %td= render 'offers/estimated_delivery_date', offer: offer
           %td= render 'offers/delivered_at', offer: offer
 
-          - offers.each do |offer|
+          - offers[1..-1].each do |offer|
+            - offer = offer.decorate
             %tr{class: offer_row_class(offer)}
               %td
                 = link_to_client(offer.client)

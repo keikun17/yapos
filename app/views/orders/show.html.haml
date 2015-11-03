@@ -98,7 +98,7 @@
       - offer_count = quote.offers.where(order_reference: @order.reference).size
       - offers = quote.offers.where(order_reference: @order.reference).purchased
       - offers = OfferDecorator.decorate_collection(offers)
-      - offer = offers.shift
+      - offer = offers.shift.decorate
       %tr
         %td{rowspan: offer_count}
           %strong= link_to quote.display_reference, quote
@@ -125,6 +125,7 @@
         %td
           = render 'offers/other_references', offer: offer
       - offers.each do |offer|
+        - offer = offer.decorate
         %tr
           %td
             %span.request-quantity= offer.request.display_quantity
