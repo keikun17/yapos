@@ -1,6 +1,7 @@
 class OrderDecorator < ApplicationDecorator
 
   delegate_all
+  decorates_association :offers
 
   def decorated_offers
     @decorated_offers ||= offers.decorate

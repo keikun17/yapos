@@ -41,7 +41,7 @@
   %tbody
     - @orders.each do |order|
       - offer_count = order.offers.count
-      - offers = order.decorated_offers
+      - offers = order.offers
       - offer = offers.shift
 
       - if offer

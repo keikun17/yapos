@@ -20,7 +20,7 @@
   %tbody
     - @orders.each do |order|
       - offer_count = order.offers.count
-      - offers = order.offers.decorate
+      - offers = order.offers
       - offer = offers.first
 
       - if offer
