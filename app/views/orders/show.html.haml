@@ -96,7 +96,7 @@
   %tbody
     - @quotes.each do |quote|
       - offer_count = quote.offers.where(order_reference: @order.reference).size
-      - offers = quote.offers.includes(:payments).where(order_reference: @order.reference).purchased
+      - offers = quote.offers.includes(:payments, :supplier_purchase, :order, :supplier, :vendor_item ).where(order_reference: @order.reference).purchased
       - offer = offers.first.decorate
       %tr
         %td{rowspan: offer_count}

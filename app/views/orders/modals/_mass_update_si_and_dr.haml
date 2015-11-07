@@ -14,7 +14,7 @@
                 %th Request
                 %th Offer
                 %th Actual
-              - @order.supply_offers.each do |offer|
+              - @order.supply_offers.includes(:request).each do |offer|
                 %tr
                   %td= simple_format(offer.request.specs)
                   %td= simple_format(offer.specs)
