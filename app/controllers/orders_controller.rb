@@ -55,7 +55,7 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.find(params[:id]).decorate
-    @quotes = @order.quotes.decorate
+    @quotes = @order.quotes.includes(:offers).decorate
   end
 
   # GET /orders/1/edit
