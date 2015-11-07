@@ -54,10 +54,8 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-    @order = Order.find(params[:id])
-    @order = OrderDecorator.new(@order)
-
-    @quotes = QuoteDecorator.decorate_collection(@order.quotes)
+    @order = Order.find(params[:id]).decorate
+    @quotes = @order.quotes.decorate
   end
 
   # GET /orders/1/edit
