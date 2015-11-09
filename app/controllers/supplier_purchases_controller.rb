@@ -3,7 +3,7 @@ class SupplierPurchasesController < ApplicationController
   def index
     # .includes([:supplier_orders, :orders, :offers, :quotes, :clients, :suppliers])
     @supplier_purchases = SupplierPurchase.where("supplier_purchases.reference <> ''")
-      .includes([:supplier_orders, {supplier_orders: :offer }, { offers: [:request] }, :quotes, :suppliers, :orders ])
+      .includes([ {supplier_orders: :offer }, { offers: [:request] }, :quotes, :suppliers, :orders ])
       .where.not(supplier_orders: {id: nil})
       .order('supplier_purchases.id desc')
 
