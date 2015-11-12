@@ -46,7 +46,8 @@
           = f.label :price_vat_status, "VAT Status", class: 'col-sm-3 control-label'
           .controls.col-sm-8
             .input-group
-              = f.text_field :price_vat_status, :class => 'form-control', :placeholder => "VAT EX or VAT INC", data: { field_group: 'vat' }
+              -# = f.text_field :price_vat_status, :class => 'form-control', :placeholder => "VAT EX or VAT INC", data: { field_group: 'vat' }
+              = f.select :price_vat_status, options_for_select([f.object.price_vat_status, 'VAT INC', 'VAT EX', 'ZERO RATED']),{}, class: 'form-control', data: { field_group: 'vat'}
               %span.input-group-btn
                 %button.btn.btn-default.glyphicon.glyphicon-share{ data: { field_group: 'vat' }, title: "Copy to all offers for the same supplier" }
 
