@@ -5,7 +5,7 @@ class QuotesController < ApplicationController
   # GET /quotes
   # GET /quotes.json
   def index
-    @quotes = Quote.includes(:requests, :suppliers, :offers, {offers: [:order, :supplier_order]}, :client)
+    @quotes = Quote.includes(:requests, :suppliers, :offers, {offers: [:supplier_order]}, :client)
     @quotes = filter_quotes_by_params(params).decorate
     respond_with(@quotes)
   end
