@@ -10,7 +10,7 @@ class ClientsController < ApplicationController
   # GET /clients/1.json
   def show
     @client = Client.find(params[:id])
-    @quotes = @client.quotes.includes({offers: :supplier_order}, :suppliers, :orders).decorate
+    @quotes = @client.quotes.includes({offers: :supplier_order}, :suppliers).decorate
 
     respond_with(@client)
   end
