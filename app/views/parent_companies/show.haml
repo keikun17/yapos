@@ -11,6 +11,9 @@
       %li= client.name
 
 %h4 RFQs
-- if @parent_company.quotes.present?
+- if @quotes.present?
+
+  .pull-right= will_paginate(@quotes)
   = render :partial => 'quotes/quotes', :locals => {:quotes => @parent_company.quotes.decorate, :model_class => Quote}
+  .pull-right= will_paginate(@quotes)
 

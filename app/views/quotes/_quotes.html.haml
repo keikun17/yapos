@@ -10,6 +10,7 @@
       %th.po-reference Client PO
   %tbody
     - quotes.each do |quote|
+      - quote = quote.decorate
       %tr{:class => quote_row_class(quote)}
         %td
           %strong= link_to quote.display_reference, quote, class: 'reference reference-quote'
