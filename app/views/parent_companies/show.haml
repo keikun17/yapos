@@ -14,6 +14,6 @@
 - if @quotes.present?
 
   .pull-right= will_paginate(@quotes)
-  = render :partial => 'quotes/quotes', :locals => {:quotes => @parent_company.quotes.decorate, :model_class => Quote}
+  = render :partial => 'quotes/quotes', :locals => {:quotes => @quotes.decorate, :model_class => Quote}
   .pull-right= will_paginate(@quotes)
 
