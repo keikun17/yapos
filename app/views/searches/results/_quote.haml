@@ -16,10 +16,11 @@
         %td
           - requests = quote.requests
           - requests.each do |r|
-            %span
-              = r.to_label('label label-info')
-            %span
-              = r.specs
+            %p
+              %span
+                = r.to_label('label label-info')
+              %span
+                = r.specs
 
         %td Quote
         %td= quote.client_name
