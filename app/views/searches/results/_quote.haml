@@ -17,8 +17,7 @@
           - requests = quote.requests
           - requests.each do |r|
             %p
-              %span
-                = r.to_label('label label-info')
+              %span.request-quantity= r.display_quantity
               %span
                 = r.specs
 
