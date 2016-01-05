@@ -1,42 +1,46 @@
-.page-header
-  %h1
-    = t '.title', :default => @stock.reference
-    = link_to t('.edit', :default => t("helpers.links.edit")), edit_stock_path(@stock), :class => 'btn'
+.row
+  .col-sm-12
+    .page-header
+      %h1
+        = t '.title', :default => @stock.reference
+        = link_to t('.edit', :default => t("helpers.links.edit")), edit_stock_path(@stock), :class => 'btn'
 
-%p
-  %strong Reference
-  %br
-  = @stock.reference
+.row
+  .col-sm-12
+    %p
+      %strong Reference
+      %br
+      = @stock.reference
 
-%p
-  %strong Quantity
-  %br
-  = @stock.remaining_quantity
+    %p
+      %strong Quantity
+      %br
+      = @stock.remaining_quantity
 
-%p
-  %strong Unit
-  %br
-  = @stock.unit
+    %p
+      %strong Unit
+      %br
+      = @stock.unit
 
-%p
-  %strong Description
-  %br
-  = @stock.reference
+    %p
+      %strong Description
+      %br
+      = @stock.reference
 
-%p
-  %strong Remarks
-  %br
-  = @stock.remarks
+    %p
+      %strong Remarks
+      %br
+      = @stock.remarks
 
-%p
-  %strong Date Acquired
-  %br
-  = @stock.date_acquired
+    %p
+      %strong Date Acquired
+      %br
+      = @stock.date_acquired
 
-%p
-  %strong Date Used up
-  %br
-  = @stock.date_used_up
+    %p
+      %strong Date Used up
+      %br
+      = @stock.date_used_up
 
-= link_to 'Delete', stock_path(@stock), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+    = link_to 'Delete', stock_path(@stock), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
 
