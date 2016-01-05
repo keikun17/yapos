@@ -48,9 +48,9 @@
   - @offers.each do |offer|
     - request = offer.request
     %tr{class: quote_row_class(offer.quote)}
-      %td= link_to offer.quote_reference, offer.quote
+      %td= link_to offer.quote_reference, offer.quote, class: 'reference reference-quote'
       %td
-        = link_to(offer.order_reference, offer.order) if offer.order
+        = link_to(offer.order_reference, offer.order, class: 'reference reference-order') if offer.order
       %td= link_to_client(offer.client)
       %td= link_to offer.supplier.name, offer.supplier
       %td= request.item_code
