@@ -36,6 +36,7 @@
 %table.table
   %tr
     %th PR#
+    %th PO#
     %th Client
     %th Brand
     %th Offered for Request Code
@@ -48,6 +49,8 @@
     - request = offer.request
     %tr{class: quote_row_class(offer.quote)}
       %td= link_to offer.quote_reference, offer.quote
+      %td
+        = link_to(offer.order_reference, offer.order) if offer.order
       %td= link_to_client(offer.client)
       %td= link_to offer.supplier.name, offer.supplier
       %td= request.item_code

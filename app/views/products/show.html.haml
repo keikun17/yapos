@@ -17,6 +17,7 @@
   %tr
     %th Code
     %th Offers
+    %th Orders
     - @product.product_fields.each do |pf|
       %th= pf.name
     %th
@@ -27,6 +28,7 @@
     %tr
       %td= link_to vendor_item.csv, price_movement_path(vendor_item)
       %td= vendor_item.offers.count
+      %td= vendor_item.offers.purchased.count
       - @product.product_fields.each do |product_field|
         %td
           = vendor_item.vendor_item_fields.find_by(product_field: product_field).try(:value)
