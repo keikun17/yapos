@@ -13,7 +13,13 @@
       - order = order.decorate
       %tr
         %td= link_to order.reference, order
-        %td --IMPLEMENT--
+        %td
+          - order.requests.decorate.each do |r|
+            %p
+              %span.request-quantity= r.display_quantity
+              %span
+                = r.specs
+
         %td Order
         %td= order.client_names
         %td= order.supplier_names

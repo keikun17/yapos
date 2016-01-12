@@ -25,6 +25,7 @@ class Order < ActiveRecord::Base
     primary_key: 'reference'
 
   has_many :quotes, -> {uniq}, :through => :offers
+  has_many :requests, -> {uniq}, through: :offers
   has_many :clients, -> {uniq}, :through => :quotes
   has_many :suppliers, -> {uniq}, :through => :offers
   has_many :supplier_orders, -> {uniq}, :through => :supply_offers
