@@ -14,4 +14,10 @@ task reindex: :environment do
   Order.find_each(batch_size: 1000) do |order|
     order.reindex
   end
+
+  puts "Reindex Supplier Orders and Purchaes"
+
+  SupplierPurchase.find_each(batch_size: 1000) do |supplier_purchase|
+    supplier_purchase.reindex
+  end
 end
