@@ -2,8 +2,8 @@
   .row
     .col-sm-12
       = label_tag 'client_id', 'Filter by clients'
-      = select_tag 'client_id', options_from_collection_for_select(Client.all, 'id', 'name', params[:client_id]), prompt: 'All', class: 'form-control dark-filter'
+      = select_tag 'client_id', options_from_collection_for_select(Client.all, 'id', 'name', params[:client_id]), prompt: 'All', class: 'form-control list-filter'
 
       = label_tag 'supplier_id', 'Filter by Suppliers'
-      = select_tag 'supplier_id', options_from_collection_for_select(Supplier.all, 'id', 'name', params[:supplier_id]), prompt: 'All', class: 'form-control dark-filter'
+      = select_tag 'supplier_id', options_from_collection_for_select(Supplier.all, 'id', 'name', params[:supplier_id]), prompt: 'All', class: 'form-control list-filter'
       = submit_tag "filter", class: 'btn btn-primary'
