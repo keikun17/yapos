@@ -12,8 +12,8 @@
 %table.table.table-condensed.offers-list
   %thead
     %tr
-      %th PR
-      %th Client PO
+      %th.ref PR
+      %th.po-reference Client PO
       %th PO Date
       %th Qty
       %th Spec Summary
@@ -29,12 +29,17 @@
         %td= link_to offer.quote_reference, offer.quote, class: 'reference reference-quote'
         %td= link_to offer.order_reference, offer.order, class: 'reference reference-order'
         %td= offer.display_purchase_date
-        %td= offer.complete_quantity
         %td
+          %span.request-quantity= offer.complete_quantity
+        %td
+          = offer.request.item_code_link
+          = simple_format(offer.specs)
+
           - if offer.service?
             %span.badge.badge-service Service
-          = simple_format(offer.specs)
+
           = render 'offers/actual_offer', offer: offer
+          
         %td= offer.supplier_name
         %td= render 'offers/estimated_manufactured_at', offer: offer
         %td= render 'offers/estimated_delivery_date', offer: offer
