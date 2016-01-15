@@ -14,10 +14,9 @@
     %tr
       %th.ref PR
       %th.po-reference Client PO
-      %th PO Date
       %th Qty
-      %th Spec Summary
-      %th Supplier
+      %th.requested-item Spec Summary
+      %th.supplier-name Supplier
       %th Estimated Ex-works
       %th Estimated Delivery
       %th Actual Delivery Date
@@ -28,7 +27,6 @@
       %tr{class: offer_row_class(offer)}
         %td= link_to offer.quote_reference, offer.quote, class: 'reference reference-quote'
         %td= link_to offer.order_reference, offer.order, class: 'reference reference-order'
-        %td= offer.display_purchase_date
         %td
           %span.request-quantity= offer.complete_quantity
         %td
