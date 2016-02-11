@@ -3,13 +3,13 @@ class SupplierPurchasesController < ApplicationController
   def index
     # .includes([:supplier_orders, :orders, :offers, :quotes, :clients, :suppliers])
     @supplier_purchases = SupplierPurchase.where("supplier_purchases.reference <> ''")
-      .includes([ {supplier_orders: :offer }, { offers: [:request] }, :quotes, :suppliers, :orders ])
+      .includes([ {supplier_orders: :offer }, {quotes: :client}, :suppliers, :orders ])
       .where.not(supplier_orders: {id: nil})
       .order('supplier_purchases.id desc')
 
     if !params[:client_id].blank?
       @client = Client.find(params[:client_id])
-      @supplier_purchases = @supplier_purchases.includes(:quotes, {quotes: :client}).where(quotes: {client_id: params[:client_id]})
+      @supplier_purchases = @supplier_purchases.where(quotes: {client_id: params[:client_id]})
     end
 
     if !params[:supplier_id].blank?
