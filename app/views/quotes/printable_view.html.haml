@@ -82,7 +82,7 @@
               %th{width: '80px'} BRAND:
             %th{colspan: @quote.offer_spec_colspan(params[:supplier_id])} OFFERED:
             %th{width: '80px'} UNIT PRICE
-            %th{width: '80px'} TOTAL PRICE
+            %th{width: '80px'} AMOUNT
             - unless @quote.offer_details_mergable?(:remarks, params[:supplier_id])
               %th{width: '80px'} NOTES
             - unless @quote.offer_details_mergable?(:delivery, params[:supplier_id]) or params[:supplier_id]
