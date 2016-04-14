@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-  before_action :block_readonly_users
 
   def index
     @users = User.all
@@ -13,7 +12,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update_attributes(params[:user])
-    redirect_to :index
+    redirect_to users_path
   end
 
 end

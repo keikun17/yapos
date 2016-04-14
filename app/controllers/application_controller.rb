@@ -8,8 +8,13 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_user!
 
+
+  before_filter :block_readonly_users, only: [:new, :edit, :destroy, :update, :create]
+
   def block_readonly_users
-    flash[:error] = "You are not allowed to access this page"
-    redirect_to :root
+    if current_user && current_user.read_only?
+      flash[:error] = "You are not allowed to access this page"
+      redirect_to :root
+    end
   end
 end

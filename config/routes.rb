@@ -20,6 +20,8 @@ Yapos::Application.routes.draw do
   devise_for :users
 
   resources :users
+  get 'read_only', to: 'read_only#index'
+
 
   get 'graphs/kanban', to: 'graphs#kanban'
   get 'graphs/performance', to: 'graphs#performance'
