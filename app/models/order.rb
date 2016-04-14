@@ -43,6 +43,12 @@ class Order < ActiveRecord::Base
   scope :not_yet_ordered, -> { includes( :supplier_orders ).references(:supplier_orders).where( "supplier_orders.reference = '' or supplier_orders.reference is null" )}
   scope :ordered, -> { includes( :supplier_orders).references(:supplier_orders).where( "supplier_orders.reference != '' and supplier_orders.reference is not null" ) }
 
+  scope :with_offers, -> {
+    includes(:offers).
+    references(:offers).
+    where.not({offers: {id: nil}})
+  }
+
   scope :with_supply_offers, -> {
     includes(
       {offers: [{supplier_order: :supplier_purchase}, :client, :request]},
