@@ -62,7 +62,7 @@ group :development, :test do
   gem 'rubocop-rspec', require: false
   gem 'rspec-rails', '~> 3.1'
   gem 'pry-nav'
-  gem 'haml-lint', require: false
+  gem 'haml-lint', '~> 0.0.3', require: false
   gem 'rubocop', require: false
   gem 'simplecov', require: false
   gem 'rails_best_practices', require: false

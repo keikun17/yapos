@@ -173,16 +173,18 @@ GEM
       activesupport (>= 3)
     haml (4.0.6)
       tilt
-    haml-lint (0.12.0)
-      haml (~> 4.0)
-      rubocop (>= 0.25.0)
-      sysexits (~> 1.1)
+    haml-lint (0.0.3)
+      haml_lint
     haml-rails (0.9.0)
       actionpack (>= 4.0.1)
       activesupport (>= 4.0.1)
       haml (>= 4.0.6, < 5.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
+    haml_lint (0.15.2)
+      haml (~> 4.0)
+      rubocop (>= 0.25.0)
+      sysexits (~> 1.1)
     hashie (3.4.0)
     hike (1.2.3)
     html2haml (2.0.0)
@@ -412,7 +414,7 @@ DEPENDENCIES
   elasticsearch-rails (~> 0.1.6)
   factory_girl_rails (~> 4.0)
   groupdate
-  haml-lint
+  haml-lint (~> 0.0.3)
   haml-rails
   jquery-rails
   json (~> 1.8.2)
