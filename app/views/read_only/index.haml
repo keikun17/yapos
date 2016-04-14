@@ -8,28 +8,65 @@
       -# %th Amount
       %th Date Supplier Ordered
       %th Supplier PO#
-      %th Supplier
+      %th Brand
       %th SO#
       %th SI#
       %th DR#
 
   %tbody
     - @orders.all.each do |order|
+      - offer_count = order.offers.count
+      - offer = order.offers.first
+      - offer = offer.decorate
+
       %tr
-        %td= order.created_at.to_date.to_s(:long)
-        %td= order.clients.map(&:name).join(',')
-        %td= order.reference
+        %td{rowspan: offer_count}= order.created_at.to_date.to_s(:long)
+        %td{rowspan: offer_count}= order.clients.map(&:name).join(',')
+        %td{rowspan: offer_count}= order.reference
         %td
-          - order.offers.each do |offer|
-            - offer = offer.decorate
+          %p
+            = offer.complete_quantity
+            = offer.supplier_order_actual_specs
+
+        %td
+          - if !offer.from_stock? && !offer.service? && offer.supplier_purchase && offer.supplier_purchase.ordered_at
+            = offer.supplier_purchase.ordered_at.to_date.to_s(:long)
+          - if offer.service?
+            Service
+          - if offer.from_stock?
+            From Stock
+
+        %td
+          - if !offer.from_stock? && !offer.service? && offer.supplier_purchase && offer.supplier_purchase.ordered_at
+            = offer.supplier_name
+        %td
+          = offer.supplier.name
+        %td
+        %td= offer.delivery_receipt_reference
+        %td= offer.sales_invoice_reference
+
+      - order.offers[1..-1].each do |offer|
+        %tr
+          - offer = order.offers.first
+          - offer = offer.decorate
+          %td
             %p
               = offer.complete_quantity
               = offer.supplier_order_actual_specs
-        %td= order.purchase_date.to_date.to_s(:long) if order.purchase_date
-        %td= order.supplier_purchases.collect(&:reference).join(',')
-        %td= order.suppliers.map(&:name).join(',')
-        %td
-        %td= order.offers.map(&:delivery_receipt_reference).uniq.join(',')
-        %td= order.offers.map(&:sales_invoice_reference).uniq.join(',')
 
+          %td
+            - if !offer.from_stock? && !offer.service? && offer.supplier_purchase && offer.supplier_purchase.ordered_at
+              = offer.supplier_purchase.ordered_at.to_date.to_s(:long)
+            - if offer.service?
+              Service
+            - if offer.from_stock?
+              From Stock
 
+          %td
+            - if !offer.from_stock? && !offer.service? && offer.supplier_purchase && offer.supplier_purchase.ordered_at
+              = offer.supplier_name
+          %td
+            = offer.supplier.name
+          %td
+          %td= offer.delivery_receipt_reference
+          %td= offer.sales_invoice_reference
