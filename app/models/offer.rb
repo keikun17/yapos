@@ -70,6 +70,8 @@ class Offer < ActiveRecord::Base
   scope :supplier_hidden_in_print, -> { where(hide_supplier_in_print: true) }
   scope :services, -> { where(service: true) }
   scope :supplies, -> { where.not(service: true) }
+  scope :not_from_stock, -> { where.not(from_stock: false) }
+  scope :from_stock, -> { where(from_stock: true) }
 
   scope :pending_client_order, (lambda do
     # (3) Or this way :
