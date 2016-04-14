@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
 
 
-  before_filter :block_readonly_users, only: [:new, :edit, :destroy, :update, :create]
+  before_filter :block_readonly_users, only: [:new, :edit,  :update, :create]
 
   def block_readonly_users
     if current_user && current_user.read_only?
