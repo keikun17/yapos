@@ -26,7 +26,7 @@
         %td
           %p
             = offer.complete_quantity
-            = offer.supplier_order_actual_specs
+            = offer.summary
 
         %td
           - if !offer.from_stock? && !offer.service? && offer.supplier_purchase && offer.supplier_purchase.ordered_at
