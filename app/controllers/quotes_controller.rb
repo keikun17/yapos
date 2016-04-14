@@ -1,6 +1,7 @@
 class QuotesController < ApplicationController
 
   before_filter :set_badge_count, only: [:index, :pending_client_po, :pending]
+  before_filter :redirect_read_only_user
 
   # GET /quotes
   # GET /quotes.json
@@ -157,6 +158,10 @@ class QuotesController < ApplicationController
       # @quote.requests.first.offers.build
     end
     @quote.attachments.build if @quote.attachments.empty?
+  end
+
+  def redirect_read_only_user
+    redirect_to '/read_only' if current_user.read_only?
   end
 
 end

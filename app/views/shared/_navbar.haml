@@ -1,0 +1,50 @@
+#navbar.navbar.navbar-inverse.navbar-static-top
+  .container-fluid
+    %btn.navbar-toggle.collapsed(data-target="#navbar" data-toggle="collapse" aria-expanded="false" aria-controls="navbar")
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    .navbar-header
+      %a.navbar-brand(href="#") MLANDCORP
+    - if user_signed_in? && !current_user.read_only?
+      .navbar-collapse.collapse
+        %ul.nav.navbar-nav
+          %li#quotes-nav= link_to "Price Quotes", quotes_path
+          %li#order-nav= link_to "Client Orders", orders_path
+          %li#supplier-order-nav= link_to "Supplier Orders", supplier_purchases_path
+          %li#delivery-nav= link_to "Deliveries", deliveries_and_invoices_path
+          %li#invoice-nav= link_to "Invoices", invoices_path
+          %li#payment-nav= link_to "Payments", payments_path
+          %li= link_to "Clients", clients_path
+          %li= link_to "Suppliers", suppliers_path
+          -# %li= link_to "Accounting", accounting_path
+          %li.dropdown
+            %a.dropdown-toggle{data: {toggle: 'dropdown'}}
+              Others
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Today", today_path
+              %li= link_to "Stocks Monitoring", stocks_path
+              -# %li= link_to "Deliveries", deliveries_and_invoices_path
+              -# %li= link_to "Invoices", invoices_path
+              -# %li= link_to "Payments", payments_path
+              %li= link_to "Graph", graphs_kanban_path
+              %li= link_to "Performance Chart", graphs_performance_path
+              %li.divider
+              %li.nav-header Product Codes
+              %li= link_to "Products List", products_path
+              %li= link_to "Price Trend", price_movements_path
+              %li= link_to "Search Vendor Item", search_vendor_item_path
+
+          %li
+            = form_tag search_path, method: :get, class: 'navbar-form' do
+              - params[:search] ||= {}
+              = text_field_tag 'search[string]', params[:search][:string], :class => "form-control input-small"
+              = select_tag 'search[type]', options_for_select(['quote','order', ['supplier order', 'supplier_order']], params[:search][:type ]), class: 'compact form-control'
+              = button_tag "Search", :class => "btn btn-medium"
+
+        %ul.navbar-nav.nav.navbar-right
+          %li= link_to "Log out", destroy_user_session_path, :method => :delete
+    - if user_signed_in? && current_user.read_only?
+      %ul.navbar-nav.nav.navbar-right
+        %li= link_to "Log out", destroy_user_session_path, :method => :delete
