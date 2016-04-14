@@ -47,7 +47,7 @@ class Order < ActiveRecord::Base
     includes(
       {offers: [{supplier_order: :supplier_purchase}, :client, :request]},
     ).
-    references(:offers).where.not(offers: {service: true}).where.not(offers: {id: nil}).not_yet_ordered
+    references(:offers).where(offers: {from_stock: false}).where.not(offers: {service: true}).where.not(offers: {id: nil}).not_yet_ordered
   }
 
   scope :with_service_offers, -> { includes(:quotes, {quotes: :offers}).where(offers: {service: true}) }
