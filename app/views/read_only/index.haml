@@ -32,13 +32,17 @@
           - if !offer.from_stock? && !offer.service? && offer.supplier_purchase && offer.supplier_purchase.ordered_at
             = offer.supplier_purchase.ordered_at.to_date.to_s(:long)
           - if offer.service?
-            Service
+            %b SERVICE
           - if offer.from_stock?
-            From Stock
+            %b GET FROM STOCK
 
         %td
-          - if !offer.from_stock? && !offer.service? && offer.supplier_purchase && offer.supplier_purchase.ordered_at
-            = offer.supplier_name
+          - if !offer.from_stock? && !offer.service? && offer.supplier_purchase && offer.supplier_purchase
+            = offer.supplier_purchase.reference
+          - if offer.service?
+            %b SERVICE
+          - if offer.from_stock?
+            %b GET FROM STOCK
         %td
           = offer.supplier.name
         %td
@@ -58,13 +62,17 @@
             - if !offer.from_stock? && !offer.service? && offer.supplier_purchase && offer.supplier_purchase.ordered_at
               = offer.supplier_purchase.ordered_at.to_date.to_s(:long)
             - if offer.service?
-              Service
+              %b SERVICE
             - if offer.from_stock?
-              From Stock
+              %b GET FROM STOCK
 
           %td
-            - if !offer.from_stock? && !offer.service? && offer.supplier_purchase && offer.supplier_purchase.ordered_at
-              = offer.supplier_name
+            - if !offer.from_stock? && !offer.service? && offer.supplier_purchase && offer.supplier_purchase
+              = offer.supplier_purchase.reference
+            - if offer.service?
+              %b SERVICE
+            - if offer.from_stock?
+              %b GET FROM STOCK
           %td
             = offer.supplier.name
           %td
