@@ -4,6 +4,10 @@
 
 .row
   .col-sm-12
+    %h1= link_to "VIEW REPORT", "/read_only", class: 'btn btn-primary'
+
+.row
+  .col-sm-12
     = render 'clients/form_with_select_to_filter_clients'
 
 = render 'orders/tabs'
