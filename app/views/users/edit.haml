@@ -1,0 +1,20 @@
+%h1 Edit User
+
+= form_for @user do |f|
+  .row
+    .col-sm-6
+      = f.label :email
+    .col-sm-6
+      = f.text_field :email, disabled: true
+  .row
+    .col-sm-6
+      = f.label :read_only
+    .col-sm-6
+      = f.check_box :read_only
+
+  .row
+    .col-sm-6
+      = f.submit "Save"
+
+
+

@@ -19,6 +19,8 @@ Yapos::Application.routes.draw do
 
   devise_for :users
 
+  resources :users
+
   get 'graphs/kanban', to: 'graphs#kanban'
   get 'graphs/performance', to: 'graphs#performance'
   get 'graphs/profits', to: 'graphs#profits'

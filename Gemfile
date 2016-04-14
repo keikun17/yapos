@@ -49,8 +49,8 @@ gem 'compass-rails', '2.0.4'
 gem 'counter_culture'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-gem 'libv8', '~> 3.16'
-gem 'therubyracer', '0.12.1'
+gem 'libv8', '~> 3.16.14.13'
+gem 'therubyracer', '0.12.2'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'groupdate'
