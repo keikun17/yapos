@@ -17,11 +17,12 @@
     - @orders.all.each do |order|
       - offer_count = order.offers.count
       - offer = order.offers.first
+      - clients = order.clients.decorate
       - offer = offer.decorate
 
       %tr
         %td{rowspan: offer_count}= order.created_at.to_date.to_s(:short)
-        %td{rowspan: offer_count}= order.clients.map(&:name).join(',')
+        %td{rowspan: offer_count}= clients.map(&:display_name).join(',')
         %td{rowspan: offer_count}= order.reference
         %td
           %p
