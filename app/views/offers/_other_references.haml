@@ -6,6 +6,12 @@
         = link_to offer.order_reference, offer.order, class: 'reference reference-order'
         %br
 
+  - if offer.order
+    %strong PO Date
+    .row-fluid
+      .col-sm-12
+        = offer.order.decorate.display_purchase_date
+
 
   %strong Supplier PO#
   .row-fluid
