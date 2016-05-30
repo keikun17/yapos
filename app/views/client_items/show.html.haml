@@ -9,6 +9,7 @@
   %thead
     %tr
       %th.col-sm-1 RFQ
+      %th.col-sm-1 Date Quoted
       %th.col-sm-3 Requested Specs
       %th.col-sm-3 Offered Specs
       %th.col-sm-1 Supplier
@@ -26,6 +27,7 @@
         - offer = OfferDecorator.new(offer)
       %tr
         %td{rowspan: offer_count}= link_to req.quote.quote_reference, req.quote
+        %td.hidden-xs= req.quote.quote_date.to_date if req.quote.quote_date
         %td{rowspan: offer_count}
           %span.request-quantity= req.display_quantity
           %br
