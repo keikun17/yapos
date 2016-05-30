@@ -51,7 +51,7 @@
             = link_to offer.quote_reference, offer.quote
           - else
             = link_to offer.quote.id, offer.quote
-        %td= offer.quote_date
+        %td= offer.quote.quote_date.to_date if offer.quote && offer.quote.quote_date
         %td
           - if offer.client.present?
             = link_to offer.client_name, client_path(offer.client)
