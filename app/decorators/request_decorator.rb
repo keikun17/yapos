@@ -28,7 +28,7 @@ class RequestDecorator < ApplicationDecorator
   end
 
   def item_code_link
-    if !self.item_code.blank?
+    if !self.item_code.blank? && self.quote.client
       h.link_to "Item Code : #{self.item_code}", h.client_client_item_path(client_id: self.quote.client, id: self.item_code), class: 'client-item-code'
     end
   end
