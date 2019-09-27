@@ -30,19 +30,20 @@ gem 'elasticsearch-rails', '~> 0.1.6'
 gem 'json', '~> 1.8.2'
 
 group :development do
-  gem "rails_best_practices"
   gem 'quiet_assets'
   gem 'annotate'
-  gem 'taps', '~> 0.3.24'
+  # gem 'taps'
   gem 'capistrano', '~> 3.4.0', require: false
   gem 'bullet'
+  gem 'solargraph', '~> 0.1.0'
+  gem 'yard'
 end
 
 gem 'thin'
 gem 'will_paginate', '~> 3.0.4'
 gem 'acts_as_commentable_with_threading'
 
-gem 'mysql2'
+gem 'mysql2', '~> 0.4.0'
 
 # gem 'compass-rails', git: 'git://github.com/Compass/compass-rails.git', branch: 'rails4-hack'
 gem 'compass-rails', '2.0.4'
