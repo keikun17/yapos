@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
 
-  before_filter :block_readonly_users, only: [:new, :edit,  :update, :create]
+  before_action :block_readonly_users, only: [:new, :edit,  :update, :create]
 
   def block_readonly_users
     if current_user && current_user.read_only?
