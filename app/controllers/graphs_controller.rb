@@ -21,6 +21,24 @@ class GraphsController < ApplicationController
     ]
   end
 
+  def flow
+    # ORDERS
+    @orders_count = Order.where(created_at: [1.year.ago..Time.zone.now]).group_by_month(:created_at, time_zone: Time.zone).count
+    @orders_one_year_ago = Order.where(created_at: [2.year.ago..1.year.ago.end_of_month]).group_by_month(:created_at, time_zone: Time.zone).count
+    binding.pry
+    @orders_two_years_ago = Order.where(created_at: [3.year.ago..2.year.ago.end_of_month]).group_by_month(:created_at, time_zone: Time.zone).count
+
+    @orders_one_year_ago = align_chartkick_dates(@orders_one_year_ago, 1)
+    @orders_two_years_ago = align_chartkick_dates(@orders_two_years_ago, 2)
+
+    @order_dates = [
+      {name: Time.now.year, data: @orders_count},
+      {name: 1.year.ago.year, data: @orders_one_year_ago},
+      {name: 2.years.ago.year, data: @orders_two_years_ago},
+    ]
+
+  end
+
   # TODO : extract MonthlyPerformance class
   def performance
     # QUOTES

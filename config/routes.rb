@@ -25,6 +25,8 @@ Yapos::Application.routes.draw do
 
   get 'graphs/kanban', to: 'graphs#kanban'
   get 'graphs/performance', to: 'graphs#performance'
+  get 'graphs/flow', to: 'graphs#flow'
+
   get 'graphs/profits', to: 'graphs#profits'
 
   get 'price_movements', to: 'price_movement#index', as: :price_movements
