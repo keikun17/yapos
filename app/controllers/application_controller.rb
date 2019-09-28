@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
   respond_to :html
 
+  before_action :authenticate_user!
   protect_from_forgery
 
-  before_action :authenticate_user!
 
 
   before_action :block_readonly_users, only: [:new, :edit,  :update, :create]
@@ -17,4 +17,5 @@ class ApplicationController < ActionController::Base
       redirect_to :root
     end
   end
+
 end

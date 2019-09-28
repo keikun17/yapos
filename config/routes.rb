@@ -1,4 +1,5 @@
 Yapos::Application.routes.draw do
+  devise_for :users
   resources :parent_companies
   resources :vendor_item_fields
 
@@ -17,9 +18,11 @@ Yapos::Application.routes.draw do
     resources :vendor_items
   end
 
-  devise_for :users
-
+  devise_scope :user do
+    patch '/users/sign_in', to: 'devise/sessions#create'
+  end
   resources :users
+
   get 'read_only', to: 'read_only#index'
 
 
