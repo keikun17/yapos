@@ -43,7 +43,7 @@ group :development do
 end
 
 gem 'thin'
-gem 'will_paginate', '~> 3.0.4'
+gem 'will_paginate', '~> 3.1.8'
 gem 'acts_as_commentable_with_threading'
 
 gem 'mysql2'
