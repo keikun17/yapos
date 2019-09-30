@@ -1,4 +1,5 @@
-Yapos::Application.routes.draw do
+# Yapos::Application.routes.draw do
+Rails.application.routes.draw do
   devise_for :users
   resources :parent_companies
   resources :vendor_item_fields
