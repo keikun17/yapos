@@ -9,12 +9,15 @@
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
+/db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
+/log/*
+/tmp/*
 .bundle
 uploads
+!/log/.keep
+!/tmp/.keep
 
 # Ignore public/assets, run rake assets:precompile on prod instead
 /public/assets
@@ -24,6 +27,7 @@ coverage
 
 # Ignore .env file read by the `dotenv-rails` gem
 .env
+/config/master.key
 
 tags
 
