@@ -1,12 +1,12 @@
 class SupplierOrder < ActiveRecord::Base
-  attr_accessible :reference,
-    :offer_id,
-    :ordered_at, #FIXME : remove this and delegate to supplier_purchase
-    :estimated_manufactured_at,
-    :estimated_delivered_at,
-    :delivered_at,
-    :actual_specs,
-    :offer_attributes
+  # attr_accessible :reference,
+  #   :offer_id,
+  #   :ordered_at, #FIXME : remove this and delegate to supplier_purchase
+  #   :estimated_manufactured_at,
+  #   :estimated_delivered_at,
+  #   :delivered_at,
+  #   :actual_specs,
+  #   :offer_attributes
 
   belongs_to :supplier_purchase,
     inverse_of: :supplier_orders,

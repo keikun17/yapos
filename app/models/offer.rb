@@ -1,36 +1,36 @@
 class Offer < ActiveRecord::Base
   include Offer::PriceComputation
 
-  attr_accessible(
-    :request,
-    :vendor_item_id,
-    :supplier_id,
-    :specs,
-    :summary,
-    :buying_price,
-    :selling_price,
-    :buying_currency,
-    :currency,
-    :currency_conversion,
-    :price_vat_status,
-    :order_reference,
-    :remarks,
-    :terms,
-    :delivery,
-    :warranty,
-    :supplier_order_attributes,
-    :invoices_attributes,
-    :total_buying_price,
-    :total_selling_price,
-    :price_basis,
-    :delivery_receipt_reference,
-    :sales_invoice_reference, # TODO Mark for deletion, Invoice model implemented  (Update : Now safe to remove via migation)
-    :vendor_item_code,
-    :hide_supplier_in_print,
-    :internal_notes,
-    :service,
-    :from_stock
-  )
+  # attr_accessible(
+  #   :request,
+  #   :vendor_item_id,
+  #   :supplier_id,
+  #   :specs,
+  #   :summary,
+  #   :buying_price,
+  #   :selling_price,
+  #   :buying_currency,
+  #   :currency,
+  #   :currency_conversion,
+  #   :price_vat_status,
+  #   :order_reference,
+  #   :remarks,
+  #   :terms,
+  #   :delivery,
+  #   :warranty,
+  #   :supplier_order_attributes,
+  #   :invoices_attributes,
+  #   :total_buying_price,
+  #   :total_selling_price,
+  #   :price_basis,
+  #   :delivery_receipt_reference,
+  #   :sales_invoice_reference, # TODO Mark for deletion, Invoice model implemented  (Update : Now safe to remove via migation)
+  #   :vendor_item_code,
+  #   :hide_supplier_in_print,
+  #   :internal_notes,
+  #   :service,
+  #   :from_stock
+  # )
 
   belongs_to :request
 
@@ -43,9 +43,9 @@ class Offer < ActiveRecord::Base
     }
   )
 
-  belongs_to :supplier
-  belongs_to :vendor_item
-  belongs_to :order, primary_key: "reference", foreign_key: "order_reference"
+  belongs_to :supplier, optional: true
+  belongs_to :vendor_item, optional: true
+  belongs_to :order, primary_key: "reference", foreign_key: "order_reference", optional: true
 
   has_one :quote, through: :request
   has_one :supplier_order, inverse_of: :offer, dependent: :destroy

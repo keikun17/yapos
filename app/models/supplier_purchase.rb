@@ -2,23 +2,23 @@ class SupplierPurchase < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  attr_accessible :reference,
-    #order_id, #TODO : Create a migration that removes the order_id column, we
-    #                  we don't need this anymore because we are getting orders
-    #                  thru the :offers association
-    :recipient,
-    :address,
-    :delivery,
-    :price_basis,
-    :remarks,
-    :terms,
-    :warranty,
-    :ordered_at,
-    :signatory,
-    :signatory_position,
-    :hide_client_in_print,
-    :supplier_orders_attributes
-
+  # attr_accessible :reference,
+  #   #order_id, #TODO : Create a migration that removes the order_id column, we
+  #   #                  we don't need this anymore because we are getting orders
+  #   #                  thru the :offers association
+  #   :recipient,
+  #   :address,
+  #   :delivery,
+  #   :price_basis,
+  #   :remarks,
+  #   :terms,
+  #   :warranty,
+  #   :ordered_at,
+  #   :signatory,
+  #   :signatory_position,
+  #   :hide_client_in_print,
+  #   :supplier_orders_attributes
+  #
 
   has_many :supplier_orders,
     inverse_of: :supplier_purchase,

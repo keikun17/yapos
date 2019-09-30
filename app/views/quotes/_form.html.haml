@@ -1,4 +1,4 @@
-= form_for @quote, :html => { :class => 'form-horizontal changes-confirmed' }, validate: true do |f|
+= form_with model: @quote, :html => { :class => 'form-horizontal changes-confirmed' }, validate: true do |f|
   .row
     .col-sm-6
       .row

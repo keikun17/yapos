@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :name, :product_fields_attributes
+  # attr_accessible :name, :product_fields_attributes
   has_many :product_fields
   has_many :vendor_items
 

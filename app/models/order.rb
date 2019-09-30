@@ -2,16 +2,16 @@ class Order < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  attr_accessible :purchase_date,
-    :reference,
-    :quotes_attributes,
-    :quotes,
-    :custom_quote_reference,
-    :description,
-    :client_id,
-    :supplier_id,
-    :attachments_attributes,
-    :offers_attributes
+  # attr_accessible :purchase_date,
+  #   :reference,
+  #   :quotes_attributes,
+  #   :quotes,
+  #   :custom_quote_reference,
+  #   :description,
+  #   :client_id,
+  #   :supplier_id,
+  #   :attachments_attributes,
+  #   :offers_attributes
 
   has_many :attachments, :as => :attachable
 

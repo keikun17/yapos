@@ -50,8 +50,10 @@ class QuotesController < ApplicationController
   # POST /quotes
   # POST /quotes.json
   def create
-    @quote = Quote.new(params[:quote])
+    # @quote = Quote.new(params[:quote])
+    @quote = Quote.new(quote_params)
 
+    byebug
     if @quote.save
       @quote.compute_total_offered_prices
       Purchase.make(@quote.offers.purchased)
@@ -163,5 +165,70 @@ class QuotesController < ApplicationController
   def redirect_read_only_user
     redirect_to '/read_only' if current_user.read_only?
   end
+
+
+  private
+
+  def quote_params
+    # byebug
+    params.
+      require(:quote).
+      permit(["quote_reference",
+              "client_id",
+              "contact_person",
+              "quote_date(1i)", "quote_date(2i)", "quote_date(3i)",
+              "title",
+              "blurb", "remarks",
+              "signatory",
+              "signatory_position",
+              "internal_notes",
+              "attachments_attributes",
+
+              requests_attributes: [
+                "position",
+                "quantity",
+                "unit",
+                "specs",
+                "item_code",
+                "remarks",
+                "_destroy",
+
+                offers_attributes: [
+                  ["supplier_id",
+                   "hide_supplier_in_print",
+                   "specs",
+                   "summary",
+                   "service",
+                   "vendor_item_id",
+                   "vendor_item_code",
+                   "price_vat_status",
+                   "from_stock",
+                   "buying_currency",
+                   "buying_price",
+                   "currency",
+                   "selling_price",
+                   "price_basis",
+                   "terms",
+                   "delivery",
+                   "warranty",
+                   "remarks",
+                   "internal_notes",
+                   "order_reference",
+                   "delivery_receipt_reference",
+                   "sales_invoice_reference",
+                   "_destroy"]
+                ]
+              ],
+
+              attachments_attributes: [
+                "_destroy"
+              ]
+
+
+
+
+    ])
+  end
+
 
 end

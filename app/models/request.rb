@@ -1,15 +1,15 @@
 class Request < ActiveRecord::Base
-  attr_accessible :specs,
-    :quantity,
-    :unit,
-    :remarks,
-    :offers_attributes,
-    :position,
-    :item_code,
-    :supplier_id # TODO : Remove unused column
+  # attr_accessible :specs,
+  #   :quantity,
+  #   :unit,
+  #   :remarks,
+  #   :offers_attributes,
+  #   :position,
+  #   :item_code,
+  #   :supplier_id # TODO : Remove unused column
 
   belongs_to :quote
-  belongs_to :supplier
+  belongs_to :supplier, optional: true
   has_many :offers, dependent: :destroy
 
   has_many :suppliers, through: :offers

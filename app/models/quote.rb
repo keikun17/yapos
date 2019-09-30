@@ -1,4 +1,4 @@
-class Quote < ActiveRecord::Base
+class Quote < ApplicationRecord
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
@@ -6,31 +6,31 @@ class Quote < ActiveRecord::Base
 
   has_many :comment_threads, :class_name => "QuoteComment", :as => :commentable
 
-  attr_accessible :title,
-    # :description, #TODO : Remove 'description' column. it has no valid use
-    # case anymore
-    :blurb,
-    :signatory,
-    :signatory_position,
-    :contact_person,
-    :quantity,
-    :quote_date,
-    :quote_reference,
-    :supplier_id, #TODO : Remove supplier ID because we reference the supplier from the offer
-    # :status, # TODO : Remove 'status' column. we have no use for this anymore.
-    #                   the 'cancelled' status should just be a check box
-    :client_id,
-    :requests_attributes,
-    :attachments_attributes,
-    :remarks,
-    :internal_notes,
-    :state
+  # attr_accessible :title,
+  #   # :description, #TODO : Remove 'description' column. it has no valid use
+  #   # case anymore
+  #   :blurb,
+  #   :signatory,
+  #   :signatory_position,
+  #   :contact_person,
+  #   :quantity,
+  #   :quote_date,
+  #   :quote_reference,
+  #   :supplier_id, #TODO : Remove supplier ID because we reference the supplier from the offer
+  #   # :status, # TODO : Remove 'status' column. we have no use for this anymore.
+  #   #                   the 'cancelled' status should just be a check box
+  #   :client_id,
+  #   :requests_attributes,
+  #   :attachments_attributes,
+  #   :remarks,
+  #   :internal_notes,
+  #   :state
 
   has_many :attachments, :as => :attachable
   has_many :requests, dependent: :destroy
   has_many :offers, :through => :requests
 
-  has_many :suppliers, :through => :offers
+  has_many :suppliers, through: :offers
   has_many :orders, :through => :offers
 
   has_many :supplier_orders, through: :orders
@@ -47,8 +47,8 @@ class Quote < ActiveRecord::Base
     :allow_destroy => true,
     :reject_if => lambda { |r| r[:supplier].nil? && r[:specs].blank? && r[:remarks].blank?  }
 
-  belongs_to :client
-  belongs_to :supplier
+  belongs_to :client, optional: true
+  belongs_to :supplier, optional: true
 
   delegate :reference, :to => :order, :allow_nil => true, :prefix => true
   delegate :name, :to => :supplier, :allow_nil => true, :prefix => true
