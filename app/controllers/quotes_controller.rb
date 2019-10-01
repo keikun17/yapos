@@ -53,7 +53,6 @@ class QuotesController < ApplicationController
     # @quote = Quote.new(params[:quote])
     @quote = Quote.new(quote_params)
 
-    byebug
     if @quote.save
       @quote.compute_total_offered_prices
       Purchase.make(@quote.offers.purchased)
@@ -70,7 +69,7 @@ class QuotesController < ApplicationController
   def update
     @quote = Quote.find(params[:id])
 
-    if @quote.update_attributes(params[:quote])
+    if @quote.update_attributes(quote_params)
       @quote.reindex
       @quote.compute_total_offered_prices
       Purchase.make(@quote.offers.purchased)
@@ -185,6 +184,7 @@ class QuotesController < ApplicationController
               "attachments_attributes",
 
               requests_attributes: [
+                "id",
                 "position",
                 "quantity",
                 "unit",
@@ -194,39 +194,36 @@ class QuotesController < ApplicationController
                 "_destroy",
 
                 offers_attributes: [
-                  ["supplier_id",
-                   "hide_supplier_in_print",
-                   "specs",
-                   "summary",
-                   "service",
-                   "vendor_item_id",
-                   "vendor_item_code",
-                   "price_vat_status",
-                   "from_stock",
-                   "buying_currency",
-                   "buying_price",
-                   "currency",
-                   "selling_price",
-                   "price_basis",
-                   "terms",
-                   "delivery",
-                   "warranty",
-                   "remarks",
-                   "internal_notes",
-                   "order_reference",
-                   "delivery_receipt_reference",
-                   "sales_invoice_reference",
-                   "_destroy"]
+                  "id",
+                  "supplier_id",
+                  "hide_supplier_in_print",
+                  "specs",
+                  "summary",
+                  "service",
+                  "vendor_item_id",
+                  "vendor_item_code",
+                  "price_vat_status",
+                  "from_stock",
+                  "buying_currency",
+                  "buying_price",
+                  "currency",
+                  "selling_price",
+                  "price_basis",
+                  "terms",
+                  "delivery",
+                  "warranty",
+                  "remarks",
+                  "internal_notes",
+                  "order_reference",
+                  "delivery_receipt_reference",
+                  "sales_invoice_reference",
+                  "_destroy"
                 ]
               ],
 
               attachments_attributes: [
                 "_destroy"
               ]
-
-
-
-
     ])
   end
 
