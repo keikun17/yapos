@@ -94,7 +94,7 @@ gem 'active_median', '~> 0.2.3'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rubocop-rspec', require: false
-  # gem 'rspec-rails', '~> 3.8.2'
+  gem 'rspec-rails', '~> 3.8.2'
   gem 'pry-nav'
   gem 'haml_lint', '~> 0.33.0', require: false
   gem 'rubocop', require: false
@@ -109,7 +109,7 @@ group :test do
   gem 'webdrivers'
 
   # gem 'selenium-webdriver', '2.44.0' # because 2.45.0 is SUPER SLOW
-  # gem 'factory_bot_rails'
+  gem 'factory_bot_rails'
   # gem 'database_cleaner'
   # gem 'spring-commands-rspec'
 end
